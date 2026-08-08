@@ -1,0 +1,111 @@
+.doc-desc {
+  @apply whitespace-pre-wrap;
+}
+
+.doc-card {
+  @apply layout-surface-panel border rounded-2xl;
+}
+
+.doc-card__header, .doc-card__footer {
+  @apply layout-border-default p-2 flex justify-between;
+}
+
+.doc-card__header {
+  @apply border-b;
+}
+
+.doc-card__footer {
+  @apply border-t;
+}
+
+.doc-example {
+  @apply flex flex-col min-h-60 overflow-hidden;
+}
+
+.doc-example__actions {
+  @apply flex gap-1;
+}
+
+.doc-example__body {
+  @apply flex flex-1 layout-surface-panel;
+}
+
+.doc-example__canvas {
+  @apply flex-1 flex items-center justify-center flex-wrap gap-4 px-6 py-6;
+}
+
+.doc-example__code {
+  @apply w-full flex-1;
+}
+
+.doc-block {
+  @apply mb-14 mt-4 scroll-mt-24;
+}
+
+.doc-block__header {
+  @apply mb-4;
+}
+
+.doc-block__title {
+  @apply ui-text-lg font-semibold mb-2;
+}
+
+.doc-page {
+  @apply p-16 flex gap-16 items-start;
+}
+
+.doc-page__group {
+  @apply flex justify-between items-center mb-4;
+}
+
+.doc-page__body {
+  @apply w-[calc(100%-256px-64px)];
+}
+
+.doc-page__title {
+  @apply font-bold text-2xl mb-2 flex items-center gap-2;
+}
+
+.doc-page__desc {
+  @apply text-lg mb-10 max-w-3xl layout-text-secondary;
+}
+
+.doc-page__divider {
+  @apply border-dashed mt-16 mb-14 layout-border-default;
+}
+
+.doc-section {
+  @apply scroll-mt-24;
+}
+
+.doc-section__title {
+  @apply font-semibold text-xl capitalize;
+}
+
+.doc-desc code {
+  @apply text-[0.8em] px-2 py-0.5 border ui-rounded-sm layout-text-secondary bg-[color-mix(in_oklab,currentColor_5%,transparent)] border-[color-mix(in_oklab,currentColor_25%,transparent)];
+}
+
+.doc-code {
+  @apply h-full max-h-125;
+}
+
+.doc-code__raw {
+  @apply py-4 pr-4;
+}
+
+.doc-code .s-scroll-area__thumb--x {
+  @apply px-3;
+}
+
+.doc-code .shiki {
+  @apply flex text-base;
+}
+
+.doc-code .shiki code {
+  @apply pr-4;
+}
+
+.doc-code .shiki span {
+  @apply text-(--shiki-light) dark:text-(--shiki-dark);
+}

@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "ui-kit:theme:build": "tsx scripts/theme-cli.ts -i configs/default/index.ts -o ./themes",
+    "ui-kit:theme:watch": "tsx scripts/theme-cli.ts -i configs/default/index.ts -o ./themes --watch"
+  }
+}

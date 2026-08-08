@@ -1,0 +1,35 @@
+.d-tag {
+  @apply inline-flex items-center gap-[0.35em] h-[1.75em] px-[0.5em] rounded-[0.5em] whitespace-nowrap bg-[color-mix(in_oklab,currentColor_10%,transparent)];
+}
+
+.d-tag--border {
+  @apply border border-[color-mix(in_oklab,currentColor_30%,transparent)];
+}
+
+.d-tag--rounded {
+  @apply rounded-full;
+}
+
+.d-tag__icon {
+  @apply text-[1em];
+}
+
+.d-tag .d-avatar {
+  @apply text-[0.7em] size-[calc(2.5em-4px)];
+}
+
+.d-tag:has(> .d-avatar:first-child) {
+  @apply ps-0.5;
+}
+
+.d-tag--border:has(> .d-avatar:first-child) {
+  @apply ps-px;
+}
+
+.d-tag:has(> .d-avatar:last-child) {
+  @apply pe-0.5;
+}
+
+.d-tag--border:has(> .d-avatar:last-child) {
+  @apply pe-px;
+}

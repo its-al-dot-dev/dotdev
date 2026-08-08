@@ -1,0 +1,67 @@
+.d-select {
+  @apply inline-flex justify-start cursor-pointer transition-[background-color,border-color,opacity,color] min-w-50 disabled:pointer-events-none disabled:opacity-50;
+}
+
+.d-select--sm {
+  @apply ui-pl-sm ui-text-sm ui-h-sm ui-rounded-sm;
+}
+
+.d-select--md {
+  @apply ui-pl-md ui-text-md ui-h-md ui-rounded-md;
+}
+
+.d-select--lg {
+  @apply ui-pl-lg ui-text-lg ui-h-lg ui-rounded-lg;
+}
+
+.d-select--subtle {
+  @apply bg-primary-100 dark:bg-primary-800 border border-transparent;
+}
+
+.d-select--outlined {
+  @apply bg-transparent border border-primary-300 dark:border-primary-700;
+}
+
+.d-select--underlined {
+  @apply bg-transparent border-b rounded-none border-primary-200 dark:border-primary-700;
+}
+
+.d-select:is(:hover,.d-select--focused) {
+  @apply border-primary-400 dark:border-primary-600;
+}
+
+.d-select--invalid {
+  @apply border-danger-500/50!;
+}
+
+.d-select--invalid.d-select--subtle {
+  @apply border;
+}
+
+.d-select__label {
+  @apply select-none outline-none flex flex-1 items-center truncate;
+}
+
+.d-select__label--placeholder {
+  @apply text-primary-400 dark:text-primary-500;
+}
+
+.d-select__dropdown {
+  @apply flex items-center justify-center aspect-square;
+}
+
+.d-select__listbox-wrapper {
+  @apply bg-white p-0.5 shadow-md border border-primary-100;
+}
+
+.d-select__listbox-wrapper--sm {
+  @apply ui-rounded-sm;
+}
+
+.d-select__listbox-wrapper--md {
+  @apply ui-rounded-md;
+}
+
+.d-select__listbox-wrapper--lg {
+  @apply ui-rounded-lg;
+}

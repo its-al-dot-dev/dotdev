@@ -1,0 +1,91 @@
+.d-listbox {
+  @apply ui-text-primary grid gap-0.5 select-none outline-none transition-[background-color,border-color,opacity];
+}
+
+.d-listbox--grid {
+  @apply grid-cols-[repeat(var(--ui-listbox-columns),minmax(0,1fr))];
+}
+
+.d-listbox--subtle {
+  @apply ui-bg-subtle;
+}
+
+.d-listbox--outlined {
+  @apply ui-bg-primary ui-border-primary border;
+}
+
+.d-listbox--outlined, .d-listbox--subtle {
+  @apply p-1 rounded-[calc(var(--ui-radius-md)+4px)];
+}
+
+.d-listbox--invalid {
+  @apply ui-border-danger;
+}
+
+.d-listbox--disabled {
+  @apply ui-disabled;
+}
+
+.d-listbox--sm {
+  @apply ui-text-sm;
+}
+
+.d-listbox--md {
+  @apply ui-text-md;
+}
+
+.d-listbox--lg {
+  @apply ui-text-lg;
+}
+
+.d-listbox__item {
+  @apply ui-rounded-md flex items-center cursor-pointer transition-[background-color,box-shadow,opacity];
+}
+
+.d-listbox__item[data-highlighted] {
+  @apply ui-ring-brand ring-1 ring-inset;
+}
+
+.d-listbox__item--disabled {
+  @apply ui-disabled;
+}
+
+.d-listbox__item:hover {
+  @apply ui-bg-subtle-hover;
+}
+
+.d-listbox__item--selected {
+  @apply ui-bg-subtle-active;
+}
+
+.d-listbox__item--selected:hover {
+  @apply ui-bg-subtle-active;
+}
+
+.d-listbox--sm .d-listbox__item {
+  @apply ui-px-sm ui-gap-sm ui-h-sm;
+}
+
+.d-listbox--md .d-listbox__item {
+  @apply ui-px-md ui-gap-md ui-h-md;
+}
+
+.d-listbox--lg .d-listbox__item {
+  @apply ui-px-lg ui-gap-lg ui-h-lg;
+}
+
+.d-listbox.d-listbox--square .d-listbox__item {
+  @apply px-0 aspect-square justify-center;
+}
+
+.d-listbox__checkmark {
+  @apply ui-text-brand opacity-0 text-[1.2em] transition-[opacity];
+}
+
+.d-listbox__checkmark--right {
+  @apply ml-auto;
+}
+
+.d-listbox__item--selected .d-listbox__checkmark {
+  @apply opacity-100;
+}

@@ -1,0 +1,26 @@
+{
+  "title": "Global Configuration",
+  "desc": "The UI kit ships with a lightweight global configuration layer. Register it once at the app root with <code>createUiKit()</code> to set a BEM namespace and per-component default props for the whole app.",
+  "setup": {
+    "create-ui-kit": {
+      "title": "createUiKit()",
+      "desc": "Creates a Vue plugin that provides the global config down the component tree via <code>app.provide()</code>. Install it before mounting the app; provided options are merged over the base config (<code>namespace: 'd'</code>). The example below reproduces the same effect with a local <code>provide()</code>."
+    }
+  },
+  "options": {
+    "namespace": {
+      "title": "namespace",
+      "desc": "A string prefix prepended to every generated BEM class. Defaults to <code>d</code>. Use it to scope the UI kit styles under your own prefix and avoid collisions."
+    },
+    "components": {
+      "title": "components.button",
+      "desc": "Per-component default props. Any prop left <code>undefined</code> by the component instance falls back to these values. Currently <code>button</code> is the only supported key."
+    }
+  },
+  "resolution": {
+    "priority": {
+      "title": "Resolution order",
+      "desc": "Every prop is resolved as <code>1)</code> local prop, <code>2)</code> global config, <code>3)</code> component default — the first non-empty value wins. The global config is scope-based: providing a new one inside a subtree overrides the outer one for that subtree."
+    }
+  }
+}
