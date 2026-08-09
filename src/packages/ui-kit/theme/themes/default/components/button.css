@@ -79,7 +79,7 @@
 }
 
 @utility button-bg-neutral-solid {
-   @apply bg-neutral-800 hover:bg-neutral-900 border-neutral-800 dark:text-neutral-700 dark:bg-neutral-100 dark:hover:bg-neutral-200 dark:border-neutral-100;
+   @apply bg-primary-800 hover:bg-primary-900 border-primary-800 dark:text-primary-700 dark:bg-primary-100 dark:hover:bg-primary-200 dark:border-primary-100;
 }
 
 @utility button-bg-neutral-soft {
@@ -91,11 +91,11 @@
 }
 
 @utility button-text-neutral {
-   @apply text-neutral-700 dark:text-neutral-100;
+   @apply text-primary-700 dark:text-primary-100;
 }
 
 @utility button-ring-neutral {
-   @apply outline-neutral-500/50;
+   @apply outline-primary-500/50;
 }
 
 @utility button-border-neutral {
@@ -123,7 +123,7 @@
 }
 
 .d-button:is(.d-button--outlined, .d-button--ghost, .d-button--text) {
-  @apply bg-transparent;
+  @apply bg-transparent bg-ui-primary;
 }
 
 .d-button--outlined {

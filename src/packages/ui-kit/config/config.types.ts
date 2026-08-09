@@ -10,6 +10,7 @@ import type {
   UiKitNamespace,
   UIListBoxProps,
   UIMenuProps,
+  UIRadioProps,
   UISelectButtonProps,
   UISelectProps,
   UISwitchProps,
@@ -34,6 +35,7 @@ export interface UiKitConfig {
     textarea?: Partial<UITextareaProps>
     tag?: Partial<UITagProps>
     checkbox?: Partial<UICheckboxProps>
+    radio?: Partial<UIRadioProps>
   }
 }
 

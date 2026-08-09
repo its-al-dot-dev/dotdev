@@ -11,6 +11,7 @@ import selectButton from './components/select-button.ts'
 import switchInput from './components/switch.ts'
 import avatar from './components/avatar.ts'
 import checkbox from './components/checkbox.ts'
+import radio from './components/radio.ts'
 
 const disabled = 'disabled:pointer-events-none disabled:opacity-50'
 
@@ -144,6 +145,7 @@ const index: UiKitThemeConfig = {
     avatar,
     switch: switchInput,
     checkbox,
+    radio,
     'icon-button': {
       '&': `aspect-square px-0!`,
     },

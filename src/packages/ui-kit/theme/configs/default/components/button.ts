@@ -35,11 +35,11 @@ export default tw({
   '@text-success': `text-success-600 dark:text-success-500`,
   '@ring-success': `outline-success-500/50`,
 
-  '@bg-neutral-solid': `bg-neutral-800 hover:bg-neutral-900 border-neutral-800 dark:text-neutral-700 dark:bg-neutral-100 dark:hover:bg-neutral-200 dark:border-neutral-100`,
+  '@bg-neutral-solid': `bg-primary-800 hover:bg-primary-900 border-primary-800 dark:text-primary-700 dark:bg-primary-100 dark:hover:bg-primary-200 dark:border-primary-100`,
   '@bg-neutral-soft': `ui-bg-subtle-hover`,
   '@bg-neutral-subtle': `ui-bg-subtle-active`,
-  '@text-neutral': `text-neutral-700 dark:text-neutral-100`,
-  '@ring-neutral': `outline-neutral-500/50`,
+  '@text-neutral': `text-primary-700 dark:text-primary-100`,
+  '@ring-neutral': `outline-primary-500/50`,
   '@border-neutral': `ui-border-primary`,
 
   '&': `ui-rounded-md inline-flex items-center justify-center font-medium ${tr('bg', 'opacity', 'border', 'color')} cursor-pointer`,
@@ -48,7 +48,7 @@ export default tw({
   '&--lg': sizes('lg', 'gap', 'h', 'px', 'text'),
 
   '&--solid': 'text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)] border',
-  '&:is(&--outlined, &--ghost, &--text)': 'bg-transparent',
+  '&:is(&--outlined, &--ghost, &--text)': 'bg-transparent bg-ui-primary',
   '&--outlined': 'border border-current',
   '&--disabled': `ui-disabled`,
 

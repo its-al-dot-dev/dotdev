@@ -129,6 +129,20 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    'Radio': RouteRecordInfo<
+      'Radio',
+      '/ui-kit/form/radio',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    '/ui-kit/form/radio/docs/examples/6.group': RouteRecordInfo<
+      '/ui-kit/form/radio/docs/examples/6.group',
+      '/ui-kit/form/radio/docs/examples/6/group',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     'Select': RouteRecordInfo<
       'Select',
       '/ui-kit/form/select',
@@ -277,6 +291,22 @@ declare module 'vue-router/auto-routes' {
     'src/packages/docs/ui-kit/form/listbox/index.vue': {
       routes:
         | 'ListBox'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/packages/docs/ui-kit/form/radio/index.vue': {
+      routes:
+        | 'Radio'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/packages/docs/ui-kit/form/radio/docs/examples/6.group.vue': {
+      routes:
+        | '/ui-kit/form/radio/docs/examples/6.group'
       views:
         | never
       pathParamNames:
