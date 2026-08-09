@@ -32,7 +32,7 @@ export default tw({
 
   '&-addon--attach': 'absolute',
   '&--x &-addon--attach': 'inset-y-0',
-  '&--y &-addon--attach': ' inset-x-0',
+  '&--y &-addon--attach': 'inset-x-0',
   '&--x &-addon--attach:first-child': 'left-0',
   '&--x &-addon--attach:last-child': 'right-0',
   '&--y &-addon--attach:first-child': 'top-0',

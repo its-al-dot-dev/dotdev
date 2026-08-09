@@ -48,8 +48,9 @@ export default tw({
   '&--lg': sizes('lg', 'gap', 'h', 'px', 'text'),
 
   '&--solid': 'text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)] border',
-  '&:is(&--outlined, &--ghost, &--text)': 'bg-transparent bg-ui-primary',
   '&--outlined': 'border border-current',
+  '&:is(&--outlined, &--ghost, &--text)': 'bg-transparent ui-bg-primary',
+
   '&--disabled': `ui-disabled`,
 
   ...generateButtons('primary'),

@@ -83,7 +83,7 @@
 }
 
 .d-group--y .d-group-addon--attach {
-  @apply  inset-x-0;
+  @apply inset-x-0;
 }
 
 .d-group--x .d-group-addon--attach:first-child {

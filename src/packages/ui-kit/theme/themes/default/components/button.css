@@ -122,12 +122,12 @@
   @apply text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)] border;
 }
 
-.d-button:is(.d-button--outlined, .d-button--ghost, .d-button--text) {
-  @apply bg-transparent bg-ui-primary;
-}
-
 .d-button--outlined {
   @apply border border-current;
+}
+
+.d-button:is(.d-button--outlined, .d-button--ghost, .d-button--text) {
+  @apply bg-transparent ui-bg-primary;
 }
 
 .d-button--disabled {

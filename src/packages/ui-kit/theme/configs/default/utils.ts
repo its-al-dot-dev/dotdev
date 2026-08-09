@@ -1,3 +1,5 @@
+export const disabled = 'disabled:pointer-events-none disabled:opacity-50'
+
 type UISize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 type UISizeValue = 'h' | 'w' | 'rounded' | 'size' | 'gap' | 'pl' | 'px' | 'text' | 'min-w'
 
