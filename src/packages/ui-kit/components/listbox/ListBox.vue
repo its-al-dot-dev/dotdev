@@ -55,7 +55,7 @@ const listboxRef = useTemplateRef('listbox')
 const isFocused = ref(false)
 const hasNativeFocus = ref(false)
 const focusedOptionIndex = ref(-1)
-const isPointerNavigation = ref(false)
+const isMouseNavigation = ref(false)
 const hasFocusedOption = computed(() => focusedOptionIndex.value !== -1)
 const isGrid = computed(() => typeof ui.columns === 'number' && ui.columns > 0)
 
@@ -84,7 +84,7 @@ function onFocusIn(direction: FocusDirection = 1) {
 function onFocusOut() {
   isFocused.value = false
   focusedOptionIndex.value = -1
-  isPointerNavigation.value = false
+  isMouseNavigation.value = false
 }
 
 function onNativeFocusIn() {
@@ -105,8 +105,8 @@ function blur() {
   listboxRef.value?.blur()
 }
 
-function onPointerDown() {
-  isPointerNavigation.value = true
+function onMouseDown() {
+  isMouseNavigation.value = true
 }
 
 function onKeyDown(event: KeyboardEvent) {
@@ -162,7 +162,7 @@ function onKeyDown(event: KeyboardEvent) {
       return
   }
 
-  isPointerNavigation.value = false
+  isMouseNavigation.value = false
   event.preventDefault()
 }
 
@@ -301,7 +301,7 @@ function getOptionBindings(option: T, index: number) {
   const selected = isSelected(option)
   const focused = isOptionFocused(index)
   const size = ui.options.length
-  const highlighted = !isPointerNavigation.value && focused
+  const highlighted = !isMouseNavigation.value && focused
   const cls = bem('item', { selected, disabled, focused })
   const props = { index, focused, selected, disabled, label, size, highlighted }
 
@@ -309,7 +309,7 @@ function getOptionBindings(option: T, index: number) {
     id,
     class: cls,
     ...props,
-    onPointerdown: () => {
+    onMousedown: () => {
       if (ui.disabled || disabled) return
       toggleOptionSelect(option, index)
     },
@@ -359,7 +359,7 @@ const columns = computed(() => ui.columns)
     v-bind="rootAttrs"
     @focusin="onNativeFocusIn"
     @focusout="onNativeFocusOut"
-    @pointerdown="onPointerDown"
+    @mousedown="onMouseDown"
   >
     <ListBoxItem v-for="(item, idx) in options" :key="idx" #default="scope" v-bind="getOptionBindings(item, idx)">
       <Icon v-if="checkmark === 'left'" :class="bem('checkmark', [checkmark])" :name="checkmarkIcon ?? 'check'" />

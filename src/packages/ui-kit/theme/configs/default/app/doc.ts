@@ -18,7 +18,7 @@ export default tw({
   '&-block__header': `mb-4`,
   '&-block__title': `ui-text-lg font-semibold mb-2`,
 
-  '&-page': `p-16 flex gap-16 items-start`,
+  '&-page': `p-4 lg:p-16 flex gap-16 items-start`,
   '&-page__group': `flex justify-between items-center mb-4`,
   // '&-page__body': `w-[calc(100%-256px-64px)]`,
   '&-page__body': `w-full`,

@@ -58,8 +58,20 @@
   @apply layout-surface-panel;
 }
 
+.layout__backdrop {
+  @apply fixed inset-0 z-40 bg-primary-950/50 lg:hidden;
+}
+
 .layout__sidebar {
-  @apply sticky top-0 flex flex-col h-svh layout-sidebar-width overflow-hidden border-r;
+  @apply fixed inset-y-0 left-0 z-50 flex w-(--layout-sidebar-width) min-w-0 shrink-0 flex-col overflow-hidden pt-(--layout-header-height) border-r layout-surface-panel lg:sticky lg:top-0 lg:h-svh lg:pt-0;
+}
+
+.layout__sidebar--open {
+  @apply translate-x-0;
+}
+
+.layout__sidebar--closed {
+  @apply -translate-x-full lg:translate-x-0 lg:w-0 lg:border-r-0;
 }
 
 .layout__sidebar-header {

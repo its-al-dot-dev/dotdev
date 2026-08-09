@@ -16,11 +16,10 @@ export default tw({
   '&--md': sizes('md', 'text'),
   '&--lg': sizes('lg', 'text'),
 
-  '&__item': `ui-rounded-md flex items-center cursor-pointer ${tr('bg', 'ring', 'opacity')}`,
+  '&__item': `ui-rounded-md flex items-center hover:ui-bg-subtle-hover cursor-pointer ${tr('bg', 'ring', 'opacity')}`,
   '&__item[data-highlighted]': 'ui-ring-brand ring-1 ring-inset',
   '&__item--disabled': 'ui-disabled',
 
-  '&__item:hover': 'ui-bg-subtle-hover',
   '&__item--selected': 'ui-bg-subtle-active',
   '&__item--selected:hover': 'ui-bg-subtle-active',
 

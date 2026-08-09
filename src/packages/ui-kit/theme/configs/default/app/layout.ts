@@ -22,7 +22,12 @@ export default tw({
 
   '&__header, &__sidebar': `layout-surface-panel`,
 
-  '&__sidebar': `sticky top-0 flex flex-col h-svh layout-sidebar-width overflow-hidden border-r`,
+  '&__backdrop': `fixed inset-0 z-40 bg-primary-950/50 lg:hidden`,
+
+  '&__sidebar': `fixed inset-y-0 left-0 z-50 flex w-(--layout-sidebar-width) min-w-0 shrink-0 flex-col overflow-hidden pt-(--layout-header-height) border-r layout-surface-panel lg:sticky lg:top-0 lg:h-svh lg:pt-0`,
+  '&__sidebar--open': `translate-x-0`,
+  '&__sidebar--closed': `-translate-x-full lg:translate-x-0 lg:w-0 lg:border-r-0`,
+
   '&__sidebar-header': `layout-header-height flex items-center shrink-0 px-4 border-b layout-surface-panel`,
   '&__sidebar-body': `flex-1 overflow-y-auto px-2 py-4`,
   '&__sidebar-body .d-menu__heading': ``,

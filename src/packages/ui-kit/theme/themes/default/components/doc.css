@@ -51,7 +51,7 @@
 }
 
 .doc-page {
-  @apply p-16 flex gap-16 items-start;
+  @apply p-4 lg:p-16 flex gap-16 items-start;
 }
 
 .doc-page__group {

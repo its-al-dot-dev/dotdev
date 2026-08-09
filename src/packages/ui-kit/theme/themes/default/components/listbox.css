@@ -39,7 +39,7 @@
 }
 
 .d-listbox__item {
-  @apply ui-rounded-md flex items-center cursor-pointer transition-[background-color,box-shadow,opacity];
+  @apply ui-rounded-md flex items-center hover:ui-bg-subtle-hover cursor-pointer transition-[background-color,box-shadow,opacity];
 }
 
 .d-listbox__item[data-highlighted] {
@@ -48,10 +48,6 @@
 
 .d-listbox__item--disabled {
   @apply ui-disabled;
-}
-
-.d-listbox__item:hover {
-  @apply ui-bg-subtle-hover;
 }
 
 .d-listbox__item--selected {
