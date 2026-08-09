@@ -5,11 +5,12 @@ import {
   normalizeBooleanProp,
   useArrayModel,
   useGlobalEvent,
+  useKeyboardNavigation,
   useTypeahead,
   useUiKitBem,
   useUiKitProps,
 } from 'dotdev/ui-kit'
-import { computed, ref, useId, useTemplateRef, watch } from 'vue'
+import { computed, ref, useId, useTemplateRef } from 'vue'
 import ListBoxItem from './ListBoxItem.vue'
 
 type FocusDirection = 1 | -1 | 0
@@ -36,7 +37,7 @@ const id = useId()
 const ui = useUiKitProps('listbox', props)
 
 const bem = useUiKitBem(ui)
-const { toggle, isSelected } = useArrayModel<T>(model, {
+const { toggle, isSelected, findSelectedIndex } = useArrayModel<T>(model, {
   multiple: () => normalizeBooleanProp(ui.multiple),
   deselectable: () => ui.deselectable,
   valueKey: () => props.valueKey,
@@ -54,17 +55,24 @@ const listboxRef = useTemplateRef('listbox')
 
 const isFocused = ref(false)
 const hasNativeFocus = ref(false)
-const focusedOptionIndex = ref(-1)
 const isMouseNavigation = ref(false)
-const hasFocusedOption = computed(() => focusedOptionIndex.value !== -1)
 const isGrid = computed(() => typeof ui.columns === 'number' && ui.columns > 0)
+
+const nav = useKeyboardNavigation<T>(() => ui.options, {
+  columns: () => ui.columns,
+  isEnabled: () => isFocused.value,
+  isSkipped: isOptionDisabled,
+})
 
 const { search } = useTypeahead({
   options: () => ui.options,
   getLabel: getOptionLabel,
   isDisabled: isOptionDisabled,
-  getCurrentIndex: () => focusedOptionIndex.value,
-  onMatch: moveFocusedOptionIndex,
+  getCurrentIndex: () => nav.currentIndex.value,
+  onMatch: (index) => {
+    nav.setCurrentIndex(index)
+    scrollIntoView()
+  },
 })
 
 function onFocusIn(direction: FocusDirection = 1) {
@@ -72,18 +80,24 @@ function onFocusIn(direction: FocusDirection = 1) {
 
   if (direction === 0) return
 
-  if (!hasFocusedOption.value) {
-    focusedOptionIndex.value = direction === 1 ? findFirstFocusedOptionIndex() : findLastFocusedOptionIndex()
+  if (!nav.hasCurrentItem.value) {
+    const selectedIndex = findSelectedIndex(ui.options, direction === 1 ? 'first' : 'last')
+
+    if (selectedIndex !== -1) {
+      nav.setCurrentIndex(selectedIndex)
+    } else {
+      direction === 1 ? nav.next() : nav.previous()
+    }
   }
 
-  scrollIntoView(focusedOptionIndex.value)
+  scrollIntoView()
   // TODO: emit
   // TODO: add mouse multiselection with shift
 }
 
 function onFocusOut() {
   isFocused.value = false
-  focusedOptionIndex.value = -1
+  nav.setCurrentIndex(-1)
   isMouseNavigation.value = false
 }
 
@@ -112,37 +126,19 @@ function onMouseDown() {
 function onKeyDown(event: KeyboardEvent) {
   if (!isFocused.value) return
 
+  if (nav.onKeydown(event)) {
+    isMouseNavigation.value = false
+    scrollIntoView()
+    return
+  }
+
   switch (event.code) {
-    case 'ArrowDown':
-      onArrowDown(isGrid.value)
-      break
-
-    case 'ArrowUp':
-      onArrowUp(isGrid.value)
-      break
-
-    case 'ArrowLeft':
-      onArrowUp()
-      break
-
-    case 'ArrowRight':
-      onArrowDown()
-      break
-
-    case 'Home':
-      onHome()
-      break
-
-    case 'End':
-      onEnd()
-      break
-
     case 'PageDown':
-      onPageDown()
+      scrollIntoView(ui.options.length - 1)
       break
 
     case 'PageUp':
-      onPageUp()
+      scrollIntoView(0)
       break
 
     case 'Enter':
@@ -169,109 +165,17 @@ function onKeyDown(event: KeyboardEvent) {
 useGlobalEvent('keydown', onKeyDown, { watch: isFocused })
 
 /* Keyboard handlers */
-function onArrowUp(isGrid?: boolean) {
-  let index = hasFocusedOption.value ? findPrevOptionIndex(focusedOptionIndex.value) : findLastFocusedOptionIndex()
-  if (isGrid) {
-    index -= ui.columns - 1
-    if (index < 0) return
-  }
-
-  moveFocusedOptionIndex(index)
-}
-
-function onArrowDown(isGrid?: boolean) {
-  let index = hasFocusedOption.value ? findNextOptionIndex(focusedOptionIndex.value) : findFirstFocusedOptionIndex()
-
-  if (isGrid) {
-    const length = ui.options.length
-    index += ui.columns - 1
-
-    if (index >= length && !Number.isInteger(length / ui.columns)) {
-      index = length - 1
-    }
-  }
-
-  moveFocusedOptionIndex(index)
-}
-
-function onHome() {
-  let index = findFirstOptionIndex()
-  moveFocusedOptionIndex(index)
-}
-
-function onEnd() {
-  let index = findLastOptionIndex()
-  moveFocusedOptionIndex(index)
-}
-
-function onPageUp() {
-  scrollIntoView(0)
-}
-
-function onPageDown() {
-  scrollIntoView(ui.options.length - 1)
-}
-
 function onEnter() {
-  if (!hasFocusedOption.value) return
-  const option = ui.options[focusedOptionIndex.value]
-  toggleOptionSelect(option, focusedOptionIndex.value)
+  if (!nav.hasCurrentItem.value) return
+  const index = nav.currentIndex.value
+  toggleOptionSelect(ui.options[index], index)
 }
 
 function scrollIntoView(index = -1) {
-  const id = getOptionId(index !== -1 ? index : focusedOptionIndex.value)
+  const id = getOptionId(index !== -1 ? index : nav.currentIndex.value)
   const element = document.getElementById(id)
   if (!element || !element.scrollIntoView) return
   element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' })
-}
-
-function moveFocusedOptionIndex(index: number) {
-  if (focusedOptionIndex.value === index) return
-  focusedOptionIndex.value = index
-  scrollIntoView()
-}
-
-/* Find option */
-function findFirstFocusedOptionIndex() {
-  const selectedIndex = findFirstSelectedOptionIndex()
-  return selectedIndex === -1 ? findFirstOptionIndex() : selectedIndex
-}
-
-function findLastFocusedOptionIndex() {
-  const selectedIndex = findLastSelectedOptionIndex()
-  return selectedIndex === -1 ? findLastOptionIndex() : selectedIndex
-}
-
-function findFirstSelectedOptionIndex() {
-  return ui.options.findIndex((option) => isSelected(option))
-}
-
-function findLastSelectedOptionIndex() {
-  return ui.options.findLastIndex((option) => isSelected(option))
-}
-
-function findFirstOptionIndex() {
-  return ui.options.findIndex((option) => !isOptionDisabled(option))
-}
-
-function findLastOptionIndex() {
-  return ui.options.findLastIndex((option) => !isOptionDisabled(option))
-}
-
-function findNextOptionIndex(index: number) {
-  for (let i = index + 1; i < ui.options.length; i++) {
-    if (!isOptionDisabled(ui.options[i])) return i
-  }
-
-  return index
-}
-
-function findPrevOptionIndex(index: number) {
-  for (let i = index - 1; i >= 0; i--) {
-    if (!isOptionDisabled(ui.options[i])) return i
-  }
-
-  return index
 }
 
 /* Option handler */
@@ -284,14 +188,14 @@ function isOptionDisabled(option: T) {
 }
 
 function isOptionFocused(index: number) {
-  return focusedOptionIndex.value === index
+  return nav.currentIndex.value === index
 }
 
 function toggleOptionSelect(option: T, index: number) {
   if (isOptionDisabled(option)) return
 
   toggle(option)
-  focusedOptionIndex.value = index
+  nav.setCurrentIndex(index)
 }
 
 function getOptionBindings(option: T, index: number) {
@@ -326,7 +230,7 @@ const rootAttrs = computed(() => {
     'aria-disabled': ui.disabled,
     'aria-orientation': 'vertical' as const,
     'aria-multiselectable': normalizeBooleanProp(ui.multiple),
-    'aria-activedescendant': hasFocusedOption.value ? getOptionId(focusedOptionIndex.value) : undefined,
+    'aria-activedescendant': nav.hasCurrentItem.value ? getOptionId(nav.currentIndex.value) : undefined,
   }
 })
 
@@ -338,13 +242,6 @@ defineExpose({
   blur,
   focusIn: onFocusIn,
   focusOut: onFocusOut,
-})
-
-/* prettier-ignore */
-watch(() => ui.options.length, (length) => {
-  const index = focusedOptionIndex.value
-  if (index !== -1 && index < length) return
-  focusedOptionIndex.value = -1
 })
 
 /* TODO: delete when fixed useUiKitProps types */

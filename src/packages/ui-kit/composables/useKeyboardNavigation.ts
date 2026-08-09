@@ -1,4 +1,4 @@
-import { computed, type ComputedRef, type MaybeRefOrGetter, ref, type Ref, toValue } from 'vue'
+import { computed, type ComputedRef, type MaybeRefOrGetter, ref, type Ref, toValue, watch } from 'vue'
 
 export type NavigationDirection = 'up' | 'down' | 'left' | 'right'
 export type NavigationEdgeMode = 'auto' | 'manual'
@@ -123,6 +123,15 @@ export function useKeyboardNavigation<T>(
       currentIndex.value = index
     }
   }
+
+  watch(
+    () => resolvedItems.value.length,
+    (length) => {
+      const index = currentIndex.value
+      if (index !== -1 && index < length) return
+      currentIndex.value = -1
+    },
+  )
 
   function resolveBoundary(direction: NavigationDirection, targetIndex: number): boolean {
     let callback: NavigationBoundaryFn<T> | undefined
@@ -260,6 +269,16 @@ export function useKeyboardNavigation<T>(
 
   function onKeydown(event: KeyboardEvent): boolean {
     if (!toValue(isEnabled)) return false
+
+    if (event.key === 'Home' || event.key === 'End') {
+      const index = event.key === 'Home' ? findFirstAvailable() : findLastAvailable()
+      if (index === -1) return false
+
+      currentIndex.value = index
+      event.preventDefault()
+      event.stopPropagation()
+      return true
+    }
 
     const direction = DIRECTION_BY_KEY[event.key]
     if (!direction) return false

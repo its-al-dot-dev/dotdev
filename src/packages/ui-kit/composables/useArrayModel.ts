@@ -68,10 +68,19 @@ export function useArrayModel<T>(model: Ref<T[] | T | undefined>, options: Array
     isSelected(item) ? unselect(item) : select(item)
   }
 
+  const findSelectedIndex = (items: T[], direction: 'first' | 'last' = 'first'): number => {
+    if (direction === 'first') {
+      return items.findIndex((item) => isSelected(item))
+    }
+
+    return items.findLastIndex((item) => isSelected(item))
+  }
+
   return {
     isSelected,
     select,
     unselect,
     toggle,
+    findSelectedIndex,
   }
 }
