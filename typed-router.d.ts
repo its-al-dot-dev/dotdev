@@ -136,13 +136,6 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
-    '/ui-kit/form/radio/docs/examples/6.group': RouteRecordInfo<
-      '/ui-kit/form/radio/docs/examples/6.group',
-      '/ui-kit/form/radio/docs/examples/6/group',
-      Record<never, never>,
-      Record<never, never>,
-      | never
-    >,
     'Select': RouteRecordInfo<
       'Select',
       '/ui-kit/form/select',
@@ -167,6 +160,20 @@ declare module 'vue-router/auto-routes' {
     'Textarea': RouteRecordInfo<
       'Textarea',
       '/ui-kit/form/textarea',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    'Hooks': RouteRecordInfo<
+      'Hooks',
+      '/ui-kit/hooks',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    'useKeyboardNavigation': RouteRecordInfo<
+      'useKeyboardNavigation',
+      '/ui-kit/hooks/use-keyboard-navigation',
       Record<never, never>,
       Record<never, never>,
       | never
@@ -304,14 +311,6 @@ declare module 'vue-router/auto-routes' {
       pathParamNames:
         | never
     }
-    'src/packages/docs/ui-kit/form/radio/docs/examples/6.group.vue': {
-      routes:
-        | '/ui-kit/form/radio/docs/examples/6.group'
-      views:
-        | never
-      pathParamNames:
-        | never
-    }
     'src/packages/docs/ui-kit/form/select/index.vue': {
       routes:
         | 'Select'
@@ -339,6 +338,22 @@ declare module 'vue-router/auto-routes' {
     'src/packages/docs/ui-kit/form/textarea/index.vue': {
       routes:
         | 'Textarea'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/packages/docs/ui-kit/hooks/index.vue': {
+      routes:
+        | 'Hooks'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/packages/docs/ui-kit/hooks/use-keyboard-navigation/index.vue': {
+      routes:
+        | 'useKeyboardNavigation'
       views:
         | never
       pathParamNames:
