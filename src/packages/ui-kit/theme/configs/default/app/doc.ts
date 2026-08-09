@@ -20,7 +20,8 @@ export default tw({
 
   '&-page': `p-16 flex gap-16 items-start`,
   '&-page__group': `flex justify-between items-center mb-4`,
-  '&-page__body': `w-[calc(100%-256px-64px)]`,
+  // '&-page__body': `w-[calc(100%-256px-64px)]`,
+  '&-page__body': `w-full`,
   '&-page__title': `font-bold text-2xl mb-2 flex items-center gap-2`,
   '&-page__desc': `text-lg mb-10 max-w-3xl layout-text-secondary`,
   '&-page__divider': `border-dashed mt-16 mb-14 layout-border-default`,

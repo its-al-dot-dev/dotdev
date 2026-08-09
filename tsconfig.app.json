@@ -9,10 +9,12 @@
     "types": ["vite/client", "node"],
     "allowArbitraryExtensions": true,
     "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
     "paths": {
       "dotdev/ui-kit": ["src/packages/ui-kit"],
       "dotdev/studio": ["src/packages/studio"],
-      "resolve-docs": ["src/packages/docs/resolve-docs.ts"],
+      "resolve-docs": ["src/packages/docs/resolve-docs.ts"]
     },
     /* Linting */
     "noUnusedLocals": true,

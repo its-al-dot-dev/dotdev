@@ -12,6 +12,6 @@ export {
   type KeyboardNavigationContext,
   type KeyboardNavigationOptions,
   type NavigationBoundaryResult,
-  type NavigationMode,
+  type NavigationEdgeMode,
   type UseKeyboardNavigationReturn,
 } from './useKeyboardNavigation.ts'

@@ -8,11 +8,9 @@ defineExpose({
 </script>
 
 <template>
-  <div class="flex gap-4 w-full justify-center items-center">
-    <Tag class="text-xs" label="Extra small" />
-    <Tag class="text-sm" label="Small" />
-    <Tag class="text-base" label="Medium" />
-    <Tag class="text-lg" label="Large" />
-    <Tag class="text-xl" label="Extra large" />
-  </div>
+  <Tag class="text-xs" label="Extra small" />
+  <Tag class="text-sm" label="Small" />
+  <Tag class="text-base" label="Medium" />
+  <Tag class="text-lg" label="Large" />
+  <Tag class="text-xl" label="Extra large" />
 </template>

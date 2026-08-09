@@ -1,169 +1,57 @@
-import { computed, type ComputedRef, type MaybeRefOrGetter, type Ref, ref, toValue, watch } from 'vue'
-
-export type NavigationMode = 'list' | 'grid'
+import { computed, type ComputedRef, type MaybeRefOrGetter, ref, type Ref, toValue } from 'vue'
 
 export type NavigationDirection = 'up' | 'down' | 'left' | 'right'
-
-export type NavigationBoundary = 'start' | 'end' | 'left' | 'right'
-
+export type NavigationEdgeMode = 'auto' | 'manual'
 export interface KeyboardNavigationContext<T> {
-  /**
-   * Текущий индекс перед попыткой навигации.
-   */
   currentIndex: number
-
-  /**
-   * Элемент, на котором сейчас находится навигация.
-   */
   currentItem: T | undefined
-
-  /**
-   * Все элементы.
-   */
   items: readonly T[]
-
-  /**
-   * Направление движения.
-   */
   direction: NavigationDirection
-
-  /**
-   * Индекс, который был бы выбран без учёта skipped элементов.
-   */
   targetIndex: number | null
 }
 
-/**
- * Возвращаемое значение boundary callback.
- *
- * number -> перейти на конкретный индекс
- * null   -> остаться на текущем элементе
- */
 export type NavigationBoundaryResult = number | null | undefined
-
+export type NavigationBoundaryFn<T> = (context: KeyboardNavigationContext<T>) => NavigationBoundaryResult
 export interface KeyboardNavigationOptions<T> {
-  /**
-   * Текущий режим навигации.
-   */
-  mode?: NavigationMode
-
-  /**
-   * Включена ли keyboard navigation.
-   *
-   * Можно передать boolean, ref или getter.
-   */
+  edgeX?: NavigationEdgeMode
+  edgeY?: NavigationEdgeMode
   isEnabled?: MaybeRefOrGetter<boolean>
-
-  /**
-   * Явно задаёт начальный индекс.
-   *
-   * По умолчанию 0.
-   */
   initialIndex?: number
-
-  /**
-   * Определяет, нужно ли пропустить элемент.
-   *
-   * Например:
-   * item => item.disabled
-   */
-  isSkipped?: (item: T, index: number) => boolean
-
-  /**
-   * Количество колонок в grid.
-   *
-   * Может быть как number, так и getter/ref.
-   */
   columns?: MaybeRefOrGetter<number>
-
-  /**
-   * Вызывается, когда пытаемся уйти выше
-   * первого элемента.
-   *
-   * Вернув индекс — навигация перейдёт на него.
-   * Вернув null/undefined — останется на текущем.
-   */
-  onStartReached?: (context: KeyboardNavigationContext<T>) => NavigationBoundaryResult
-
-  /**
-   * Вызывается, когда пытаемся уйти ниже
-   * последнего элемента.
-   */
-  onEndReached?: (context: KeyboardNavigationContext<T>) => NavigationBoundaryResult
-
-  /**
-   * Вызывается, когда пытаемся уйти левее
-   * первого столбца.
-   */
-  onLeftEdgeReached?: (context: KeyboardNavigationContext<T>) => NavigationBoundaryResult
-
-  /**
-   * Вызывается, когда пытаемся уйти правее
-   * последнего столбца.
-   */
-  onRightEdgeReached?: (context: KeyboardNavigationContext<T>) => NavigationBoundaryResult
+  isSkipped?: (item: T, index: number) => boolean
+  onStartReached?: NavigationBoundaryFn<T>
+  onEndReached?: NavigationBoundaryFn<T>
+  onLeftEdgeReached?: NavigationBoundaryFn<T>
+  onRightEdgeReached?: NavigationBoundaryFn<T>
 }
 
 export interface UseKeyboardNavigationReturn<T> {
-  /**
-   * Текущий индекс.
-   */
   currentIndex: Ref<Readonly<number>>
-
-  /**
-   * Текущий элемент.
-   */
   currentItem: ComputedRef<T | undefined>
-
-  /**
-   * Есть ли доступный элемент.
-   */
   hasCurrentItem: ComputedRef<boolean>
-
-  /**
-   * Изменить текущий индекс вручную.
-   */
   setCurrentIndex: (index: number) => void
-
-  /**
-   * Перейти на следующий элемент.
-   */
   next: () => boolean
-
-  /**
-   * Перейти на предыдущий элемент.
-   */
   previous: () => boolean
-
-  /**
-   * Обработать KeyboardEvent.
-   *
-   * Возвращает true, если событие обработано.
-   */
   onKeydown: (event: KeyboardEvent) => boolean
-
-  /**
-   * Найти первый доступный индекс.
-   */
   findFirstAvailable: () => number
-
-  /**
-   * Найти последний доступный индекс.
-   */
   findLastAvailable: () => number
-
-  /**
-   * Проверить, доступен ли индекс.
-   */
   isAvailable: (index: number) => boolean
+}
+
+const DIRECTION_BY_KEY: Record<string, NavigationDirection | undefined> = {
+  ArrowUp: 'up',
+  ArrowDown: 'down',
+  ArrowLeft: 'left',
+  ArrowRight: 'right',
 }
 
 export function useKeyboardNavigation<T>(
   items: MaybeRefOrGetter<readonly T[]>,
   options: KeyboardNavigationOptions<T> = {},
-): UseKeyboardNavigationReturn<T> {
+) {
   const {
-    mode = 'list',
+    edgeX = 'auto',
+    edgeY = 'auto',
     isEnabled = true,
     initialIndex = -1,
     isSkipped = () => false,
@@ -175,278 +63,155 @@ export function useKeyboardNavigation<T>(
   } = options
 
   const currentIndex = ref(initialIndex)
-
   const resolvedItems = computed(() => toValue(items))
-
+  const currentItem = computed(() => resolvedItems.value[currentIndex.value])
+  const hasCurrentItem = computed(() => currentItem.value !== undefined)
   const resolvedColumns = computed(() => {
-    const value = toValue(columns)
-
-    return Math.max(1, Math.floor(value || 1))
+    const value = Number(toValue(columns))
+    return Number.isFinite(value) ? Math.max(1, Math.floor(value)) : 1
   })
 
-  const currentItem = computed(() => {
-    return resolvedItems.value[currentIndex.value]
-  })
+  function getRow(index: number) {
+    return Math.floor(index / resolvedColumns.value)
+  }
 
-  const hasCurrentItem = computed(() => {
-    return currentItem.value !== undefined
-  })
+  function getCol(index: number) {
+    return index % resolvedColumns.value
+  }
 
-  /**
-   * Проверяет, существует ли индекс и не пропущен ли элемент.
-   */
-  const isAvailable = (index: number): boolean => {
+  function isAvailable(index: number): boolean {
     const item = resolvedItems.value[index]
-
-    if (item === undefined) {
-      return false
-    }
-
-    return !isSkipped(item, index)
+    return item !== undefined && !isSkipped(item, index)
   }
 
-  /**
-   * Находит первый доступный элемент.
-   */
-  const findFirstAvailable = (): number => {
-    const itemsValue = resolvedItems.value
-
-    for (let index = 0; index < itemsValue.length; index++) {
-      if (isAvailable(index)) {
-        return index
-      }
+  function findAvailableInRange(startIndex: number, endIndex: number, step: 1 | -1): number {
+    for (let index = startIndex; step === 1 ? index <= endIndex : index >= endIndex; index += step) {
+      if (isAvailable(index)) return index
     }
 
     return -1
   }
 
-  /**
-   * Находит последний доступный элемент.
-   */
-  const findLastAvailable = (): number => {
-    const itemsValue = resolvedItems.value
-
-    for (let index = itemsValue.length - 1; index >= 0; index--) {
-      if (isAvailable(index)) {
-        return index
-      }
-    }
-
-    return -1
+  function findAvailableFrom(startIndex: number, step: 1 | -1): number {
+    const length = resolvedItems.value.length
+    if (!length) return -1
+    const endIndex = step === 1 ? length - 1 : 0
+    return findAvailableInRange(startIndex, endIndex, step)
   }
 
-  /**
-   * Находит следующий доступный элемент
-   * в линейном направлении.
-   */
-  const findNextAvailable = (startIndex: number, direction: 1 | -1): number => {
-    let index = startIndex + direction
-
-    while (index >= 0 && index < resolvedItems.value.length) {
-      if (isAvailable(index)) {
-        return index
-      }
-
-      index += direction
-    }
-
-    return -1
+  function findFirstAvailable() {
+    return findAvailableFrom(0, 1)
+  }
+  function findLastAvailable() {
+    return findAvailableFrom(resolvedItems.value.length - 1, -1)
   }
 
-  /**
-   * Безопасно устанавливает текущий индекс.
-   */
-  const setCurrentIndex = (index: number): void => {
-    if (!resolvedItems.value.length) {
+  function findAvailableInRow(row: number, step: 1 | -1): number {
+    const columnCount = resolvedColumns.value
+    const rowStart = row * columnCount
+    const rowEnd = Math.min(rowStart + columnCount - 1, resolvedItems.value.length - 1)
+
+    if (rowStart > rowEnd) return -1
+
+    return step === 1 ? findAvailableInRange(rowStart, rowEnd, 1) : findAvailableInRange(rowEnd, rowStart, -1)
+  }
+
+  function setCurrentIndex(index: number): void {
+    if (!resolvedItems.value.length || index === -1) {
       currentIndex.value = -1
-      return
+    } else if (isAvailable(index)) {
+      currentIndex.value = index
     }
-
-    if (index < 0 || index >= resolvedItems.value.length) {
-      return
-    }
-
-    if (!isAvailable(index)) {
-      return
-    }
-
-    currentIndex.value = index
   }
 
-  /**
-   * Создаёт контекст для boundary callback.
-   */
-  const createContext = (direction: NavigationDirection, targetIndex: number | null): KeyboardNavigationContext<T> => {
-    return {
+  function resolveBoundary(direction: NavigationDirection, targetIndex: number): boolean {
+    let callback: NavigationBoundaryFn<T> | undefined
+    switch (direction) {
+      case 'up':
+        callback = onStartReached
+        break
+      case 'down':
+        callback = onEndReached
+        break
+      case 'left':
+        callback = onLeftEdgeReached
+        break
+      case 'right':
+        callback = onRightEdgeReached
+        break
+    }
+
+    if (!callback) return false
+
+    const result = callback({
       currentIndex: currentIndex.value,
       currentItem: currentItem.value,
       items: resolvedItems.value,
       direction,
       targetIndex,
-    }
+    })
+
+    if (typeof result !== 'number' || !isAvailable(result)) return false
+
+    currentIndex.value = result
+    return true
   }
 
-  /**
-   * Обработка выхода за вертикальную границу списка/grid.
-   */
-  const handleVerticalBoundary = (direction: 'up' | 'down', targetIndex: number): boolean => {
-    const callback = direction === 'up' ? onStartReached : onEndReached
-
-    if (!callback) {
-      return false
-    }
-
-    const result = callback(createContext(direction, targetIndex))
-
-    if (typeof result === 'number' && isAvailable(result)) {
-      currentIndex.value = result
-      return true
-    }
-
-    return false
-  }
-
-  /**
-   * Обработка выхода за горизонтальную границу grid.
-   */
-  const handleHorizontalBoundary = (direction: 'left' | 'right', targetIndex: number): boolean => {
-    const callback = direction === 'left' ? onLeftEdgeReached : onRightEdgeReached
-
-    if (!callback) {
-      return false
-    }
-
-    const result = callback(createContext(direction, targetIndex))
-
-    if (typeof result === 'number' && isAvailable(result)) {
-      currentIndex.value = result
-      return true
-    }
-
-    return false
-  }
-
-  /**
-   * Навигация в list mode.
-   *
-   * ArrowUp   -> предыдущий
-   * ArrowDown -> следующий
-   */
-  const moveList = (direction: 'up' | 'down'): boolean => {
-    const delta = direction === 'up' ? -1 : 1
-
-    const nextIndex = findNextAvailable(currentIndex.value, delta)
-
-    if (nextIndex !== -1) {
-      currentIndex.value = nextIndex
-      return true
-    }
-
-    return handleVerticalBoundary(direction, currentIndex.value)
-  }
-
-  /**
-   * Навигация в grid mode.
-   *
-   * ArrowLeft  -> column - 1
-   * ArrowRight -> column + 1
-   * ArrowUp    -> row - 1
-   * ArrowDown  -> row + 1
-   */
-  const moveGrid = (direction: NavigationDirection): boolean => {
+  function moveVertical(direction: 'up' | 'down'): boolean {
     const index = currentIndex.value
-    const columnCount = resolvedColumns.value
+    const step = direction === 'up' ? -resolvedColumns.value : resolvedColumns.value
+    const targetIndex = index + step
 
-    const row = Math.floor(index / columnCount)
-    const column = index % columnCount
-
-    let targetIndex: number
-
-    switch (direction) {
-      case 'left':
-        if (column === 0) {
-          return handleHorizontalBoundary('left', index)
-        }
-
-        targetIndex = index - 1
-        break
-
-      case 'right':
-        if (column === columnCount - 1) {
-          return handleHorizontalBoundary('right', index)
-        }
-
-        targetIndex = index + 1
-        break
-
-      case 'up':
-        if (row === 0) {
-          return handleVerticalBoundary('up', index)
-        }
-
-        targetIndex = index - columnCount
-        break
-
-      case 'down':
-        targetIndex = index + columnCount
-
-        if (targetIndex >= resolvedItems.value.length) {
-          return handleVerticalBoundary('down', index)
-        }
-
-        break
-    }
-
-    /**
-     * В grid может существовать "дырка":
-     *
-     * A B C D
-     * E F
-     *
-     * При ArrowDown с C индекс = 6,
-     * которого не существует.
-     *
-     * Поэтому сначала пробуем найти ближайший
-     * валидный элемент в том же направлении.
-     */
     if (isAvailable(targetIndex)) {
       currentIndex.value = targetIndex
       return true
     }
 
-    if (direction === 'up' || direction === 'down') {
-      const step = direction === 'up' ? -columnCount : columnCount
-
-      let fallbackIndex = targetIndex
-
-      while (fallbackIndex >= 0 && fallbackIndex < resolvedItems.value.length) {
-        if (isAvailable(fallbackIndex)) {
-          currentIndex.value = fallbackIndex
-          return true
-        }
-
-        fallbackIndex += step
+    let fallbackIndex = targetIndex
+    while (fallbackIndex >= 0 && fallbackIndex < resolvedItems.value.length) {
+      if (isAvailable(fallbackIndex)) {
+        currentIndex.value = fallbackIndex
+        return true
       }
-
-      return handleVerticalBoundary(direction, index)
+      fallbackIndex += step
     }
 
-    /**
-     * Для горизонтального движения пропускаем
-     * disabled/skipped элементы.
-     */
+    return edgeY === 'auto' ? moveVerticalAuto(direction) : resolveBoundary(direction, index)
+  }
+
+  function moveVerticalAuto(direction: 'up' | 'down'): boolean {
+    const currentColumn = getCol(currentIndex.value)
+    const targetIndex =
+      direction === 'up'
+        ? currentIndex.value - currentColumn - 1
+        : currentIndex.value + (resolvedColumns.value - currentColumn)
+
+    const step = direction === 'up' ? -1 : 1
+    const index = findAvailableFrom(targetIndex, step)
+
+    if (index !== -1) {
+      currentIndex.value = index
+      return true
+    }
+
+    return false
+  }
+
+  function moveHorizontal(direction: 'left' | 'right'): boolean {
+    const index = currentIndex.value
+    const columnCount = resolvedColumns.value
+    const currentRow = getRow(index)
+    const currentColumn = getCol(index)
     const step = direction === 'left' ? -1 : 1
+    const targetColumn = currentColumn + step
 
-    let fallbackIndex = targetIndex
+    if (targetColumn < 0 || targetColumn >= columnCount) {
+      return edgeX === 'auto' ? moveHorizontalAuto(direction) : resolveBoundary(direction, index)
+    }
 
+    let fallbackIndex = index + step
     while (fallbackIndex >= 0 && fallbackIndex < resolvedItems.value.length) {
-      /**
-       * Не позволяем горизонтальной навигации
-       * перескочить на другую строку.
-       */
-      if (Math.floor(fallbackIndex / columnCount) !== row) {
-        break
-      }
+      if (getRow(fallbackIndex) !== currentRow) break
 
       if (isAvailable(fallbackIndex)) {
         currentIndex.value = fallbackIndex
@@ -456,119 +221,57 @@ export function useKeyboardNavigation<T>(
       fallbackIndex += step
     }
 
-    return direction === 'left' ? handleHorizontalBoundary('left', index) : handleHorizontalBoundary('right', index)
+    return edgeX === 'auto' ? moveHorizontalAuto(direction) : resolveBoundary(direction, index)
   }
 
-  /**
-   * Основная функция перемещения.
-   */
-  const move = (direction: NavigationDirection): boolean => {
-    if (!toValue(isEnabled)) {
-      return false
+  function moveHorizontalAuto(direction: 'left' | 'right'): boolean {
+    const currentRow = getRow(currentIndex.value)
+    const rowCount = Math.ceil(resolvedItems.value.length / resolvedColumns.value)
+    const nextRow = currentRow + (direction === 'right' ? 1 : -1)
+    const step = direction === 'right' ? 1 : -1
+
+    if (nextRow >= 0 && nextRow < rowCount) {
+      const index = findAvailableInRow(nextRow, step)
+      if (index !== -1) {
+        currentIndex.value = index
+        return true
+      }
     }
 
-    if (!resolvedItems.value.length) {
-      return false
-    }
+    return false
+  }
+
+  function move(direction: NavigationDirection): boolean {
+    if (!toValue(isEnabled) || !resolvedItems.value.length) return false
 
     if (currentIndex.value === -1) {
-      const first = findFirstAvailable()
+      const index = direction === 'down' || direction === 'right' ? findFirstAvailable() : findLastAvailable()
 
-      if (first === -1) {
-        return false
-      }
-
-      currentIndex.value = first
+      if (index === -1) return false
+      currentIndex.value = index
       return true
     }
 
-    return mode === 'list' ? moveList(direction as 'up' | 'down') : moveGrid(direction)
+    return direction === 'up' || direction === 'down' ? moveVertical(direction) : moveHorizontal(direction)
   }
 
-  const next = (): boolean => {
-    return mode === 'list' ? move('down') : move('right')
-  }
+  const next = () => move('down')
+  const previous = () => move('up')
 
-  const previous = (): boolean => {
-    return mode === 'list' ? move('up') : move('left')
-  }
+  function onKeydown(event: KeyboardEvent): boolean {
+    if (!toValue(isEnabled)) return false
 
-  /**
-   * Keyboard event handler.
-   *
-   * Composable намеренно не делает preventDefault автоматически
-   * для неизвестных клавиш.
-   */
-  const onKeydown = (event: KeyboardEvent): boolean => {
-    if (!toValue(isEnabled)) {
-      return false
-    }
+    const direction = DIRECTION_BY_KEY[event.key]
+    if (!direction) return false
 
-    let direction: NavigationDirection | null = null
-
-    switch (event.key) {
-      case 'ArrowUp':
-        direction = 'up'
-        break
-
-      case 'ArrowDown':
-        direction = 'down'
-        break
-
-      case 'ArrowLeft':
-        direction = 'left'
-        break
-
-      case 'ArrowRight':
-        direction = 'right'
-        break
-    }
-
-    if (!direction) {
-      return false
-    }
-
-    /**
-     * В list mode горизонтальные стрелки
-     * не считаются navigation keys.
-     */
-    if (mode === 'list' && (direction === 'left' || direction === 'right')) {
-      return false
-    }
-
-    /**
-     * В grid mode все четыре стрелки работают.
-     */
-    const moved = move(direction)
-
-    if (moved) {
+    if (move(direction)) {
       event.preventDefault()
       event.stopPropagation()
+      return true
     }
 
-    return moved
+    return false
   }
-
-  /**
-   * Если items изменились и текущий индекс
-   * больше невалиден — корректируем его.
-   */
-  watch(
-    resolvedItems,
-    (itemsValue) => {
-      if (!itemsValue.length) {
-        currentIndex.value = -1
-        return
-      }
-
-      if (currentIndex.value < 0 || currentIndex.value >= itemsValue.length || !isAvailable(currentIndex.value)) {
-        currentIndex.value = findFirstAvailable()
-      }
-    },
-    {
-      immediate: true,
-    },
-  )
 
   return {
     currentIndex,

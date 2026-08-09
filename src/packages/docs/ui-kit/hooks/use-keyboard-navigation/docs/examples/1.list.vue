@@ -16,19 +16,9 @@ const items = ref([
   { label: 'Zeta', disabled: false },
 ])
 
-const { currentIndex, currentItem, onKeydown } = useKeyboardNavigation(items, {
-  mode: 'list',
+const { currentIndex, currentItem, setCurrentIndex, onKeydown } = useKeyboardNavigation(items, {
   isSkipped: (item) => item.disabled,
-  onLeftEdgeReached: log,
-  onRightEdgeReached: log,
-  onStartReached: log,
-  onEndReached: log,
 })
-
-function log(...args: any) {
-  console.log(args[0])
-  return undefined
-}
 </script>
 
 <template>
@@ -36,6 +26,7 @@ function log(...args: any) {
     <div
       class="flex w-56 flex-col gap-0.5 rounded-xl border border-primary-200 bg-white p-1 outline-none transition-[border-color] focus:border-primary-400 dark:bg-primary-950"
       tabindex="0"
+      @blur="setCurrentIndex(-1)"
       @keydown="onKeydown"
     >
       <div

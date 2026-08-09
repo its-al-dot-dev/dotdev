@@ -98,7 +98,7 @@ function handleKeydown(event: KeyboardEvent) {
       toggleDropdown(event)
       // Если список открылся и есть выбранное значение — фокусируемся на нем
       if (!isPlaceholder.value) {
-        nextTick(() => listboxRef.value?.onFocusIn())
+        nextTick(() => listboxRef.value?.focusIn())
         event.stopPropagation()
       }
 
@@ -113,7 +113,7 @@ function handleKeydown(event: KeyboardEvent) {
       }
 
       nextTick(() => {
-        listboxRef.value?.onFocusIn(event.key === 'ArrowUp' ? -1 : 1)
+        listboxRef.value?.focusIn(event.key === 'ArrowUp' ? -1 : 1)
         event.stopPropagation()
       })
       break

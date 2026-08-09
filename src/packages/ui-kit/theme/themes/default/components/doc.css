@@ -59,7 +59,7 @@
 }
 
 .doc-page__body {
-  @apply w-[calc(100%-256px-64px)];
+  @apply w-full;
 }
 
 .doc-page__title {

@@ -11,11 +11,9 @@ const variants = ['solid', 'outlined', 'subtle', 'ghost', 'text']
 </script>
 
 <template>
-  <div class="grid grid-cols-5 gap-4">
-    <template v-for="color in colors" :key="color">
-      <div v-for="variant in variants" :key="variant">
-        <Button :color="color" :label="color" :variant="variant" class="w-full" />
-      </div>
+  <template v-for="color in colors" :key="color">
+    <template v-for="variant in variants" :key="variant">
+      <Button :color="color" :label="color" :variant="variant" />
     </template>
-  </div>
+  </template>
 </template>

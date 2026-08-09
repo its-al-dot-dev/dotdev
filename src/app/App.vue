@@ -11,6 +11,7 @@ const { scheme } = useColorScheme()
       <div class="layout__sidebar-header">
         <Logo />
       </div>
+
       <div class="layout__sidebar-body">
         <Menu :items="$studioMenu" size="sm" />
       </div>
