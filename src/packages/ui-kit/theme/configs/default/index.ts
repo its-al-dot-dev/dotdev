@@ -2,7 +2,6 @@ import { type UiKitThemeConfig } from '../../utils/uiKitTheme.ts'
 import layout from './app/layout.ts'
 import doc from './app/doc.ts'
 import play from './app/play.ts'
-import { tw } from './utils.ts'
 import listbox from './components/listbox.ts'
 import button from './components/button.ts'
 import ui from './components/ui.ts'
@@ -24,12 +23,12 @@ import selectListbox from './components/select-listbox.ts'
 const index: UiKitThemeConfig = {
   namespace: 'd',
   theme: 'default',
-  app: tw({
+  app: {
     layout,
     doc,
     play,
-  }),
-  components: tw({
+  },
+  components: {
     ui,
     listbox,
     button,
@@ -47,7 +46,7 @@ const index: UiKitThemeConfig = {
     menu,
     select,
     'select-listbox': selectListbox,
-  }),
+  },
 }
 
 export default index

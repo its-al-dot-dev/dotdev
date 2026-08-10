@@ -1,3 +1,4 @@
+@layer components {
 .d-input {
   @apply ui-text-primary outline-none transition-[background-color,opacity,border-color,color];
 }
@@ -52,4 +53,5 @@
 
 .d-input--lg {
   @apply ui-h-lg ui-px-lg ui-text-lg;
+}
 }

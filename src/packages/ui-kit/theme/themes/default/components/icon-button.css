@@ -1,3 +1,5 @@
+@layer components {
 .d-icon-button {
   @apply aspect-square px-0!;
+}
 }

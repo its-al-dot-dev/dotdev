@@ -102,6 +102,7 @@
    @apply ui-border-primary;
 }
 
+@layer components {
 .d-button {
   @apply ui-rounded-md inline-flex items-center justify-center font-medium transition-[background-color,opacity,border-color,color] cursor-pointer;
 }
@@ -244,4 +245,5 @@
 
 .d-button__icon {
   @apply text-[1.2em];
+}
 }

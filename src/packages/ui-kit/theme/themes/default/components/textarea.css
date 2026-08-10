@@ -1,3 +1,4 @@
+@layer components {
 .d-textarea {
   @apply ui-text-primary outline-none transition-[background-color,opacity,border-color,color] py-[0.4em] resize-none;
 }
@@ -52,4 +53,5 @@
 
 .d-textarea--lg {
   @apply ui-px-lg ui-text-lg;
+}
 }

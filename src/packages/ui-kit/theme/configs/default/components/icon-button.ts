@@ -1,5 +1,7 @@
-import { tw } from '../utils.ts'
+import { defineStyleSheet } from 'dotdev/theme'
 
-export default tw({
-  '&': `aspect-square px-0!`,
+export default defineStyleSheet({
+  component: {
+    '&': `aspect-square px-0!`,
+  },
 })

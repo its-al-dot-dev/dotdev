@@ -1,3 +1,4 @@
+@layer components {
 .d-listbox {
   @apply ui-text-primary grid gap-0.5 select-none outline-none transition-[background-color,border-color,opacity];
 }
@@ -84,4 +85,5 @@
 
 .d-listbox__item--selected .d-listbox__checkmark {
   @apply opacity-100;
+}
 }

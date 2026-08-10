@@ -1,3 +1,4 @@
+@layer components {
 .d-radio {
   @apply appearance-none cursor-pointer rounded-full transition-[background-color,border-color];
 }
@@ -40,4 +41,5 @@
 
 .d-radio:disabled {
   @apply ui-disabled;
+}
 }

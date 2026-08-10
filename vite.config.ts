@@ -17,6 +17,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
+      'dotdev/theme': fileURLToPath(new URL('./src/packages/ui-kit/theme', import.meta.url)),
       'dotdev/ui-kit': fileURLToPath(new URL('./src/packages/ui-kit', import.meta.url)),
       'dotdev/studio': fileURLToPath(new URL('./src/packages/studio', import.meta.url)),
       'resolve-docs': fileURLToPath(new URL('./src/packages/docs/resolve-docs.ts', import.meta.url)),

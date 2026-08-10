@@ -1,7 +1,8 @@
-import { tr, tw } from '../utils.ts'
+import type { StyleSheetComponent } from 'dotdev/theme'
+import { tr } from 'dotdev/theme'
 
-export function fieldStyles() {
-  return tw({
+export function fieldStyles(): StyleSheetComponent {
+  return {
     '&': `ui-text-primary outline-none ${tr('bg', 'opacity', 'border', 'color')}`,
 
     '&:focus-visible': `ui-border-brand`,
@@ -16,5 +17,5 @@ export function fieldStyles() {
     '&:disabled': `ui-disabled`,
     '&--invalid': `ui-border-danger`,
     '&--invalid:focus-visible': `ui-border-danger`,
-  })
+  }
 }

@@ -1,3 +1,4 @@
+@layer components {
 .d-select {
   @apply inline-flex justify-start cursor-pointer transition-[background-color,border-color,opacity,color] min-w-50 disabled:pointer-events-none disabled:opacity-50;
 }
@@ -64,4 +65,5 @@
 
 .d-select__listbox-wrapper--lg {
   @apply ui-rounded-lg;
+}
 }

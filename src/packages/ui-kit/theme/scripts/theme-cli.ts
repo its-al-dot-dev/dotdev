@@ -53,6 +53,9 @@ if (!fs.existsSync(resolvedConfigPath)) {
 const jiti = createJiti(import.meta.url, {
   interopDefault: true,
   moduleCache: false,
+  alias: {
+    'dotdev/theme': path.resolve(import.meta.dirname, '../'),
+  },
 })
 
 let watcher: FSWatcher | undefined

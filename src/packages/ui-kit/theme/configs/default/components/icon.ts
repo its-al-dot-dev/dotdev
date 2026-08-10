@@ -1,6 +1,8 @@
-import { tw } from '../utils.ts'
+import { defineStyleSheet } from 'dotdev/theme'
 
-export default tw({
-  '&': `size-[1em]`,
-  '& svg': `size-[1em]`,
+export default defineStyleSheet({
+  component: {
+    '&': `size-[1em]`,
+    '& svg': `size-[1em]`,
+  },
 })

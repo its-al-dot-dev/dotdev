@@ -1,3 +1,4 @@
+@layer components {
 .d-checkbox {
   @apply appearance-none cursor-pointer transition-[background-color,border-color];
 }
@@ -40,4 +41,5 @@
 
 .d-checkbox:disabled {
   @apply ui-disabled;
+}
 }

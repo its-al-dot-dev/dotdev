@@ -12,6 +12,7 @@
     "baseUrl": ".",
     "ignoreDeprecations": "6.0",
     "paths": {
+      "dotdev/theme": ["src/packages/ui-kit/theme"],
       "dotdev/ui-kit": ["src/packages/ui-kit"],
       "dotdev/studio": ["src/packages/studio"],
       "resolve-docs": ["src/packages/docs/resolve-docs.ts"]

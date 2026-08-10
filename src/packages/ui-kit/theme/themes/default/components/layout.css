@@ -1,9 +1,6 @@
 @theme {
-   --layout-header-height: 56px;
-}
-
-@theme {
-   --layout-sidebar-width: 240px;
+  --layout-header-height: 56px;
+  --layout-sidebar-width: 240px;
 }
 
 @utility layout-transition-theme {
@@ -38,6 +35,7 @@
    @apply w-(--layout-sidebar-width);
 }
 
+@layer components {
 .layout {
   @apply flex min-h-svh layout-surface-base layout-text-default;
 }
@@ -84,4 +82,5 @@
 
 .layout__sidebar-body .d-menu__heading.level-0 {
   @apply not-first:mt-4 uppercase text-sm layout-text-secondary;
+}
 }

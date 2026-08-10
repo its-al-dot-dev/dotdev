@@ -1,3 +1,4 @@
+@layer components {
 .d-select-listbox {
   @apply flex flex-col gap-0.5 transition-opacity overflow-y-auto max-h-[200px];
 }
@@ -24,4 +25,5 @@
 
 .d-select-listbox--lg .d-select-listbox__item {
   @apply ui-px-lg ui-gap-lg ui-h-lg ui-text-lg rounded-[calc(var(--ui-rounded-lg)-2px)];
+}
 }

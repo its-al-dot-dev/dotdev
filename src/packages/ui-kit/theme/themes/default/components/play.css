@@ -1,3 +1,4 @@
+@layer components {
 .play {
   @apply layout-surface-panel border rounded-2xl flex flex-col;
 }
@@ -156,4 +157,5 @@
 
 .play-slot-item__scope {
   @apply text-blue-400;
+}
 }

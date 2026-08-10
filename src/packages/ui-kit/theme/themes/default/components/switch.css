@@ -1,3 +1,4 @@
+@layer components {
 .d-switch {
   @apply flex h-6 p-0.5 border rounded-full cursor-pointer transition-[background-color,border-color];
 }
@@ -56,4 +57,5 @@
 
 .d-switch--disabled {
   @apply ui-disabled;
+}
 }

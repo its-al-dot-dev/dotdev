@@ -1,3 +1,4 @@
+@layer components {
 .d-group {
   @apply flex relative;
 }
@@ -100,4 +101,5 @@
 
 .d-group--y .d-group-addon--attach:last-child {
   @apply bottom-0;
+}
 }

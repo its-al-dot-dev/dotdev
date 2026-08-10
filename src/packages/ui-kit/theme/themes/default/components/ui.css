@@ -1,101 +1,29 @@
 @theme {
-   --ui-size-xs: 2rem;
-}
-
-@theme {
-   --ui-size-sm: 2.25rem;
-}
-
-@theme {
-   --ui-size-md: 2.5rem;
-}
-
-@theme {
-   --ui-size-lg: 2.75rem;
-}
-
-@theme {
-   --ui-size-xl: 3rem;
-}
-
-@theme {
-   --ui-space-xs: 0.5rem;
-}
-
-@theme {
-   --ui-space-sm: 0.625rem;
-}
-
-@theme {
-   --ui-space-md: 0.75rem;
-}
-
-@theme {
-   --ui-space-lg: 1rem;
-}
-
-@theme {
-   --ui-space-xl: 1.25rem;
-}
-
-@theme {
-   --ui-gap-xs: 0.25rem;
-}
-
-@theme {
-   --ui-gap-sm: 0.375rem;
-}
-
-@theme {
-   --ui-gap-md: 0.5rem;
-}
-
-@theme {
-   --ui-gap-lg: 0.625rem;
-}
-
-@theme {
-   --ui-gap-xl: 0.75rem;
-}
-
-@theme {
-   --ui-radius-xs: 0.125rem;
-}
-
-@theme {
-   --ui-radius-sm: 0.375rem;
-}
-
-@theme {
-   --ui-radius-md: 0.5rem;
-}
-
-@theme {
-   --ui-radius-lg: 0.75rem;
-}
-
-@theme {
-   --ui-radius-xl: 1rem;
-}
-
-@theme {
-   --ui-font-size-xs: 0.75rem;
-}
-
-@theme {
-   --ui-font-size-sm: 0.875rem;
-}
-
-@theme {
-   --ui-font-size-md: 1rem;
-}
-
-@theme {
-   --ui-font-size-lg: 1.125rem;
-}
-
-@theme {
-   --ui-font-size-xl: 1.25rem;
+  --ui-size-xs: 2rem;
+  --ui-size-sm: 2.25rem;
+  --ui-size-md: 2.5rem;
+  --ui-size-lg: 2.75rem;
+  --ui-size-xl: 3rem;
+  --ui-space-xs: 0.5rem;
+  --ui-space-sm: 0.625rem;
+  --ui-space-md: 0.75rem;
+  --ui-space-lg: 1rem;
+  --ui-space-xl: 1.25rem;
+  --ui-gap-xs: 0.25rem;
+  --ui-gap-sm: 0.375rem;
+  --ui-gap-md: 0.5rem;
+  --ui-gap-lg: 0.625rem;
+  --ui-gap-xl: 0.75rem;
+  --ui-radius-xs: 0.125rem;
+  --ui-radius-sm: 0.375rem;
+  --ui-radius-md: 0.5rem;
+  --ui-radius-lg: 0.75rem;
+  --ui-radius-xl: 1rem;
+  --ui-font-size-xs: 0.75rem;
+  --ui-font-size-sm: 0.875rem;
+  --ui-font-size-md: 1rem;
+  --ui-font-size-lg: 1.125rem;
+  --ui-font-size-xl: 1.25rem;
 }
 
 @utility ui-rounded-xs {

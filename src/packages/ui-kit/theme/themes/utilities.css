@@ -65,4 +65,4 @@
   --color-danger-950: var(--color-red-950);
 }
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.dark, .dark *):where(:not(.light, .light *)));

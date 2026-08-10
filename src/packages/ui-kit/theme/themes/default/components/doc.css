@@ -1,3 +1,4 @@
+@layer components {
 .doc-desc {
   @apply whitespace-pre-wrap;
 }
@@ -108,4 +109,5 @@
 
 .doc-code .shiki span {
   @apply text-(--shiki-light) dark:text-(--shiki-dark);
+}
 }
