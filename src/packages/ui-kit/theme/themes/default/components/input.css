@@ -1,57 +1,57 @@
 @layer components {
-.d-input {
-  @apply ui-text-primary outline-none transition-[background-color,opacity,border-color,color];
-}
+  .d-input {
+    @apply ui-text-primary outline-none transition-[background-color,opacity,border-color,color];
+  }
 
-.d-input:focus-visible {
-  @apply ui-border-brand;
-}
+  .d-input:focus-visible {
+    @apply ui-border-brand;
+  }
 
-.d-input::placeholder {
-  @apply ui-text-placeholder;
-}
+  .d-input::placeholder {
+    @apply ui-text-placeholder;
+  }
 
-.d-input--outlined, .d-input--underlined {
-  @apply ui-border-primary ui-bg-primary;
-}
+  .d-input--outlined, .d-input--underlined {
+    @apply ui-border-primary ui-bg-primary;
+  }
 
-.d-input--outlined, .d-input--subtle {
-  @apply ui-rounded-md;
-}
+  .d-input--outlined, .d-input--subtle {
+    @apply ui-rounded-md;
+  }
 
-.d-input--outlined {
-  @apply border;
-}
+  .d-input--outlined {
+    @apply border;
+  }
 
-.d-input--underlined {
-  @apply border-b;
-}
+  .d-input--underlined {
+    @apply border-b;
+  }
 
-.d-input--subtle {
-  @apply ui-bg-subtle border border-transparent;
-}
+  .d-input--subtle {
+    @apply ui-bg-subtle border border-transparent;
+  }
 
-.d-input:disabled {
-  @apply ui-disabled;
-}
+  .d-input:disabled {
+    @apply ui-disabled;
+  }
 
-.d-input--invalid {
-  @apply ui-border-danger;
-}
+  .d-input--invalid {
+    @apply ui-border-danger;
+  }
 
-.d-input--invalid:focus-visible {
-  @apply ui-border-danger;
-}
+  .d-input--invalid:focus-visible {
+    @apply ui-border-danger;
+  }
 
-.d-input--sm {
-  @apply ui-h-sm ui-px-sm ui-text-sm;
-}
+  .d-input--sm {
+    @apply ui-h-sm ui-px-sm ui-text-sm;
+  }
 
-.d-input--md {
-  @apply ui-h-md ui-px-md ui-text-md;
-}
+  .d-input--md {
+    @apply ui-h-md ui-px-md ui-text-md;
+  }
 
-.d-input--lg {
-  @apply ui-h-lg ui-px-lg ui-text-lg;
-}
+  .d-input--lg {
+    @apply ui-h-lg ui-px-lg ui-text-lg;
+  }
 }

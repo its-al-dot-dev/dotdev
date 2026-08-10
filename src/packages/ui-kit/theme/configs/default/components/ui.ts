@@ -1,7 +1,7 @@
 import { createCssVarUtilities, defineStyleSheet } from 'dotdev/theme'
 
 export default defineStyleSheet({
-  theme: {
+  tokens: {
     'size-xs': '2rem',
     'size-sm': '2.25rem',
     'size-md': '2.5rem',

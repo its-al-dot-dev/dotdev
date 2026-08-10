@@ -1,7 +1,7 @@
 import { defineStyleSheet } from 'dotdev/theme'
 
 export default defineStyleSheet({
-  theme: {
+  tokens: {
     'header-height': '56px',
     'sidebar-width': '240px',
   },

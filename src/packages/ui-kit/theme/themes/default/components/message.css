@@ -1,0 +1,206 @@
+@theme {
+  --bg-msg-brand-solid: var(--color-brand-500);
+  --bg-msg-brand-solid-hover: var(--color-brand-600);
+  --bg-msg-brand-soft: var(--color-brand-50);
+  --bg-msg-brand-subtle: var(--color-brand-100);
+  --border-msg-brand-solid: var(--color-brand-500);
+  --border-msg-brand-soft: var(--color-brand-200);
+  --fg-msg-brand-solid: var(--color-white);
+  --fg-msg-brand-soft: var(--color-brand-700);
+  --fg-msg-brand-subtle: var(--color-brand-600);
+  --bg-msg-warning-solid: var(--color-warning-500);
+  --bg-msg-warning-solid-hover: var(--color-warning-600);
+  --bg-msg-warning-soft: var(--color-warning-50);
+  --bg-msg-warning-subtle: var(--color-warning-100);
+  --border-msg-warning-solid: var(--color-warning-500);
+  --border-msg-warning-soft: var(--color-warning-200);
+  --fg-msg-warning-solid: var(--color-white);
+  --fg-msg-warning-soft: var(--color-warning-700);
+  --fg-msg-warning-subtle: var(--color-warning-600);
+  --bg-msg-danger-solid: var(--color-danger-500);
+  --bg-msg-danger-solid-hover: var(--color-danger-600);
+  --bg-msg-danger-soft: var(--color-danger-50);
+  --bg-msg-danger-subtle: var(--color-danger-100);
+  --border-msg-danger-solid: var(--color-danger-500);
+  --border-msg-danger-soft: var(--color-danger-200);
+  --fg-msg-danger-solid: var(--color-white);
+  --fg-msg-danger-soft: var(--color-danger-700);
+  --fg-msg-danger-subtle: var(--color-danger-600);
+}
+.dark {
+  --bg-msg-brand-solid: brand-400/50;
+  --bg-msg-brand-solid-hover: var(--color-brand-300);
+  --bg-msg-brand-soft: var(--color-brand-500);
+  --bg-msg-brand-subtle: var(--color-brand-500);
+  --border-msg-brand-soft: var(--color-brand-800);
+  --fg-msg-brand-soft: var(--color-brand-100);
+  --fg-msg-brand-subtle: var(--color-brand-100);
+  --bg-msg-warning-solid: warning-400/50;
+  --bg-msg-warning-solid-hover: var(--color-warning-300);
+  --bg-msg-warning-soft: var(--color-warning-500);
+  --bg-msg-warning-subtle: var(--color-warning-500);
+  --border-msg-warning-soft: var(--color-warning-800);
+  --fg-msg-warning-soft: var(--color-warning-100);
+  --fg-msg-warning-subtle: var(--color-warning-100);
+  --bg-msg-danger-solid: var(--color-danger-400);
+  --bg-msg-danger-solid-hover: var(--color-danger-300);
+  --bg-msg-danger-soft: var(--color-danger-500);
+  --bg-msg-danger-subtle: var(--color-danger-500);
+  --border-msg-danger-soft: var(--color-danger-800);
+  --fg-msg-danger-soft: var(--color-danger-100);
+  --fg-msg-danger-subtle: var(--color-danger-100);
+}
+
+@utility bg-msg-brand-solid {
+   @apply bg-(--bg-msg-brand-solid);
+}
+
+@utility bg-msg-brand-solid-hover {
+   @apply hover:bg-(--bg-msg-brand-solid-hover);
+}
+
+@utility bg-msg-brand-soft {
+   @apply bg-(--bg-msg-brand-soft);
+}
+
+@utility bg-msg-brand-subtle {
+   @apply bg-(--bg-msg-brand-subtle);
+}
+
+@utility border-msg-brand-solid {
+   @apply border-(--border-msg-brand-solid);
+}
+
+@utility border-msg-brand-soft {
+   @apply border-(--border-msg-brand-soft);
+}
+
+@utility text-msg-brand-solid {
+   @apply text-(--fg-msg-brand-solid);
+}
+
+@utility text-msg-brand-soft {
+   @apply text-(--fg-msg-brand-soft);
+}
+
+@utility text-msg-brand-subtle {
+   @apply text-(--fg-msg-brand-subtle);
+}
+
+@utility bg-msg-warning-solid {
+   @apply bg-(--bg-msg-warning-solid);
+}
+
+@utility bg-msg-warning-solid-hover {
+   @apply hover:bg-(--bg-msg-warning-solid-hover);
+}
+
+@utility bg-msg-warning-soft {
+   @apply bg-(--bg-msg-warning-soft);
+}
+
+@utility bg-msg-warning-subtle {
+   @apply bg-(--bg-msg-warning-subtle);
+}
+
+@utility border-msg-warning-solid {
+   @apply border-(--border-msg-warning-solid);
+}
+
+@utility border-msg-warning-soft {
+   @apply border-(--border-msg-warning-soft);
+}
+
+@utility text-msg-warning-solid {
+   @apply text-(--fg-msg-warning-solid);
+}
+
+@utility text-msg-warning-soft {
+   @apply text-(--fg-msg-warning-soft);
+}
+
+@utility text-msg-warning-subtle {
+   @apply text-(--fg-msg-warning-subtle);
+}
+
+@utility bg-msg-danger-solid {
+   @apply bg-(--bg-msg-danger-solid);
+}
+
+@utility bg-msg-danger-solid-hover {
+   @apply hover:bg-(--bg-msg-danger-solid-hover);
+}
+
+@utility bg-msg-danger-soft {
+   @apply bg-(--bg-msg-danger-soft);
+}
+
+@utility bg-msg-danger-subtle {
+   @apply bg-(--bg-msg-danger-subtle);
+}
+
+@utility border-msg-danger-solid {
+   @apply border-(--border-msg-danger-solid);
+}
+
+@utility border-msg-danger-soft {
+   @apply border-(--border-msg-danger-soft);
+}
+
+@utility text-msg-danger-solid {
+   @apply text-(--fg-msg-danger-solid);
+}
+
+@utility text-msg-danger-soft {
+   @apply text-(--fg-msg-danger-soft);
+}
+
+@utility text-msg-danger-subtle {
+   @apply text-(--fg-msg-danger-subtle);
+}
+
+@layer components {
+  .d-message {
+    @apply flex items-start gap-2 border p-3 transition-[background-color,color,border-color];
+  }
+
+  .d-message__icon {
+    @apply text-[1.2em];
+  }
+
+  .d-message--warning.d-message--solid {
+    @apply bg-msg-warning-solid border-msg-warning-solid text-msg-warning-solid bg-msg-warning-solid-hover;
+  }
+
+  .d-message--warning.d-message--soft {
+    @apply bg-msg-warning-soft border-msg-warning-soft text-msg-warning-soft;
+  }
+
+  .d-message--warning.d-message--subtle {
+    @apply bg-msg-warning-subtle text-msg-warning-subtle;
+  }
+
+  .d-message--brand.d-message--solid {
+    @apply bg-msg-brand-solid border-msg-brand-solid text-msg-brand-solid bg-msg-brand-solid-hover;
+  }
+
+  .d-message--brand.d-message--soft {
+    @apply bg-msg-brand-soft border-msg-brand-soft text-msg-brand-soft;
+  }
+
+  .d-message--brand.d-message--subtle {
+    @apply bg-msg-brand-subtle text-msg-brand-subtle;
+  }
+
+  .d-message--danger.d-message--solid {
+    @apply bg-msg-danger-solid border-msg-danger-solid text-msg-danger-solid bg-msg-danger-solid-hover;
+  }
+
+  .d-message--danger.d-message--soft {
+    @apply bg-msg-danger-soft border-msg-danger-soft text-msg-danger-soft;
+  }
+
+  .d-message--danger.d-message--subtle {
+    @apply bg-msg-danger-subtle text-msg-danger-subtle;
+  }
+}

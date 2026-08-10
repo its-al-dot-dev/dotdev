@@ -1,61 +1,61 @@
 @layer components {
-.d-switch {
-  @apply flex h-6 p-0.5 border rounded-full cursor-pointer transition-[background-color,border-color];
-}
+  .d-switch {
+    @apply flex h-6 p-0.5 border rounded-full cursor-pointer transition-[background-color,border-color];
+  }
 
-.d-switch__track {
-  @apply flex aspect-2/1 rounded-[inherit];
-}
+  .d-switch__track {
+    @apply flex aspect-2/1 rounded-[inherit];
+  }
 
-.d-switch__thumb {
-  @apply aspect-square rounded-[inherit] transition-[background-color,translate];
-}
+  .d-switch__thumb {
+    @apply aspect-square rounded-[inherit] transition-[background-color,translate];
+  }
 
-.d-switch--checked .d-switch__thumb {
-  @apply translate-x-full;
-}
+  .d-switch--checked .d-switch__thumb {
+    @apply translate-x-full;
+  }
 
-.d-switch:focus-visible {
-  @apply outline-2 button-ring-neutral;
-}
+  .d-switch:focus-visible {
+    @apply outline-2 button-ring-neutral;
+  }
 
-.d-switch--checked:focus-visible {
-  @apply outline-2 button-ring-primary;
-}
+  .d-switch--checked:focus-visible {
+    @apply outline-2 button-ring-primary;
+  }
 
-.d-switch--outlined {
-  @apply ui-border-primary;
-}
+  .d-switch--outlined {
+    @apply ui-border-primary;
+  }
 
-.d-switch--outlined .d-switch__thumb {
-  @apply ui-bg-subtle-active;
-}
+  .d-switch--outlined .d-switch__thumb {
+    @apply ui-bg-subtle-active;
+  }
 
-.d-switch--outlined.d-switch--checked {
-  @apply ui-border-brand;
-}
+  .d-switch--outlined.d-switch--checked {
+    @apply ui-border-brand;
+  }
 
-.d-switch--outlined.d-switch--checked .d-switch__thumb {
-  @apply ui-bg-brand;
-}
+  .d-switch--outlined.d-switch--checked .d-switch__thumb {
+    @apply ui-bg-brand;
+  }
 
-.d-switch--subtle {
-  @apply ui-bg-subtle-active border-transparent;
-}
+  .d-switch--subtle {
+    @apply ui-bg-subtle-active border-transparent;
+  }
 
-.d-switch--subtle .d-switch__thumb {
-  @apply bg-white;
-}
+  .d-switch--subtle .d-switch__thumb {
+    @apply bg-white;
+  }
 
-.d-switch--subtle.d-switch--checked {
-  @apply ui-bg-brand;
-}
+  .d-switch--subtle.d-switch--checked {
+    @apply ui-bg-brand;
+  }
 
-.d-switch.d-switch--invalid {
-  @apply ui-border-danger;
-}
+  .d-switch.d-switch--invalid {
+    @apply ui-border-danger;
+  }
 
-.d-switch--disabled {
-  @apply ui-disabled;
-}
+  .d-switch--disabled {
+    @apply ui-disabled;
+  }
 }

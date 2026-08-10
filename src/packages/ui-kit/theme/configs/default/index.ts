@@ -19,6 +19,7 @@ import icon from './components/icon.ts'
 import menu from './components/menu.ts'
 import select from './components/select.ts'
 import selectListbox from './components/select-listbox.ts'
+import message from './components/message.ts'
 
 const index: UiKitThemeConfig = {
   namespace: 'd',
@@ -46,6 +47,7 @@ const index: UiKitThemeConfig = {
     menu,
     select,
     'select-listbox': selectListbox,
+    message,
   },
 }
 

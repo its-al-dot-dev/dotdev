@@ -1,57 +1,57 @@
 @layer components {
-.d-menu {
-  @apply flex flex-col gap-0.5 text-primary-600 dark:text-primary-300;
-}
+  .d-menu {
+    @apply flex flex-col gap-0.5 text-primary-600 dark:text-primary-300;
+  }
 
-.d-menu--sm {
-  @apply ui-text-sm;
-}
+  .d-menu--sm {
+    @apply ui-text-sm;
+  }
 
-.d-menu--md {
-  @apply ui-text-md;
-}
+  .d-menu--md {
+    @apply ui-text-md;
+  }
 
-.d-menu--lg {
-  @apply ui-text-lg;
-}
+  .d-menu--lg {
+    @apply ui-text-lg;
+  }
 
-.d-menu__heading {
-  @apply font-medium py-1 transition-[color];
-}
+  .d-menu__heading {
+    @apply font-medium py-1 transition-[color];
+  }
 
-.d-menu--sm .d-menu__heading {
-  @apply ui-px-sm;
-}
+  .d-menu--sm .d-menu__heading {
+    @apply ui-px-sm;
+  }
 
-.d-menu--md .d-menu__heading {
-  @apply ui-px-md;
-}
+  .d-menu--md .d-menu__heading {
+    @apply ui-px-md;
+  }
 
-.d-menu--lg .d-menu__heading {
-  @apply ui-px-lg;
-}
+  .d-menu--lg .d-menu__heading {
+    @apply ui-px-lg;
+  }
 
-.d-menu__item {
-  @apply flex w-full items-center outline-none cursor-pointer transition-[background-color,color,opacity] disabled:pointer-events-none disabled:opacity-50;
-}
+  .d-menu__item {
+    @apply flex w-full items-center outline-none cursor-pointer transition-[background-color,color,opacity] disabled:pointer-events-none disabled:opacity-50;
+  }
 
-.d-menu__item:is(:hover, :focus-visible, .d-menu__item--active, .d-menu__item.router-link-exact-active) {
-  @apply text-primary-900 dark:text-primary-100 bg-primary-100 dark:bg-primary-900;
-}
+  .d-menu__item:is(:hover, :focus-visible, .d-menu__item--active, .d-menu__item.router-link-exact-active) {
+    @apply text-primary-900 dark:text-primary-100 bg-primary-100 dark:bg-primary-900;
+  }
 
-.d-menu--sm .d-menu__item {
-  @apply ui-px-sm ui-gap-sm ui-h-sm ui-rounded-sm;
-}
+  .d-menu--sm .d-menu__item {
+    @apply ui-px-sm ui-gap-sm ui-h-sm ui-rounded-sm;
+  }
 
-.d-menu--md .d-menu__item {
-  @apply ui-px-md ui-gap-md ui-h-md ui-rounded-md;
-}
+  .d-menu--md .d-menu__item {
+    @apply ui-px-md ui-gap-md ui-h-md ui-rounded-md;
+  }
 
-.d-menu--lg .d-menu__item {
-  @apply ui-px-lg ui-gap-lg ui-h-lg ui-rounded-lg;
-}
+  .d-menu--lg .d-menu__item {
+    @apply ui-px-lg ui-gap-lg ui-h-lg ui-rounded-lg;
+  }
 
-.d-menu__item-icon {
-  @apply text-[1.2em];
-}
+  .d-menu__item-icon {
+    @apply text-[1.2em];
+  }
 }

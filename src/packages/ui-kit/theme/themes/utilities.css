@@ -65,4 +65,25 @@
   --color-danger-950: var(--color-red-950);
 }
 
+/* fake need for autocomplete */
+@utility brand-* {
+  color: color-mix(in oklab, --value(--color-brand-*) --modifier(integer, --default(100))%, transparent);
+}
+@utility primary-* {
+  color: color-mix(in oklab, --value(--color-primary-*) --modifier(integer, --default(100))%, transparent);
+}
+@utility danger-* {
+  color: color-mix(in oklab, --value(--color-danger-*) --modifier(integer, --default(100))%, transparent);
+}
+@utility warning-* {
+  color: color-mix(in oklab, --value(--color-warning-*) --modifier(integer, --default(100))%, transparent);
+}
+@utility success-* {
+  color: color-mix(in oklab, --value(--color-success-*) --modifier(integer, --default(100))%, transparent);
+}
+
 @custom-variant dark (&:where(.dark, .dark *):where(:not(.light, .light *)));
+
+@utility animate-ui-* {
+  animation: --value("fade", "slide", "bounce");
+}

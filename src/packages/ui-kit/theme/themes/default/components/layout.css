@@ -36,51 +36,51 @@
 }
 
 @layer components {
-.layout {
-  @apply flex min-h-svh layout-surface-base layout-text-default;
-}
+  .layout {
+    @apply flex min-h-svh layout-surface-base layout-text-default;
+  }
 
-.layout__body {
-  @apply flex-1 min-w-0;
-}
+  .layout__body {
+    @apply flex-1 min-w-0;
+  }
 
-.layout__header {
-  @apply layout-header-height sticky top-0 z-100 flex items-center justify-between px-4 border-b;
-}
+  .layout__header {
+    @apply layout-header-height sticky top-0 z-100 flex items-center justify-between px-4 border-b;
+  }
 
-.layout__header-group {
-  @apply flex items-center gap-2;
-}
+  .layout__header-group {
+    @apply flex items-center gap-2;
+  }
 
-.layout__header, .layout__sidebar {
-  @apply layout-surface-panel;
-}
+  .layout__header, .layout__sidebar {
+    @apply layout-surface-panel;
+  }
 
-.layout__backdrop {
-  @apply fixed inset-0 z-40 bg-primary-950/50 lg:hidden;
-}
+  .layout__backdrop {
+    @apply fixed inset-0 z-40 bg-primary-950/50 lg:hidden;
+  }
 
-.layout__sidebar {
-  @apply fixed inset-y-0 left-0 z-50 flex w-(--layout-sidebar-width) min-w-0 shrink-0 flex-col overflow-hidden pt-(--layout-header-height) border-r layout-surface-panel lg:sticky lg:top-0 lg:h-svh lg:pt-0;
-}
+  .layout__sidebar {
+    @apply fixed inset-y-0 left-0 z-50 flex w-(--layout-sidebar-width) min-w-0 shrink-0 flex-col overflow-hidden pt-(--layout-header-height) border-r layout-surface-panel lg:sticky lg:top-0 lg:h-svh lg:pt-0;
+  }
 
-.layout__sidebar--open {
-  @apply translate-x-0;
-}
+  .layout__sidebar--open {
+    @apply translate-x-0;
+  }
 
-.layout__sidebar--closed {
-  @apply -translate-x-full lg:translate-x-0 lg:w-0 lg:border-r-0;
-}
+  .layout__sidebar--closed {
+    @apply -translate-x-full lg:translate-x-0 lg:w-0 lg:border-r-0;
+  }
 
-.layout__sidebar-header {
-  @apply layout-header-height flex items-center shrink-0 px-4 border-b layout-surface-panel;
-}
+  .layout__sidebar-header {
+    @apply layout-header-height flex items-center shrink-0 px-4 border-b layout-surface-panel;
+  }
 
-.layout__sidebar-body {
-  @apply flex-1 overflow-y-auto px-2 py-4;
-}
+  .layout__sidebar-body {
+    @apply flex-1 overflow-y-auto px-2 py-4;
+  }
 
-.layout__sidebar-body .d-menu__heading.level-0 {
-  @apply not-first:mt-4 uppercase text-sm layout-text-secondary;
-}
+  .layout__sidebar-body .d-menu__heading.level-0 {
+    @apply not-first:mt-4 uppercase text-sm layout-text-secondary;
+  }
 }

@@ -1,13 +1,10 @@
-export const disabled = 'disabled:pointer-events-none disabled:opacity-50'
-
-type UISize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-type UISizeValue = 'h' | 'w' | 'rounded' | 'size' | 'gap' | 'pl' | 'px' | 'text' | 'min-w'
-
-const SIZES: UISize[] = ['xs', 'sm', 'md', 'lg', 'xl']
+import { findThemeModifier, resolveTokenValue, themeUtilityProperties } from './helpers.ts'
 
 export interface StyleSheetConfig {
   /** CSS-переменные → `@theme { --<name>-<key>: value; }` */
-  theme?: Record<string, string>
+  tokens?: Record<string, string>
+  /** Семантический токен → CSS-переменная (`:root` + `.dark`) и утилита `@utility <key>`. Значение `[light, dark]` или одно значение */
+  theme?: Record<string, string | [string, string]>
   /** Tailwind-утилиты → `@utility <name>-<key> { @apply value; }` */
   utilities?: Record<string, string>
   /** Компонентные BEM-правила → `@layer components { <selector> { @apply value; } }` */
@@ -22,75 +19,98 @@ export interface StyleSheet {
   $render(base: string, name: string): string
 }
 
+type ThemeToken = [key: string, value: string | [string, string]]
+
 export function defineStyleSheet(config: StyleSheetConfig): StyleSheet {
   return {
     $render(base, name) {
-      const parts: string[] = []
-
-      const themeVars = config.theme && Object.entries(config.theme).filter(([, value]) => value)
-      if (themeVars?.length) {
-        parts.push(`@theme {\n${themeVars.map(([key, value]) => `  --${name}-${key}: ${value};`).join('\n')}\n}`)
-      }
-
-      for (const [key, value] of Object.entries(config.utilities ?? {})) {
-        if (!value) continue
-        parts.push(`@utility ${name}-${key} {\n   @apply ${value};\n}`)
-      }
-
-      const toSelector = (key: string) => key.replace(/\.&/g, '&').replace(/&/g, base).replace(/\.{2,}/g, '.')
-
-      const componentRules = Object.entries(config.component ?? {})
-        .filter(([, value]) => value)
-        .map(([key, value]) => `${toSelector(key)} {\n  @apply ${value};\n}`)
-
-      const rawRules = Object.entries(config.styles ?? {})
-        .filter(([, value]) => value)
-        .map(([key, value]) => `${toSelector(key)} {\n  ${value};\n}`)
-
-      if (componentRules.length || rawRules.length) {
-        parts.push(`@layer components {\n${[...componentRules, ...rawRules].join('\n\n')}\n}`)
-      }
-
-      return parts.join('\n\n')
+      return [
+        renderTokens(name, config.tokens),
+        renderThemeTokens(config.theme),
+        renderTokenUtilities(config.theme),
+        renderUtilities(name, config.utilities),
+        renderComponentLayer(base, config.component, config.styles),
+      ]
+        .filter(Boolean)
+        .join('\n\n')
     },
   }
 }
 
-export function createCssVarUtilities(map: Partial<Record<UISizeValue, CssVarUtilityValue>>) {
-  return Object.fromEntries(
-    Object.entries(map).flatMap(([utility, variable]) =>
-      SIZES.map((size) => [`${utility}-${size}`, createUtilityValue(utility, variable, size)]),
-    ),
-  )
+function renderTokens(name: string, tokens?: StyleSheetConfig['tokens']) {
+  const vars = Object.entries(tokens ?? {}).filter(([, value]) => value)
+  if (!vars.length) return ''
+  return `@theme {\n${vars.map(([key, value]) => `  --${name}-${key}: ${value};`).join('\n')}\n}`
 }
 
-type CssVarUtilityValue = string | ((size: UISize) => string)
-
-function createUtilityValue(utility: string, variable: CssVarUtilityValue, size: UISize) {
-  if (typeof variable === 'function') return variable(size)
-  return `${utility}-(--ui-${variable}-${size})`
+function collectThemeTokens(theme?: StyleSheetConfig['theme']): ThemeToken[] {
+  return Object.entries(theme ?? {}).filter(([, value]) => value)
 }
 
-export function sizes(size: UISize, ...values: UISizeValue[]) {
-  return values.map((v) => `ui-${v}-${size}`).join(' ')
+function renderThemeTokens(theme?: StyleSheetConfig['theme']) {
+  const tokens = collectThemeTokens(theme)
+  if (!tokens.length) return ''
+
+  const light = tokens.map(([key, value]) => {
+    return `  --${key.replace('text', 'fg')}: ${resolveTokenValue(Array.isArray(value) ? value[0] : value)};`
+  })
+
+  const dark = tokens
+    .filter(([, value]) => Array.isArray(value) && value[1])
+    .map(([key, value]) => `  --${key.replace('text', 'fg')}: ${resolveTokenValue(value[1])};`)
+
+  const lines = ['@theme {', ...light, '}']
+  if (dark.length) lines.push('.dark {', ...dark, '}')
+  return lines.join('\n')
 }
 
-export function calcVar(variable: string, offset: string) {
-  return `[calc(var(--ui-${variable})${offset})]`
+function renderTokenUtilities(theme?: StyleSheetConfig['theme']) {
+  return collectThemeTokens(theme)
+    .map(([key]) => {
+      const varKey = key.replace('text', 'fg')
+
+      const property = key.split('-')[0]
+      if (!themeUtilityProperties.has(property)) return ''
+      const modifier = findThemeModifier(key)
+      const apply = modifier ? `${modifier}:${property}-(--${varKey})` : `${property}-(--${varKey})`
+      return `@utility ${key} {\n   @apply ${apply};\n}`
+    })
+    .filter(Boolean)
+    .join('\n\n')
 }
 
-type TransitionKey = 'bg' | 'ring' | 'color' | 'border' | 'opacity' | 'translate' | 'all'
-const transitionMap: Record<TransitionKey, string> = {
-  bg: 'background-color',
-  color: 'color',
-  border: 'border-color',
-  opacity: 'opacity',
-  translate: 'translate',
-  all: 'all',
-  ring: 'box-shadow',
+function renderUtilities(name: string, utilities?: StyleSheetConfig['utilities']) {
+  return Object.entries(utilities ?? {})
+    .filter(([, value]) => value)
+    .map(([key, value]) => `@utility ${name}-${key} {\n   @apply ${value};\n}`)
+    .join('\n\n')
 }
 
-export function tr(...keys: TransitionKey[]) {
-  if (keys.includes('all')) return 'transition-all'
-  return `transition-[${keys.map((key) => transitionMap[key]).join(',')}]`
+function toSelector(key: string, base: string) {
+  return key
+    .replace(/\.&/g, '&')
+    .replace(/&/g, base)
+    .replace(/\.{2,}/g, '.')
+}
+
+function renderComponentRules(base: string, component?: StyleSheetConfig['component']) {
+  return Object.entries(component ?? {})
+    .filter(([, value]) => value)
+    .map(([key, value]) => `  ${toSelector(key, base)} {\n    @apply ${value};\n  }`)
+}
+
+function renderRawStyles(base: string, styles?: StyleSheetConfig['styles']) {
+  return Object.entries(styles ?? {})
+    .filter(([, value]) => value)
+    .map(([key, value]) => `  ${toSelector(key, base)} {\n    ${value};\n  }`)
+}
+
+function renderComponentLayer(
+  base: string,
+  component?: StyleSheetConfig['component'],
+  styles?: StyleSheetConfig['styles'],
+) {
+  const rules = [...renderComponentRules(base, component), ...renderRawStyles(base, styles)]
+  if (!rules.length) return ''
+  return `@layer components {\n${rules.join('\n\n')}\n}`
 }

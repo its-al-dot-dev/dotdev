@@ -1,45 +1,45 @@
 @layer components {
-.d-checkbox {
-  @apply appearance-none cursor-pointer transition-[background-color,border-color];
-}
+  .d-checkbox {
+    @apply appearance-none cursor-pointer transition-[background-color,border-color];
+  }
 
-.d-checkbox--outlined {
-  @apply border ui-border-primary ui-bg-primary;
-}
+  .d-checkbox--outlined {
+    @apply border ui-border-primary ui-bg-primary;
+  }
 
-.d-checkbox--subtle {
-  @apply ui-bg-subtle border border-transparent;
-}
+  .d-checkbox--subtle {
+    @apply ui-bg-subtle border border-transparent;
+  }
 
-.d-checkbox:checked {
-  @apply ui-border-brand ui-bg-brand bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%223.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5%2013l4%204L19%207%22%2F%3E%3C%2Fsvg%3E')] bg-center bg-no-repeat bg-contain;
-}
+  .d-checkbox:checked {
+    @apply ui-border-brand ui-bg-brand bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%223.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5%2013l4%204L19%207%22%2F%3E%3C%2Fsvg%3E')] bg-center bg-no-repeat bg-contain;
+  }
 
-.d-checkbox:hover:not(:disabled) {
-  @apply ui-border-brand;
-}
+  .d-checkbox:hover:not(:disabled) {
+    @apply ui-border-brand;
+  }
 
-.d-checkbox:focus-visible {
-  @apply outline-2 ui-ring-brand;
-}
+  .d-checkbox:focus-visible {
+    @apply outline-2 ui-ring-brand;
+  }
 
-.d-checkbox.d-checkbox--invalid {
-  @apply ui-border-danger!;
-}
+  .d-checkbox.d-checkbox--invalid {
+    @apply ui-border-danger!;
+  }
 
-.d-checkbox--sm {
-  @apply rounded-sm size-4;
-}
+  .d-checkbox--sm {
+    @apply rounded-sm size-4;
+  }
 
-.d-checkbox--md {
-  @apply rounded-md size-5;
-}
+  .d-checkbox--md {
+    @apply rounded-md size-5;
+  }
 
-.d-checkbox--lg {
-  @apply rounded-lg size-6;
-}
+  .d-checkbox--lg {
+    @apply rounded-lg size-6;
+  }
 
-.d-checkbox:disabled {
-  @apply ui-disabled;
-}
+  .d-checkbox:disabled {
+    @apply ui-disabled;
+  }
 }

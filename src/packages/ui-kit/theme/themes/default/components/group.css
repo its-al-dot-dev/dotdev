@@ -1,105 +1,105 @@
 @layer components {
-.d-group {
-  @apply flex relative;
-}
+  .d-group {
+    @apply flex relative;
+  }
 
-.d-group > .d-group {
-  @apply flex-1;
-}
+  .d-group > .d-group {
+    @apply flex-1;
+  }
 
-.d-group--x > :not(.d-group-addon--attach) + * {
-  @apply rounded-s-none;
-}
+  .d-group--x > :not(.d-group-addon--attach) + * {
+    @apply rounded-s-none;
+  }
 
-.d-group--x > *:has(+ :not(.d-group-addon--attach)) {
-  @apply rounded-e-none;
-}
+  .d-group--x > *:has(+ :not(.d-group-addon--attach)) {
+    @apply rounded-e-none;
+  }
 
-.d-group--x > .d-group--y:not(:first-child) > * {
-  @apply rounded-s-none;
-}
+  .d-group--x > .d-group--y:not(:first-child) > * {
+    @apply rounded-s-none;
+  }
 
-.d-group--x > .d-group--y:not(:last-child) > * {
-  @apply rounded-e-none;
-}
+  .d-group--x > .d-group--y:not(:last-child) > * {
+    @apply rounded-e-none;
+  }
 
-.d-group--y {
-  @apply flex-col;
-}
+  .d-group--y {
+    @apply flex-col;
+  }
 
-.d-group--y > :not(.d-group-addon--attach) + * {
-  @apply rounded-t-none;
-}
+  .d-group--y > :not(.d-group-addon--attach) + * {
+    @apply rounded-t-none;
+  }
 
-.d-group--y > *:has(+ :not(.d-group-addon--attach)) {
-  @apply rounded-b-none;
-}
+  .d-group--y > *:has(+ :not(.d-group-addon--attach)) {
+    @apply rounded-b-none;
+  }
 
-.d-group--y > .d-group--x:not(:first-child) > * {
-  @apply rounded-t-none;
-}
+  .d-group--y > .d-group--x:not(:first-child) > * {
+    @apply rounded-t-none;
+  }
 
-.d-group--y > .d-group--x:not(:last-child) > * {
-  @apply rounded-b-none;
-}
+  .d-group--y > .d-group--x:not(:last-child) > * {
+    @apply rounded-b-none;
+  }
 
-.d-group-addon {
-  @apply ui-rounded-md ui-border-primary flex items-center justify-center;
-}
+  .d-group-addon {
+    @apply ui-rounded-md ui-border-primary flex items-center justify-center;
+  }
 
-.d-group-addon--sm {
-  @apply ui-gap-xs ui-px-xs;
-}
+  .d-group-addon--sm {
+    @apply ui-gap-xs ui-px-xs;
+  }
 
-.d-group-addon--md {
-  @apply ui-gap-md ui-px-md;
-}
+  .d-group-addon--md {
+    @apply ui-gap-md ui-px-md;
+  }
 
-.d-group-addon--lg {
-  @apply ui-gap-lg ui-px-lg;
-}
+  .d-group-addon--lg {
+    @apply ui-gap-lg ui-px-lg;
+  }
 
-.d-group-addon--outlined, .d-group--subtle {
-  @apply ui-rounded-md;
-}
+  .d-group-addon--outlined, .d-group--subtle {
+    @apply ui-rounded-md;
+  }
 
-.d-group-addon--outlined {
-  @apply border;
-}
+  .d-group-addon--outlined {
+    @apply border;
+  }
 
-.d-group-addon--underlined {
-  @apply border-b;
-}
+  .d-group-addon--underlined {
+    @apply border-b;
+  }
 
-.d-group-addon--subtle {
-  @apply border ui-bg-subtle;
-}
+  .d-group-addon--subtle {
+    @apply border ui-bg-subtle;
+  }
 
-.d-group-addon--attach {
-  @apply absolute;
-}
+  .d-group-addon--attach {
+    @apply absolute;
+  }
 
-.d-group--x .d-group-addon--attach {
-  @apply inset-y-0;
-}
+  .d-group--x .d-group-addon--attach {
+    @apply inset-y-0;
+  }
 
-.d-group--y .d-group-addon--attach {
-  @apply inset-x-0;
-}
+  .d-group--y .d-group-addon--attach {
+    @apply inset-x-0;
+  }
 
-.d-group--x .d-group-addon--attach:first-child {
-  @apply left-0;
-}
+  .d-group--x .d-group-addon--attach:first-child {
+    @apply left-0;
+  }
 
-.d-group--x .d-group-addon--attach:last-child {
-  @apply right-0;
-}
+  .d-group--x .d-group-addon--attach:last-child {
+    @apply right-0;
+  }
 
-.d-group--y .d-group-addon--attach:first-child {
-  @apply top-0;
-}
+  .d-group--y .d-group-addon--attach:first-child {
+    @apply top-0;
+  }
 
-.d-group--y .d-group-addon--attach:last-child {
-  @apply bottom-0;
-}
+  .d-group--y .d-group-addon--attach:last-child {
+    @apply bottom-0;
+  }
 }
