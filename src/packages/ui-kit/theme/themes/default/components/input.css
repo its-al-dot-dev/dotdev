@@ -1,57 +1,161 @@
+@theme {
+  --input-bg-soft: var(--ui-bg-neutral-soft);
+  --input-bg-outlined: var(--ui-bg-background);
+  --input-border-outlined: var(--ui-border-neutral);
+  --input-border-focus: var(--ui-border-brand);
+  --input-border-invalid: var(--ui-border-danger);
+  --input-text-default: var(--ui-text-foreground);
+  --input-text-placeholder: var(--ui-text-placeholder);
+  --input-px-sm: var(--ui-space-sm);
+  --input-px-md: var(--ui-space-md);
+  --input-px-lg: var(--ui-space-lg);
+  --input-h-sm: var(--ui-size-sm);
+  --input-h-md: var(--ui-size-md);
+  --input-h-lg: var(--ui-size-lg);
+  --input-text-sm: var(--ui-label-sm);
+  --input-text-md: var(--ui-label-md);
+  --input-text-lg: var(--ui-label-md);
+  --input-rounded-base: var(--ui-radius-md);
+}
+
+@utility input-bg-soft {
+  @apply bg-(--input-bg-soft);
+}
+
+@utility input-bg-outlined {
+  @apply bg-(--input-bg-outlined);
+}
+
+@utility input-border-outlined {
+  @apply border-(--input-border-outlined);
+}
+
+@utility input-border-focus {
+  @apply border-(--input-border-focus);
+}
+
+@utility input-border-invalid {
+  @apply border-(--input-border-invalid);
+}
+
+@utility input-text-default {
+  @apply text-(--input-text-default);
+}
+
+@utility input-text-placeholder {
+  @apply text-(--input-text-placeholder);
+}
+
+@utility input-px-sm {
+  @apply px-(length:--input-px-sm);
+}
+
+@utility input-px-md {
+  @apply px-(length:--input-px-md);
+}
+
+@utility input-px-lg {
+  @apply px-(length:--input-px-lg);
+}
+
+@utility input-h-sm {
+  @apply h-(length:--input-h-sm);
+}
+
+@utility input-h-md {
+  @apply h-(length:--input-h-md);
+}
+
+@utility input-h-lg {
+  @apply h-(length:--input-h-lg);
+}
+
+@utility input-text-sm {
+  @apply text-(length:--input-text-sm);
+}
+
+@utility input-text-md {
+  @apply text-(length:--input-text-md);
+}
+
+@utility input-text-lg {
+  @apply text-(length:--input-text-lg);
+}
+
+@utility input-rounded-base {
+  @apply rounded-(length:--input-rounded-base);
+}
+
+@utility input-size-sm {
+  @apply input-text-sm input-h-sm input-px-sm;
+}
+
+@utility input-size-md {
+  @apply input-text-md input-h-md input-px-md;
+}
+
+@utility input-size-lg {
+  @apply input-text-lg input-h-lg input-px-lg;
+}
+
+@utility input-transition {
+  @apply transition-[background-color,opacity,border,color];
+}
+
 @layer components {
-  .d-input {
-    @apply ui-text-primary outline-none transition-[background-color,opacity,border-color,color];
-  }
+.d-input {
+  @apply input-text-default input-transition outline-none;
+}
 
-  .d-input:focus-visible {
-    @apply ui-border-brand;
-  }
+.d-input:focus-visible {
+  @apply input-border-focus;
+}
 
-  .d-input::placeholder {
-    @apply ui-text-placeholder;
-  }
+.d-input::placeholder {
+  @apply input-text-placeholder;
+}
 
-  .d-input--outlined, .d-input--underlined {
-    @apply ui-border-primary ui-bg-primary;
-  }
+.d-input--outlined, .d-input--underlined {
+  @apply input-border-outlined;
+}
 
-  .d-input--outlined, .d-input--subtle {
-    @apply ui-rounded-md;
-  }
+.d-input--outlined, .d-input--soft {
+  @apply input-rounded-base;
+}
 
-  .d-input--outlined {
-    @apply border;
-  }
+.d-input--outlined {
+  @apply input-bg-outlined border;
+}
 
-  .d-input--underlined {
-    @apply border-b;
-  }
+.d-input--underlined {
+  @apply border-b;
+}
 
-  .d-input--subtle {
-    @apply ui-bg-subtle border border-transparent;
-  }
+.d-input--soft {
+  @apply input-bg-soft border border-transparent;
+}
 
-  .d-input:disabled {
-    @apply ui-disabled;
-  }
+.d-input:disabled {
+  @apply disabled;
+}
 
-  .d-input--invalid {
-    @apply ui-border-danger;
-  }
+.d-input--invalid {
+  @apply input-border-invalid;
+}
 
-  .d-input--invalid:focus-visible {
-    @apply ui-border-danger;
-  }
+.d-input--invalid:focus-visible {
+  @apply input-border-invalid;
+}
 
-  .d-input--sm {
-    @apply ui-h-sm ui-px-sm ui-text-sm;
-  }
+.d-input--sm {
+  @apply input-size-sm;
+}
 
-  .d-input--md {
-    @apply ui-h-md ui-px-md ui-text-md;
-  }
+.d-input--md {
+  @apply input-size-md;
+}
 
-  .d-input--lg {
-    @apply ui-h-lg ui-px-lg ui-text-lg;
-  }
+.d-input--lg {
+  @apply input-size-lg;
+}
 }

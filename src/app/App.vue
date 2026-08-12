@@ -36,7 +36,7 @@ watch(
 
 <template>
   <div class="layout">
-    <aside class="layout__sidebar" :class="isSidebarOpen ? 'layout__sidebar--open' : 'layout__sidebar--closed'">
+    <aside :class="isSidebarOpen ? 'layout__sidebar--open' : 'layout__sidebar--closed'" class="layout__sidebar">
       <div class="layout__sidebar-header">
         <Logo />
       </div>
@@ -45,8 +45,6 @@ watch(
         <Menu :items="$studioMenu" size="sm" />
       </div>
     </aside>
-
-    <div v-if="isSidebarOpen" class="layout__backdrop" @click="toggleSidebar" />
 
     <div class="layout__body">
       <header class="layout__header">

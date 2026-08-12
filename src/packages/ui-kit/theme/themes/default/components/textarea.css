@@ -1,57 +1,146 @@
+@theme {
+  --textarea-bg-soft: var(--ui-bg-neutral-soft);
+  --textarea-bg-outlined: var(--ui-bg-background);
+  --textarea-border-outlined: var(--ui-border-neutral);
+  --textarea-border-focus: var(--ui-border-brand);
+  --textarea-border-invalid: var(--ui-border-danger);
+  --textarea-text-default: var(--ui-text-foreground);
+  --textarea-text-placeholder: var(--ui-text-placeholder);
+  --textarea-px-sm: var(--ui-space-sm);
+  --textarea-px-md: var(--ui-space-md);
+  --textarea-px-lg: var(--ui-space-lg);
+  --textarea-text-sm: var(--ui-label-sm);
+  --textarea-text-md: var(--ui-label-md);
+  --textarea-text-lg: var(--ui-label-md);
+  --textarea-rounded-base: var(--ui-radius-md);
+}
+
+@utility textarea-bg-soft {
+  @apply bg-(--textarea-bg-soft);
+}
+
+@utility textarea-bg-outlined {
+  @apply bg-(--textarea-bg-outlined);
+}
+
+@utility textarea-border-outlined {
+  @apply border-(--textarea-border-outlined);
+}
+
+@utility textarea-border-focus {
+  @apply border-(--textarea-border-focus);
+}
+
+@utility textarea-border-invalid {
+  @apply border-(--textarea-border-invalid);
+}
+
+@utility textarea-text-default {
+  @apply text-(--textarea-text-default);
+}
+
+@utility textarea-text-placeholder {
+  @apply text-(--textarea-text-placeholder);
+}
+
+@utility textarea-px-sm {
+  @apply px-(length:--textarea-px-sm);
+}
+
+@utility textarea-px-md {
+  @apply px-(length:--textarea-px-md);
+}
+
+@utility textarea-px-lg {
+  @apply px-(length:--textarea-px-lg);
+}
+
+@utility textarea-text-sm {
+  @apply text-(length:--textarea-text-sm);
+}
+
+@utility textarea-text-md {
+  @apply text-(length:--textarea-text-md);
+}
+
+@utility textarea-text-lg {
+  @apply text-(length:--textarea-text-lg);
+}
+
+@utility textarea-rounded-base {
+  @apply rounded-(length:--textarea-rounded-base);
+}
+
+@utility textarea-size-sm {
+  @apply textarea-text-sm textarea-px-sm;
+}
+
+@utility textarea-size-md {
+  @apply textarea-text-md textarea-px-md;
+}
+
+@utility textarea-size-lg {
+  @apply textarea-text-lg textarea-px-lg;
+}
+
+@utility textarea-transition {
+  @apply transition-[background-color,opacity,border,color];
+}
+
 @layer components {
-  .d-textarea {
-    @apply ui-text-primary outline-none transition-[background-color,opacity,border-color,color] py-[0.4em] resize-none;
-  }
+.d-textarea {
+  @apply textarea-text-default textarea-transition outline-none resize-none py-[0.4em];
+}
 
-  .d-textarea:focus-visible {
-    @apply ui-border-brand;
-  }
+.d-textarea:focus-visible {
+  @apply textarea-border-focus;
+}
 
-  .d-textarea::placeholder {
-    @apply ui-text-placeholder;
-  }
+.d-textarea::placeholder {
+  @apply textarea-text-placeholder;
+}
 
-  .d-textarea--outlined, .d-textarea--underlined {
-    @apply ui-border-primary ui-bg-primary;
-  }
+.d-textarea--outlined, .d-textarea--underlined {
+  @apply textarea-border-outlined;
+}
 
-  .d-textarea--outlined, .d-textarea--subtle {
-    @apply ui-rounded-md;
-  }
+.d-textarea--outlined, .d-textarea--soft {
+  @apply textarea-rounded-base;
+}
 
-  .d-textarea--outlined {
-    @apply border;
-  }
+.d-textarea--outlined {
+  @apply textarea-bg-outlined border;
+}
 
-  .d-textarea--underlined {
-    @apply border-b;
-  }
+.d-textarea--underlined {
+  @apply border-b;
+}
 
-  .d-textarea--subtle {
-    @apply ui-bg-subtle border border-transparent;
-  }
+.d-textarea--soft {
+  @apply textarea-bg-soft border border-transparent;
+}
 
-  .d-textarea:disabled {
-    @apply ui-disabled;
-  }
+.d-textarea:disabled {
+  @apply disabled;
+}
 
-  .d-textarea--invalid {
-    @apply ui-border-danger;
-  }
+.d-textarea--invalid {
+  @apply textarea-border-invalid;
+}
 
-  .d-textarea--invalid:focus-visible {
-    @apply ui-border-danger;
-  }
+.d-textarea--invalid:focus-visible {
+  @apply textarea-border-invalid;
+}
 
-  .d-textarea--sm {
-    @apply ui-px-sm ui-text-sm;
-  }
+.d-textarea--sm {
+  @apply textarea-size-sm;
+}
 
-  .d-textarea--md {
-    @apply ui-px-md ui-text-md;
-  }
+.d-textarea--md {
+  @apply textarea-size-md;
+}
 
-  .d-textarea--lg {
-    @apply ui-px-lg ui-text-lg;
-  }
+.d-textarea--lg {
+  @apply textarea-size-lg;
+}
 }

@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<UISelectButtonProps<T, L, V, M>>(), {
   square: false,
   disabled: false,
   deselectable: false,
-  variant: 'subtle',
+  variant: 'soft',
   size: 'md',
 })
 

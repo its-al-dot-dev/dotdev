@@ -17,7 +17,7 @@ const second = ref<boolean>(false)
     Outlined
   </label>
   <label class="flex items-center gap-2">
-    <Checkbox v-model="second" invalid variant="subtle" />
+    <Checkbox v-model="second" invalid variant="soft" />
     Subtle
   </label>
 </template>

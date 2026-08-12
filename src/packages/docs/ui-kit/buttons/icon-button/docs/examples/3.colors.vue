@@ -3,11 +3,11 @@ import { IconButton } from 'dotdev/ui-kit'
 
 defineExpose({
   title: 'Colors and variants',
-  desc: `Combine the <code>color</code> and <code>variant</code> props in a grid. Available colors are <code>primary</code>, <code>neutral</code>, <code>warning</code>, <code>success</code>, and <code>danger</code>.`,
+  desc: `Combine the <code>color</code> and <code>variant</code> props in a grid. Available colors are <code>primary</code>, <code>neutral</code>, <code>warning</code>, <code>success</code>, <code>danger</code>, and <code>info</code>.`,
 })
 
-const colors = ['primary', 'neutral', 'warning', 'success', 'danger']
-const variants = ['solid', 'outlined', 'subtle', 'ghost', 'text']
+const colors = ['primary', 'neutral', 'warning', 'success', 'danger', 'info']
+const variants = ['solid', 'outlined', 'soft', 'ghost', 'text']
 </script>
 
 <template>

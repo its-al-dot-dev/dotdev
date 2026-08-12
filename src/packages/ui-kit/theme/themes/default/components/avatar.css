@@ -1,13 +1,36 @@
+@theme {
+  --avatar-size: 2.5em;
+  --avatar-rounded: 9999px;
+  --avatar-bg: color-mix(in oklab, currentColor 10%, transparent);
+  --avatar-border: color-mix(in oklab, currentColor 50%, transparent);
+}
+
+@utility avatar-size {
+  @apply size-(--avatar-size);
+}
+
+@utility avatar-rounded {
+  @apply rounded-(--avatar-rounded);
+}
+
+@utility avatar-bg {
+  @apply bg-(--avatar-bg);
+}
+
+@utility avatar-border {
+  @apply border-(--avatar-border);
+}
+
 @layer components {
-  .d-avatar {
-    @apply size-[2.5em] box-border flex items-center justify-center relative rounded-full bg-[color-mix(in_oklab,currentColor_10%,transparent)] border-[color-mix(in_oklab,currentColor_50%,transparent)];
-  }
+.d-avatar {
+  @apply avatar-size box-border flex items-center justify-center relative avatar-rounded avatar-bg avatar-border;
+}
 
-  .d-avatar--border {
-    @apply border;
-  }
+.d-avatar--border {
+  @apply border;
+}
 
-  .d-avatar__image {
-    @apply rounded-[inherit];
-  }
+.d-avatar__image {
+  @apply rounded-[inherit];
+}
 }

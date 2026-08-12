@@ -31,13 +31,14 @@ interface UiKitColors {
   warning: true
   success: true
   danger: true
+  info: true
 }
 type UiKitColorDefault = keyof UiKitColors | (string & {})
 export type UiKitColor = UiKitOverride<UiKitColorDefault, 'color'>
 
 interface UiKitFieldVariants {
   outlined: true
-  subtle: true
+  soft: true
   underlined: true
   plain: true
 }

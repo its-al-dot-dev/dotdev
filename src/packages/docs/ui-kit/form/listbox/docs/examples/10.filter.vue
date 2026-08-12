@@ -21,9 +21,7 @@ const { query, inputBindings, listboxBindings } = useListBoxFilter(options, filt
 
 <template>
   <Group axis="y">
-    <div class="border ui-rounded-md ui-border-primary">
-      <Input v-model="query" placeholder="Search city..." v-bind="inputBindings" variant="plain" />
-    </div>
+    <Input v-model="query" placeholder="Search city..." v-bind="inputBindings" />
     <ListBox v-model="value" class="-mt-px" v-bind="listboxBindings" />
   </Group>
 </template>

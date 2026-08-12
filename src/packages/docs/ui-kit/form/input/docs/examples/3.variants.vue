@@ -4,7 +4,7 @@ import { ref } from 'vue'
 
 defineExpose({
   title: 'Variants',
-  desc: `Use the <code>variant</code> prop to control the visual style of the input. Available variants are <code>outlined</code>, <code>subtle</code>, <code>underlined</code>, and <code>plain</code>.`,
+  desc: `Use the <code>variant</code> prop to control the visual style of the input. Available variants are <code>outlined</code>, <code>soft</code>, <code>underlined</code>, and <code>plain</code>.`,
 })
 
 const value = ref<string>('')
@@ -12,7 +12,7 @@ const value = ref<string>('')
 
 <template>
   <Input v-model="value" placeholder="Enter text..." variant="outlined" />
-  <Input v-model="value" placeholder="Enter text..." variant="subtle" />
+  <Input v-model="value" placeholder="Enter text..." variant="soft" />
   <Input v-model="value" placeholder="Enter text..." variant="underlined" />
   <Input v-model="value" placeholder="Enter text..." variant="plain" />
 </template>

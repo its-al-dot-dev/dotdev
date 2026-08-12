@@ -12,7 +12,7 @@ const value = ref<string>('')
 
 <template>
   <Textarea v-model="value" disabled placeholder="Enter text..." variant="outlined" />
-  <Textarea v-model="value" disabled placeholder="Enter text..." variant="subtle" />
+  <Textarea v-model="value" disabled placeholder="Enter text..." variant="soft" />
   <Textarea v-model="value" disabled placeholder="Enter text..." variant="underlined" />
   <Textarea v-model="value" disabled placeholder="Enter text..." variant="plain" />
 </template>

@@ -1,10 +1,9 @@
-import { type UiKitThemeConfig } from '../../utils/uiKitTheme.ts'
+import { type ThemeBuilderConfig } from 'dotdev/theme'
+import ui from './components/ui.ts'
 import layout from './app/layout.ts'
 import doc from './app/doc.ts'
-import play from './app/play.ts'
 import listbox from './components/listbox.ts'
 import button from './components/button.ts'
-import ui from './components/ui.ts'
 import tag from './components/tag.ts'
 import input from './components/input.ts'
 import textarea from './components/textarea.ts'
@@ -19,35 +18,32 @@ import icon from './components/icon.ts'
 import menu from './components/menu.ts'
 import select from './components/select.ts'
 import selectListbox from './components/select-listbox.ts'
-import message from './components/message.ts'
 
-const index: UiKitThemeConfig = {
+const index: ThemeBuilderConfig = {
   namespace: 'd',
   theme: 'default',
   app: {
     layout,
     doc,
-    play,
   },
   components: {
     ui,
-    listbox,
     button,
+    icon,
+    iconButton,
+    listbox,
     tag,
     input,
     textarea,
-    group,
     avatar,
-    switch: switchInput,
+    switchInput,
     checkbox,
     radio,
-    'icon-button': iconButton,
-    icon,
-    'select-button': selectButton,
+    selectButton,
     menu,
     select,
-    'select-listbox': selectListbox,
-    message,
+    selectListbox,
+    group,
   },
 }
 

@@ -11,6 +11,6 @@ defineExpose({
   <Button label="Solid" disabled />
   <Button label="Outlined" variant="outlined" disabled />
   <Button label="Ghost" variant="ghost" disabled />
-  <Button label="Subtle" variant="subtle" disabled />
+  <Button label="Soft" variant="soft" disabled />
   <Button label="Text" variant="text" disabled />
 </template>

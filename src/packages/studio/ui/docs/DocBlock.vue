@@ -26,9 +26,8 @@ provide(STATE_SYMBOL, state)
       <p class="doc-block__desc doc-desc" v-html="state.desc" />
     </div>
 
-    <DocExample v-if="config.component" :code="config.code" :component="config.component" />
-
     <div class="doc-block__body">
+      <DocExample v-if="config.component" :code="config.code" :component="config.component" />
       <slot />
     </div>
   </div>

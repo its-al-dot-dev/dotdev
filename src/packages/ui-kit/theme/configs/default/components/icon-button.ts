@@ -1,7 +1,8 @@
-import { defineStyleSheet } from 'dotdev/theme'
+import { defineSheet } from 'dotdev/theme'
 
-export default defineStyleSheet({
-  component: {
-    '&': `aspect-square px-0!`,
+export default defineSheet({
+  name: 'icon-button',
+  rules: {
+    '&': `aspect-square px-0`,
   },
 })

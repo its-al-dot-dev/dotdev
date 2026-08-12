@@ -6,7 +6,7 @@ definePage({
   name: 'Switch',
   meta: {
     icon: 'component-1',
-    desc: 'A toggle switch component driven by a controlled <code>v-model</code>. Supports <code>outlined</code> and <code>subtle</code> variants as well as disabled and invalid states for accessible forms.',
+    desc: 'A toggle switch component driven by a controlled <code>v-model</code>. Supports <code>outlined</code> and <code>soft</code> variants as well as disabled and invalid states for accessible forms.',
   },
 })
 

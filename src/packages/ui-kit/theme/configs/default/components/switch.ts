@@ -1,27 +1,50 @@
-import { defineStyleSheet, tr } from 'dotdev/theme'
+import { defineSheet } from 'dotdev/theme'
 
-export default defineStyleSheet({
-  component: {
-    '&': `flex h-6 p-0.5 border rounded-full cursor-pointer ${tr('bg', 'border')}`,
+export default defineSheet({
+  name: 'switch',
+
+  semantics: {
+    'border-base': 'border-neutral',
+    'border-checked': 'border-brand',
+    'border-invalid': 'border-danger',
+    'bg-soft': 'bg-neutral-soft-hover',
+    'bg-outlined': 'bg-background',
+    'bg-checked': 'bg-brand',
+    'bg-thumb-outlined': 'bg-neutral-soft-hover',
+    'bg-thumb-checked': 'bg-brand',
+    'bg-thumb-soft': 'color-white',
+    'ring-brand': 'ring-brand',
+
+    'h-base': '1.5rem',
+    'p-base': '0.125rem',
+    'rounded-base': '9999px',
+  },
+
+  utilities: {
+    transition: 'transition-[background-color,border-color]',
+    'transition-thumb': 'transition-[background-color,translate]',
+  },
+
+  rules: {
+    '&': `flex switch-h-base switch-p-base switch-rounded-base border switch-border-base outline-none cursor-pointer switch-transition`,
     '&__track': 'flex aspect-2/1 rounded-[inherit]',
-    '&__thumb': `aspect-square rounded-[inherit] ${tr('bg', 'translate')}`,
+    '&__thumb': `aspect-square rounded-[inherit] switch-transition-thumb shadow-xs`,
     '&--checked &__thumb': 'translate-x-full',
 
-    '&:focus-visible': 'outline-2 button-ring-neutral',
-    '&--checked:focus-visible': 'outline-2 button-ring-primary',
+    '&:focus-visible': 'ring-2 switch-ring-brand',
 
-    '&--outlined': 'ui-border-primary',
-    '&--outlined &__thumb': 'ui-bg-subtle-active',
+    '&--outlined': 'switch-bg-outlined',
+    '&--outlined &__thumb': 'switch-bg-thumb-outlined',
 
-    '&--outlined.&--checked': 'ui-border-brand',
-    '&--outlined.&--checked &__thumb': 'ui-bg-brand',
+    '&--outlined.&--checked': 'switch-border-checked',
+    '&--outlined.&--checked &__thumb': 'switch-bg-thumb-checked',
 
-    '&--subtle': 'ui-bg-subtle-active border-transparent',
-    '&--subtle &__thumb': 'bg-white',
+    '&--soft': 'switch-bg-soft border-transparent',
+    '&--soft &__thumb': 'switch-bg-thumb-soft',
 
-    '&--subtle.&--checked': 'ui-bg-brand',
+    '&--soft.&--checked': 'switch-bg-checked',
 
-    '&.&--invalid': 'ui-border-danger',
-    '&--disabled': 'ui-disabled',
+    '&.&--invalid': 'switch-border-invalid',
+    '&--disabled': 'disabled',
   },
 })

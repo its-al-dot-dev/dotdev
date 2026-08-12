@@ -8,7 +8,7 @@ provide(UI_KIT_CONFIG_KEY, {
     button: {
       color: 'danger',
       size: 'lg',
-      variant: 'subtle',
+      variant: 'soft',
     },
   },
 })

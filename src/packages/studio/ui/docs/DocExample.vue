@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type Component, computed, inject, ref } from 'vue'
+import { type Component, computed, inject, onMounted, ref, useTemplateRef } from 'vue'
 import { IconButton, SelectButton, useClipboard, useColorScheme } from 'dotdev/ui-kit'
 import DocCard from './DocCard.vue'
 import DocCode from './DocCode.vue'
@@ -28,10 +28,12 @@ const tabs = computed(() => {
 const activeTab = ref(props.component ? 'Example' : 'Code')
 
 const state = inject(STATE_SYMBOL, { title: '', desc: '' })
-function componentRef(expose: any) {
-  state.title = expose?.title ?? ''
-  state.desc = expose?.desc ?? ''
-}
+const componentRef = useTemplateRef<any>('component')
+
+onMounted(() => {
+  state.title = componentRef.value?.title ?? ''
+  state.desc = componentRef.value?.desc ?? ''
+})
 </script>
 
 <template>
@@ -50,7 +52,7 @@ function componentRef(expose: any) {
 
     <div :class="isToggleTheme ? (scheme === 'dark' ? 'light' : 'dark') : null" class="doc-example__body">
       <div v-if="component && activeTab === 'Example'" class="doc-example__canvas">
-        <component :is="component" :ref="componentRef" />
+        <component :is="component" ref="component" />
       </div>
 
       <div v-if="rawCode" v-show="activeTab === 'Code'" class="doc-example__code">

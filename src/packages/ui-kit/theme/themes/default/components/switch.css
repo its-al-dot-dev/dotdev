@@ -1,61 +1,133 @@
+@theme {
+  --switch-border-base: var(--ui-border-neutral);
+  --switch-border-checked: var(--ui-border-brand);
+  --switch-border-invalid: var(--ui-border-danger);
+  --switch-bg-soft: var(--ui-bg-neutral-soft-hover);
+  --switch-bg-outlined: var(--ui-bg-background);
+  --switch-bg-checked: var(--ui-bg-brand);
+  --switch-bg-thumb-outlined: var(--ui-bg-neutral-soft-hover);
+  --switch-bg-thumb-checked: var(--ui-bg-brand);
+  --switch-bg-thumb-soft: var(--color-white);
+  --switch-ring-brand: var(--ui-ring-brand);
+  --switch-h-base: 1.5rem;
+  --switch-p-base: 0.125rem;
+  --switch-rounded-base: 9999px;
+}
+
+@utility switch-border-base {
+  @apply border-(--switch-border-base);
+}
+
+@utility switch-border-checked {
+  @apply border-(--switch-border-checked);
+}
+
+@utility switch-border-invalid {
+  @apply border-(--switch-border-invalid);
+}
+
+@utility switch-bg-soft {
+  @apply bg-(--switch-bg-soft);
+}
+
+@utility switch-bg-outlined {
+  @apply bg-(--switch-bg-outlined);
+}
+
+@utility switch-bg-checked {
+  @apply bg-(--switch-bg-checked);
+}
+
+@utility switch-bg-thumb-outlined {
+  @apply bg-(--switch-bg-thumb-outlined);
+}
+
+@utility switch-bg-thumb-checked {
+  @apply bg-(--switch-bg-thumb-checked);
+}
+
+@utility switch-bg-thumb-soft {
+  @apply bg-(--switch-bg-thumb-soft);
+}
+
+@utility switch-ring-brand {
+  @apply ring-(--switch-ring-brand);
+}
+
+@utility switch-h-base {
+  @apply h-(length:--switch-h-base);
+}
+
+@utility switch-p-base {
+  @apply p-(length:--switch-p-base);
+}
+
+@utility switch-rounded-base {
+  @apply rounded-(length:--switch-rounded-base);
+}
+
+@utility switch-transition {
+  @apply transition-[background-color,border-color];
+}
+
+@utility switch-transition-thumb {
+  @apply transition-[background-color,translate];
+}
+
 @layer components {
-  .d-switch {
-    @apply flex h-6 p-0.5 border rounded-full cursor-pointer transition-[background-color,border-color];
-  }
+.d-switch {
+  @apply flex switch-h-base switch-p-base switch-rounded-base border switch-border-base outline-none cursor-pointer switch-transition;
+}
 
-  .d-switch__track {
-    @apply flex aspect-2/1 rounded-[inherit];
-  }
+.d-switch__track {
+  @apply flex aspect-2/1 rounded-[inherit];
+}
 
-  .d-switch__thumb {
-    @apply aspect-square rounded-[inherit] transition-[background-color,translate];
-  }
+.d-switch__thumb {
+  @apply aspect-square rounded-[inherit] switch-transition-thumb shadow-xs;
+}
 
-  .d-switch--checked .d-switch__thumb {
-    @apply translate-x-full;
-  }
+.d-switch--checked .d-switch__thumb {
+  @apply translate-x-full;
+}
 
-  .d-switch:focus-visible {
-    @apply outline-2 button-ring-neutral;
-  }
+.d-switch:focus-visible {
+  @apply ring-2 switch-ring-brand;
+}
 
-  .d-switch--checked:focus-visible {
-    @apply outline-2 button-ring-primary;
-  }
+.d-switch--outlined {
+  @apply switch-bg-outlined;
+}
 
-  .d-switch--outlined {
-    @apply ui-border-primary;
-  }
+.d-switch--outlined .d-switch__thumb {
+  @apply switch-bg-thumb-outlined;
+}
 
-  .d-switch--outlined .d-switch__thumb {
-    @apply ui-bg-subtle-active;
-  }
+.d-switch--outlined.d-switch--checked {
+  @apply switch-border-checked;
+}
 
-  .d-switch--outlined.d-switch--checked {
-    @apply ui-border-brand;
-  }
+.d-switch--outlined.d-switch--checked .d-switch__thumb {
+  @apply switch-bg-thumb-checked;
+}
 
-  .d-switch--outlined.d-switch--checked .d-switch__thumb {
-    @apply ui-bg-brand;
-  }
+.d-switch--soft {
+  @apply switch-bg-soft border-transparent;
+}
 
-  .d-switch--subtle {
-    @apply ui-bg-subtle-active border-transparent;
-  }
+.d-switch--soft .d-switch__thumb {
+  @apply switch-bg-thumb-soft;
+}
 
-  .d-switch--subtle .d-switch__thumb {
-    @apply bg-white;
-  }
+.d-switch--soft.d-switch--checked {
+  @apply switch-bg-checked;
+}
 
-  .d-switch--subtle.d-switch--checked {
-    @apply ui-bg-brand;
-  }
+.d-switch.d-switch--invalid {
+  @apply switch-border-invalid;
+}
 
-  .d-switch.d-switch--invalid {
-    @apply ui-border-danger;
-  }
-
-  .d-switch--disabled {
-    @apply ui-disabled;
-  }
+.d-switch--disabled {
+  @apply disabled;
+}
 }

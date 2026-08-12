@@ -1,249 +1,513 @@
+@theme {
+  --button-bg-primary-solid: var(--ui-bg-brand);
+  --button-bg-primary-solid-hover: var(--ui-bg-brand-hover);
+  --button-text-primary-solid: var(--ui-text-on-brand);
+  --button-bg-primary-soft: var(--ui-bg-brand-soft);
+  --button-bg-primary-soft-hover: var(--ui-bg-brand-soft-hover);
+  --button-text-primary-outlined: var(--ui-text-brand);
+  --button-border-primary-outlined: var(--ui-border-brand);
+  --button-ring-primary: var(--ui-ring-brand);
+  --button-bg-neutral-solid: var(--ui-bg-neutral);
+  --button-bg-neutral-solid-hover: var(--ui-bg-neutral-hover);
+  --button-text-neutral-solid: var(--ui-text-on-neutral);
+  --button-bg-neutral-soft: var(--ui-bg-neutral-soft);
+  --button-bg-neutral-soft-hover: var(--ui-bg-neutral-soft-hover);
+  --button-text-neutral-outlined: var(--ui-text-neutral);
+  --button-border-neutral-outlined: var(--ui-border-neutral);
+  --button-ring-neutral: var(--ui-ring-neutral);
+  --button-bg-danger-solid: var(--ui-bg-danger);
+  --button-bg-danger-solid-hover: var(--ui-bg-danger-hover);
+  --button-text-danger-solid: var(--ui-text-on-danger);
+  --button-bg-danger-soft: var(--ui-bg-danger-soft);
+  --button-bg-danger-soft-hover: var(--ui-bg-danger-soft-hover);
+  --button-text-danger-outlined: var(--ui-text-danger);
+  --button-border-danger-outlined: var(--ui-border-danger);
+  --button-ring-danger: var(--ui-ring-danger);
+  --button-bg-warning-solid: var(--ui-bg-warning);
+  --button-bg-warning-solid-hover: var(--ui-bg-warning-hover);
+  --button-text-warning-solid: var(--ui-text-on-warning);
+  --button-bg-warning-soft: var(--ui-bg-warning-soft);
+  --button-bg-warning-soft-hover: var(--ui-bg-warning-soft-hover);
+  --button-text-warning-outlined: var(--ui-text-warning);
+  --button-border-warning-outlined: var(--ui-border-warning);
+  --button-ring-warning: var(--ui-ring-warning);
+  --button-bg-info-solid: var(--ui-bg-info);
+  --button-bg-info-solid-hover: var(--ui-bg-info-hover);
+  --button-text-info-solid: var(--ui-text-on-info);
+  --button-bg-info-soft: var(--ui-bg-info-soft);
+  --button-bg-info-soft-hover: var(--ui-bg-info-soft-hover);
+  --button-text-info-outlined: var(--ui-text-info);
+  --button-border-info-outlined: var(--ui-border-info);
+  --button-ring-info: var(--ui-ring-info);
+  --button-bg-success-solid: var(--ui-bg-success);
+  --button-bg-success-solid-hover: var(--ui-bg-success-hover);
+  --button-text-success-solid: var(--ui-text-on-success);
+  --button-bg-success-soft: var(--ui-bg-success-soft);
+  --button-bg-success-soft-hover: var(--ui-bg-success-soft-hover);
+  --button-text-success-outlined: var(--ui-text-success);
+  --button-border-success-outlined: var(--ui-border-success);
+  --button-ring-success: var(--ui-ring-success);
+  --button-px-sm: var(--ui-space-md);
+  --button-px-md: var(--ui-space-lg);
+  --button-px-lg: var(--ui-space-xl);
+  --button-h-sm: var(--ui-size-sm);
+  --button-h-md: var(--ui-size-md);
+  --button-h-lg: var(--ui-size-lg);
+  --button-gap-sm: var(--ui-gap-sm);
+  --button-gap-md: var(--ui-gap-md);
+  --button-gap-lg: var(--ui-gap-lg);
+  --button-text-sm: var(--ui-label-sm);
+  --button-text-md: var(--ui-label-sm);
+  --button-text-lg: var(--ui-label-lg);
+  --button-rounded-base: var(--ui-radius-md);
+}
+
 @utility button-bg-primary-solid {
-   @apply bg-brand-600 hover:bg-brand-700 border-brand-600;
+  @apply bg-(--button-bg-primary-solid);
+}
+
+@utility button-bg-primary-solid-hover {
+  @apply bg-(--button-bg-primary-solid-hover);
+}
+
+@utility button-text-primary-solid {
+  @apply text-(--button-text-primary-solid);
 }
 
 @utility button-bg-primary-soft {
-   @apply bg-brand-50 dark:bg-brand-600/15;
+  @apply bg-(--button-bg-primary-soft);
 }
 
-@utility button-bg-primary-subtle {
-   @apply bg-brand-100 dark:bg-brand-600/20;
+@utility button-bg-primary-soft-hover {
+  @apply bg-(--button-bg-primary-soft-hover);
 }
 
-@utility button-text-primary {
-   @apply text-brand-600 dark:text-brand-500;
+@utility button-text-primary-outlined {
+  @apply text-(--button-text-primary-outlined);
+}
+
+@utility button-border-primary-outlined {
+  @apply border-(--button-border-primary-outlined);
 }
 
 @utility button-ring-primary {
-   @apply outline-brand-500/50;
-}
-
-@utility button-bg-warning-solid {
-   @apply bg-warning-600 hover:bg-warning-700 border-warning-600;
-}
-
-@utility button-bg-warning-soft {
-   @apply bg-warning-50 dark:bg-warning-600/15;
-}
-
-@utility button-bg-warning-subtle {
-   @apply bg-warning-100 dark:bg-warning-600/20;
-}
-
-@utility button-text-warning {
-   @apply text-warning-600 dark:text-warning-500;
-}
-
-@utility button-ring-warning {
-   @apply outline-warning-500/50;
-}
-
-@utility button-bg-danger-solid {
-   @apply bg-danger-600 hover:bg-danger-700 border-danger-600;
-}
-
-@utility button-bg-danger-soft {
-   @apply bg-danger-50 dark:bg-danger-600/15;
-}
-
-@utility button-bg-danger-subtle {
-   @apply bg-danger-100 dark:bg-danger-600/20;
-}
-
-@utility button-text-danger {
-   @apply text-danger-600 dark:text-danger-500;
-}
-
-@utility button-ring-danger {
-   @apply outline-danger-500/50;
-}
-
-@utility button-bg-success-solid {
-   @apply bg-success-600 hover:bg-success-700 border-success-600;
-}
-
-@utility button-bg-success-soft {
-   @apply bg-success-50 dark:bg-success-600/15;
-}
-
-@utility button-bg-success-subtle {
-   @apply bg-success-100 dark:bg-success-600/20;
-}
-
-@utility button-text-success {
-   @apply text-success-600 dark:text-success-500;
-}
-
-@utility button-ring-success {
-   @apply outline-success-500/50;
+  @apply ring-(--button-ring-primary);
 }
 
 @utility button-bg-neutral-solid {
-   @apply bg-primary-800 hover:bg-primary-900 border-primary-800 dark:text-primary-700 dark:bg-primary-100 dark:hover:bg-primary-200 dark:border-primary-100;
+  @apply bg-(--button-bg-neutral-solid);
+}
+
+@utility button-bg-neutral-solid-hover {
+  @apply bg-(--button-bg-neutral-solid-hover);
+}
+
+@utility button-text-neutral-solid {
+  @apply text-(--button-text-neutral-solid);
 }
 
 @utility button-bg-neutral-soft {
-   @apply ui-bg-subtle-hover;
+  @apply bg-(--button-bg-neutral-soft);
 }
 
-@utility button-bg-neutral-subtle {
-   @apply ui-bg-subtle-active;
+@utility button-bg-neutral-soft-hover {
+  @apply bg-(--button-bg-neutral-soft-hover);
 }
 
-@utility button-text-neutral {
-   @apply text-primary-700 dark:text-primary-100;
+@utility button-text-neutral-outlined {
+  @apply text-(--button-text-neutral-outlined);
+}
+
+@utility button-border-neutral-outlined {
+  @apply border-(--button-border-neutral-outlined);
 }
 
 @utility button-ring-neutral {
-   @apply outline-primary-500/50;
+  @apply ring-(--button-ring-neutral);
 }
 
-@utility button-border-neutral {
-   @apply ui-border-primary;
+@utility button-bg-danger-solid {
+  @apply bg-(--button-bg-danger-solid);
+}
+
+@utility button-bg-danger-solid-hover {
+  @apply bg-(--button-bg-danger-solid-hover);
+}
+
+@utility button-text-danger-solid {
+  @apply text-(--button-text-danger-solid);
+}
+
+@utility button-bg-danger-soft {
+  @apply bg-(--button-bg-danger-soft);
+}
+
+@utility button-bg-danger-soft-hover {
+  @apply bg-(--button-bg-danger-soft-hover);
+}
+
+@utility button-text-danger-outlined {
+  @apply text-(--button-text-danger-outlined);
+}
+
+@utility button-border-danger-outlined {
+  @apply border-(--button-border-danger-outlined);
+}
+
+@utility button-ring-danger {
+  @apply ring-(--button-ring-danger);
+}
+
+@utility button-bg-warning-solid {
+  @apply bg-(--button-bg-warning-solid);
+}
+
+@utility button-bg-warning-solid-hover {
+  @apply bg-(--button-bg-warning-solid-hover);
+}
+
+@utility button-text-warning-solid {
+  @apply text-(--button-text-warning-solid);
+}
+
+@utility button-bg-warning-soft {
+  @apply bg-(--button-bg-warning-soft);
+}
+
+@utility button-bg-warning-soft-hover {
+  @apply bg-(--button-bg-warning-soft-hover);
+}
+
+@utility button-text-warning-outlined {
+  @apply text-(--button-text-warning-outlined);
+}
+
+@utility button-border-warning-outlined {
+  @apply border-(--button-border-warning-outlined);
+}
+
+@utility button-ring-warning {
+  @apply ring-(--button-ring-warning);
+}
+
+@utility button-bg-info-solid {
+  @apply bg-(--button-bg-info-solid);
+}
+
+@utility button-bg-info-solid-hover {
+  @apply bg-(--button-bg-info-solid-hover);
+}
+
+@utility button-text-info-solid {
+  @apply text-(--button-text-info-solid);
+}
+
+@utility button-bg-info-soft {
+  @apply bg-(--button-bg-info-soft);
+}
+
+@utility button-bg-info-soft-hover {
+  @apply bg-(--button-bg-info-soft-hover);
+}
+
+@utility button-text-info-outlined {
+  @apply text-(--button-text-info-outlined);
+}
+
+@utility button-border-info-outlined {
+  @apply border-(--button-border-info-outlined);
+}
+
+@utility button-ring-info {
+  @apply ring-(--button-ring-info);
+}
+
+@utility button-bg-success-solid {
+  @apply bg-(--button-bg-success-solid);
+}
+
+@utility button-bg-success-solid-hover {
+  @apply bg-(--button-bg-success-solid-hover);
+}
+
+@utility button-text-success-solid {
+  @apply text-(--button-text-success-solid);
+}
+
+@utility button-bg-success-soft {
+  @apply bg-(--button-bg-success-soft);
+}
+
+@utility button-bg-success-soft-hover {
+  @apply bg-(--button-bg-success-soft-hover);
+}
+
+@utility button-text-success-outlined {
+  @apply text-(--button-text-success-outlined);
+}
+
+@utility button-border-success-outlined {
+  @apply border-(--button-border-success-outlined);
+}
+
+@utility button-ring-success {
+  @apply ring-(--button-ring-success);
+}
+
+@utility button-px-sm {
+  @apply px-(length:--button-px-sm);
+}
+
+@utility button-px-md {
+  @apply px-(length:--button-px-md);
+}
+
+@utility button-px-lg {
+  @apply px-(length:--button-px-lg);
+}
+
+@utility button-h-sm {
+  @apply h-(length:--button-h-sm);
+}
+
+@utility button-h-md {
+  @apply h-(length:--button-h-md);
+}
+
+@utility button-h-lg {
+  @apply h-(length:--button-h-lg);
+}
+
+@utility button-gap-sm {
+  @apply gap-(length:--button-gap-sm);
+}
+
+@utility button-gap-md {
+  @apply gap-(length:--button-gap-md);
+}
+
+@utility button-gap-lg {
+  @apply gap-(length:--button-gap-lg);
+}
+
+@utility button-text-sm {
+  @apply text-(length:--button-text-sm);
+}
+
+@utility button-text-md {
+  @apply text-(length:--button-text-md);
+}
+
+@utility button-text-lg {
+  @apply text-(length:--button-text-lg);
+}
+
+@utility button-rounded-base {
+  @apply rounded-(length:--button-rounded-base);
+}
+
+@utility button-size-sm {
+  @apply button-text-sm button-h-sm button-px-sm button-gap-sm;
+}
+
+@utility button-size-md {
+  @apply button-text-md button-h-md button-px-md button-gap-md;
+}
+
+@utility button-size-lg {
+  @apply button-text-lg button-h-lg button-px-lg button-gap-lg;
+}
+
+@utility button-transition {
+  @apply transition-[background-color,color,opacity,border-color];
 }
 
 @layer components {
-  .d-button {
-    @apply ui-rounded-md inline-flex items-center justify-center font-medium transition-[background-color,opacity,border-color,color] cursor-pointer;
-  }
+.d-button {
+  @apply button-rounded-base outline-none inline-flex items-center justify-center font-semibold button-transition cursor-pointer;
+}
 
-  .d-button--sm {
-    @apply ui-gap-sm ui-h-sm ui-px-sm ui-text-sm;
-  }
+.d-button--sm {
+  @apply button-size-sm;
+}
 
-  .d-button--md {
-    @apply ui-gap-md ui-h-md ui-px-md ui-text-md;
-  }
+.d-button--md {
+  @apply button-size-md;
+}
 
-  .d-button--lg {
-    @apply ui-gap-lg ui-h-lg ui-px-lg ui-text-lg;
-  }
+.d-button--lg {
+  @apply button-size-lg;
+}
 
-  .d-button--solid {
-    @apply text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)] border;
-  }
+.d-button--solid {
+  @apply shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)];
+}
 
-  .d-button--outlined {
-    @apply border border-current;
-  }
+.d-button--outlined {
+  @apply border;
+}
 
-  .d-button:is(.d-button--outlined, .d-button--ghost, .d-button--text) {
-    @apply bg-transparent ui-bg-primary;
-  }
+.d-button:is(.d-button--outlined, .d-button--ghost, .d-button--text) {
+  @apply bg-transparent;
+}
 
-  .d-button--disabled {
-    @apply ui-disabled;
-  }
+.d-button--disabled {
+  @apply disabled;
+}
 
-  .d-button--primary.d-button--solid {
-    @apply button-bg-primary-solid;
-  }
+.d-button:not(:disabled):focus-visible {
+  @apply ring-2;
+}
 
-  .d-button--primary:is(.d-button--outlined, .d-button--ghost) {
-    @apply hover:button-bg-primary-soft;
-  }
+.d-button--loading .d-button__icon {
+  @apply animate-spin;
+}
 
-  .d-button--primary:is(.d-button--outlined, .d-button--ghost, .d-button--subtle, .d-button--text) {
-    @apply button-text-primary;
-  }
+.d-button__icon {
+  @apply text-[1.2em];
+}
 
-  .d-button--primary.d-button--subtle {
-    @apply button-bg-primary-soft hover:button-bg-primary-subtle;
-  }
+.d-button--primary.d-button--solid {
+  @apply button-bg-primary-solid hover:button-bg-primary-solid-hover button-text-primary-solid;
+}
 
-  .d-button--primary:focus-visible {
-    @apply outline-2 button-ring-primary;
-  }
+.d-button--primary.d-button--soft {
+  @apply button-bg-primary-soft hover:button-bg-primary-soft-hover;
+}
 
-  .d-button--warning.d-button--solid {
-    @apply button-bg-warning-solid;
-  }
+.d-button--primary:is(.d-button--outlined) {
+  @apply button-border-primary-outlined;
+}
 
-  .d-button--warning:is(.d-button--outlined, .d-button--ghost) {
-    @apply hover:button-bg-warning-soft;
-  }
+.d-button--primary:is(.d-button--outlined, .d-button--ghost) {
+  @apply hover:button-bg-primary-soft;
+}
 
-  .d-button--warning:is(.d-button--outlined, .d-button--ghost, .d-button--subtle, .d-button--text) {
-    @apply button-text-warning;
-  }
+.d-button--primary:is(.d-button--outlined, .d-button--ghost, .d-button--soft, .d-button--text) {
+  @apply button-text-primary-outlined;
+}
 
-  .d-button--warning.d-button--subtle {
-    @apply button-bg-warning-soft hover:button-bg-warning-subtle;
-  }
+.d-button--primary:focus-visible {
+  @apply button-ring-primary;
+}
 
-  .d-button--warning:focus-visible {
-    @apply outline-2 button-ring-warning;
-  }
+.d-button--neutral.d-button--solid {
+  @apply button-bg-neutral-solid hover:button-bg-neutral-solid-hover button-text-neutral-solid;
+}
 
-  .d-button--danger.d-button--solid {
-    @apply button-bg-danger-solid;
-  }
+.d-button--neutral.d-button--soft {
+  @apply button-bg-neutral-soft hover:button-bg-neutral-soft-hover;
+}
 
-  .d-button--danger:is(.d-button--outlined, .d-button--ghost) {
-    @apply hover:button-bg-danger-soft;
-  }
+.d-button--neutral:is(.d-button--outlined) {
+  @apply button-border-neutral-outlined;
+}
 
-  .d-button--danger:is(.d-button--outlined, .d-button--ghost, .d-button--subtle, .d-button--text) {
-    @apply button-text-danger;
-  }
+.d-button--neutral:is(.d-button--outlined, .d-button--ghost) {
+  @apply hover:button-bg-neutral-soft;
+}
 
-  .d-button--danger.d-button--subtle {
-    @apply button-bg-danger-soft hover:button-bg-danger-subtle;
-  }
+.d-button--neutral:is(.d-button--outlined, .d-button--ghost, .d-button--soft, .d-button--text) {
+  @apply button-text-neutral-outlined;
+}
 
-  .d-button--danger:focus-visible {
-    @apply outline-2 button-ring-danger;
-  }
+.d-button--neutral:focus-visible {
+  @apply button-ring-neutral;
+}
 
-  .d-button--success.d-button--solid {
-    @apply button-bg-success-solid;
-  }
+.d-button--danger.d-button--solid {
+  @apply button-bg-danger-solid hover:button-bg-danger-solid-hover button-text-danger-solid;
+}
 
-  .d-button--success:is(.d-button--outlined, .d-button--ghost) {
-    @apply hover:button-bg-success-soft;
-  }
+.d-button--danger.d-button--soft {
+  @apply button-bg-danger-soft hover:button-bg-danger-soft-hover;
+}
 
-  .d-button--success:is(.d-button--outlined, .d-button--ghost, .d-button--subtle, .d-button--text) {
-    @apply button-text-success;
-  }
+.d-button--danger:is(.d-button--outlined) {
+  @apply button-border-danger-outlined;
+}
 
-  .d-button--success.d-button--subtle {
-    @apply button-bg-success-soft hover:button-bg-success-subtle;
-  }
+.d-button--danger:is(.d-button--outlined, .d-button--ghost) {
+  @apply hover:button-bg-danger-soft;
+}
 
-  .d-button--success:focus-visible {
-    @apply outline-2 button-ring-success;
-  }
+.d-button--danger:is(.d-button--outlined, .d-button--ghost, .d-button--soft, .d-button--text) {
+  @apply button-text-danger-outlined;
+}
 
-  .d-button--neutral.d-button--solid {
-    @apply button-bg-neutral-solid;
-  }
+.d-button--danger:focus-visible {
+  @apply button-ring-danger;
+}
 
-  .d-button--neutral:is(.d-button--outlined, .d-button--ghost) {
-    @apply hover:button-bg-neutral-soft;
-  }
+.d-button--warning.d-button--solid {
+  @apply button-bg-warning-solid hover:button-bg-warning-solid-hover button-text-warning-solid;
+}
 
-  .d-button--neutral:is(.d-button--outlined, .d-button--ghost, .d-button--subtle, .d-button--text) {
-    @apply button-text-neutral;
-  }
+.d-button--warning.d-button--soft {
+  @apply button-bg-warning-soft hover:button-bg-warning-soft-hover;
+}
 
-  .d-button--neutral.d-button--subtle {
-    @apply button-bg-neutral-soft hover:button-bg-neutral-subtle;
-  }
+.d-button--warning:is(.d-button--outlined) {
+  @apply button-border-warning-outlined;
+}
 
-  .d-button--neutral:focus-visible {
-    @apply outline-2 button-ring-neutral;
-  }
+.d-button--warning:is(.d-button--outlined, .d-button--ghost) {
+  @apply hover:button-bg-warning-soft;
+}
 
-  .d-button--neutral.d-button--outlined {
-    @apply button-border-neutral;
-  }
+.d-button--warning:is(.d-button--outlined, .d-button--ghost, .d-button--soft, .d-button--text) {
+  @apply button-text-warning-outlined;
+}
 
-  .d-button--loading .d-button__icon {
-    @apply animate-spin;
-  }
+.d-button--warning:focus-visible {
+  @apply button-ring-warning;
+}
 
-  .d-button__icon {
-    @apply text-[1.2em];
-  }
+.d-button--info.d-button--solid {
+  @apply button-bg-info-solid hover:button-bg-info-solid-hover button-text-info-solid;
+}
+
+.d-button--info.d-button--soft {
+  @apply button-bg-info-soft hover:button-bg-info-soft-hover;
+}
+
+.d-button--info:is(.d-button--outlined) {
+  @apply button-border-info-outlined;
+}
+
+.d-button--info:is(.d-button--outlined, .d-button--ghost) {
+  @apply hover:button-bg-info-soft;
+}
+
+.d-button--info:is(.d-button--outlined, .d-button--ghost, .d-button--soft, .d-button--text) {
+  @apply button-text-info-outlined;
+}
+
+.d-button--info:focus-visible {
+  @apply button-ring-info;
+}
+
+.d-button--success.d-button--solid {
+  @apply button-bg-success-solid hover:button-bg-success-solid-hover button-text-success-solid;
+}
+
+.d-button--success.d-button--soft {
+  @apply button-bg-success-soft hover:button-bg-success-soft-hover;
+}
+
+.d-button--success:is(.d-button--outlined) {
+  @apply button-border-success-outlined;
+}
+
+.d-button--success:is(.d-button--outlined, .d-button--ghost) {
+  @apply hover:button-bg-success-soft;
+}
+
+.d-button--success:is(.d-button--outlined, .d-button--ghost, .d-button--soft, .d-button--text) {
+  @apply button-text-success-outlined;
+}
+
+.d-button--success:focus-visible {
+  @apply button-ring-success;
+}
 }

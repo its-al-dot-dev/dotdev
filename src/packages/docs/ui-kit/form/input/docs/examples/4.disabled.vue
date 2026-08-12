@@ -12,7 +12,7 @@ const value = ref<string>('')
 
 <template>
   <Input v-model="value" disabled placeholder="Enter text..." variant="outlined" />
-  <Input v-model="value" disabled placeholder="Enter text..." variant="subtle" />
+  <Input v-model="value" disabled placeholder="Enter text..." variant="soft" />
   <Input v-model="value" disabled placeholder="Enter text..." variant="underlined" />
   <Input v-model="value" disabled placeholder="Enter text..." variant="plain" />
 </template>

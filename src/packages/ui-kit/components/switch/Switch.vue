@@ -7,7 +7,7 @@ defineSlots<UISwitchSlots>()
 defineEmits<UISwitchEmits>()
 const props = withDefaults(defineProps<UISwitchProps>(), {
   ui: 'switch',
-  variant: 'subtle',
+  variant: 'soft',
 })
 
 const model = defineModel<boolean>({ default: false })

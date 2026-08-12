@@ -1,37 +1,95 @@
+@theme {
+  --tag-gap: 0.35em;
+  --tag-h: 1.75em;
+  --tag-px: 0.5em;
+  --tag-rounded: 0.5em;
+  --tag-rounded-full: 9999px;
+  --tag-bg: color-mix(in oklab, currentColor 10%, transparent);
+  --tag-border: color-mix(in oklab, currentColor 30%, transparent);
+  --tag-ps-avatar: 0.125rem;
+  --tag-ps-avatar-border: 1px;
+  --tag-pe-avatar: 0.125rem;
+  --tag-pe-avatar-border: 1px;
+}
+
+@utility tag-gap {
+  @apply gap-(--tag-gap);
+}
+
+@utility tag-h {
+  @apply h-(--tag-h);
+}
+
+@utility tag-px {
+  @apply px-(--tag-px);
+}
+
+@utility tag-rounded {
+  @apply rounded-(--tag-rounded);
+}
+
+@utility tag-rounded-full {
+  @apply rounded-(--tag-rounded-full);
+}
+
+@utility tag-bg {
+  @apply bg-(--tag-bg);
+}
+
+@utility tag-border {
+  @apply border-(--tag-border);
+}
+
+@utility tag-ps-avatar {
+  @apply ps-(--tag-ps-avatar);
+}
+
+@utility tag-ps-avatar-border {
+  @apply ps-(--tag-ps-avatar-border);
+}
+
+@utility tag-pe-avatar {
+  @apply pe-(--tag-pe-avatar);
+}
+
+@utility tag-pe-avatar-border {
+  @apply pe-(--tag-pe-avatar-border);
+}
+
 @layer components {
-  .d-tag {
-    @apply inline-flex items-center gap-[0.35em] h-[1.75em] px-[0.5em] rounded-[0.5em] whitespace-nowrap bg-[color-mix(in_oklab,currentColor_10%,transparent)];
-  }
+.d-tag {
+  @apply inline-flex items-center tag-gap tag-h tag-px tag-rounded whitespace-nowrap tag-bg;
+}
 
-  .d-tag--border {
-    @apply border border-[color-mix(in_oklab,currentColor_30%,transparent)];
-  }
+.d-tag--border {
+  @apply border tag-border;
+}
 
-  .d-tag--rounded {
-    @apply rounded-full;
-  }
+.d-tag--rounded {
+  @apply tag-rounded-full;
+}
 
-  .d-tag__icon {
-    @apply text-[1em];
-  }
+.d-tag__icon {
+  @apply text-[1em];
+}
 
-  .d-tag .d-avatar {
-    @apply text-[0.7em] size-[calc(2.5em-4px)];
-  }
+.d-tag .d-avatar {
+  @apply text-[0.7em] size-[calc(2.5em-4px)];
+}
 
-  .d-tag:has(> .d-avatar:first-child) {
-    @apply ps-0.5;
-  }
+.d-tag:has(> .d-avatar:first-child) {
+  @apply tag-ps-avatar;
+}
 
-  .d-tag--border:has(> .d-avatar:first-child) {
-    @apply ps-px;
-  }
+.d-tag--border:has(> .d-avatar:first-child) {
+  @apply tag-ps-avatar-border;
+}
 
-  .d-tag:has(> .d-avatar:last-child) {
-    @apply pe-0.5;
-  }
+.d-tag:has(> .d-avatar:last-child) {
+  @apply tag-pe-avatar;
+}
 
-  .d-tag--border:has(> .d-avatar:last-child) {
-    @apply pe-px;
-  }
+.d-tag--border:has(> .d-avatar:last-child) {
+  @apply tag-pe-avatar-border;
+}
 }

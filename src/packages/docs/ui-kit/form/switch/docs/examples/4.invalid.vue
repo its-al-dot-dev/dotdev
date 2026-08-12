@@ -13,5 +13,5 @@ const second = ref<boolean>(false)
 
 <template>
   <Switch v-model="first" invalid variant="outlined" />
-  <Switch v-model="second" invalid variant="subtle" />
+  <Switch v-model="second" invalid variant="soft" />
 </template>

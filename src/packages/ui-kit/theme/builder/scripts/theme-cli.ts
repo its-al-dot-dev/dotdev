@@ -4,8 +4,9 @@ import { createJiti } from 'jiti'
 import chokidar, { type FSWatcher } from 'chokidar'
 import { parseArgs } from 'node:util'
 
-import { uiKitTheme, type UiKitThemeConfig } from '../utils/uiKitTheme.ts'
-import { saveTheme } from '../utils/saveTheme.ts'
+import { createThemeBuilder } from '../theme-builder.ts'
+import type { ThemeBuilderConfig } from '../types.ts'
+import { writeThemeFiles } from '../persist/index.ts'
 
 const { values } = parseArgs({
   options: {
@@ -54,7 +55,7 @@ const jiti = createJiti(import.meta.url, {
   interopDefault: true,
   moduleCache: false,
   alias: {
-    'dotdev/theme': path.resolve(import.meta.dirname, '../'),
+    'dotdev/theme': path.resolve(import.meta.dirname, '../../'),
   },
 })
 
@@ -68,7 +69,7 @@ async function buildTheme(): Promise<boolean> {
     console.log(`\n📦 Building theme from: ${relativePath}...`)
 
     const imported = (await jiti.import(resolvedConfigPath)) as {
-      default?: UiKitThemeConfig
+      default?: ThemeBuilderConfig
     }
 
     // Жесткая проверка на наличие export default
@@ -82,8 +83,8 @@ async function buildTheme(): Promise<boolean> {
       throw new Error('Configuration object must have a "theme" property.')
     }
 
-    const stylesMap = uiKitTheme(config)
-    const savedDir = await saveTheme(outputDir, config.theme, stylesMap)
+    const stylesMap = createThemeBuilder(config).renderAll()
+    const savedDir = await writeThemeFiles(outputDir, config.theme, stylesMap)
     const duration = (performance.now() - startTime).toFixed(2)
 
     console.log(`✅ Theme "${config.theme}" built successfully in ${duration}ms`)

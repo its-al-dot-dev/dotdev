@@ -1,12 +1,17 @@
+// ============================================================================
+// write-theme — персистенция: запись собранной темы на диск.
+// Чистый IO, никакой рендер-логики здесь нет.
+// ============================================================================
+
 import * as fs from 'fs/promises'
 import * as path from 'path'
 
 export type ComponentStyles = Record<string, string>
 
-export async function saveTheme(
+export async function writeThemeFiles(
   folderPath: string,
   themeName: string,
-  componentStyles: ComponentStyles
+  componentStyles: ComponentStyles,
 ): Promise<string> {
   try {
     const themeDir = path.resolve(folderPath + '/' + themeName, 'components')

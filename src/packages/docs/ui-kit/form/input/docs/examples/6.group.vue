@@ -29,7 +29,7 @@ const value = ref<string>('')
     </GroupAddon>
   </Group>
 
-  <Group axis="y" class="ui-w-md">
+  <Group axis="y" class="w-10">
     <IconButton icon="minus" variant="outlined" />
     <Input class="text-center -my-px z-1 px-0!" model-value="10" readonly />
     <IconButton icon="plus" variant="outlined" />

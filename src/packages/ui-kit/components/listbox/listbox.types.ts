@@ -23,7 +23,7 @@ export type UIListBoxSize = UiKitOverride<UiKitSize, 'listBoxSize'>
 
 interface UiKitListBoxVariants {
   outlined: true
-  subtle: true
+  soft: true
   plain: true
 }
 type UiKitListBoxVariantDefault = keyof UiKitListBoxVariants | (string & {})

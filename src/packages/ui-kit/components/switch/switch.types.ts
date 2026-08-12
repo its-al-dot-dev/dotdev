@@ -9,7 +9,7 @@ export interface UISwitchProps extends UiKitBaseProps {
 
 interface UiKitSwitchVariants {
   outlined: true
-  subtle: true
+  soft: true
 }
 type UiKitSwitchVariantDefault = keyof UiKitSwitchVariants | (string & {})
 export type UISwitchVariant = UiKitOverride<UiKitSwitchVariantDefault, 'switchVariant'>

@@ -14,7 +14,7 @@ export type UICheckboxSize = UiKitOverride<UiKitSize, 'checkboxSize'>
 
 interface UiKitCheckboxVariants {
   outlined: true
-  subtle: true
+  soft: true
 }
 type UiKitCheckboxVariantDefault = keyof UiKitCheckboxVariants | (string & {})
 export type UICheckboxVariant = UiKitOverride<UiKitCheckboxVariantDefault, 'checkboxVariant'>

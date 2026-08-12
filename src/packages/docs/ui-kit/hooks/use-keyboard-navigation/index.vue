@@ -5,7 +5,7 @@ import { resolveDocs } from 'resolve-docs'
 definePage({
   name: 'useKeyboardNavigation',
   meta: {
-    icon: 'keyboard',
+    icon: 'code',
     desc: 'A composable that adds arrow-key navigation to a list or a grid of items. It tracks the current index, skips unavailable items, supports reactive columns and exposes boundary callbacks to wrap or clamp the focus at the edges.',
   },
 })

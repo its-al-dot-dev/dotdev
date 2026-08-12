@@ -17,7 +17,7 @@ const second = ref<boolean>(false)
     Outlined
   </label>
   <label class="flex items-center gap-2">
-    <Radio v-model="second" invalid variant="subtle" />
+    <Radio v-model="second" invalid variant="soft" />
     Subtle
   </label>
 </template>

@@ -1,45 +1,117 @@
+@theme {
+  --checkbox-bg-soft: var(--ui-bg-neutral-soft-hover);
+  --checkbox-bg-outlined: var(--ui-bg-background);
+  --checkbox-bg-checked: var(--ui-bg-brand);
+  --checkbox-border-outlined: var(--ui-border-neutral);
+  --checkbox-border-checked: var(--ui-border-brand);
+  --checkbox-border-invalid: var(--ui-border-danger);
+  --checkbox-ring-brand: var(--ui-ring-brand);
+  --checkbox-rounded-sm: 0.25rem;
+  --checkbox-rounded-md: 0.375rem;
+  --checkbox-rounded-lg: 0.5rem;
+  --checkbox-size-sm: 1rem;
+  --checkbox-size-md: 1.25rem;
+  --checkbox-size-lg: 1.5rem;
+}
+
+@utility checkbox-bg-soft {
+  @apply bg-(--checkbox-bg-soft);
+}
+
+@utility checkbox-bg-outlined {
+  @apply bg-(--checkbox-bg-outlined);
+}
+
+@utility checkbox-bg-checked {
+  @apply bg-(--checkbox-bg-checked);
+}
+
+@utility checkbox-border-outlined {
+  @apply border-(--checkbox-border-outlined);
+}
+
+@utility checkbox-border-checked {
+  @apply border-(--checkbox-border-checked);
+}
+
+@utility checkbox-border-invalid {
+  @apply border-(--checkbox-border-invalid);
+}
+
+@utility checkbox-ring-brand {
+  @apply ring-(--checkbox-ring-brand);
+}
+
+@utility checkbox-rounded-sm {
+  @apply rounded-(length:--checkbox-rounded-sm);
+}
+
+@utility checkbox-rounded-md {
+  @apply rounded-(length:--checkbox-rounded-md);
+}
+
+@utility checkbox-rounded-lg {
+  @apply rounded-(length:--checkbox-rounded-lg);
+}
+
+@utility checkbox-size-sm {
+  @apply size-(length:--checkbox-size-sm);
+}
+
+@utility checkbox-size-md {
+  @apply size-(length:--checkbox-size-md);
+}
+
+@utility checkbox-size-lg {
+  @apply size-(length:--checkbox-size-lg);
+}
+
+@utility checkbox-transition {
+  @apply transition-[background-color,border-color];
+}
+
 @layer components {
-  .d-checkbox {
-    @apply appearance-none cursor-pointer transition-[background-color,border-color];
-  }
+.d-checkbox {
+  @apply appearance-none cursor-pointer checkbox-transition;
+}
 
-  .d-checkbox--outlined {
-    @apply border ui-border-primary ui-bg-primary;
-  }
+.d-checkbox--outlined {
+  @apply checkbox-bg-outlined border checkbox-border-outlined;
+}
 
-  .d-checkbox--subtle {
-    @apply ui-bg-subtle border border-transparent;
-  }
+.d-checkbox--soft {
+  @apply checkbox-bg-soft border border-transparent;
+}
 
-  .d-checkbox:checked {
-    @apply ui-border-brand ui-bg-brand bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%223.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5%2013l4%204L19%207%22%2F%3E%3C%2Fsvg%3E')] bg-center bg-no-repeat bg-contain;
-  }
+.d-checkbox:checked {
+  @apply checkbox-border-checked checkbox-bg-checked bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%223.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5%2013l4%204L19%207%22%2F%3E%3C%2Fsvg%3E')] bg-center bg-no-repeat bg-contain;
+}
 
-  .d-checkbox:hover:not(:disabled) {
-    @apply ui-border-brand;
-  }
+.d-checkbox:hover:not(:disabled) {
+  @apply checkbox-border-checked;
+}
 
-  .d-checkbox:focus-visible {
-    @apply outline-2 ui-ring-brand;
-  }
+.d-checkbox:focus-visible {
+  @apply outline-2 checkbox-ring-brand;
+}
 
-  .d-checkbox.d-checkbox--invalid {
-    @apply ui-border-danger!;
-  }
+.d-checkbox.d-checkbox--invalid {
+  @apply checkbox-border-invalid!;
+}
 
-  .d-checkbox--sm {
-    @apply rounded-sm size-4;
-  }
+.d-checkbox--sm {
+  @apply checkbox-rounded-sm checkbox-size-sm;
+}
 
-  .d-checkbox--md {
-    @apply rounded-md size-5;
-  }
+.d-checkbox--md {
+  @apply checkbox-rounded-md checkbox-size-md;
+}
 
-  .d-checkbox--lg {
-    @apply rounded-lg size-6;
-  }
+.d-checkbox--lg {
+  @apply checkbox-rounded-lg checkbox-size-lg;
+}
 
-  .d-checkbox:disabled {
-    @apply ui-disabled;
-  }
+.d-checkbox:disabled {
+  @apply disabled;
+}
 }

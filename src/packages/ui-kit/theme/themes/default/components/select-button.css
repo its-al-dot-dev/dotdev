@@ -1,65 +1,183 @@
+@theme {
+  --select-button-border-outlined: var(--ui-border-neutral);
+  --select-button-bg-item-outlined: var(--ui-bg-neutral-soft-hover);
+  --select-button-bg-soft: var(--ui-bg-neutral-soft);
+  --select-button-bg-outlined: var(--ui-bg-background);
+  --select-button-bg-item-soft: var(--color-white);
+  --select-button-text-default: var(--ui-text-muted);
+  --select-button-text-selected: var(--ui-text-foreground);
+}
+
+.dark {
+  --select-button-bg-item-soft: var(--ui-neutral-800);
+}
+
+@utility select-button-border-outlined {
+  @apply border-(--select-button-border-outlined);
+}
+
+@utility select-button-bg-item-outlined {
+  @apply bg-(--select-button-bg-item-outlined);
+}
+
+@utility select-button-bg-soft {
+  @apply bg-(--select-button-bg-soft);
+}
+
+@utility select-button-bg-outlined {
+  @apply bg-(--select-button-bg-outlined);
+}
+
+@utility select-button-bg-item-soft {
+  @apply bg-(--select-button-bg-item-soft);
+}
+
+@utility select-button-text-default {
+  @apply text-(--select-button-text-default);
+}
+
+@utility select-button-text-selected {
+  @apply text-(--select-button-text-selected);
+}
+
+@utility select-button-px-sm {
+  @apply px-(--ui-space-sm);
+}
+
+@utility select-button-px-md {
+  @apply px-(--ui-space-md);
+}
+
+@utility select-button-px-lg {
+  @apply px-(--ui-space-lg);
+}
+
+@utility select-button-h-sm {
+  @apply h-(--ui-size-sm);
+}
+
+@utility select-button-h-md {
+  @apply h-(--ui-size-md);
+}
+
+@utility select-button-h-lg {
+  @apply h-(--ui-size-lg);
+}
+
+@utility select-button-gap-sm {
+  @apply gap-(--ui-gap-sm);
+}
+
+@utility select-button-gap-md {
+  @apply gap-(--ui-gap-md);
+}
+
+@utility select-button-gap-lg {
+  @apply gap-(--ui-gap-lg);
+}
+
+@utility select-button-size-sm {
+  @apply text-(length:--ui-label-sm) select-button-h-sm;
+}
+
+@utility select-button-size-md {
+  @apply text-(length:--ui-label-sm) select-button-h-md;
+}
+
+@utility select-button-size-lg {
+  @apply text-(length:--ui-label-md) select-button-h-lg;
+}
+
+@utility select-button-size-item-sm {
+  @apply select-button-px-sm select-button-gap-sm;
+}
+
+@utility select-button-size-item-md {
+  @apply select-button-px-md select-button-gap-md;
+}
+
+@utility select-button-size-item-lg {
+  @apply select-button-px-lg select-button-gap-lg;
+}
+
+@utility select-button-transition {
+  @apply transition-[background-color,color,border-color];
+}
+
+@utility select-button-transition-item {
+  @apply transition-[background-color,color,box-shadow,opacity];
+}
+
 @layer components {
-  .d-select-button {
-    @apply inline-flex self-start p-0.5 gap-0.5 ui-text-primary ui-rounded-md transition-[background-color,color];
-  }
+.d-select-button {
+  @apply inline-flex self-start radius-md font-medium p-0.5 gap-0.5 select-button-transition;
+}
 
-  .d-select-button--sm {
-    @apply ui-h-sm ui-text-sm;
-  }
+.d-select-button--sm {
+  @apply select-button-size-sm;
+}
 
-  .d-select-button--md {
-    @apply ui-h-md ui-text-md;
-  }
+.d-select-button--md {
+  @apply select-button-size-md;
+}
 
-  .d-select-button--lg {
-    @apply ui-h-lg ui-text-lg;
-  }
+.d-select-button--lg {
+  @apply select-button-size-lg;
+}
 
-  .d-select-button--outlined {
-    @apply border ui-border-primary ui-bg-primary;
-  }
+.d-select-button--outlined {
+  @apply select-button-bg-outlined border select-button-border-outlined;
+}
 
-  .d-select-button--subtle {
-    @apply ui-bg-subtle;
-  }
+.d-select-button--soft {
+  @apply select-button-bg-soft;
+}
 
-  .d-select-button--disabled {
-    @apply ui-disabled;
-  }
+.d-select-button--disabled {
+  @apply disabled;
+}
 
-  .d-select-button__item {
-    @apply inline-flex items-center justify-center rounded-[calc(var(--ui-radius-md)-2px)] bg-transparent select-none outline-none cursor-pointer transition-[background-color,opacity];
-  }
+.d-select-button__item {
+  @apply inline-flex select-button-text-default items-center justify-center radius-sm bg-transparent select-none outline-none cursor-pointer select-button-transition-item;
+}
 
-  .d-select-button__item:focus-visible {
-    @apply ring-1 ring-inset ui-ring-brand;
-  }
+.d-select-button__item:focus-visible {
+  @apply ring-1 ring-inset;
+}
 
-  .d-select-button__item:disabled {
-    @apply ui-disabled;
-  }
+.d-select-button__item:disabled {
+  @apply disabled;
+}
 
-  .d-select-button__item:hover {
-    @apply ui-bg-subtle-hover;
-  }
+.d-select-button__item:hover {
+  @apply select-button-text-selected;
+}
 
-  .d-select-button .d-select-button__item--selected {
-    @apply ui-bg-subtle-active;
-  }
+.d-select-button__item--selected {
+  @apply opacity-100 select-button-text-selected;
+}
 
-  .d-select-button--sm .d-select-button__item {
-    @apply ui-px-sm ui-gap-sm;
-  }
+.d-select-button--soft .d-select-button__item--selected {
+  @apply shadow-xs select-button-bg-item-soft;
+}
 
-  .d-select-button--md .d-select-button__item {
-    @apply ui-px-md ui-gap-md;
-  }
+.d-select-button--outlined .d-select-button__item--selected {
+  @apply select-button-bg-item-outlined;
+}
 
-  .d-select-button--lg .d-select-button__item {
-    @apply ui-px-lg ui-gap-lg;
-  }
+.d-select-button--sm .d-select-button__item {
+  @apply select-button-size-item-sm;
+}
 
-  .d-select-button.d-select-button--square .d-select-button__item {
-    @apply aspect-square px-0;
-  }
+.d-select-button--md .d-select-button__item {
+  @apply select-button-size-item-md;
+}
+
+.d-select-button--lg .d-select-button__item {
+  @apply select-button-size-item-lg;
+}
+
+.d-select-button.d-select-button--square .d-select-button__item {
+  @apply aspect-square px-0;
+}
 }

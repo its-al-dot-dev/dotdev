@@ -14,7 +14,7 @@ export type UIRadioSize = UiKitOverride<UiKitSize, 'radioSize'>
 
 interface UiKitRadioVariants {
   outlined: true
-  subtle: true
+  soft: true
 }
 type UiKitRadioVariantDefault = keyof UiKitRadioVariants | (string & {})
 export type UIRadioVariant = UiKitOverride<UiKitRadioVariantDefault, 'radioVariant'>

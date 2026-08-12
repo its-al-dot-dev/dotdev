@@ -35,6 +35,6 @@ interface UiKitButtonVariants {
   solid: true
   outlined: true
   ghost: true
-  subtle: true
+  soft: true
   text: true
 }

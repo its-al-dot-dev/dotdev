@@ -25,7 +25,7 @@ export interface UISelectButtonSlotScope<T> {
 
 interface UiSelectButtonVariants {
   outlined: true
-  subtle: true
+  soft: true
   plain: true
 }
 type UiSelectButtonVariantDefault = keyof UiSelectButtonVariants | (string & {})

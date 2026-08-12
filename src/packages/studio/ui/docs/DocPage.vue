@@ -16,19 +16,21 @@ const route = useRoute()
 <template>
   <main class="doc-page">
     <div class="doc-page__body">
-      <div class="doc-page__group">
-        <h2 class="doc-page__title">
-          <Icon v-if="route.meta.icon" :name="route.meta.icon" />
-          {{ route.name }}
-          <!--          <Tag label="FREE" size="sm" />-->
-        </h2>
+      <div class="doc-page__header">
+        <div class="doc-page__group">
+          <h2 class="doc-page__title">
+            <Icon v-if="route.meta.icon" :name="route.meta.icon" />
+            {{ route.name }}
+            <!--          <Tag label="FREE" size="sm" />-->
+          </h2>
 
-        <a href="#">
-          <Tag label="GitHub" prefix-icon="github-logo" suffix-icon="external-link" />
-        </a>
+          <a href="#">
+            <Tag label="GitHub" prefix-icon="github-logo" suffix-icon="external-link" />
+          </a>
+        </div>
+
+        <p class="doc-page__desc doc-desc" v-html="route.meta.desc" />
       </div>
-
-      <p class="doc-page__desc doc-desc" v-html="route.meta.desc" />
 
       <slot />
 

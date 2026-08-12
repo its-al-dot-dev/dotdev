@@ -17,7 +17,7 @@ provide(UI_KIT_CONFIG_KEY, config)
 
 const colorOptions = ['primary', 'neutral', 'success', 'warning', 'danger']
 const sizeOptions = ['xs', 'sm', 'md', 'lg', 'xl']
-const variantOptions = ['solid', 'outlined', 'ghost', 'subtle', 'text']
+const variantOptions = ['solid', 'outlined', 'ghost', 'soft', 'text']
 </script>
 
 <template>

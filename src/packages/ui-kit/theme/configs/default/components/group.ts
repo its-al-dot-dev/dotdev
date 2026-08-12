@@ -1,7 +1,17 @@
-import { defineStyleSheet, sizes } from 'dotdev/theme'
+import { defineSheet } from 'dotdev/theme'
 
-export default defineStyleSheet({
-  component: {
+export default defineSheet({
+  name: 'group',
+  semantics: {
+    'bg-soft': ['neutral-100', 'neutral-800'],
+    'bg-outlined': 'bg-background',
+  },
+  utilities: {
+    'size-sm': 'gap-sm px-sm',
+    'size-md': 'gap-md px-md',
+    'size-lg': 'gap-lg px-lg',
+  },
+  rules: {
     '&': 'flex relative',
     '& > &': 'flex-1',
 
@@ -21,15 +31,15 @@ export default defineStyleSheet({
     '&--y > &--x:not(:first-child) > *': 'rounded-t-none',
     '&--y > &--x:not(:last-child) > *': 'rounded-b-none',
 
-    '&-addon': `ui-rounded-md ui-border-primary flex items-center justify-center`,
-    '&-addon--sm': sizes('xs', 'gap', 'px'),
-    '&-addon--md': sizes('md', 'gap', 'px'),
-    '&-addon--lg': sizes('lg', 'gap', 'px'),
+    '&-addon': `radius-md border-default flex items-center justify-center`,
+    '&-addon--sm': 'group-size-sm',
+    '&-addon--md': 'group-size-md',
+    '&-addon--lg': 'group-size-lg',
 
-    '&-addon--outlined, &--subtle': `ui-rounded-md`,
-    '&-addon--outlined': `border`,
+    '&-addon--outlined, &--soft': `radius-md`,
+    '&-addon--outlined': `group-bg-outlined border`,
     '&-addon--underlined': `border-b`,
-    '&-addon--subtle': `border ui-bg-subtle`,
+    '&-addon--soft': `border group-bg-soft`,
 
     '&-addon--attach': 'absolute',
     '&--x &-addon--attach': 'inset-y-0',
