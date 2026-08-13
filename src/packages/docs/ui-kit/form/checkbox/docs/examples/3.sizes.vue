@@ -2,7 +2,7 @@
 import { Checkbox } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Sizes',
   desc: `Use the <code>size</code> prop to adjust the checkbox dimensions. Available sizes are <code>sm</code>, <code>md</code>, and <code>lg</code>.`,
 })

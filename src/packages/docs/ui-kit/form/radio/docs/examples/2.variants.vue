@@ -2,7 +2,7 @@
 import { Radio } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Variants',
   desc: `Use the <code>variant</code> prop to control the visual style. Available variants are <code>outlined</code> and <code>soft</code>.`,
 })

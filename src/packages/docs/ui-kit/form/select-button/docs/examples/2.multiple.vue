@@ -2,7 +2,7 @@
 import { SelectButton } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Multiple selection',
   desc: `Set the <code>multiple</code> prop to allow selecting several options at once. The <code>v-model</code> value should then be an array of selected options.`,
 })

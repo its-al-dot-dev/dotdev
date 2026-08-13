@@ -8,6 +8,9 @@ export default defineSheet({
   scope: 'global',
 
   vars: {
+    '--font-sans': `'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif`,
+    '--font-mono': `'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace`,
+
     'color-shadow-grey-50': 'oklch(95.58% 0.007 277.16)',
     'color-shadow-grey-100': 'oklch(91.19% 0.014 281.55)',
     'color-shadow-grey-200': 'oklch(82.14% 0.030 279.26)',
@@ -127,15 +130,12 @@ export default defineSheet({
   },
 
   semantics: {
-    'font-sans': `'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif`,
-    'font-mono': `'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace`,
-
     'bg-background': ['white', 'neutral-950'],
     'bg-surface': ['white', 'neutral-950'],
     'text-foreground': ['neutral-900', 'neutral-100'],
     'text-muted': ['neutral-500', 'neutral-400'],
     'border-default': ['neutral-100', 'neutral-800'],
-    'text-placeholder': ['neutral-400', 'neutral-500'],
+    'text-placeholder': ['neutral-400', 'neutral-600'],
 
     /* Brand */
     'bg-brand': ['brand-500', 'brand-400'],
@@ -145,6 +145,7 @@ export default defineSheet({
     'bg-brand-soft': ['brand-50', 'brand-500/16'],
     'bg-brand-soft-hover': ['brand-100', 'brand-500/26'],
     'border-brand': ['brand-500', 'brand-400'],
+    'border-brand-soft': 'brand-500/26',
     'ring-brand': 'brand-500/50',
 
     /* Neutral */
@@ -154,7 +155,7 @@ export default defineSheet({
     'text-on-neutral': ['neutral-50', 'neutral-900'],
     'bg-neutral-soft': ['neutral-50', 'neutral-500/16'],
     'bg-neutral-soft-hover': ['neutral-100', 'neutral-500/26'],
-    'border-neutral': ['neutral-100', 'neutral-700'],
+    'border-neutral': ['neutral-200', 'neutral-700'],
     'ring-neutral': 'neutral-500/50',
 
     /* Danger */

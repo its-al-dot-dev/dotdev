@@ -12,7 +12,7 @@
   --textarea-text-sm: var(--ui-label-sm);
   --textarea-text-md: var(--ui-label-md);
   --textarea-text-lg: var(--ui-label-md);
-  --textarea-rounded-base: var(--ui-radius-md);
+  --textarea-rounded: var(--ui-radius-md);
 }
 
 @utility textarea-bg-soft {
@@ -44,15 +44,15 @@
 }
 
 @utility textarea-px-sm {
-  @apply px-(length:--textarea-px-sm);
+  @apply px-(--textarea-px-sm);
 }
 
 @utility textarea-px-md {
-  @apply px-(length:--textarea-px-md);
+  @apply px-(--textarea-px-md);
 }
 
 @utility textarea-px-lg {
-  @apply px-(length:--textarea-px-lg);
+  @apply px-(--textarea-px-lg);
 }
 
 @utility textarea-text-sm {
@@ -67,8 +67,8 @@
   @apply text-(length:--textarea-text-lg);
 }
 
-@utility textarea-rounded-base {
-  @apply rounded-(length:--textarea-rounded-base);
+@utility textarea-rounded {
+  @apply rounded-(--textarea-rounded);
 }
 
 @utility textarea-size-sm {
@@ -105,7 +105,7 @@
 }
 
 .d-textarea--outlined, .d-textarea--soft {
-  @apply textarea-rounded-base;
+  @apply textarea-rounded;
 }
 
 .d-textarea--outlined {

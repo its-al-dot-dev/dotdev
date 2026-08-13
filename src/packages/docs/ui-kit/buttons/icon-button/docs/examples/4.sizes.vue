@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { IconButton } from 'dotdev/ui-kit'
 
-defineExpose({
+defineExample({
   title: 'Sizes',
   desc: `Use the <code>size</code> prop to adjust the icon button dimensions. Available sizes are <code>sm</code>, <code>md</code>, and <code>lg</code>.`,
 })

@@ -15,7 +15,7 @@
   --input-text-sm: var(--ui-label-sm);
   --input-text-md: var(--ui-label-md);
   --input-text-lg: var(--ui-label-md);
-  --input-rounded-base: var(--ui-radius-md);
+  --input-rounded: var(--ui-radius-md);
 }
 
 @utility input-bg-soft {
@@ -47,27 +47,27 @@
 }
 
 @utility input-px-sm {
-  @apply px-(length:--input-px-sm);
+  @apply px-(--input-px-sm);
 }
 
 @utility input-px-md {
-  @apply px-(length:--input-px-md);
+  @apply px-(--input-px-md);
 }
 
 @utility input-px-lg {
-  @apply px-(length:--input-px-lg);
+  @apply px-(--input-px-lg);
 }
 
 @utility input-h-sm {
-  @apply h-(length:--input-h-sm);
+  @apply h-(--input-h-sm);
 }
 
 @utility input-h-md {
-  @apply h-(length:--input-h-md);
+  @apply h-(--input-h-md);
 }
 
 @utility input-h-lg {
-  @apply h-(length:--input-h-lg);
+  @apply h-(--input-h-lg);
 }
 
 @utility input-text-sm {
@@ -82,8 +82,8 @@
   @apply text-(length:--input-text-lg);
 }
 
-@utility input-rounded-base {
-  @apply rounded-(length:--input-rounded-base);
+@utility input-rounded {
+  @apply rounded-(--input-rounded);
 }
 
 @utility input-size-sm {
@@ -120,7 +120,7 @@
 }
 
 .d-input--outlined, .d-input--soft {
-  @apply input-rounded-base;
+  @apply input-rounded;
 }
 
 .d-input--outlined {

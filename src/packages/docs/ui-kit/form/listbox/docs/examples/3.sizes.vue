@@ -2,7 +2,7 @@
 import { ListBox } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Sizes',
   desc: `Adjust the component size using the <code>size</code> prop. Available sizes are <code>sm</code>, <code>md</code>, and <code>lg</code>.`,
 })

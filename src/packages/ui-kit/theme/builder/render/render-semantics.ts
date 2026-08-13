@@ -4,19 +4,15 @@
 // Секция semantics делится на две части:
 //   1. CSS-переменные: @theme (light) + .dark блок.
 //   2. Авто-утилита на каждый ключ по конвенции «первый сегмент = CSS-свойство»:
-//      ключ должен быть {property}-{role} (bg-soft, text-foreground, ring-brand).
-//      Если значение резолвится в длину — добавляем хинт length: для
-//      амбивалентных свойств (text = font-size | color), иначе Tailwind трактует
-//      голую переменную как color.
+//      ключ {property}-{role} (bg-soft, text-foreground) или просто {property}
+//      (px, h, gap) — второй сегмент необязателен. Если значение резолвится в
+//      длину — добавляем хинт length: для амбивалентных свойств (text =
+//      font-size | color), иначе Tailwind трактует голую переменную как color.
 // ============================================================================
 
-import type { SemanticValue, Resolver, SheetConfig } from '../types.ts'
+import type { Resolver, SemanticValue, SheetConfig } from '../types.ts'
 import { semanticIsLength } from '../value-analysis.ts'
 import { utilityName, varPrefix } from './naming.ts'
-
-export function semanticKeyError(key: string, name: string): string {
-  return `[builder] semantics key '${key}' in sheet '${name}' must be '{property}-{role}', e.g. 'bg-soft'`
-}
 
 export function renderSemanticsBlock(
   semantics: SheetConfig['semantics'],
@@ -65,10 +61,10 @@ export function buildSemanticUtilities(
 
   const utilities = Object.keys(semantics).map((key) => {
     const sep = key.indexOf('-')
-    if (sep === -1) throw new Error(semanticKeyError(key, name))
-    const prop = key.slice(0, sep)
+    const prop = sep === -1 ? key : key.slice(0, sep)
     const util = utilName(key)
-    const hint = semanticIsLength(semantics[key], values) ? 'length:' : ''
+
+    const hint = key.startsWith('text-') && semanticIsLength(semantics[key], values) ? 'length:' : ''
     return `@utility ${util} {\n  @apply ${prop}-(${hint}${prefix(key)});\n}`
   })
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { IconButton } from 'dotdev/ui-kit'
 
-defineExpose({
+defineExample({
   title: 'Colors and variants',
   desc: `Combine the <code>color</code> and <code>variant</code> props in a grid. Available colors are <code>primary</code>, <code>neutral</code>, <code>warning</code>, <code>success</code>, <code>danger</code>, and <code>info</code>.`,
 })

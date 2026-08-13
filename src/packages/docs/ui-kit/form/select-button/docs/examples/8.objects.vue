@@ -2,7 +2,7 @@
 import { SelectButton } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Object options',
   desc: `Use <code>label-key</code> to pick the property shown to the user and <code>value-key</code> to define the unique field used for selection when working with object options.`,
 })

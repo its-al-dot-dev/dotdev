@@ -2,7 +2,7 @@
 import { ListBox } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Checkmark position',
   desc: `The <code>checkmark</code> prop controls the selection indicator. By default, the checkmark is displayed on the <code>right</code> side. Use <code>left</code> to move it or set it to <code>false</code> to hide the indicator.`,
 })

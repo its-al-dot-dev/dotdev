@@ -2,7 +2,7 @@
 import { ListBox } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Multiple selection',
   desc: `Use the <code>multiple</code> prop to allow selecting multiple options. The <code>v-model</code> value should be an array containing all selected options.`,
 })

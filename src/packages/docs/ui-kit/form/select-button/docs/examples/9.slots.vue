@@ -2,7 +2,7 @@
 import { Group, Icon, Input, SelectButton, type UiKitIcon } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Scoped slots',
   desc: `Customize each option via the default slot, which exposes <code>label</code>, <code>selected</code>, and <code>index</code>. Here a text-editing toolbar is built with icon-only options: alignment (single, always selected) and style modifiers (multiple and deselectable).`,
 })

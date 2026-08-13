@@ -2,7 +2,7 @@
 import { Group, Input, ListBox, useListBoxFilter } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Filtering options',
   desc: `Combine the <code>filter</code> prop with an external input to create custom option filtering. The <code>ListBox</code> updates visible options while keeping keyboard navigation synchronized.`,
 })

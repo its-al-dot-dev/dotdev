@@ -2,7 +2,7 @@
 import { ListBox } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Invalid state',
   desc: `Apply the <code>invalid</code> prop to visually indicate a validation error state.`,
 })

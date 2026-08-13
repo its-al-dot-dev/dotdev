@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Button } from 'dotdev/ui-kit'
 
-defineExpose({
+defineExample({
   title: 'Link button',
   desc: `Pass an <code>href</code> to render the button as an anchor link. Use <code>target</code> to control where the link opens. A disabled link button drops the <code>href</code> and becomes non-interactive.`,
 })

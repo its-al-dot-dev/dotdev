@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { IconButton } from 'dotdev/ui-kit'
 
-defineExpose({
+defineExample({
   title: 'Link mode',
   desc: `Pass an <code>href</code> to render the icon button as an anchor link. Use <code>target</code> to control where the link opens.`,
 })

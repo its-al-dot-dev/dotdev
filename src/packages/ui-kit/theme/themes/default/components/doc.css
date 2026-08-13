@@ -56,7 +56,15 @@
 }
 
 .doc-page__title {
-  @apply font-bold text-2xl mb-2 flex items-center gap-2;
+  @apply font-bold text-2xl mb-2 flex items-center gap-3;
+}
+
+.doc-page__title-icon {
+  @apply size-7.5 flex items-center justify-center border border-brand-soft bg-brand-soft text-brand text-base rounded-lg;
+}
+
+.doc-page__gh {
+  @apply font-mono;
 }
 
 .doc-page__desc {
@@ -132,7 +140,7 @@
 }
 
 .doc-code {
-  @apply h-full max-h-125;
+  @apply h-full;
 }
 
 .doc-code__raw {

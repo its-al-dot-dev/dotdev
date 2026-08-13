@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Icon, Tag } from 'dotdev/ui-kit'
 
-defineExpose({
+defineExample({
   title: 'Slots',
   desc: `Use the <code>prefix</code>, <code>default</code>, and <code>suffix</code> slots to render custom content inside the tag.`,
 })

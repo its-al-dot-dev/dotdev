@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Avatar } from 'dotdev/ui-kit'
 
-defineExpose({
+defineExample({
   title: 'Border',
   desc: `Set the <code>border</code> prop to draw a border around the avatar, useful when laid out over a busy background.`,
 })

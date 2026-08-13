@@ -3,13 +3,35 @@
   --tag-h: 1.75em;
   --tag-px: 0.5em;
   --tag-rounded: 0.5em;
-  --tag-rounded-full: 9999px;
-  --tag-bg: color-mix(in oklab, currentColor 10%, transparent);
   --tag-border: color-mix(in oklab, currentColor 30%, transparent);
   --tag-ps-avatar: 0.125rem;
   --tag-ps-avatar-border: 1px;
   --tag-pe-avatar: 0.125rem;
   --tag-pe-avatar-border: 1px;
+  --tag-bg-primary-soft: var(--ui-bg-brand-soft);
+  --tag-text-primary-soft: var(--ui-text-brand);
+  --tag-bg-primary-solid: var(--ui-bg-brand);
+  --tag-text-primary-solid: var(--ui-text-on-brand);
+  --tag-bg-neutral-soft: var(--ui-bg-neutral-soft);
+  --tag-text-neutral-soft: var(--ui-text-neutral);
+  --tag-bg-neutral-solid: var(--ui-bg-neutral);
+  --tag-text-neutral-solid: var(--ui-text-on-neutral);
+  --tag-bg-danger-soft: var(--ui-bg-danger-soft);
+  --tag-text-danger-soft: var(--ui-text-danger);
+  --tag-bg-danger-solid: var(--ui-bg-danger);
+  --tag-text-danger-solid: var(--ui-text-on-danger);
+  --tag-bg-warning-soft: var(--ui-bg-warning-soft);
+  --tag-text-warning-soft: var(--ui-text-warning);
+  --tag-bg-warning-solid: var(--ui-bg-warning);
+  --tag-text-warning-solid: var(--ui-text-on-warning);
+  --tag-bg-info-soft: var(--ui-bg-info-soft);
+  --tag-text-info-soft: var(--ui-text-info);
+  --tag-bg-info-solid: var(--ui-bg-info);
+  --tag-text-info-solid: var(--ui-text-on-info);
+  --tag-bg-success-soft: var(--ui-bg-success-soft);
+  --tag-text-success-soft: var(--ui-text-success);
+  --tag-bg-success-solid: var(--ui-bg-success);
+  --tag-text-success-solid: var(--ui-text-on-success);
 }
 
 @utility tag-gap {
@@ -26,14 +48,6 @@
 
 @utility tag-rounded {
   @apply rounded-(--tag-rounded);
-}
-
-@utility tag-rounded-full {
-  @apply rounded-(--tag-rounded-full);
-}
-
-@utility tag-bg {
-  @apply bg-(--tag-bg);
 }
 
 @utility tag-border {
@@ -56,9 +70,109 @@
   @apply pe-(--tag-pe-avatar-border);
 }
 
+@utility tag-bg-primary-soft {
+  @apply bg-(--tag-bg-primary-soft);
+}
+
+@utility tag-text-primary-soft {
+  @apply text-(--tag-text-primary-soft);
+}
+
+@utility tag-bg-primary-solid {
+  @apply bg-(--tag-bg-primary-solid);
+}
+
+@utility tag-text-primary-solid {
+  @apply text-(--tag-text-primary-solid);
+}
+
+@utility tag-bg-neutral-soft {
+  @apply bg-(--tag-bg-neutral-soft);
+}
+
+@utility tag-text-neutral-soft {
+  @apply text-(--tag-text-neutral-soft);
+}
+
+@utility tag-bg-neutral-solid {
+  @apply bg-(--tag-bg-neutral-solid);
+}
+
+@utility tag-text-neutral-solid {
+  @apply text-(--tag-text-neutral-solid);
+}
+
+@utility tag-bg-danger-soft {
+  @apply bg-(--tag-bg-danger-soft);
+}
+
+@utility tag-text-danger-soft {
+  @apply text-(--tag-text-danger-soft);
+}
+
+@utility tag-bg-danger-solid {
+  @apply bg-(--tag-bg-danger-solid);
+}
+
+@utility tag-text-danger-solid {
+  @apply text-(--tag-text-danger-solid);
+}
+
+@utility tag-bg-warning-soft {
+  @apply bg-(--tag-bg-warning-soft);
+}
+
+@utility tag-text-warning-soft {
+  @apply text-(--tag-text-warning-soft);
+}
+
+@utility tag-bg-warning-solid {
+  @apply bg-(--tag-bg-warning-solid);
+}
+
+@utility tag-text-warning-solid {
+  @apply text-(--tag-text-warning-solid);
+}
+
+@utility tag-bg-info-soft {
+  @apply bg-(--tag-bg-info-soft);
+}
+
+@utility tag-text-info-soft {
+  @apply text-(--tag-text-info-soft);
+}
+
+@utility tag-bg-info-solid {
+  @apply bg-(--tag-bg-info-solid);
+}
+
+@utility tag-text-info-solid {
+  @apply text-(--tag-text-info-solid);
+}
+
+@utility tag-bg-success-soft {
+  @apply bg-(--tag-bg-success-soft);
+}
+
+@utility tag-text-success-soft {
+  @apply text-(--tag-text-success-soft);
+}
+
+@utility tag-bg-success-solid {
+  @apply bg-(--tag-bg-success-solid);
+}
+
+@utility tag-text-success-solid {
+  @apply text-(--tag-text-success-solid);
+}
+
 @layer components {
 .d-tag {
-  @apply inline-flex items-center tag-gap tag-h tag-px tag-rounded whitespace-nowrap tag-bg;
+  @apply inline-flex items-center tag-gap tag-h tag-px tag-rounded whitespace-nowrap;
+}
+
+.d-tag--solid {
+  @apply shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)];
 }
 
 .d-tag--border {
@@ -66,7 +180,59 @@
 }
 
 .d-tag--rounded {
-  @apply tag-rounded-full;
+  @apply rounded-full;
+}
+
+.d-tag--primary.d-tag--soft {
+  @apply tag-bg-primary-soft tag-text-primary-soft;
+}
+
+.d-tag--primary.d-tag--solid {
+  @apply tag-bg-primary-solid tag-text-primary-solid;
+}
+
+.d-tag--neutral.d-tag--soft {
+  @apply tag-bg-neutral-soft tag-text-neutral-soft;
+}
+
+.d-tag--neutral.d-tag--solid {
+  @apply tag-bg-neutral-solid tag-text-neutral-solid;
+}
+
+.d-tag--danger.d-tag--soft {
+  @apply tag-bg-danger-soft tag-text-danger-soft;
+}
+
+.d-tag--danger.d-tag--solid {
+  @apply tag-bg-danger-solid tag-text-danger-solid;
+}
+
+.d-tag--warning.d-tag--soft {
+  @apply tag-bg-warning-soft tag-text-warning-soft;
+}
+
+.d-tag--warning.d-tag--solid {
+  @apply tag-bg-warning-solid tag-text-warning-solid;
+}
+
+.d-tag--info.d-tag--soft {
+  @apply tag-bg-info-soft tag-text-info-soft;
+}
+
+.d-tag--info.d-tag--solid {
+  @apply tag-bg-info-solid tag-text-info-solid;
+}
+
+.d-tag--success.d-tag--soft {
+  @apply tag-bg-success-soft tag-text-success-soft;
+}
+
+.d-tag--success.d-tag--solid {
+  @apply tag-bg-success-solid tag-text-success-solid;
+}
+
+.d-tag__label {
+  @apply text-[0.875em];
 }
 
 .d-tag__icon {

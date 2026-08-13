@@ -2,7 +2,7 @@
 import { Icon, SelectButton, type UiKitIcon } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Square',
   desc: `Set the <code>square</code> prop to render each option as a fixed square, ideal for icon-only toggles such as rich text toolbars.`,
 })

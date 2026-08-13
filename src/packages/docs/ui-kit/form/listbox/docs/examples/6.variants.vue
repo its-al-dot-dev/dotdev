@@ -2,7 +2,7 @@
 import { ListBox } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Variants',
   desc: `Use the <code>variant</code> prop to control the visual style of the list. The <code>soft</code> variant adds a soft background, while <code>plain</code> removes the default container styling for custom layouts.`,
 })

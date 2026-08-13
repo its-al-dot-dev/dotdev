@@ -7,6 +7,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+
 const { htmlCode } = useCodeHighlight(() => props.code, { lang: 'vue' })
 </script>
 
@@ -30,6 +31,7 @@ const { htmlCode } = useCodeHighlight(() => props.code, { lang: 'vue' })
     padding-right: 1rem;
     display: inline-block;
     text-align: right;
+    color: var(--ui-text-muted);
   }
 }
 </style>

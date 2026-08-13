@@ -18,7 +18,7 @@ export default defineSheet({
     'text-md': 'label-md',
     'text-lg': 'label-md',
 
-    'rounded-base': 'radius-md',
+    rounded: 'radius-md',
   },
   utilities: {
     'size-sm': 'textarea-text-sm textarea-px-sm',
@@ -32,7 +32,7 @@ export default defineSheet({
     '&::placeholder': 'textarea-text-placeholder',
 
     '&--outlined, &--underlined': 'textarea-border-outlined',
-    '&--outlined, &--soft': 'textarea-rounded-base',
+    '&--outlined, &--soft': 'textarea-rounded',
     '&--outlined': 'textarea-bg-outlined border',
     '&--underlined': 'border-b',
     '&--soft': 'textarea-bg-soft border border-transparent',

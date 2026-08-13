@@ -3,7 +3,7 @@ import './style.css'
 import App from './App.vue'
 import { router } from './router'
 import { studio } from 'dotdev/studio'
-import { createUiKit, setupDirectives } from 'dotdev/ui-kit'
+import { createUiKit } from 'dotdev/ui-kit'
 
 const app = createApp(App)
 
@@ -19,5 +19,4 @@ app.use(uiKit)
 app.use(router)
 app.use(studio)
 
-setupDirectives(app)
 app.mount('#app')

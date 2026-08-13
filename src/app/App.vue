@@ -37,11 +37,7 @@ watch(
 
 <template>
   <div class="layout">
-    <aside
-      v-if="isSidebarOpen"
-      :class="isSidebarOpen ? 'layout__sidebar--open' : 'layout__sidebar--closed'"
-      class="layout__sidebar"
-    >
+    <aside v-if="isSidebarOpen" class="layout__sidebar">
       <div class="layout__sidebar-header">
         <Logo />
       </div>
@@ -57,20 +53,24 @@ watch(
           <IconButton icon="hamburger-menu" @click="toggleSidebar" />
         </div>
 
-        <Group>
-          <GroupAddon attach>
-            <Icon class="text-muted" name="magnifying-glass" />
+        <Group class="w-3xs">
+          <GroupAddon attach size="sm">
+            <Icon class="text-muted text-xl" name="magnifying-glass" />
           </GroupAddon>
-          <Input class="pl-10" placeholder="Search..." variant="soft" />
+          <Input class="pl-10 w-full" placeholder="Search..." size="sm" variant="soft" />
+          <GroupAddon attach class="px-1.5">
+            <Tag class="text-sm text-muted" label="⌘K" />
+          </GroupAddon>
         </Group>
 
         <div class="layout__header-group">
-          <Tag class="px-3 h-7.5! font-mono text-xs text-muted" label="v0.1.0" rounded />
+          <Tag class="px-2.5 gap-1.5 h-6 font-mono text-xs text-muted" label="v0.1.0" rounded />
           <IconButton
             :icon="scheme === 'light' ? 'moon' : 'sun'"
+            class="text-muted"
             @click="scheme = scheme === 'dark' ? 'light' : 'dark'"
           />
-          <IconButton icon="github-logo" />
+          <IconButton class="text-muted" icon="github-logo" />
         </div>
       </header>
 

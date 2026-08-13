@@ -43,27 +43,27 @@
 }
 
 @utility checkbox-rounded-sm {
-  @apply rounded-(length:--checkbox-rounded-sm);
+  @apply rounded-(--checkbox-rounded-sm);
 }
 
 @utility checkbox-rounded-md {
-  @apply rounded-(length:--checkbox-rounded-md);
+  @apply rounded-(--checkbox-rounded-md);
 }
 
 @utility checkbox-rounded-lg {
-  @apply rounded-(length:--checkbox-rounded-lg);
+  @apply rounded-(--checkbox-rounded-lg);
 }
 
 @utility checkbox-size-sm {
-  @apply size-(length:--checkbox-size-sm);
+  @apply size-(--checkbox-size-sm);
 }
 
 @utility checkbox-size-md {
-  @apply size-(length:--checkbox-size-md);
+  @apply size-(--checkbox-size-md);
 }
 
 @utility checkbox-size-lg {
-  @apply size-(length:--checkbox-size-lg);
+  @apply size-(--checkbox-size-lg);
 }
 
 @utility checkbox-transition {

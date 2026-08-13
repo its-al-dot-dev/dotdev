@@ -2,7 +2,7 @@
 import { ListBox } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Deselectable selection',
   desc: `Use the <code>deselectable</code> prop to allow removing the current selection. This works with both single and multiple selection modes.`,
 })

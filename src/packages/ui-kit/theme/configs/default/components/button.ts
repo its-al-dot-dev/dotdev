@@ -69,7 +69,7 @@ export default defineSheet({
     'text-sm': 'label-sm',
     'text-md': 'label-sm',
     'text-lg': 'label-lg',
-    'rounded-base': 'radius-md',
+    rounded: 'radius-md',
   },
 
   utilities: {
@@ -80,7 +80,7 @@ export default defineSheet({
   },
 
   rules: {
-    '&': `button-rounded-base outline-none inline-flex items-center justify-center font-semibold button-transition cursor-pointer`,
+    '&': `button-rounded outline-none inline-flex items-center justify-center font-semibold button-transition cursor-pointer`,
     '&--sm': `button-size-sm`,
     '&--md': `button-size-md`,
     '&--lg': `button-size-lg`,

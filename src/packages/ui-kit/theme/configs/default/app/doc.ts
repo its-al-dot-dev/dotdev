@@ -22,7 +22,9 @@ export default defineSheet({
     '&-page__body': `w-full`,
     '&-page__header': `doc-card p-8 mb-10 doc-bg-gradient`,
     '&-page__group': `flex justify-between items-center mb-4`,
-    '&-page__title': `font-bold text-2xl mb-2 flex items-center gap-2`,
+    '&-page__title': `font-bold text-2xl mb-2 flex items-center gap-3`,
+    '&-page__title-icon': `size-7.5 flex items-center justify-center border border-brand-soft bg-brand-soft text-brand text-base rounded-lg`,
+    '&-page__gh': `font-mono`,
     '&-page__desc': `max-w-3xl text-muted`,
     '&-page__divider': `border-dashed mt-10 mb-10 border-default`,
 
@@ -47,7 +49,7 @@ export default defineSheet({
     '&-example__canvas': `flex-1 flex items-center justify-center flex-wrap gap-4 px-6 py-6 `, // doc-bg-grid
     '&-example__code': `w-full flex-1`,
 
-    '&-code': `h-full max-h-125`,
+    '&-code': `h-full`, //  max-h-125
     '&-code__raw': `py-4 pr-4`,
     // TODO .s
     '&-code .s-scroll-area__thumb--x': `px-3`,

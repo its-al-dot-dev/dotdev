@@ -2,7 +2,7 @@
 import { Input } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Invalid state',
   desc: `Use the <code>invalid</code> prop to visually indicate a validation error state. This works with all input variants.`,
 })

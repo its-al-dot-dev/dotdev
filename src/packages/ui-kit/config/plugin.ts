@@ -1,7 +1,7 @@
 import type { App, Plugin } from 'vue'
 import { UI_KIT_CONFIG_KEY, type UiKitConfig } from './config.types.ts'
 
-const BASE_CONFIG: UiKitConfig = {
+export const BASE_CONFIG: UiKitConfig = {
   namespace: 'd',
 }
 

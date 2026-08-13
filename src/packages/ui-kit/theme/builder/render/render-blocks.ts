@@ -2,18 +2,19 @@
 // render-blocks — рендер простых блоков листа: vars, utilities, rules, styles.
 // ============================================================================
 
-import type { SheetConfig, Resolver } from '../types.ts'
+import type { Resolver, SheetConfig } from '../types.ts'
 import { buildSelector } from './selector.ts'
 import { utilityName, varPrefix } from './naming.ts'
 
-export function renderVarsBlock(
-  vars: SheetConfig['vars'],
-  name: string,
-  resolve: Resolver,
-): string {
+export function renderVarsBlock(vars: SheetConfig['vars'], name: string, resolve: Resolver): string {
   if (!vars || !Object.keys(vars).length) return ''
   const prefix = varPrefix(name)
-  const lines = Object.entries(vars).map(([key, value]) => `  ${prefix(key)}: ${resolve(value)};`)
+
+  const lines = Object.entries(vars).map(([key, value]) => {
+    const $key = key.startsWith('--') ? key : prefix(key)
+    return `  ${$key}: ${resolve(value)};`
+  })
+
   return `@theme {\n${lines.join('\n')}\n}`
 }
 

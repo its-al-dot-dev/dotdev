@@ -59,7 +59,7 @@
   --button-text-sm: var(--ui-label-sm);
   --button-text-md: var(--ui-label-sm);
   --button-text-lg: var(--ui-label-lg);
-  --button-rounded-base: var(--ui-radius-md);
+  --button-rounded: var(--ui-radius-md);
 }
 
 @utility button-bg-primary-solid {
@@ -255,39 +255,39 @@
 }
 
 @utility button-px-sm {
-  @apply px-(length:--button-px-sm);
+  @apply px-(--button-px-sm);
 }
 
 @utility button-px-md {
-  @apply px-(length:--button-px-md);
+  @apply px-(--button-px-md);
 }
 
 @utility button-px-lg {
-  @apply px-(length:--button-px-lg);
+  @apply px-(--button-px-lg);
 }
 
 @utility button-h-sm {
-  @apply h-(length:--button-h-sm);
+  @apply h-(--button-h-sm);
 }
 
 @utility button-h-md {
-  @apply h-(length:--button-h-md);
+  @apply h-(--button-h-md);
 }
 
 @utility button-h-lg {
-  @apply h-(length:--button-h-lg);
+  @apply h-(--button-h-lg);
 }
 
 @utility button-gap-sm {
-  @apply gap-(length:--button-gap-sm);
+  @apply gap-(--button-gap-sm);
 }
 
 @utility button-gap-md {
-  @apply gap-(length:--button-gap-md);
+  @apply gap-(--button-gap-md);
 }
 
 @utility button-gap-lg {
-  @apply gap-(length:--button-gap-lg);
+  @apply gap-(--button-gap-lg);
 }
 
 @utility button-text-sm {
@@ -302,8 +302,8 @@
   @apply text-(length:--button-text-lg);
 }
 
-@utility button-rounded-base {
-  @apply rounded-(length:--button-rounded-base);
+@utility button-rounded {
+  @apply rounded-(--button-rounded);
 }
 
 @utility button-size-sm {
@@ -324,7 +324,7 @@
 
 @layer components {
 .d-button {
-  @apply button-rounded-base outline-none inline-flex items-center justify-center font-semibold button-transition cursor-pointer;
+  @apply button-rounded outline-none inline-flex items-center justify-center font-semibold button-transition cursor-pointer;
 }
 
 .d-button--sm {

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Button } from 'dotdev/ui-kit'
 
-defineExpose({
+defineExample({
   title: 'Disabled state',
   desc: `Use the <code>disabled</code> prop to prevent interaction and display the button in a disabled state. This works across all variants.`,
 })

@@ -2,7 +2,7 @@
 import { Radio } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Basic usage',
   desc: `Use <code>v-model</code> to control the checked state. The component renders a single native radio, so wrap it in a <code>label</code> to attach a clickable label and use a shared <code>name</code> to group radios.`,
 })

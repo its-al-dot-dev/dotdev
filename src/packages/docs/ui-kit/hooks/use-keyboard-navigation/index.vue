@@ -1,19 +1,17 @@
 <script lang="ts" setup>
-import { createDocConfig, DocPage } from 'dotdev/studio'
-import { resolveDocs } from 'resolve-docs'
+import { DocPage } from 'dotdev/studio'
 
 definePage({
   name: 'useKeyboardNavigation',
   meta: {
     icon: 'code',
     desc: 'A composable that adds arrow-key navigation to a list or a grid of items. It tracks the current index, skips unavailable items, supports reactive columns and exposes boundary callbacks to wrap or clamp the focus at the edges.',
+    examples: import.meta.glob('./docs/examples/*.vue', { eager: true, import: 'default' }),
+    sources: import.meta.glob('./docs/examples/*.vue', { query: '?raw', eager: true, import: 'default' }),
   },
 })
-
-const docs = resolveDocs('ui-kit/hooks/use-keyboard-navigation')
-const config = createDocConfig(docs)
 </script>
 
 <template>
-  <DocPage :config="config" />
+  <DocPage />
 </template>

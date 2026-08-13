@@ -9,13 +9,16 @@ defineSlots<UIAvatarSlots>()
 const props = withDefaults(defineProps<UIAvatarProps>(), {
   ui: 'avatar',
   border: false,
+  square: false,
+  color: 'neutral',
+  variant: 'soft',
 })
 
 const ui = useUiKitProps('avatar', props)
 const bem = useUiKitBem(ui)
 const rootClass = computed(() => {
-  const { border } = ui
-  return bem({ border })
+  const { border, color, square, variant } = ui
+  return bem([color, variant], { border, square })
 })
 </script>
 

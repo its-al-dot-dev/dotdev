@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Tag } from 'dotdev/ui-kit'
 
-defineExpose({
+defineExample({
   title: 'Sizes',
   desc: `The tag scales with the surrounding text size. Use text size utilities such as <code>text-xs</code>, <code>text-sm</code>, <code>text-base</code>, <code>text-lg</code>, and <code>text-xl</code> to adjust it.`,
 })

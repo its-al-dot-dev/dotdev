@@ -76,39 +76,39 @@
 }
 
 @utility listbox-px-sm {
-  @apply px-(length:--listbox-px-sm);
+  @apply px-(--listbox-px-sm);
 }
 
 @utility listbox-px-md {
-  @apply px-(length:--listbox-px-md);
+  @apply px-(--listbox-px-md);
 }
 
 @utility listbox-px-lg {
-  @apply px-(length:--listbox-px-lg);
+  @apply px-(--listbox-px-lg);
 }
 
 @utility listbox-h-sm {
-  @apply h-(length:--listbox-h-sm);
+  @apply h-(--listbox-h-sm);
 }
 
 @utility listbox-h-md {
-  @apply h-(length:--listbox-h-md);
+  @apply h-(--listbox-h-md);
 }
 
 @utility listbox-h-lg {
-  @apply h-(length:--listbox-h-lg);
+  @apply h-(--listbox-h-lg);
 }
 
 @utility listbox-gap-sm {
-  @apply gap-(length:--listbox-gap-sm);
+  @apply gap-(--listbox-gap-sm);
 }
 
 @utility listbox-gap-md {
-  @apply gap-(length:--listbox-gap-md);
+  @apply gap-(--listbox-gap-md);
 }
 
 @utility listbox-gap-lg {
-  @apply gap-(length:--listbox-gap-lg);
+  @apply gap-(--listbox-gap-lg);
 }
 
 @utility listbox-text-sm {

@@ -22,10 +22,7 @@ export class ThemeBuilder {
   constructor(config: ThemeBuilderConfig) {
     this.config = config
     this.registry = new TokenRegistry()
-    this.registry.collect([
-      ...Object.values(config.app ?? {}),
-      ...Object.values(config.components ?? {}),
-    ])
+    this.registry.collect([...Object.values(config.components ?? {}), ...Object.values(config.app ?? {})])
   }
 
   /** Рендерит каждый лист в отдельный CSS-текст: имя листа -> CSS */
@@ -33,17 +30,14 @@ export class ThemeBuilder {
     const resolve = createResolver(this.registry)
     const result: Record<string, string> = {}
 
-    for (const sheet of Object.values(this.config.app ?? {})) {
-      if (sheet) result[sheet.$name] = sheet.$render(`.${sheet.$name}`, resolve, this.registry.values)
-    }
     for (const sheet of Object.values(this.config.components ?? {})) {
       if (sheet) {
-        result[sheet.$name] = sheet.$render(
-          `.${this.config.namespace}-${sheet.$name}`,
-          resolve,
-          this.registry.values,
-        )
+        result[sheet.$name] = sheet.$render(`.${this.config.namespace}-${sheet.$name}`, resolve, this.registry.values)
       }
+    }
+
+    for (const sheet of Object.values(this.config.app ?? {})) {
+      if (sheet) result[sheet.$name] = sheet.$render(`.${sheet.$name}`, resolve, this.registry.values)
     }
 
     return result

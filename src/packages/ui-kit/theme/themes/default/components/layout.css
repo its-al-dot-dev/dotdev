@@ -4,11 +4,11 @@
 }
 
 @utility layout-h-header {
-  @apply h-(length:--layout-h-header);
+  @apply h-(--layout-h-header);
 }
 
 @utility layout-w-sidebar {
-  @apply w-(length:--layout-w-sidebar);
+  @apply w-(--layout-w-sidebar);
 }
 
 @utility layout-root {
@@ -69,7 +69,7 @@
 }
 
 .app-logo__title {
-  @apply font-semibold text-lg tracking-tight;
+  @apply font-bold text-xl tracking-tight;
 }
 
 .app-logo__title span {

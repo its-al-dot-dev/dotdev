@@ -21,7 +21,7 @@ export default defineSheet({
     'text-md': 'label-md',
     'text-lg': 'label-md',
 
-    'rounded-base': 'radius-md',
+    rounded: 'radius-md',
   },
   utilities: {
     'size-sm': 'input-text-sm input-h-sm input-px-sm',
@@ -35,7 +35,7 @@ export default defineSheet({
     '&::placeholder': 'input-text-placeholder',
 
     '&--outlined, &--underlined': 'input-border-outlined',
-    '&--outlined, &--soft': 'input-rounded-base',
+    '&--outlined, &--soft': 'input-rounded',
     '&--outlined': 'input-bg-outlined border',
     '&--underlined': 'border-b',
     '&--soft': 'input-bg-soft border border-transparent',

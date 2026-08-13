@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { IconButton } from 'dotdev/ui-kit'
 
-defineExpose({
+defineExample({
   title: 'Basic usage',
   desc: `An <code>IconButton</code> renders a single <code>icon</code> inside a square. It defaults to the <code>ghost</code> variant and <code>neutral</code> color.`,
 })

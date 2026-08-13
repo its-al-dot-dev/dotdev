@@ -2,7 +2,7 @@
 import { Radio } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Selecting one of several',
   desc: `Radios are meant for mutually exclusive choices. Derive each <code>v-model</code> from a single selected value and use a shared <code>name</code> so only one option can be checked at a time.`,
 })

@@ -142,7 +142,7 @@
 }
 
 .d-select-button__item:focus-visible {
-  @apply ring-1 ring-inset;
+  @apply ring-1 ring-inset ring-neutral;
 }
 
 .d-select-button__item:disabled {

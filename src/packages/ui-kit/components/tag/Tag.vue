@@ -9,14 +9,16 @@ const props = withDefaults(defineProps<UITagProps>(), {
   ui: 'tag',
   is: 'div',
   border: false,
+  color: 'neutral',
+  variant: 'soft',
 })
 
 const ui = useUiKitProps('tag', props)
 
 const bem = useUiKitBem(ui)
 const rootClass = computed(() => {
-  const { border, rounded } = ui
-  return bem({ border, rounded })
+  const { border, rounded, color, variant } = ui
+  return bem([color, variant], { border, rounded })
 })
 </script>
 

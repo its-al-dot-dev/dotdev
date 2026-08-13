@@ -2,7 +2,7 @@
 import { ListBox } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Disabled state',
   desc: `Use the <code>disabled</code> prop to disable the entire component or <code>option-disabled</code> to disable specific options. Disabled options remain visible but cannot be selected.`,
 })

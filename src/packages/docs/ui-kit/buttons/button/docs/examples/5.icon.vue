@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Button } from 'dotdev/ui-kit'
 
-defineExpose({
+defineExample({
   title: 'Icons',
   desc: `Combine an <code>icon</code> with the button content. Use <code>iconPos</code> to place the icon before (<code>prefix</code>) or after (<code>suffix</code>) the label.`,
 })

@@ -14,6 +14,7 @@ export const studio = {
     const pinia = createPinia()
 
     app.use(pinia)
+
     if (router) {
       app.config.globalProperties.$studioMenu = routesToMenu(router.getRoutes())
     }

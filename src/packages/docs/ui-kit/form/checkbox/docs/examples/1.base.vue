@@ -2,7 +2,7 @@
 import { Checkbox } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Basic usage',
   desc: `Use <code>v-model</code> to control the checked state. The component renders a single native checkbox, so wrap it in a <code>label</code> to attach a clickable label.`,
 })

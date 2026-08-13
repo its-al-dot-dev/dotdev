@@ -2,7 +2,7 @@
 import { Input, ListBox } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Grid selection',
   desc: `Use the <code>columns</code> prop to display options in a grid layout. Combine it with <code>multiple</code> to allow selecting multiple values from a compact collection of options.`,
 })

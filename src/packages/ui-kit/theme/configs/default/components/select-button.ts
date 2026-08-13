@@ -47,7 +47,7 @@ export default defineSheet({
     '&--disabled': `disabled`,
 
     '&__item': `inline-flex select-button-text-default items-center justify-center radius-sm bg-transparent select-none outline-none cursor-pointer select-button-transition-item`,
-    '&__item:focus-visible': `ring-1 ring-inset`,
+    '&__item:focus-visible': `ring-1 ring-inset ring-neutral`,
     '&__item:disabled': `disabled`,
     '&__item:hover': `select-button-text-selected`,
     '&__item--selected': `opacity-100 select-button-text-selected`,

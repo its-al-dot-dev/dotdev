@@ -2,7 +2,7 @@
 import { Button, Group, GroupAddon, Icon, IconButton, Input } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Input group',
   desc: `Use <code>Group</code> to combine <code>Input</code> with related controls such as addons, buttons, and icon actions. Use <code>GroupAddon</code> for additional content inside the field or attach it to the input using the <code>attach</code> prop.`,
 })

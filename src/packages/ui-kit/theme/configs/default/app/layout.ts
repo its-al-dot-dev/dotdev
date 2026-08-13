@@ -30,7 +30,7 @@ export default defineSheet({
 
     '.app-logo': 'flex items-center gap-2',
     '.app-logo__icon': 'block size-7 text-brand',
-    '.app-logo__title': 'font-semibold text-lg tracking-tight',
+    '.app-logo__title': 'font-bold text-xl tracking-tight',
     '.app-logo__title span': 'text-brand',
   },
 })

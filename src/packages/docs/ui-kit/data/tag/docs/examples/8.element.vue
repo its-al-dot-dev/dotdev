@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Tag } from 'dotdev/ui-kit'
 
-defineExpose({
+defineExample({
   title: 'Element',
   desc: `Use the <code>is</code> prop to render a different root element, for example a link or a button.`,
 })

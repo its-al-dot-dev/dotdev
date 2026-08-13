@@ -2,7 +2,7 @@
 import { SelectButton } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Disabled state',
   desc: `Disable the whole control with <code>disabled</code> or individual options by returning <code>true</code> from <code>option-disabled</code>.`,
 })

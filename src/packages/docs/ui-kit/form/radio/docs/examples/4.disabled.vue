@@ -2,7 +2,7 @@
 import { Radio } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Disabled state',
   desc: `Use the <code>disabled</code> prop to prevent user interaction and display the radio in a disabled state.`,
 })

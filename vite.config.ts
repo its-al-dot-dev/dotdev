@@ -4,6 +4,8 @@ import tailwindcss from '@tailwindcss/vite'
 import VueRouter from 'vue-router/vite'
 import { fileURLToPath } from 'url'
 import playgroundDocs from './src/packages/studio/plugin/index.ts'
+import AutoImport from 'unplugin-auto-import/vite'
+import svgLoader from 'vite-svg-loader'
 
 export default defineConfig({
   server: {
@@ -14,6 +16,8 @@ export default defineConfig({
     vue(),
     tailwindcss(),
     playgroundDocs({ include: './src/packages/ui-kit/components/**/*.{vue,ts}' }),
+    AutoImport({ imports: { 'dotdev/studio': ['defineExample'] } }),
+    svgLoader(),
   ],
   resolve: {
     alias: {

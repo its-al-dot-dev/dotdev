@@ -45,9 +45,16 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
-    'Configuration': RouteRecordInfo<
-      'Configuration',
-      '/config/config',
+    'createUiKit': RouteRecordInfo<
+      'createUiKit',
+      '/config/create-ui-kit',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    'UiKitProvider': RouteRecordInfo<
+      'UiKitProvider',
+      '/config/ui-kit-provider',
       Record<never, never>,
       Record<never, never>,
       | never
@@ -207,9 +214,17 @@ declare module 'vue-router/auto-routes' {
       pathParamNames:
         | never
     }
-    'src/packages/docs/config/config/index.vue': {
+    'src/packages/docs/config/create-ui-kit/index.vue': {
       routes:
-        | 'Configuration'
+        | 'createUiKit'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/packages/docs/config/ui-kit-provider/index.vue': {
+      routes:
+        | 'UiKitProvider'
       views:
         | never
       pathParamNames:

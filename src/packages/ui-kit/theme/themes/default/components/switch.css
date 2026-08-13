@@ -1,5 +1,5 @@
 @theme {
-  --switch-border-base: var(--ui-border-neutral);
+  --switch-border: var(--ui-border-neutral);
   --switch-border-checked: var(--ui-border-brand);
   --switch-border-invalid: var(--ui-border-danger);
   --switch-bg-soft: var(--ui-bg-neutral-soft-hover);
@@ -9,13 +9,13 @@
   --switch-bg-thumb-checked: var(--ui-bg-brand);
   --switch-bg-thumb-soft: var(--color-white);
   --switch-ring-brand: var(--ui-ring-brand);
-  --switch-h-base: 1.5rem;
-  --switch-p-base: 0.125rem;
-  --switch-rounded-base: 9999px;
+  --switch-h: 1.5rem;
+  --switch-p: 0.125rem;
+  --switch-rounded: 9999px;
 }
 
-@utility switch-border-base {
-  @apply border-(--switch-border-base);
+@utility switch-border {
+  @apply border-(--switch-border);
 }
 
 @utility switch-border-checked {
@@ -54,16 +54,16 @@
   @apply ring-(--switch-ring-brand);
 }
 
-@utility switch-h-base {
-  @apply h-(length:--switch-h-base);
+@utility switch-h {
+  @apply h-(--switch-h);
 }
 
-@utility switch-p-base {
-  @apply p-(length:--switch-p-base);
+@utility switch-p {
+  @apply p-(--switch-p);
 }
 
-@utility switch-rounded-base {
-  @apply rounded-(length:--switch-rounded-base);
+@utility switch-rounded {
+  @apply rounded-(--switch-rounded);
 }
 
 @utility switch-transition {
@@ -76,7 +76,7 @@
 
 @layer components {
 .d-switch {
-  @apply flex switch-h-base switch-p-base switch-rounded-base border switch-border-base outline-none cursor-pointer switch-transition;
+  @apply flex switch-h switch-p switch-rounded border switch-border outline-none cursor-pointer switch-transition;
 }
 
 .d-switch__track {

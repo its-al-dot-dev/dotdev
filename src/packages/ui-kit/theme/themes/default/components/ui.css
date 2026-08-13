@@ -1,4 +1,6 @@
 @theme {
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
   --ui-color-shadow-grey-50: oklch(95.58% 0.007 277.16);
   --ui-color-shadow-grey-100: oklch(91.19% 0.014 281.55);
   --ui-color-shadow-grey-200: oklch(82.14% 0.030 279.26);
@@ -106,8 +108,6 @@
 }
 
 @theme {
-  --ui-font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --ui-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
   --ui-bg-background: var(--ui-white);
   --ui-bg-surface: var(--ui-white);
   --ui-text-foreground: var(--ui-neutral-900);
@@ -121,6 +121,7 @@
   --ui-bg-brand-soft: var(--ui-brand-50);
   --ui-bg-brand-soft-hover: var(--ui-brand-100);
   --ui-border-brand: var(--ui-brand-500);
+  --ui-border-brand-soft: color-mix(in srgb, var(--ui-brand-500) 26%, transparent);
   --ui-ring-brand: color-mix(in srgb, var(--ui-brand-500) 50%, transparent);
   --ui-bg-neutral: var(--ui-neutral-800);
   --ui-bg-neutral-hover: var(--ui-neutral-700);
@@ -128,7 +129,7 @@
   --ui-text-on-neutral: var(--ui-neutral-50);
   --ui-bg-neutral-soft: var(--ui-neutral-50);
   --ui-bg-neutral-soft-hover: var(--ui-neutral-100);
-  --ui-border-neutral: var(--ui-neutral-100);
+  --ui-border-neutral: var(--ui-neutral-200);
   --ui-ring-neutral: color-mix(in srgb, var(--ui-neutral-500) 50%, transparent);
   --ui-bg-danger: var(--ui-danger-600);
   --ui-bg-danger-hover: var(--ui-danger-700);
@@ -170,7 +171,7 @@
   --ui-text-foreground: var(--ui-neutral-100);
   --ui-text-muted: var(--ui-neutral-400);
   --ui-border-default: var(--ui-neutral-800);
-  --ui-text-placeholder: var(--ui-neutral-500);
+  --ui-text-placeholder: var(--ui-neutral-600);
   --ui-bg-brand: var(--ui-brand-400);
   --ui-bg-brand-hover: var(--ui-brand-300);
   --ui-text-brand: var(--ui-brand-400);
@@ -213,14 +214,6 @@
   --ui-bg-success-soft: color-mix(in srgb, var(--ui-success-500) 16%, transparent);
   --ui-bg-success-soft-hover: color-mix(in srgb, var(--ui-success-500) 26%, transparent);
   --ui-border-success: var(--ui-success-400);
-}
-
-@utility font-sans {
-  @apply font-(--ui-font-sans);
-}
-
-@utility font-mono {
-  @apply font-(--ui-font-mono);
 }
 
 @utility bg-background {
@@ -273,6 +266,10 @@
 
 @utility border-brand {
   @apply border-(--ui-border-brand);
+}
+
+@utility border-brand-soft {
+  @apply border-(--ui-border-brand-soft);
 }
 
 @utility ring-brand {

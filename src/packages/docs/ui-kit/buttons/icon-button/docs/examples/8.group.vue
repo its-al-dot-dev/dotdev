@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Group, IconButton } from 'dotdev/ui-kit'
 
-defineExpose({
+defineExample({
   title: 'Icon button group',
   desc: `Use <code>Group</code> to combine <code>IconButton</code> with related controls for a compact toolbar.`,
 })

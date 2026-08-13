@@ -10,7 +10,6 @@ import type { Resolver, Sheet, SheetConfig } from './types.ts'
 import { semanticLightValue } from './value-analysis.ts'
 import { renderSheet } from './render/render-sheet.ts'
 import { varPrefix } from './render/naming.ts'
-import { semanticKeyError } from './render/render-semantics.ts'
 
 export class SheetModel implements Sheet {
   readonly $name: string
@@ -24,12 +23,6 @@ export class SheetModel implements Sheet {
     this.$name = config.name
     this.$scope = config.scope ?? 'local'
     this.config = config
-
-    // Fail-fast: конвенция «первый сегмент = CSS-свойство» проверяется при
-    // defineSheet, а не в момент рендера.
-    for (const key of Object.keys(config.semantics ?? {})) {
-      if (key.indexOf('-') === -1) throw new Error(semanticKeyError(key, config.name))
-    }
 
     const prefix = varPrefix(config.name)
 

@@ -2,7 +2,7 @@
 import { useKeyboardNavigation } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'List navigation',
   desc: `Navigate a single-column list with <code>ArrowUp</code> / <code>ArrowDown</code>. Use <code>isSkipped</code> to mark items as unfocusable, e.g. disabled ones.`,
 })

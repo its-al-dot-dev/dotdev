@@ -2,7 +2,7 @@
 import { useKeyboardNavigation } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Grid navigation',
   desc: `Navigate a multi-column grid in all four directions with <code>columns</code>. Use <code>edgeX</code> / <code>edgeY: "auto"</code> to wrap around the edges, <code>isSkipped</code> to disable individual cells and boundary callbacks to observe edge crossings.`,
 })

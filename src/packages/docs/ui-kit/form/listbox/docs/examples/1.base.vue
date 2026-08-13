@@ -2,7 +2,7 @@
 import { ListBox } from 'dotdev/ui-kit'
 import { ref } from 'vue'
 
-defineExpose({
+defineExample({
   title: 'Basic usage',
   desc: `Use <code>v-model</code> to control the selected value and provide available options through the <code>options</code> prop.`,
 })

@@ -1,33 +1,16 @@
 <script lang="ts" setup>
-import type { UIDocBlock } from '../../docs/config.ts'
-import DocExample from './DocExample.vue'
-import { provide, reactive } from 'vue'
-import { STATE_SYMBOL } from './index.ts'
 
-defineProps<{ config: UIDocBlock }>()
-
-export interface DockBlockState {
-  title: string
-  desc: string
-}
-
-const state = reactive<DockBlockState>({
-  title: '',
-  desc: '',
-})
-
-provide(STATE_SYMBOL, state)
+defineProps<{ title?: string; desc?: string }>()
 </script>
 
 <template>
   <div class="doc-block">
     <div class="doc-block__header">
-      <h2 class="doc-block__title">{{ state.title }}</h2>
-      <p class="doc-block__desc doc-desc" v-html="state.desc" />
+      <h2 v-if="title" class="doc-block__title">{{ title }}</h2>
+      <p v-if="desc" class="doc-block__desc doc-desc" v-html="desc" />
     </div>
 
     <div class="doc-block__body">
-      <DocExample v-if="config.component" :code="config.code" :component="config.component" />
       <slot />
     </div>
   </div>

@@ -4,7 +4,7 @@ export default defineSheet({
   name: 'switch',
 
   semantics: {
-    'border-base': 'border-neutral',
+    border: 'border-neutral',
     'border-checked': 'border-brand',
     'border-invalid': 'border-danger',
     'bg-soft': 'bg-neutral-soft-hover',
@@ -15,9 +15,9 @@ export default defineSheet({
     'bg-thumb-soft': 'color-white',
     'ring-brand': 'ring-brand',
 
-    'h-base': '1.5rem',
-    'p-base': '0.125rem',
-    'rounded-base': '9999px',
+    h: '1.5rem',
+    p: '0.125rem',
+    rounded: '9999px',
   },
 
   utilities: {
@@ -26,7 +26,7 @@ export default defineSheet({
   },
 
   rules: {
-    '&': `flex switch-h-base switch-p-base switch-rounded-base border switch-border-base outline-none cursor-pointer switch-transition`,
+    '&': `flex switch-h switch-p switch-rounded border switch-border outline-none cursor-pointer switch-transition`,
     '&__track': 'flex aspect-2/1 rounded-[inherit]',
     '&__thumb': `aspect-square rounded-[inherit] switch-transition-thumb shadow-xs`,
     '&--checked &__thumb': 'translate-x-full',
