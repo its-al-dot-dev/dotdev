@@ -1,23 +1,29 @@
 @theme {
-  --doc-grid-color: color-mix(in oklab, var(--ui-neutral-500) 30%, transparent);
+  --doc-grid-color: color-mix(in srgb, var(--ui-neutral-500) 30%, transparent);
   --doc-brand-gradient: var(--ui-bg-brand-soft);
   --doc-secondary-gradient: var(--ui-bg-surface);
 }
 
 @theme {
-  --doc-bg-tint: color-mix(in oklab, var(--ui-brand-500) 5%, transparent);
+  --doc-bg-tint: color-mix(in srgb, var(--ui-brand-500) 5%, transparent);
+  --doc-bg-card: var(--ui-neutral-50);
 }
 
 .dark {
-  --doc-bg-tint: color-mix(in oklab, var(--ui-brand-400) 10%, transparent);
+  --doc-bg-tint: color-mix(in srgb, var(--ui-brand-400) 10%, transparent);
+  --doc-bg-card: color-mix(in srgb, var(--ui-neutral-500) 10%, transparent);
 }
 
 @utility doc-bg-tint {
   @apply bg-(--doc-bg-tint);
 }
 
+@utility doc-bg-card {
+  @apply bg-(--doc-bg-card);
+}
+
 @utility doc-card {
-  @apply bg-surface border border-default rounded-2xl transition-[background-color,border-color];
+  @apply doc-bg-card border border-default rounded-2xl transition-[background-color,border-color];
 }
 
 @utility doc-bg-grid {
@@ -34,7 +40,7 @@
 
 @layer components {
 .doc-page {
-  @apply py-10 px-8 flex gap-10 items-start;
+  @apply py-10 px-4 lg:px-8 flex gap-10 items-start;
 }
 
 .doc-page__body {
@@ -118,7 +124,7 @@
 }
 
 .doc-example__canvas {
-  @apply flex-1 flex items-center justify-center flex-wrap gap-4 px-6 py-6 doc-bg-grid;
+  @apply flex-1 flex items-center justify-center flex-wrap gap-4 px-6 py-6 ;
 }
 
 .doc-example__code {

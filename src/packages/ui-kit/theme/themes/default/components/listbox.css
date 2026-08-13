@@ -1,8 +1,8 @@
 @theme {
   --listbox-gap: 0.125rem;
-  --listbox-p: 0.125rem;
+  --listbox-p: 0.25rem;
   --listbox-rounded: var(--ui-radius-md);
-  --listbox-rounded-item: var(--ui-radius-sm);
+  --listbox-rounded-item: calc(var(--ui-radius-md) - 4px);
 }
 
 @theme {
@@ -12,9 +12,9 @@
   --listbox-border-outlined: var(--ui-border-neutral);
   --listbox-border-invalid: var(--ui-border-danger);
   --listbox-bg-item-hover: var(--ui-bg-neutral-soft);
+  --listbox-bg-item-selected: var(--ui-bg-neutral-soft);
   --listbox-bg-item-soft-hover: var(--ui-bg-neutral-soft-hover);
-  --listbox-bg-item-selected: var(--ui-bg-brand-soft);
-  --listbox-bg-item-soft-selected: var(--ui-bg-brand-soft-hover);
+  --listbox-bg-item-soft-selected: var(--ui-bg-neutral-soft-hover);
   --listbox-ring-item-highlighted: var(--ui-ring-brand);
   --listbox-text-item-selected: var(--ui-text-brand);
   --listbox-px-sm: var(--ui-space-sm);
@@ -27,7 +27,7 @@
   --listbox-gap-md: var(--ui-gap-md);
   --listbox-gap-lg: var(--ui-gap-lg);
   --listbox-text-sm: var(--ui-label-sm);
-  --listbox-text-md: var(--ui-label-sm);
+  --listbox-text-md: var(--ui-label-md);
   --listbox-text-lg: var(--ui-label-md);
 }
 
@@ -55,12 +55,12 @@
   @apply bg-(--listbox-bg-item-hover);
 }
 
-@utility listbox-bg-item-soft-hover {
-  @apply bg-(--listbox-bg-item-soft-hover);
-}
-
 @utility listbox-bg-item-selected {
   @apply bg-(--listbox-bg-item-selected);
+}
+
+@utility listbox-bg-item-soft-hover {
+  @apply bg-(--listbox-bg-item-soft-hover);
 }
 
 @utility listbox-bg-item-soft-selected {
@@ -240,16 +240,8 @@
   @apply listbox-bg-item-soft-selected listbox-text-item-selected;
 }
 
-.d-listbox--soft .d-listbox__item--selected:hover {
-  @apply listbox-bg-item-soft-selected;
-}
-
 .d-listbox__item--selected {
   @apply listbox-bg-item-selected listbox-text-item-selected;
-}
-
-.d-listbox__item--selected:hover {
-  @apply listbox-bg-item-selected;
 }
 
 .d-listbox--sm .d-listbox__item {

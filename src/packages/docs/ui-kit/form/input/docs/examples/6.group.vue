@@ -12,19 +12,19 @@ const value = ref<string>('')
 
 <template>
   <Group>
-    <GroupAddon class="-mr-px" label="https://" />
+    <GroupAddon class="-mr-px" label="https://" variant="outlined" />
     <Input v-model="value" placeholder="Enter domain..." />
     <Button label="Submit" />
   </Group>
 
   <Group>
-    <GroupAddon attach variant="plain">
+    <GroupAddon attach>
       <Icon name="lock-closed" />
     </GroupAddon>
 
     <Input v-model="value" class="px-9!" placeholder="Enter email..." />
 
-    <GroupAddon attach size="none" variant="plain">
+    <GroupAddon attach size="none">
       <IconButton icon="eye-closed" variant="text" />
     </GroupAddon>
   </Group>

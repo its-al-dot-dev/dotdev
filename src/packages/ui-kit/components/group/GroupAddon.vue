@@ -8,7 +8,7 @@ defineSlots<UIGroupAddonSlots>()
 const props = withDefaults(defineProps<UIGroupAddonProps>(), {
   ui: 'group-addon',
   size: 'md',
-  variant: 'soft',
+  variant: 'plain',
 })
 
 const ui = useUiKitProps('group-addon', props)

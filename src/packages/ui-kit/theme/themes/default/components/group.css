@@ -1,10 +1,6 @@
 @theme {
-  --group-bg-soft: var(--ui-neutral-100);
+  --group-bg-soft: var(--ui-bg-neutral-soft);
   --group-bg-outlined: var(--ui-bg-background);
-}
-
-.dark {
-  --group-bg-soft: var(--ui-neutral-800);
 }
 
 @utility group-bg-soft {
@@ -73,7 +69,7 @@
 }
 
 .d-group-addon {
-  @apply radius-md border-default flex items-center justify-center;
+  @apply radius-md flex items-center justify-center text-muted;
 }
 
 .d-group-addon--sm {
@@ -93,7 +89,7 @@
 }
 
 .d-group-addon--outlined {
-  @apply group-bg-outlined border;
+  @apply group-bg-outlined border border-neutral;
 }
 
 .d-group-addon--underlined {
@@ -101,7 +97,7 @@
 }
 
 .d-group-addon--soft {
-  @apply border group-bg-soft;
+  @apply group-bg-soft;
 }
 
 .d-group-addon--attach {

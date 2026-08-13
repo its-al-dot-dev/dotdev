@@ -109,6 +109,9 @@ export default defineSheet({
     'label-md': '1rem',
     'label-lg': '1.125rem',
     'label-xl': '1.25rem',
+
+    white: '#ffffff',
+    black: '#000000',
   },
 
   semantics: {
@@ -116,7 +119,7 @@ export default defineSheet({
     'font-mono': `'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace`,
 
     'bg-background': ['white', 'neutral-950'],
-    'bg-surface': ['neutral-50', 'neutral-900'],
+    'bg-surface': ['white', 'neutral-950'],
     'text-foreground': ['neutral-900', 'neutral-100'],
     'text-muted': ['neutral-500', 'neutral-400'],
     'border-default': ['neutral-200', 'neutral-800'],

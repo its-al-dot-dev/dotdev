@@ -6,7 +6,7 @@
   --select-border-outlined: var(--ui-neutral-300);
   --select-border-underlined: var(--ui-neutral-200);
   --select-border-hover: var(--ui-neutral-400);
-  --select-border-invalid: color-mix(in oklab, var(--ui-danger-500) 50%, transparent);
+  --select-border-invalid: color-mix(in srgb, var(--ui-danger-500) 50%, transparent);
   --select-bg-popup: var(--color-white);
   --select-border-popup: var(--ui-neutral-100);
 }

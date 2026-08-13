@@ -8,16 +8,16 @@ export default defineSheet({
     'text-heading': 'text-muted',
     'text-item': 'text-muted',
     'text-item-hover': 'text-foreground',
-    'bg-item-hover': ['neutral-200', 'neutral-700'],
+    'bg-item-hover': 'bg-neutral-soft',
   },
 
   vars: {
-    'gap': '0.125rem',
+    gap: '0.125rem',
     'py-heading': '0.25rem',
   },
 
   utilities: {
-    'gap': 'gap-(--menu-gap)',
+    gap: 'gap-(--menu-gap)',
     'py-heading': 'py-(--menu-py-heading)',
 
     'px-heading-sm': 'px-(--ui-space-sm)',

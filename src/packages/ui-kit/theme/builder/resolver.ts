@@ -63,7 +63,7 @@ export function createResolver(registry: Pick<TokenRegistry, 'lookup'>, context?
       const base = value.slice(0, slash)
       const opacity = value.slice(slash + 1)
       const varName = registry.lookup(base)
-      if (varName) return `color-mix(in oklab, var(${varName}) ${opacity}%, transparent)`
+      if (varName) return `color-mix(in srgb, var(${varName}) ${opacity}%, transparent)`
       return value
     }
 

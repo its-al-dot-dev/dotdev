@@ -8,11 +8,7 @@
   --menu-text-heading: var(--ui-text-muted);
   --menu-text-item: var(--ui-text-muted);
   --menu-text-item-hover: var(--ui-text-foreground);
-  --menu-bg-item-hover: var(--ui-neutral-200);
-}
-
-.dark {
-  --menu-bg-item-hover: var(--ui-neutral-700);
+  --menu-bg-item-hover: var(--ui-bg-neutral-soft);
 }
 
 @utility menu-text-default {

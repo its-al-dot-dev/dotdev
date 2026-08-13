@@ -3,7 +3,7 @@ import { defineSheet } from 'dotdev/theme'
 export default defineSheet({
   name: 'group',
   semantics: {
-    'bg-soft': ['neutral-100', 'neutral-800'],
+    'bg-soft': 'bg-neutral-soft',
     'bg-outlined': 'bg-background',
   },
   utilities: {
@@ -31,15 +31,15 @@ export default defineSheet({
     '&--y > &--x:not(:first-child) > *': 'rounded-t-none',
     '&--y > &--x:not(:last-child) > *': 'rounded-b-none',
 
-    '&-addon': `radius-md border-default flex items-center justify-center`,
+    '&-addon': `radius-md flex items-center justify-center text-muted`,
     '&-addon--sm': 'group-size-sm',
     '&-addon--md': 'group-size-md',
     '&-addon--lg': 'group-size-lg',
 
     '&-addon--outlined, &--soft': `radius-md`,
-    '&-addon--outlined': `group-bg-outlined border`,
+    '&-addon--outlined': `group-bg-outlined border border-neutral`,
     '&-addon--underlined': `border-b`,
-    '&-addon--soft': `border group-bg-soft`,
+    '&-addon--soft': `group-bg-soft`,
 
     '&-addon--attach': 'absolute',
     '&--x &-addon--attach': 'inset-y-0',

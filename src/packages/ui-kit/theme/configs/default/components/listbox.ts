@@ -11,9 +11,9 @@ export default defineSheet({
     'border-invalid': 'border-danger',
 
     'bg-item-hover': 'bg-neutral-soft',
+    'bg-item-selected': 'bg-neutral-soft',
     'bg-item-soft-hover': 'bg-neutral-soft-hover',
-    'bg-item-selected': 'bg-brand-soft',
-    'bg-item-soft-selected': 'bg-brand-soft-hover',
+    'bg-item-soft-selected': 'bg-neutral-soft-hover',
     'ring-item-highlighted': 'ring-brand',
     'text-item-selected': 'text-brand',
 
@@ -27,15 +27,15 @@ export default defineSheet({
     'gap-md': 'gap-md',
     'gap-lg': 'gap-lg',
     'text-sm': 'label-sm',
-    'text-md': 'label-sm',
+    'text-md': 'label-md',
     'text-lg': 'label-md',
   },
 
   vars: {
     gap: '0.125rem',
-    p: '0.125rem',
+    p: '0.25rem',
     rounded: 'radius-md',
-    'rounded-item': 'radius-sm',
+    'rounded-item': 'calc(var(--ui-radius-md) - 4px)',
   },
 
   utilities: {
@@ -79,10 +79,8 @@ export default defineSheet({
 
     '&--soft &__item': 'hover:listbox-bg-item-soft-hover',
     '&--soft &__item--selected': 'listbox-bg-item-soft-selected listbox-text-item-selected',
-    '&--soft &__item--selected:hover': 'listbox-bg-item-soft-selected',
 
     '&__item--selected': 'listbox-bg-item-selected listbox-text-item-selected',
-    '&__item--selected:hover': 'listbox-bg-item-selected',
 
     '&--sm &__item': 'listbox-size-item-sm',
     '&--md &__item': 'listbox-size-item-md',

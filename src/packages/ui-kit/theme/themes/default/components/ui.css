@@ -90,13 +90,15 @@
   --ui-label-md: 1rem;
   --ui-label-lg: 1.125rem;
   --ui-label-xl: 1.25rem;
+  --ui-white: #ffffff;
+  --ui-black: #000000;
 }
 
 @theme {
   --ui-font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --ui-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
-  --ui-bg-background: white;
-  --ui-bg-surface: var(--ui-neutral-50);
+  --ui-bg-background: var(--ui-white);
+  --ui-bg-surface: var(--ui-white);
   --ui-text-foreground: var(--ui-neutral-900);
   --ui-text-muted: var(--ui-neutral-500);
   --ui-border-default: var(--ui-neutral-200);
@@ -108,7 +110,7 @@
   --ui-bg-brand-soft: var(--ui-brand-50);
   --ui-bg-brand-soft-hover: var(--ui-brand-100);
   --ui-border-brand: var(--ui-brand-500);
-  --ui-ring-brand: color-mix(in oklab, var(--ui-brand-500) 50%, transparent);
+  --ui-ring-brand: color-mix(in srgb, var(--ui-brand-500) 50%, transparent);
   --ui-bg-neutral: var(--ui-neutral-800);
   --ui-bg-neutral-hover: var(--ui-neutral-700);
   --ui-text-neutral: var(--ui-neutral-700);
@@ -116,7 +118,7 @@
   --ui-bg-neutral-soft: var(--ui-neutral-100);
   --ui-bg-neutral-soft-hover: var(--ui-neutral-200);
   --ui-border-neutral: var(--ui-neutral-300);
-  --ui-ring-neutral: color-mix(in oklab, var(--ui-neutral-500) 50%, transparent);
+  --ui-ring-neutral: color-mix(in srgb, var(--ui-neutral-500) 50%, transparent);
   --ui-bg-danger: var(--ui-danger-600);
   --ui-bg-danger-hover: var(--ui-danger-700);
   --ui-text-danger: var(--ui-danger-600);
@@ -124,7 +126,7 @@
   --ui-bg-danger-soft: var(--ui-danger-50);
   --ui-bg-danger-soft-hover: var(--ui-danger-100);
   --ui-border-danger: var(--ui-danger-500);
-  --ui-ring-danger: color-mix(in oklab, var(--ui-danger-500) 50%, transparent);
+  --ui-ring-danger: color-mix(in srgb, var(--ui-danger-500) 50%, transparent);
   --ui-bg-warning: var(--ui-warning-500);
   --ui-bg-warning-hover: var(--ui-warning-600);
   --ui-text-warning: var(--ui-warning-700);
@@ -132,7 +134,7 @@
   --ui-bg-warning-soft: var(--ui-warning-50);
   --ui-bg-warning-soft-hover: var(--ui-warning-100);
   --ui-border-warning: var(--ui-warning-600);
-  --ui-ring-warning: color-mix(in oklab, var(--ui-warning-500) 50%, transparent);
+  --ui-ring-warning: color-mix(in srgb, var(--ui-warning-500) 50%, transparent);
   --ui-bg-info: var(--ui-info-700);
   --ui-bg-info-hover: var(--ui-info-800);
   --ui-text-info: var(--ui-info-700);
@@ -140,7 +142,7 @@
   --ui-bg-info-soft: var(--ui-info-50);
   --ui-bg-info-soft-hover: var(--ui-info-100);
   --ui-border-info: var(--ui-info-600);
-  --ui-ring-info: color-mix(in oklab, var(--ui-info-500) 50%, transparent);
+  --ui-ring-info: color-mix(in srgb, var(--ui-info-500) 50%, transparent);
   --ui-bg-success: var(--ui-success-700);
   --ui-bg-success-hover: var(--ui-success-800);
   --ui-text-success: var(--ui-success-700);
@@ -148,12 +150,12 @@
   --ui-bg-success-soft: var(--ui-success-50);
   --ui-bg-success-soft-hover: var(--ui-success-100);
   --ui-border-success: var(--ui-success-600);
-  --ui-ring-success: color-mix(in oklab, var(--ui-success-500) 50%, transparent);
+  --ui-ring-success: color-mix(in srgb, var(--ui-success-500) 50%, transparent);
 }
 
 .dark {
   --ui-bg-background: var(--ui-neutral-950);
-  --ui-bg-surface: var(--ui-neutral-900);
+  --ui-bg-surface: var(--ui-neutral-950);
   --ui-text-foreground: var(--ui-neutral-100);
   --ui-text-muted: var(--ui-neutral-400);
   --ui-border-default: var(--ui-neutral-800);
@@ -162,43 +164,43 @@
   --ui-bg-brand-hover: var(--ui-brand-300);
   --ui-text-brand: var(--ui-brand-400);
   --ui-text-on-brand: var(--ui-neutral-950);
-  --ui-bg-brand-soft: color-mix(in oklab, var(--ui-brand-500) 16%, transparent);
-  --ui-bg-brand-soft-hover: color-mix(in oklab, var(--ui-brand-500) 26%, transparent);
+  --ui-bg-brand-soft: color-mix(in srgb, var(--ui-brand-500) 16%, transparent);
+  --ui-bg-brand-soft-hover: color-mix(in srgb, var(--ui-brand-500) 26%, transparent);
   --ui-border-brand: var(--ui-brand-400);
   --ui-bg-neutral: var(--ui-neutral-200);
   --ui-bg-neutral-hover: var(--ui-neutral-300);
   --ui-text-neutral: var(--ui-neutral-300);
   --ui-text-on-neutral: var(--ui-neutral-900);
-  --ui-bg-neutral-soft: color-mix(in oklab, var(--ui-neutral-500) 16%, transparent);
-  --ui-bg-neutral-soft-hover: color-mix(in oklab, var(--ui-neutral-500) 26%, transparent);
+  --ui-bg-neutral-soft: color-mix(in srgb, var(--ui-neutral-500) 16%, transparent);
+  --ui-bg-neutral-soft-hover: color-mix(in srgb, var(--ui-neutral-500) 26%, transparent);
   --ui-border-neutral: var(--ui-neutral-700);
   --ui-bg-danger: var(--ui-danger-400);
   --ui-bg-danger-hover: var(--ui-danger-300);
   --ui-text-danger: var(--ui-danger-400);
   --ui-text-on-danger: var(--ui-neutral-950);
-  --ui-bg-danger-soft: color-mix(in oklab, var(--ui-danger-500) 16%, transparent);
-  --ui-bg-danger-soft-hover: color-mix(in oklab, var(--ui-danger-500) 26%, transparent);
+  --ui-bg-danger-soft: color-mix(in srgb, var(--ui-danger-500) 16%, transparent);
+  --ui-bg-danger-soft-hover: color-mix(in srgb, var(--ui-danger-500) 26%, transparent);
   --ui-border-danger: var(--ui-danger-400);
   --ui-bg-warning: var(--ui-warning-400);
   --ui-bg-warning-hover: var(--ui-warning-300);
   --ui-text-warning: var(--ui-warning-400);
   --ui-text-on-warning: var(--ui-neutral-950);
-  --ui-bg-warning-soft: color-mix(in oklab, var(--ui-warning-500) 16%, transparent);
-  --ui-bg-warning-soft-hover: color-mix(in oklab, var(--ui-warning-500) 26%, transparent);
+  --ui-bg-warning-soft: color-mix(in srgb, var(--ui-warning-500) 16%, transparent);
+  --ui-bg-warning-soft-hover: color-mix(in srgb, var(--ui-warning-500) 26%, transparent);
   --ui-border-warning: var(--ui-warning-400);
   --ui-bg-info: var(--ui-info-400);
   --ui-bg-info-hover: var(--ui-info-300);
   --ui-text-info: var(--ui-info-400);
   --ui-text-on-info: var(--ui-neutral-950);
-  --ui-bg-info-soft: color-mix(in oklab, var(--ui-info-500) 16%, transparent);
-  --ui-bg-info-soft-hover: color-mix(in oklab, var(--ui-info-500) 26%, transparent);
+  --ui-bg-info-soft: color-mix(in srgb, var(--ui-info-500) 16%, transparent);
+  --ui-bg-info-soft-hover: color-mix(in srgb, var(--ui-info-500) 26%, transparent);
   --ui-border-info: var(--ui-info-400);
   --ui-bg-success: var(--ui-success-400);
   --ui-bg-success-hover: var(--ui-success-300);
   --ui-text-success: var(--ui-success-400);
   --ui-text-on-success: var(--ui-neutral-950);
-  --ui-bg-success-soft: color-mix(in oklab, var(--ui-success-500) 16%, transparent);
-  --ui-bg-success-soft-hover: color-mix(in oklab, var(--ui-success-500) 26%, transparent);
+  --ui-bg-success-soft: color-mix(in srgb, var(--ui-success-500) 16%, transparent);
+  --ui-bg-success-soft-hover: color-mix(in srgb, var(--ui-success-500) 26%, transparent);
   --ui-border-success: var(--ui-success-400);
 }
 
