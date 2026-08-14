@@ -9,6 +9,9 @@ import { EXAMPLE_KEY } from '../../docs'
 interface Props {
   component?: Component
   code?: string
+  title?: string
+  desc?: string
+  lang?: string
 }
 
 const props = defineProps<Props>()
@@ -25,7 +28,7 @@ provide(EXAMPLE_KEY, meta)
 </script>
 
 <template>
-  <DocBlock :desc="meta.desc" :title="meta.title">
+    <DocBlock :desc="meta.desc || props.desc" :title="meta.title || props.title">
     <DocCard class="doc-example">
       <template #header class="doc-example__header">
         <SelectButton v-if="tabs.length > 1" v-model="activeTab" :options="tabs" variant="outlined" />
@@ -45,7 +48,7 @@ provide(EXAMPLE_KEY, meta)
         </div>
 
         <div v-if="code" v-show="activeTab === 'Code'" class="doc-example__code">
-          <DocCode :code="code" />
+          <DocCode :code="code" :lang="props.lang" />
         </div>
       </div>
     </DocCard>

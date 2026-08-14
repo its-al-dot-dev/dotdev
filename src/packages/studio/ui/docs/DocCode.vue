@@ -4,11 +4,12 @@ import { useCodeHighlight } from './composables/useCodeHighlight.ts'
 
 interface Props {
   code: string
+  lang?: string
 }
 
 const props = defineProps<Props>()
 
-const { htmlCode } = useCodeHighlight(() => props.code, { lang: 'vue' })
+const { htmlCode } = useCodeHighlight(() => props.code, { lang: props.lang ?? 'vue' })
 </script>
 
 <template>

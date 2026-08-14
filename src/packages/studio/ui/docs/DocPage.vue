@@ -2,11 +2,16 @@
 import { Icon, Tag } from 'dotdev/ui-kit'
 import { useRoute } from 'vue-router'
 import DocExample from './DocExample.vue'
+import type { ExampleMeta } from '../../docs/define-example.ts'
 import { normalizeExamples } from '../../utils/normalize-example.ts'
 
 const route = useRoute()
 
-const examples = normalizeExamples(route.meta?.examples, route.meta?.sources)
+const examples = normalizeExamples(
+  route.meta?.examples,
+  route.meta?.sources,
+  route.meta?.examplesMeta as Record<string, ExampleMeta> | undefined,
+)
 </script>
 
 <template>
@@ -39,7 +44,15 @@ const examples = normalizeExamples(route.meta?.examples, route.meta?.sources)
 
       <div v-if="examples.length" class="doc-section">
         <h3 class="doc-section__title">Examples</h3>
-        <DocExample v-for="example in examples" :key="example.id" :code="example.code" :component="example.component" />
+        <DocExample
+          v-for="example in examples"
+          :key="example.id"
+          :code="example.code"
+          :component="example.component"
+          :title="example.title"
+          :desc="example.desc"
+          :lang="example.lang"
+        />
         <hr class="doc-page__divider" />
       </div>
     </div>
