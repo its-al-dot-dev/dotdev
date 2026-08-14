@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-definePage({ name: 'Components', meta: { kind: 'heading' } })
+definePage({ name: 'Components', meta: { icon: 'component-1' } })
 </script>
 
 <template></template>

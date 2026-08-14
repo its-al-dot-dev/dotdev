@@ -16,7 +16,6 @@
       "dotdev/ui-kit": ["src/packages/ui-kit"],
       "dotdev/studio": ["src/packages/studio"],
       "dotdev/icons": ["src/packages/icons"],
-      "resolve-docs": ["src/packages/docs/resolve-docs.ts"]
     },
     /* Linting */
     "noUnusedLocals": true,

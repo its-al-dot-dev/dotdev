@@ -39,7 +39,6 @@ export default defineConfig({
       'dotdev/ui-kit': fileURLToPath(new URL('./src/packages/ui-kit', import.meta.url)),
       'dotdev/studio': fileURLToPath(new URL('./src/packages/studio', import.meta.url)),
       'dotdev/icons': fileURLToPath(new URL('./src/packages/icons', import.meta.url)),
-      'resolve-docs': fileURLToPath(new URL('./src/packages/docs/resolve-docs.ts', import.meta.url)),
     },
   },
 })

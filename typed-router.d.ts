@@ -38,9 +38,16 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    'Documentations': RouteRecordInfo<
+      'Documentations',
+      '/documentation',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     'Config': RouteRecordInfo<
       'Config',
-      '/config',
+      '/documentation/config',
       Record<never, never>,
       Record<never, never>,
       | never
@@ -87,6 +94,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    'Icon': RouteRecordInfo<
+      'Icon',
+      '/ui-kit/data/icon',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     'Tag': RouteRecordInfo<
       'Tag',
       '/ui-kit/data/tag',
@@ -104,6 +118,13 @@ declare module 'vue-router/auto-routes' {
     'Checkbox': RouteRecordInfo<
       'Checkbox',
       '/ui-kit/form/checkbox',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    'Group': RouteRecordInfo<
+      'Group',
+      '/ui-kit/form/group',
       Record<never, never>,
       Record<never, never>,
       | never
@@ -192,7 +213,15 @@ declare module 'vue-router/auto-routes' {
       pathParamNames:
         | never
     }
-    'src/packages/docs/config/index.vue': {
+    'src/packages/docs/documentation/index.vue': {
+      routes:
+        | 'Documentations'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/packages/docs/documentation/config/index.vue': {
       routes:
         | 'Config'
       views:
@@ -248,6 +277,14 @@ declare module 'vue-router/auto-routes' {
       pathParamNames:
         | never
     }
+    'src/packages/docs/ui-kit/data/icon/index.vue': {
+      routes:
+        | 'Icon'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
     'src/packages/docs/ui-kit/data/tag/index.vue': {
       routes:
         | 'Tag'
@@ -267,6 +304,14 @@ declare module 'vue-router/auto-routes' {
     'src/packages/docs/ui-kit/form/checkbox/index.vue': {
       routes:
         | 'Checkbox'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/packages/docs/ui-kit/form/group/index.vue': {
+      routes:
+        | 'Group'
       views:
         | never
       pathParamNames:
