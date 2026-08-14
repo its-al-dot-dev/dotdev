@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-14T02:28:35.000Z",
+  "title": "Design System: dotdev",
+  "extensions": {
+    "colorMeta": {
+      "brand": {
+        "role": "primary",
+        "displayName": "Quiet Indigo",
+        "canonical": "oklch(58.5% 0.233 277.12)",
+        "tonalRamp": ["#eef2ff", "#e0e7ff", "#c7d2fe", "#a5b4fc", "#818cf8", "#6366f1", "#4f46e5", "#4338ca", "#3730a3", "#312e81"]
+      },
+      "brand-hover": {
+        "role": "primary",
+        "displayName": "Quiet Indigo Hover",
+        "canonical": "oklch(51.1% 0.262 276.97)",
+        "tonalRamp": ["#eef2ff", "#e0e7ff", "#c7d2fe", "#a5b4fc", "#818cf8", "#6366f1", "#4f46e5", "#4338ca", "#3730a3", "#312e81"]
+      },
+      "brand-soft": {
+        "role": "primary",
+        "displayName": "Indigo Wash",
+        "canonical": "#eef2ff",
+        "tonalRamp": ["#eef2ff", "#e0e7ff", "#c7d2fe", "#a5b4fc", "#818cf8", "#6366f1", "#4f46e5", "#4338ca", "#3730a3", "#312e81"]
+      },
+      "neutral-50": {
+        "role": "neutral",
+        "displayName": "Shadow Grey 50",
+        "canonical": "oklch(95.58% 0.007 277.16)",
+        "tonalRamp": ["oklch(95.58% 0.007 277.16)", "oklch(91.19% 0.014 281.55)", "oklch(82.14% 0.030 279.26)", "oklch(72.91% 0.045 279.43)", "oklch(63.44% 0.062 279.07)", "oklch(53.68% 0.082 277.40)", "oklch(45.93% 0.067 278.07)", "oklch(37.80% 0.053 277.88)", "oklch(29.20% 0.039 277.47)", "oklch(19.96% 0.020 279.96)", "oklch(17.08% 0.015 278.37)"]
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Signal Red",
+        "canonical": "#dc2626",
+        "tonalRamp": ["#fef2f2", "#fee2e2", "#fecaca", "#fca5a5", "#f87171", "#ef4444", "#dc2626", "#b91c1c", "#991b1b", "#7f1d1d"]
+      },
+      "warning": {
+        "role": "tertiary",
+        "displayName": "Caution Amber",
+        "canonical": "#f59e0b",
+        "tonalRamp": ["#fffbeb", "#fef3c7", "#fde68a", "#fcd34d", "#fbbf24", "#f59e0b", "#d97706", "#b45309", "#92400e", "#78350f"]
+      },
+      "info": {
+        "role": "tertiary",
+        "displayName": "Alert Sky",
+        "canonical": "#0369a1",
+        "tonalRamp": ["#f0f9ff", "#e0f2fe", "#bae6fd", "#7dd3fc", "#38bdf8", "#0ea5e9", "#0284c7", "#0369a1", "#075985", "#0c4a6e"]
+      },
+      "success": {
+        "role": "tertiary",
+        "displayName": "Confirm Emerald",
+        "canonical": "#047857",
+        "tonalRamp": ["#ecfdf5", "#d1fae5", "#a7f3d0", "#6ee7b7", "#34d399", "#10b981", "#059669", "#047857", "#065f46", "#064e3b"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Page titles in doc headers; bold 1.5rem Plus Jakarta Sans." },
+      "title": { "displayName": "Title", "purpose": "Section and block titles; semibold 1.25rem." },
+      "body": { "displayName": "Body", "purpose": "Default text, descriptions at max-w-3xl (~65ch)." },
+      "label": { "displayName": "Label", "purpose": "Navigation and control labels; uppercase with 0.05em tracking." },
+      "mono": { "displayName": "Mono", "purpose": "Code, version tags, key-combos, prop types — the instrument voice." }
+    },
+    "shadows": [
+      { "name": "popup", "value": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)", "purpose": "The one floating surface: select popup and listbox wrapper." },
+      { "name": "thumb", "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)", "purpose": "Tiny raised parts inside flat controls: switch thumb, selected soft segment." },
+      { "name": "solid-highlight", "value": "inset 0 1px 0 0 rgba(255, 255, 255, 0.15)", "purpose": "Machined top edge on solid fills (buttons, tags, avatars) — depth without a drop shadow." }
+    ],
+    "motion": [
+      { "name": "state", "value": "150ms cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing/duration for background-color, color, opacity and border-color transitions on all controls." },
+      { "name": "spin", "value": "1s linear infinite", "purpose": "Loading spinner on buttons." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "app-shell", "value": "1023px", "purpose": "Below this the 240px sidebar collapses into an overlay toggled from the header." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary-solid",
+      "description": "The single primary action of a view — indigo solid with a machined top highlight.",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Save changes</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;height:2.5rem;padding:0 1rem;gap:0.375rem;border:none;border-radius:0.5rem;background:transparent;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:0.875rem;font-weight:600;color:inherit;cursor:pointer;transition:background-color .15s,color .15s,opacity .15s,border-color .15s}.ds-btn:focus-visible{outline:none;box-shadow:0 0 0 2px color-mix(in srgb,#6366f1 50%,transparent)}.ds-btn-primary{background:#6366f1;color:#eef2ff;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}.ds-btn-primary:hover{background:#4f46e5}.ds-btn:disabled{opacity:.6;pointer-events:none}"
+    },
+    {
+      "name": "Soft Button",
+      "kind": "button",
+      "refersTo": "button-primary-soft",
+      "description": "Default secondary action — a tonal indigo wash with brand text.",
+      "html": "<button class=\"ds-btn ds-btn-soft\">Secondary</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;height:2.5rem;padding:0 1rem;gap:0.375rem;border:none;border-radius:0.5rem;background:transparent;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:0.875rem;font-weight:600;color:inherit;cursor:pointer;transition:background-color .15s,color .15s,opacity .15s,border-color .15s}.ds-btn:focus-visible{outline:none;box-shadow:0 0 0 2px color-mix(in srgb,#6366f1 50%,transparent)}.ds-btn-soft{background:#eef2ff;color:#4f46e5}.ds-btn-soft:hover{background:#e0e7ff}"
+    },
+    {
+      "name": "Search Input",
+      "kind": "input",
+      "refersTo": "input-soft",
+      "description": "The header search — soft neutral fill, search icon, and a JetBrains Mono key-cap hint.",
+      "html": "<label class=\"ds-search\"><svg class=\"ds-search__icon\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m21 21-4.3-4.3\"/></svg><input class=\"ds-search__input\" placeholder=\"Search...\"/><kbd class=\"ds-search__kbd\">⌘K</kbd></label>",
+      "css": ".ds-search{display:flex;align-items:center;gap:0.5rem;height:2.25rem;padding:0 0.5rem;width:240px;background:oklch(95.58% 0.007 277.16);border:1px solid transparent;border-radius:0.5rem;transition:background-color .15s,border-color .15s}.ds-search:focus-within{border-color:#6366f1}.ds-search__icon{color:oklch(53.68% 0.082 277.40);flex-shrink:0}.ds-search__input{flex:1;min-width:0;border:none;background:transparent;outline:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:0.875rem;color:oklch(19.96% 0.020 279.96)}.ds-search__input::placeholder{color:oklch(63.44% 0.062 279.07)}.ds-search__kbd{display:inline-flex;align-items:center;height:1.25rem;padding:0 0.375rem;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:oklch(53.68% 0.082 277.40);border:1px solid oklch(82.14% 0.030 279.26);border-radius:0.25rem}"
+    },
+    {
+      "name": "Tag (soft)",
+      "kind": "chip",
+      "refersTo": "tag-soft",
+      "description": "Compact categorizing label — em-based geometry, tonal wash, brand text.",
+      "html": "<span class=\"ds-tag\"><svg class=\"ds-tag__dot\" width=\"10\" height=\"10\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><circle cx=\"12\" cy=\"12\" r=\"8\"/></svg>primary</span>",
+      "css": ".ds-tag{display:inline-flex;align-items:center;gap:0.35em;height:1.75em;padding:0 0.5em;border-radius:0.5em;background:#eef2ff;color:#4f46e5;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:0.875rem;font-weight:500;white-space:nowrap}.ds-tag__dot{opacity:.9}"
+    },
+    {
+      "name": "Switch (checked)",
+      "kind": "toggle",
+      "refersTo": "switch-checked",
+      "description": "Pill toggle — indigo track when checked, 50% ring focus, tiny raised thumb.",
+      "html": "<button class=\"ds-switch\" role=\"switch\" aria-checked=\"true\"><span class=\"ds-switch__thumb\"></span></button>",
+      "css": ".ds-switch{display:flex;width:2.75rem;height:1.5rem;padding:0.125rem;border:1px solid #6366f1;border-radius:9999px;background:#6366f1;cursor:pointer;transition:background-color .15s,border-color .15s}.ds-switch:focus-visible{outline:none;box-shadow:0 0 0 2px color-mix(in srgb,#6366f1 50%,transparent)}.ds-switch__thumb{height:100%;aspect-ratio:1;border-radius:inherit;background:oklch(95.58% 0.007 277.16);box-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);transform:translateX(100%);transition:transform .15s}"
+    },
+    {
+      "name": "Checkbox (checked)",
+      "kind": "checkbox",
+      "refersTo": "checkbox-checked",
+      "description": "1.25rem control, 0.375rem radius — indigo fill plus white check; hover tints border.",
+      "html": "<label class=\"ds-check\"><input class=\"ds-check__box\" type=\"checkbox\" checked/><span class=\"ds-check__label\">Remember me</span></label>",
+      "css": ".ds-check{display:inline-flex;align-items:center;gap:0.5rem;cursor:pointer;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:0.875rem;color:oklch(19.96% 0.020 279.96)}.ds-check__box{appearance:none;width:1.25rem;height:1.25rem;margin:0;border:1px solid oklch(82.14% 0.030 279.26);border-radius:0.375rem;background:#fff;background-position:center;background-repeat:no-repeat;background-size:contain;cursor:pointer;transition:background-color .15s,border-color .15s}.ds-check__box:hover{border-color:#6366f1}.ds-check__box:checked{border-color:#6366f1;background-color:#6366f1;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4L19 7'/%3E%3C/svg%3E\")}.ds-check__box:focus-visible{outline:none;box-shadow:0 0 0 2px color-mix(in srgb,#6366f1 50%,transparent)}"
+    },
+    {
+      "name": "Select Popup",
+      "kind": "select",
+      "refersTo": "select-popup",
+      "description": "Outlined trigger plus the one true floating surface — hairline border, shadow-md, nested item radius.",
+      "html": "<div class=\"ds-select\"><button class=\"ds-select__trigger\">Option B<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m6 9 6 6 6-6\"/></svg></button><ul class=\"ds-select__popup\"><li class=\"ds-select__item\">Option A</li><li class=\"ds-select__item ds-select__item--selected\">Option B</li><li class=\"ds-select__item\">Option C</li></ul></div>",
+      "css": ".ds-select{position:relative;width:200px}.ds-select__trigger{display:flex;align-items:center;justify-content:space-between;gap:0.5rem;height:2.5rem;padding:0 0.75rem;background:#fff;border:1px solid oklch(82.14% 0.030 279.26);border-radius:0.5rem;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:0.875rem;color:oklch(19.96% 0.020 279.96);cursor:pointer;transition:background-color .15s,border-color .15s}.ds-select__trigger:hover,.ds-select__trigger:focus-visible{border-color:oklch(53.68% 0.082 277.40)}.ds-select__trigger:focus-visible{outline:none}.ds-select__popup{position:absolute;top:calc(100% + 4px);left:0;right:0;margin:0;padding:0.25rem;list-style:none;background:#fff;border:1px solid oklch(91.19% 0.014 281.55);border-radius:0.5rem;box-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1),0 2px 4px -2px rgb(0 0 0 / 0.1)}.ds-select__item{display:flex;align-items:center;height:2.5rem;padding:0 0.625rem;border-radius:calc(0.5rem - 4px);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:0.875rem;color:oklch(19.96% 0.020 279.96);cursor:pointer}.ds-select__item:hover{background:oklch(95.58% 0.007 277.16)}.ds-select__item--selected{background:oklch(95.58% 0.007 277.16);color:#4f46e5}"
+    },
+    {
+      "name": "Sidebar Nav Item",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "Collapsible workbench navigation — uppercase micro-label that brightens on hover; active is a neutral wash.",
+      "html": "<a class=\"ds-nav ds-nav--active\" href=\"#\"><svg class=\"ds-nav__icon\" width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"7\" height=\"7\" x=\"3\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"7\" x=\"14\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"7\" x=\"14\" y=\"14\" rx=\"1\"/><rect width=\"7\" height=\"7\" x=\"3\" y=\"14\" rx=\"1\"/></svg><span class=\"ds-nav__label\">Buttons</span></a>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:0.5rem;height:2.5rem;padding:0 0.625rem;border-radius:0.5rem;color:oklch(53.68% 0.082 277.40);text-decoration:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:0.75rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;transition:background-color .15s,color .15s}.ds-nav:hover,.ds-nav--active{background:oklch(95.58% 0.007 277.16);color:oklch(19.96% 0.020 279.96)}.ds-nav__icon{flex-shrink:0}"
+    },
+    {
+      "name": "Doc Page Header",
+      "kind": "card",
+      "refersTo": "doc-card",
+      "description": "Signature workbench surface — indigo-wash gradient card, icon tile, display title, muted description.",
+      "html": "<header class=\"ds-doc\"><div class=\"ds-doc__tile\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z\"/><circle cx=\"7.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\"/></svg></div><h2 class=\"ds-doc__title\">Tag</h2><p class=\"ds-doc__desc\">A compact label for categorizing and marking content.</p></header>",
+      "css": ".ds-doc{padding:2rem;border:1px solid oklch(91.19% 0.014 281.55);border-radius:1rem;background:linear-gradient(135deg,#eef2ff,#ffffff 70%);transition:background-color .15s,border-color .15s}.ds-doc__tile{display:flex;align-items:center;justify-content:center;width:1.875rem;height:1.875rem;margin-bottom:0.5rem;border:1px solid color-mix(in srgb,#6366f1 26%,transparent);border-radius:0.5rem;background:#eef2ff;color:#4f46e5}.ds-doc__title{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:1.5rem;font-weight:700;color:oklch(19.96% 0.020 279.96)}.ds-doc__desc{margin:0.5rem 0 0;max-width:48rem;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:0.875rem;line-height:1.5;color:oklch(53.68% 0.082 277.40)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Precision Workbench",
+    "overview": "dotdev is a developer's workbench, not a showcase. Every component is a precisely calibrated instrument: quiet, engineer-clean, and confident in its own dimensions. Surfaces are flat and calm; structure is carried by hairline borders and tonal fills rather than shadow or ornament. The personality is restrained by design — nothing here shouts, because the point of a workbench is that the work stays readable and the tooling stays out of the way.\n\nDensity is comfortable and consistent: a single control-height scale (2rem–3rem), a single radius family (0.125–1rem), and a single spacing rhythm (0.5–1.25rem) that every component composes from. Color is treated as meaning, not decoration: one indigo accent for selection, focus, and the primary action, plus a fixed semantic set (danger / warning / info / success) that appears only when it carries information. The neutral ramp is a bespoke cool grey with a faint violet undertone (oklch hue ≈ 277–282°), which keeps the whole surface palette cool, technical, and slightly softer than pure gray.\n\nThe system speaks through detail: a 1px hairline that separates panels, an inset top-highlight on solid fills that makes them read as machined, a 50%-alpha focus ring that appears instead of an offset outline, and a JetBrains Mono voice reserved for code, version stamps, and keyboard hints. Dark mode is a first-class twin, derived by mirroring the same ramp and swapping soft fills to translucent color-mixes rather than paler tints.",
+    "keyCharacteristics": [
+      "Flat-by-default surfaces; hairline borders and tonal fills do the separating.",
+      "One indigo accent reserved for selection, focus, and the primary action.",
+      "Bespoke cool neutral ramp with a violet undertone, light and dark twins.",
+      "Every control offers the same three fills — soft, outlined, solid — and a full semantic color set.",
+      "Focus is always a 50%-alpha ring in the accent color; never an offset outline or glow.",
+      "Plus Jakarta Sans for UI, JetBrains Mono for code, labels, and ⌘-hints.",
+      "Refined and restrained: restrained weight, comfortable density, consistent radii."
+    ],
+    "rules": [
+      { "name": "The One-Accent Rule", "body": "Indigo marks selection, focus, and the single primary action per view — nothing else. Status hues are meaning, not palette variety.", "section": "colors" },
+      { "name": "The Hairline Rule", "body": "Surfaces are separated by 1px borders at neutral-100 (light) / neutral-800 (dark), never by heavier strokes, gradients, or shadows.", "section": "colors" },
+      { "name": "The Soft-Tint Rule", "body": "In dark mode, soft fills are translucent color-mixes (16% ink, 26% on hover) instead of paler solid tints — the tint must never fight the canvas.", "section": "colors" },
+      { "name": "The Instrument-Voice Rule", "body": "JetBrains Mono is reserved for things a machine states — code, versions, key-combos, types. UI prose never switches to mono.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "No shadows at rest. A surface earns a shadow only when it detaches from the page (popup, thumb, raised segment). Depth between coplanar surfaces is hairline + tonal fill, always.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use indigo for exactly one primary action per view, plus selection and focus. Its rarity is the point.",
+      "Do keep surfaces flat at rest: separate panels with 1px hairlines and neutral-soft fills, not shadows or gradients (the doc header gradient and dot grid are reserved for documentation showcases).",
+      "Do use the soft fill as the default for secondary actions; solid is for the one primary CTA.",
+      "Do focus with a 2px ring at 50% alpha of the accent (buttons, switch, menu, listbox) or an accent border shift (text inputs) — never a default browser outline, never an offset ring, never a glow.",
+      "Do give popups (select popup, floating surfaces) a shadow-md and let everything else stay shadowless.",
+      "Do use uppercase + 0.05em tracking for navigation group labels and menu headings at text-xs.",
+      "Do respect the three-fill grammar: soft / outlined / solid are the only fill styles a control may take.",
+      "Do keep the neutral ramp cool with its violet undertone — don't reach for warm grays."
+    ],
+    "donts": [
+      "Don't invent decorative color. The six semantic hues carry meaning only; brand-indigo is the sole decorative accent.",
+      "Don't mix variants on one control (a solid body with an outlined border), and don't invent a fourth fill style.",
+      "Don't add drop shadows at rest, or layer multiple shadows on one element.",
+      "Don't use JetBrains Mono for UI prose, and don't switch UI copy to a serif or a display font.",
+      "Don't use offsets/outlines/glows for focus; use the 50%-alpha ring convention.",
+      "Don't expand radii into pill territory on default controls — the rounded pill is opt-in only.",
+      "Don't separate every surface with a tonal step; the canvas and surfaces stay the same color and rely on hairlines."
+    ]
+  }
+}
