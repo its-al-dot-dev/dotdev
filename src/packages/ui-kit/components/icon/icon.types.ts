@@ -1,12 +1,13 @@
-import type { VNode } from 'vue'
-import type { UiKitIcon } from 'dotdev/ui-kit'
+import type { Component, VNode } from 'vue'
+import type { UiKitBaseProps, UiKitIcon } from 'dotdev/ui-kit'
 
-export interface IconProps {
-  name: UiKitIcon
+export interface UIIconProps extends UiKitBaseProps {
+  name?: UiKitIcon
+  is?: Component
 }
 
-export interface IconSlots {
+export interface UIIconSlots {
   default(): VNode[]
 }
 
-export interface IconEmits {}
+export interface UIIconEmits {}

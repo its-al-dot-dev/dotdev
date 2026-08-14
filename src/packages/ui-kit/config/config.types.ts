@@ -1,4 +1,4 @@
-import type { InjectionKey } from 'vue'
+import type { Component, InjectionKey } from 'vue'
 import type {
   UIAvatarProps,
   UIButtonProps,
@@ -6,7 +6,9 @@ import type {
   UIGroupAddonProps,
   UIGroupProps,
   UIIconButtonProps,
+  UIIconProps,
   UIInputProps,
+  UiKitIcon,
   UiKitNamespace,
   UIListBoxProps,
   UIMenuProps,
@@ -14,8 +16,8 @@ import type {
   UISelectButtonProps,
   UISelectProps,
   UISwitchProps,
-  UITextareaProps,
   UITagProps,
+  UITextareaProps,
 } from 'dotdev/ui-kit'
 
 export interface UiKitConfig {
@@ -36,7 +38,9 @@ export interface UiKitConfig {
     tag?: Partial<UITagProps>
     checkbox?: Partial<UICheckboxProps>
     radio?: Partial<UIRadioProps>
+    icon?: Partial<UIIconProps>
   }
+  icons?: Partial<Record<UiKitIcon, Component>>
 }
 
 export const UI_KIT_CONFIG_KEY: InjectionKey<UiKitConfig> = Symbol('dotdev-ui-config')

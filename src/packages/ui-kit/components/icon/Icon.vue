@@ -1,18 +1,24 @@
 <script lang="ts" setup>
-import { ref, watchEffect } from 'vue'
-import type { IconProps } from './icon.types.ts'
-import { icons } from './registry.ts'
+import type { UIIconEmits, UIIconProps, UIIconSlots } from './icon.types.ts'
+import { UI_KIT_CONFIG_KEY, useUiKitBem, useUiKitProps } from 'dotdev/ui-kit'
+import { inject } from 'vue'
 
-const props = defineProps<IconProps>()
-
-const svg = ref('')
-
-watchEffect(async () => {
-  const loader = icons[`./icons/${props.name}.svg`]
-  svg.value = loader ? await loader() : ''
+defineEmits<UIIconEmits>()
+defineSlots<UIIconSlots>()
+const props = withDefaults(defineProps<UIIconProps>(), {
+  ui: 'icon',
 })
+
+const ui = useUiKitProps('icon', props)
+const bem = useUiKitBem(ui)
+
+const config = inject(UI_KIT_CONFIG_KEY, {})
+const icons = config.icons ?? {}
 </script>
 
 <template>
-  <span class="d-icon" v-html="svg" />
+  <span :class="bem()">
+    <component :is="ui.is" v-if="ui.is" />
+    <component :is="icons[ui.name]" v-else-if="ui.name && icons[ui.name]" />
+  </span>
 </template>

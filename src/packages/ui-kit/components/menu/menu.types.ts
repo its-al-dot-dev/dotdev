@@ -1,9 +1,9 @@
 import type { ClassValue, MaybeRefOrGetter, VNode } from 'vue'
-import type { HtmlLinkTarget, IconName, UiKitBaseProps } from 'dotdev/ui-kit'
+import type { HtmlLinkTarget, UiKitBaseProps, UiKitIcon } from 'dotdev/ui-kit'
 
 export interface UIMenuItem {
   label?: string
-  icon?: IconName
+  icon?: UiKitIcon
   href?: string
   target?: HtmlLinkTarget
   visible?: MaybeRefOrGetter<boolean>

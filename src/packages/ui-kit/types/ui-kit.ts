@@ -1,5 +1,3 @@
-import type { IconName } from './icons.types'
-
 export interface UiKitRegister {}
 
 export type UiKitOverride<T, K extends string> = K extends keyof UiKitRegister ? UiKitRegister[K] : T
@@ -9,7 +7,9 @@ export interface UiKitBaseProps {
   ui?: string
 }
 
-export type UiKitIcon = IconName
+interface UiKitIcons {}
+type UiKitIconDefault = keyof UiKitIcons
+export type UiKitIcon = keyof UiKitOverride<UiKitIconDefault, 'icons'>
 
 interface UiKitNamespaces {
   d: true
