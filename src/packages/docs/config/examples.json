@@ -1,0 +1,14 @@
+{
+  "setup": {
+    "title": "Install once at the app root",
+    "desc": "Register <code>app.use(createUiKit(config))</code> before mounting. Every component then resolves its missing props from this config."
+  },
+  "namespace": {
+    "title": "Set a BEM namespace",
+    "desc": "The <code>namespace</code> option changes the BEM prefix for every component. The default is <code>d</code>."
+  },
+  "components": {
+    "title": "Per-component defaults",
+    "desc": "Provide default props for any component key. Each prop that is not passed to an instance falls back to the configured value."
+  }
+}
