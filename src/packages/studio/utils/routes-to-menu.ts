@@ -8,7 +8,11 @@ interface Node {
   children: Map<string, Node>
 }
 
-export function routesToMenu(routes: RouteRecordNormalized[]): UIMenuItem[] {
+interface StudioMenuItem extends UIMenuItem {
+  children: UIMenuItem[]
+}
+
+export function routesToMenu(routes: RouteRecordNormalized[]): StudioMenuItem[] {
   const root: Node = {
     segment: '',
     path: '',
@@ -40,28 +44,36 @@ export function routesToMenu(routes: RouteRecordNormalized[]): UIMenuItem[] {
     node.route = route
   }
 
-  const result: UIMenuItem[] = []
-
-  function walk(node: Node, level: number) {
-    if (node.route) {
-      result.push({
-        label: String(node.route.name ?? node.segment),
-        to: node.path,
-        class: `level-${level}`,
-        kind: node.route.meta.kind,
-        icon: node.route.meta.icon,
-      })
-    }
-
+  function flatten(node: Node, level: number, items: UIMenuItem[]) {
     const children = [...node.children.values()].sort((a, b) => a.segment.localeCompare(b.segment))
 
     for (const child of children) {
-      walk(child, level + 1)
+      if (child.route) {
+        items.push({
+          label: String(child.route.name ?? child.segment),
+          to: child.path,
+          kind: child.route.meta.kind,
+        })
+      }
+
+      flatten(child, level + 1, items)
     }
   }
 
+  const result: (UIMenuItem & { children: UIMenuItem[] })[] = []
+
   for (const child of [...root.children.values()].sort((a, b) => a.segment.localeCompare(b.segment))) {
-    walk(child, 0)
+    const children: UIMenuItem[] = []
+
+    flatten(child, 1, children)
+
+    result.push({
+      label: String(child.route?.name ?? child.segment),
+      to: child.route ? child.path : undefined,
+      kind: child.route?.meta.kind,
+      icon: child.route?.meta.icon,
+      children,
+    })
   }
 
   return result
@@ -69,6 +81,6 @@ export function routesToMenu(routes: RouteRecordNormalized[]): UIMenuItem[] {
 
 declare module 'vue' {
   interface ComponentCustomProperties {
-    $studioMenu: UIMenuItem[]
+    $studioMenu: StudioMenuItem[]
   }
 }
