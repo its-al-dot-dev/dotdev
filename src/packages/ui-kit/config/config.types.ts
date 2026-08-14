@@ -11,6 +11,7 @@ import type {
   UiKitIcon,
   UiKitNamespace,
   UIListBoxProps,
+  UIMenuItemProps,
   UIMenuProps,
   UIRadioProps,
   UISelectButtonProps,
@@ -28,6 +29,7 @@ export interface UiKitConfig {
     'icon-button'?: Partial<UIIconButtonProps>
     'select-button'?: Partial<UISelectButtonProps>
     menu?: Partial<UIMenuProps>
+    'menu-item'?: Partial<UIMenuItemProps>
     input?: Partial<UIInputProps>
     group?: Partial<UIGroupProps>
     'group-addon'?: Partial<UIGroupAddonProps>

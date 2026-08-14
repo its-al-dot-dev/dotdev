@@ -56,10 +56,6 @@
   @apply flex-1 overflow-y-auto px-2 py-4;
 }
 
-.layout__sidebar-body .d-menu__heading.level-0 {
-  @apply not-first:mt-4 uppercase text-sm;
-}
-
 .app-logo {
   @apply flex items-center gap-2;
 }
@@ -74,5 +70,45 @@
 
 .app-logo__title span {
   @apply text-brand;
+}
+
+.app-menu {
+  @apply flex flex-col;
+}
+
+.app-menu hr {
+  @apply border-default my-2;
+}
+
+.app-menu__group {
+  @apply flex flex-col gap-1;
+}
+
+.app-menu__item {
+  @apply flex items-center gap-2 h-10 px-2.5 rounded-md text-xs font-medium uppercase tracking-wider  cursor-pointer transition-[background-color] hover:bg-neutral-soft;
+}
+
+.app-menu__item-icon {
+  @apply text-sm text-muted;
+}
+
+.app-menu__item-label {
+  @apply flex-1 text-left truncate;
+}
+
+.app-menu__item-chevron {
+  @apply ml-auto text-sm text-muted transition-transform;
+}
+
+.app-menu__item-chevron.is-open {
+  @apply rotate-180;
+}
+
+.app-menu__item.is-active {
+  @apply bg-neutral-soft;
+}
+
+.app-menu__body .d-menu__heading {
+  @apply text-xs uppercase mt-2 mb-1;
 }
 }

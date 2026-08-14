@@ -25,12 +25,20 @@ export default defineSheet({
     '&__sidebar-header': `flex items-center shrink-0 px-4`,
     '&__sidebar-body': `flex-1 overflow-y-auto px-2 py-4`,
 
-    // TODO replace .d to $ namespace
-    '&__sidebar-body .d-menu__heading.level-0': `not-first:mt-4 uppercase text-sm`,
-
     '.app-logo': 'flex items-center gap-2',
     '.app-logo__icon': 'block size-7 text-brand',
     '.app-logo__title': 'font-bold text-xl tracking-tight',
     '.app-logo__title span': 'text-brand',
+
+    '.app-menu': 'flex flex-col',
+    '.app-menu hr': 'border-default my-2',
+    '.app-menu__group': 'flex flex-col gap-1',
+    '.app-menu__item': `flex items-center gap-2 h-10 px-2.5 rounded-md text-xs font-medium uppercase tracking-wider  cursor-pointer transition-[background-color] hover:bg-neutral-soft`,
+    '.app-menu__item-icon': 'text-sm text-muted',
+    '.app-menu__item-label': 'flex-1 text-left truncate',
+    '.app-menu__item-chevron': 'ml-auto text-sm text-muted transition-transform',
+    '.app-menu__item-chevron.is-open': 'rotate-180',
+    '.app-menu__item.is-active': 'bg-neutral-soft',
+    '.app-menu__body .d-menu__heading': 'text-xs uppercase mt-2 mb-1',
   },
 })
