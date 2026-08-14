@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-definePage({ name: 'Components', meta: { icon: 'component-1' } })
+definePage({ name: 'Documentations', meta: { icon: 'reader' } })
 </script>
 
-<template>
-  <h1>UI kit</h1>
-</template>
+<template></template>

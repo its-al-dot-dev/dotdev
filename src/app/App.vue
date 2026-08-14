@@ -2,7 +2,8 @@
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import Logo from './components/Logo.vue'
-import { Group, GroupAddon, Icon, IconButton, Input, Menu, Tag, useColorScheme } from 'dotdev/ui-kit'
+import SidebarMenu from './components/SidebarMenu.vue'
+import { Group, GroupAddon, Icon, IconButton, Input, Tag, useColorScheme } from 'dotdev/ui-kit'
 
 const { scheme } = useColorScheme()
 const route = useRoute()
@@ -43,7 +44,7 @@ watch(
       </div>
 
       <div class="layout__sidebar-body">
-        <Menu :items="$studioMenu" size="sm" />
+        <SidebarMenu :items="$studioMenu" />
       </div>
     </aside>
 
@@ -54,11 +55,11 @@ watch(
         </div>
 
         <Group class="w-3xs">
-          <GroupAddon attach size="sm">
+          <GroupAddon attach size="sm" variant="plain">
             <Icon class="text-muted text-xl" name="magnifying-glass" />
           </GroupAddon>
           <Input class="pl-10 w-full" placeholder="Search..." size="sm" variant="soft" />
-          <GroupAddon attach class="px-1.5">
+          <GroupAddon attach class="px-1.5" variant="plain">
             <Tag class="text-sm text-muted" label="⌘K" />
           </GroupAddon>
         </Group>
