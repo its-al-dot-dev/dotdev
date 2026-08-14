@@ -52,6 +52,20 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    'Hooks': RouteRecordInfo<
+      'Hooks',
+      '/hooks',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    'useKeyboardNavigation': RouteRecordInfo<
+      'useKeyboardNavigation',
+      '/hooks/use-keyboard-navigation',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     'Components': RouteRecordInfo<
       'Components',
       '/ui-kit',
@@ -178,20 +192,6 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
-    'Hooks': RouteRecordInfo<
-      'Hooks',
-      '/ui-kit/hooks',
-      Record<never, never>,
-      Record<never, never>,
-      | never
-    >,
-    'useKeyboardNavigation': RouteRecordInfo<
-      'useKeyboardNavigation',
-      '/ui-kit/hooks/use-keyboard-navigation',
-      Record<never, never>,
-      Record<never, never>,
-      | never
-    >,
   }
 
   /**
@@ -224,6 +224,22 @@ declare module 'vue-router/auto-routes' {
     'src/packages/docs/documentation/config/index.vue': {
       routes:
         | 'Config'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/packages/docs/hooks/index.vue': {
+      routes:
+        | 'Hooks'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/packages/docs/hooks/use-keyboard-navigation/index.vue': {
+      routes:
+        | 'useKeyboardNavigation'
       views:
         | never
       pathParamNames:
@@ -368,22 +384,6 @@ declare module 'vue-router/auto-routes' {
     'src/packages/docs/ui-kit/form/textarea/index.vue': {
       routes:
         | 'Textarea'
-      views:
-        | never
-      pathParamNames:
-        | never
-    }
-    'src/packages/docs/ui-kit/hooks/index.vue': {
-      routes:
-        | 'Hooks'
-      views:
-        | never
-      pathParamNames:
-        | never
-    }
-    'src/packages/docs/ui-kit/hooks/use-keyboard-navigation/index.vue': {
-      routes:
-        | 'useKeyboardNavigation'
       views:
         | never
       pathParamNames:
