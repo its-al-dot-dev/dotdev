@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { Icon, type IconName, ScrollArea } from 'dotdev/ui-kit'
+import { Icon, type UiKitIcon, ScrollArea } from 'dotdev/ui-kit'
 
 interface Props {
-  icon?: IconName
+  icon?: UiKitIcon
   title?: string
   isEmpty?: boolean
   emptyTitle?: string

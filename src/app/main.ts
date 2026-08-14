@@ -4,14 +4,13 @@ import App from './App.vue'
 import { router } from './router'
 import { studio } from 'dotdev/studio'
 import { createUiKit } from 'dotdev/ui-kit'
+import { icons } from 'dotdev/icons'
 
 const app = createApp(App)
 
 const uiKit = createUiKit({
   namespace: 'd',
-  components: {
-    button: {},
-  },
+  icons,
 })
 
 app.use(uiKit)
