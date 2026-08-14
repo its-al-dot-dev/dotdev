@@ -49,6 +49,6 @@ export default defineSheet({
     '.app-menu__item.router-link-exact-active .app-menu__item-icon': `text-brand`,
 
     '.app-menu__body': 'mt-1 ml-2 pl-2.5 border-l border-default',
-    '.app-menu__body .d-menu__heading': `text-[0.6875rem] font-medium uppercase tracking-wider layout-text-heading py-0 pl-0 mt-2.5 mb-1.5`,
+    '.app-menu__body .d-menu__heading': `text-[0.6875rem] font-medium uppercase tracking-wider layout-text-heading py-0 mt-2.5 mb-1.5`,
   },
 })
