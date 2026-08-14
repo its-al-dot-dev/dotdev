@@ -1,7 +1,9 @@
 <script lang="ts" setup>
+import { computed } from 'vue'
 import { Icon, Tag } from 'dotdev/ui-kit'
 import { useRoute } from 'vue-router'
 import DocExample from './DocExample.vue'
+import DocSidebar from './DocSidebar.vue'
 import type { ExampleMeta } from '../../docs/define-example.ts'
 import { normalizeExamples } from '../../utils/normalize-example.ts'
 
@@ -12,51 +14,83 @@ const examples = normalizeExamples(
   route.meta?.sources,
   route.meta?.examplesMeta as Record<string, ExampleMeta> | undefined,
 )
+
+function formatName(name: string): string {
+  return name.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^./, (char) => char.toUpperCase())
+}
+
+const title = computed(() => (typeof route.name === 'string' ? formatName(route.name) : ''))
+
+const section = computed(() => {
+  const segment = route.path.split('/').filter(Boolean)[0] ?? ''
+  return formatName(segment.replace(/-/g, ' '))
+})
+
+const exampleItems = computed(() =>
+  examples.map((example) => ({
+    ...example,
+    title: example.title ?? formatName(example.id.replace(/-/g, ' ')),
+  })),
+)
+
+const sidebarItems = computed(() =>
+  exampleItems.value.map((example) => ({
+    id: `example-${example.id}`,
+    title: example.title ?? '',
+  })),
+)
 </script>
 
 <template>
   <main class="doc-page">
     <div class="doc-page__body">
-      <div class="doc-page__header">
-        <div class="doc-page__group">
-          <h2 class="doc-page__title">
-            <Icon v-if="route.meta.icon" :name="route.meta.icon" class="doc-page__title-icon" />
-            {{ route.name }}
-          </h2>
+      <header class="doc-page__header">
+        <div class="doc-page__caption">
+          <span class="doc-page__caption-label">{{ section }}</span>
 
           <Tag
             is="a"
+            border
             class="doc-page__gh"
-            color="primary"
             href="#"
             label="GitHub"
             prefix-icon="github-logo"
             suffix-icon="external-link"
+            variant="plain"
           />
         </div>
 
+        <h1 class="doc-page__title">
+          <Icon v-if="route.meta.icon" :name="route.meta.icon" class="doc-page__title-icon" />
+          {{ title }}
+        </h1>
+
         <p class="doc-page__desc doc-desc" v-html="route.meta.desc" />
-      </div>
+      </header>
 
       <slot />
 
       <hr class="doc-page__divider" />
 
-      <div v-if="examples.length" class="doc-section">
+      <div v-if="exampleItems.length" class="doc-section">
         <h3 class="doc-section__title">Examples</h3>
-        <DocExample
-          v-for="example in examples"
+        <section
+          v-for="example in exampleItems"
+          :id="`example-${example.id}`"
           :key="example.id"
-          :code="example.code"
-          :component="example.component"
-          :title="example.title"
-          :desc="example.desc"
-          :lang="example.lang"
-        />
-        <hr class="doc-page__divider" />
+          class="doc-page__example"
+        >
+          <DocExample
+            :code="example.code"
+            :component="example.component"
+            :desc="example.desc"
+            :lang="example.lang"
+            :title="example.title"
+          />
+        </section>
       </div>
     </div>
 
-    <!--    <DocSidebar :config="config" />-->
+    <DocSidebar v-if="exampleItems.length" :items="sidebarItems" />
   </main>
 </template>

@@ -30,4 +30,5 @@ type UiKitTagVariant = keyof UiKitTagVariants | (string & {})
 interface UiKitTagVariants {
   soft: true
   solid: true
+  plain: true
 }

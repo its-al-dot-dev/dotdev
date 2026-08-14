@@ -44,19 +44,23 @@
 }
 
 .doc-page__body {
-  @apply w-full;
+  @apply w-full min-w-0;
 }
 
 .doc-page__header {
-  @apply doc-card p-8 mb-10 doc-bg-gradient;
+  @apply mb-8;
 }
 
-.doc-page__group {
-  @apply flex justify-between items-center mb-4;
+.doc-page__caption {
+  @apply flex items-center justify-between gap-4 mb-3;
+}
+
+.doc-page__caption-label {
+  @apply flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-muted;
 }
 
 .doc-page__title {
-  @apply font-bold text-2xl mb-2 flex items-center gap-3;
+  @apply font-bold text-2xl tracking-tight flex items-center gap-3;
 }
 
 .doc-page__title-icon {
@@ -64,23 +68,47 @@
 }
 
 .doc-page__gh {
-  @apply font-mono;
+  @apply font-mono text-muted;
 }
 
 .doc-page__desc {
-  @apply max-w-3xl text-muted;
+  @apply mt-4 text-muted max-w-prose;
 }
 
 .doc-page__divider {
-  @apply border-dashed mt-10 mb-10 border-default;
+  @apply mt-10 mb-10 border-default;
 }
 
-.doc-section {
+.doc-page__example {
   @apply scroll-mt-24;
 }
 
+.doc-section {
+  @apply flex flex-col gap-5 scroll-mt-24;
+}
+
 .doc-section__title {
-  @apply font-semibold text-xl capitalize;
+  @apply font-semibold text-sm uppercase tracking-wider text-muted;
+}
+
+.doc-sidebar {
+  @apply sticky top-24 hidden xl:block w-64 shrink-0 max-h-[calc(100vh-6rem)] overflow-y-auto;
+}
+
+.doc-sidebar__title {
+  @apply font-mono text-xs uppercase tracking-wider text-muted mb-4;
+}
+
+.doc-sidebar__nav {
+  @apply flex flex-col gap-1 border-l border-default;
+}
+
+.doc-sidebar__link {
+  @apply text-sm text-muted -ml-px border-l-2 border-transparent px-3 py-1.5 transition-[color,border-color] hover:text-foreground;
+}
+
+.doc-sidebar__link--active {
+  @apply border-brand text-foreground font-medium;
 }
 
 .doc-block {
