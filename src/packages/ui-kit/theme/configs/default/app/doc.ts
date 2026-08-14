@@ -53,9 +53,9 @@ export default defineSheet({
 
     '&-example': `flex flex-col min-h-60 overflow-hidden`,
     '&-example__actions': `flex gap-1`,
-    '&-example__body': `flex flex-1 bg-background transition-[background-color,border-color] mx-2 mb-2 border-default border rounded-lg overflow-hidden`,
-    '&-example__canvas': `flex-1 flex items-center justify-center flex-wrap gap-4 px-6 py-6 `, // doc-bg-grid
-    '&-example__code': `w-full flex-1`,
+    '&-example__body': `flex flex-1 flex-col bg-background transition-[background-color]`,
+    '&-example__canvas': `flex flex-1 items-center justify-center flex-wrap gap-4 px-6 py-6`,
+    '&-example__code-view': `flex flex-1`,
 
     '&-code': `h-full`, //  max-h-125
     '&-code__raw': `py-4 pr-4`,
