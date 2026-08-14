@@ -152,7 +152,7 @@
 }
 
 .doc-code .shiki {
-  @apply flex text-base;
+  @apply flex text-sm;
 }
 
 .doc-code .shiki code {

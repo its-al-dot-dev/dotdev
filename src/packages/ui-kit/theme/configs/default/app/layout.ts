@@ -5,6 +5,7 @@ export default defineSheet({
   semantics: {
     'h-header': '56px',
     'w-sidebar': '240px',
+    'text-heading': ['neutral-400', 'neutral-500'],
   },
   utilities: {
     root: 'bg-background text-foreground transition-[background-color]',
@@ -30,15 +31,24 @@ export default defineSheet({
     '.app-logo__title': 'font-bold text-xl tracking-tight',
     '.app-logo__title span': 'text-brand',
 
-    '.app-menu': 'flex flex-col',
-    '.app-menu hr': 'border-default my-2',
+    '.app-menu': 'flex flex-col gap-0.5',
     '.app-menu__group': 'flex flex-col gap-1',
-    '.app-menu__item': `flex items-center gap-2 h-10 px-2.5 rounded-md text-xs font-medium uppercase tracking-wider  cursor-pointer transition-[background-color] hover:bg-neutral-soft`,
-    '.app-menu__item-icon': 'text-sm text-muted',
+    '.app-menu__group + .app-menu__group': 'mt-5',
+    '.app-menu__item': `relative flex items-center gap-2 h-9 px-2.5 rounded-md text-sm font-medium text-muted cursor-pointer transition-[background-color,color] hover:bg-neutral-soft hover:text-foreground`,
+    '.app-menu__item-icon': 'text-base text-muted transition-[color]',
     '.app-menu__item-label': 'flex-1 text-left truncate',
-    '.app-menu__item-chevron': 'ml-auto text-sm text-muted transition-transform',
-    '.app-menu__item-chevron.is-open': 'rotate-180',
-    '.app-menu__item.is-active': 'bg-neutral-soft',
-    '.app-menu__body .d-menu__heading': 'text-xs uppercase mt-2 mb-1',
+    '.app-menu__item-chevron': 'ml-auto text-xs text-muted transition-transform',
+    '.app-menu__item-chevron.is-open': 'rotate-180 text-foreground',
+
+    '.app-menu__item--group': 'h-7 px-2 text-xs font-semibold uppercase tracking-wider hover:bg-transparent',
+    '.app-menu__item--group .app-menu__item-icon': 'text-sm',
+    '.app-menu__item--group.is-active': 'text-foreground',
+
+    '.app-menu .d-menu__item': 'relative',
+    '.app-menu__item.router-link-exact-active, .app-menu__body .d-menu__item.router-link-exact-active': `bg-neutral-soft text-foreground before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-3/5 before:w-0.5 before:rounded-full before:bg-brand before:content-['']`,
+    '.app-menu__item.router-link-exact-active .app-menu__item-icon': `text-brand`,
+
+    '.app-menu__body': 'mt-1 ml-2 pl-2.5 border-l border-default',
+    '.app-menu__body .d-menu__heading': `text-[0.6875rem] font-medium uppercase tracking-wider layout-text-heading py-0 pl-0 mt-2.5 mb-1.5`,
   },
 })

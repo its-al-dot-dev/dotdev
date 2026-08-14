@@ -1,6 +1,11 @@
 @theme {
   --layout-h-header: 56px;
   --layout-w-sidebar: 240px;
+  --layout-text-heading: var(--ui-neutral-400);
+}
+
+.dark {
+  --layout-text-heading: var(--ui-neutral-500);
 }
 
 @utility layout-h-header {
@@ -9,6 +14,10 @@
 
 @utility layout-w-sidebar {
   @apply w-(--layout-w-sidebar);
+}
+
+@utility layout-text-heading {
+  @apply text-(--layout-text-heading);
 }
 
 @utility layout-root {
@@ -73,23 +82,23 @@
 }
 
 .app-menu {
-  @apply flex flex-col;
-}
-
-.app-menu hr {
-  @apply border-default my-2;
+  @apply flex flex-col gap-0.5;
 }
 
 .app-menu__group {
   @apply flex flex-col gap-1;
 }
 
+.app-menu__group + .app-menu__group {
+  @apply mt-5;
+}
+
 .app-menu__item {
-  @apply flex items-center gap-2 h-10 px-2.5 rounded-md text-xs font-medium uppercase tracking-wider  cursor-pointer transition-[background-color] hover:bg-neutral-soft;
+  @apply relative flex items-center gap-2 h-9 px-2.5 rounded-md text-sm font-medium text-muted cursor-pointer transition-[background-color,color] hover:bg-neutral-soft hover:text-foreground;
 }
 
 .app-menu__item-icon {
-  @apply text-sm text-muted;
+  @apply text-base text-muted transition-[color];
 }
 
 .app-menu__item-label {
@@ -97,18 +106,42 @@
 }
 
 .app-menu__item-chevron {
-  @apply ml-auto text-sm text-muted transition-transform;
+  @apply ml-auto text-xs text-muted transition-transform;
 }
 
 .app-menu__item-chevron.is-open {
-  @apply rotate-180;
+  @apply rotate-180 text-foreground;
 }
 
-.app-menu__item.is-active {
-  @apply bg-neutral-soft;
+.app-menu__item--group {
+  @apply h-7 px-2 text-xs font-semibold uppercase tracking-wider hover:bg-transparent;
+}
+
+.app-menu__item--group .app-menu__item-icon {
+  @apply text-sm;
+}
+
+.app-menu__item--group.is-active {
+  @apply text-foreground;
+}
+
+.app-menu .d-menu__item {
+  @apply relative;
+}
+
+.app-menu__item.router-link-exact-active, .app-menu__body .d-menu__item.router-link-exact-active {
+  @apply bg-neutral-soft text-foreground before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-3/5 before:w-0.5 before:rounded-full before:bg-brand before:content-[''];
+}
+
+.app-menu__item.router-link-exact-active .app-menu__item-icon {
+  @apply text-brand;
+}
+
+.app-menu__body {
+  @apply mt-1 ml-2 pl-2.5 border-l border-default;
 }
 
 .app-menu__body .d-menu__heading {
-  @apply text-xs uppercase mt-2 mb-1;
+  @apply text-[0.6875rem] font-medium uppercase tracking-wider layout-text-heading py-0 pl-0 mt-2.5 mb-1.5;
 }
 }

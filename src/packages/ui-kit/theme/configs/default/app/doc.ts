@@ -53,7 +53,7 @@ export default defineSheet({
     '&-code__raw': `py-4 pr-4`,
     // TODO .s
     '&-code .s-scroll-area__thumb--x': `px-3`,
-    '&-code .shiki': `flex text-base`,
+    '&-code .shiki': `flex text-sm`,
     '&-code .shiki code': `pr-4`,
     '&-code .shiki span': `text-(--shiki-light) dark:text-(--shiki-dark)`,
   },
