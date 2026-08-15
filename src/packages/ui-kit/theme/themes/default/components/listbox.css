@@ -148,7 +148,7 @@
 }
 
 @utility listbox-size-md {
-  @apply listbox-text-md;
+  @apply listbox-text-sm;
 }
 
 @utility listbox-size-lg {

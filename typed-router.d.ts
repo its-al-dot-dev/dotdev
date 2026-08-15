@@ -136,6 +136,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    'ScrollArea': RouteRecordInfo<
+      'ScrollArea',
+      '/ui-kit/data/scroll-area',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     'Tag': RouteRecordInfo<
       'Tag',
       '/ui-kit/data/tag',
@@ -355,6 +362,14 @@ declare module 'vue-router/auto-routes' {
     'src/packages/docs/ui-kit/data/message/index.vue': {
       routes:
         | 'Message'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/packages/docs/ui-kit/data/scroll-area/index.vue': {
+      routes:
+        | 'ScrollArea'
       views:
         | never
       pathParamNames:

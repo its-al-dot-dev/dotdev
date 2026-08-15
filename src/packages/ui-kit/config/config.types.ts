@@ -18,6 +18,7 @@ import type {
   UIMenuProps,
   UIMessageProps,
   UIRadioProps,
+  UIScrollAreaProps,
   UISelectButtonProps,
   UISelectProps,
   UISwitchProps,
@@ -49,6 +50,7 @@ export interface UiKitConfig {
     checkbox?: Partial<UICheckboxProps>
     radio?: Partial<UIRadioProps>
     icon?: Partial<UIIconProps>
+    'scroll-area'?: Partial<UIScrollAreaProps>
   }
   icons?: Partial<Record<UiKitIcon, Component>>
 }

@@ -4,6 +4,7 @@ import layout from './app/layout.ts'
 import doc from './app/doc.ts'
 import landing from './app/landing.ts'
 import listbox from './components/listbox.ts'
+import scrollArea from './components/scroll-area.ts'
 import breadcrumbs from './components/breadcrumbs.ts'
 import accordion from './components/accordion.ts'
 import button from './components/button.ts'
@@ -40,6 +41,7 @@ const index: ThemeBuilderConfig = {
     icon,
     iconButton,
     listbox,
+    scrollArea,
     tag,
     message,
     divider,

@@ -46,7 +46,7 @@ export default defineSheet({
 
     size: 'listbox-p listbox-rounded',
     'size-sm': 'listbox-text-sm',
-    'size-md': 'listbox-text-md',
+    'size-md': 'listbox-text-sm',
     'size-lg': 'listbox-text-lg',
     'size-item-sm': 'listbox-px-sm listbox-gap-sm listbox-h-sm',
     'size-item-md': 'listbox-px-md listbox-gap-md listbox-h-md',

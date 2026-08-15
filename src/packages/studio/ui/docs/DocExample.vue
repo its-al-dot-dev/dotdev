@@ -80,7 +80,7 @@ provide(EXAMPLE_KEY, meta)
           <component :is="component" />
         </div>
 
-        <div v-if="code" v-show="activeTab === 'Code'" class="doc-example__code-view">
+        <div v-if="code && activeTab === 'Code'" class="doc-example__code-view">
           <DocCode :code="code" :lang="lang" />
         </div>
       </div>

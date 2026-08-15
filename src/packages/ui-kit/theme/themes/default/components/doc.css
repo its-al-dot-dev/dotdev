@@ -5,7 +5,7 @@
 }
 
 @theme {
-  --doc-bg-tint: color-mix(in srgb, var(--ui-brand-500) 5%, transparent);
+  --doc-bg-tint: var(--ui-brand-50);
   --doc-bg-card: var(--ui-neutral-50);
 }
 
@@ -132,7 +132,7 @@
 }
 
 .doc-desc code {
-  @apply doc-code-text doc-bg-tint px-2 py-0.5 rounded-sm text-foreground;
+  @apply doc-code-text doc-bg-tint px-1.5 py-px rounded-sm text-brand;
 }
 
 .doc-card {
@@ -148,7 +148,7 @@
 }
 
 .doc-example {
-  @apply flex flex-col min-h-60 overflow-hidden;
+  @apply flex flex-col min-h-100 overflow-hidden;
 }
 
 .doc-example__actions {
@@ -168,19 +168,15 @@
 }
 
 .doc-code {
-  @apply h-full;
+  @apply max-h-100 h-auto;
 }
 
 .doc-code__raw {
   @apply py-4 pr-4;
 }
 
-.doc-code .s-scroll-area__thumb--x {
-  @apply px-3;
-}
-
 .doc-code .shiki {
-  @apply flex text-sm;
+  @apply flex text-sm outline-none;
 }
 
 .doc-code .shiki code {

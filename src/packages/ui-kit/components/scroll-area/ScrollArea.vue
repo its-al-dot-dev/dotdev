@@ -1,12 +1,18 @@
 <script lang="ts" setup>
-import type { ScrollAreaEmits, ScrollAreaProps, ScrollAreaSlots } from './scroll-area.types'
+import type { UIScrollAreaEmits, UIScrollAreaProps, UIScrollAreaSlots } from './scroll-area.types.ts'
 import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue'
-import { calculateThumbOffset, calculateThumbSize } from './utils'
-import { throttleByRaf } from 'dotdev/ui-kit'
+import { calculateThumbOffset, calculateThumbSize } from './utils.ts'
+import { throttleByRaf, useUiKitBem, useUiKitProps } from 'dotdev/ui-kit'
 
-defineProps<ScrollAreaProps>()
-defineSlots<ScrollAreaSlots>()
-const emit = defineEmits<ScrollAreaEmits>()
+defineSlots<UIScrollAreaSlots>()
+const emit = defineEmits<UIScrollAreaEmits>()
+const props = withDefaults(defineProps<UIScrollAreaProps>(), {
+  ui: 'scroll-area',
+  minThumbSize: 20,
+})
+
+const ui = useUiKitProps('scroll-area', props)
+const bem = useUiKitBem(ui)
 
 const viewportRef = useTemplateRef<HTMLDivElement>('viewport')
 
@@ -38,8 +44,8 @@ const thumbSizeY = computed(() =>
   calculateThumbSize({
     viewportSize: viewportSize.value.height,
     contentSize: contentSize.value.height,
-    minThumbSize: 20,
-  })
+    minThumbSize: ui.minThumbSize,
+  }),
 )
 
 const thumbOffsetY = computed(() =>
@@ -48,15 +54,15 @@ const thumbOffsetY = computed(() =>
     contentSize: contentSize.value.height,
     thumbSize: thumbSizeY.value,
     scrollOffset: scrollY.value,
-  })
+  }),
 )
 
 const thumbSizeX = computed(() =>
   calculateThumbSize({
     viewportSize: viewportSize.value.width,
     contentSize: contentSize.value.width,
-    minThumbSize: 20,
-  })
+    minThumbSize: ui.minThumbSize,
+  }),
 )
 
 const thumbOffsetX = computed(() =>
@@ -65,7 +71,7 @@ const thumbOffsetX = computed(() =>
     contentSize: contentSize.value.width,
     thumbSize: thumbSizeX.value,
     scrollOffset: scrollX.value,
-  })
+  }),
 )
 
 const styleVariables = computed(() => {
@@ -83,6 +89,55 @@ const styleVariables = computed(() => {
 
   return styles
 })
+
+const drag = ref<{ axis: 'y' | 'x'; pointerStart: number; scrollStart: number } | null>(null)
+
+function onThumbPointerDown(axis: 'y' | 'x', event: PointerEvent) {
+  if (!viewportRef.value) return
+
+  drag.value = {
+    axis,
+    pointerStart: axis === 'y' ? event.clientY : event.clientX,
+    scrollStart: axis === 'y' ? viewportRef.value.scrollTop : viewportRef.value.scrollLeft,
+  }
+
+  const target = event.currentTarget as HTMLElement
+  target.setPointerCapture(event.pointerId)
+  target.addEventListener('pointermove', onThumbPointerMove)
+  target.addEventListener('pointerup', onThumbPointerEnd)
+  target.addEventListener('pointercancel', onThumbPointerEnd)
+}
+
+function onThumbPointerMove(event: PointerEvent) {
+  const state = drag.value
+  if (!state || !viewportRef.value) return
+
+  const viewport = viewportRef.value
+  const isY = state.axis === 'y'
+  const content = isY ? viewport.scrollHeight : viewport.scrollWidth
+  const viewportSide = isY ? viewport.clientHeight : viewport.clientWidth
+  const thumbSize = isY ? thumbSizeY.value : thumbSizeX.value
+  const maxScroll = content - viewportSide
+  const denominator = viewportSide - thumbSize
+
+  if (maxScroll <= 0 || denominator <= 0) return
+
+  const delta = (isY ? event.clientY : event.clientX) - state.pointerStart
+  const target = state.scrollStart + delta * (maxScroll / denominator)
+
+  if (isY) viewport.scrollTop = target
+  else viewport.scrollLeft = target
+}
+
+function onThumbPointerEnd(event: PointerEvent) {
+  drag.value = null
+
+  const target = event.currentTarget as HTMLElement
+  target.removeEventListener('pointermove', onThumbPointerMove)
+  target.removeEventListener('pointerup', onThumbPointerEnd)
+  target.removeEventListener('pointercancel', onThumbPointerEnd)
+  if (target.hasPointerCapture(event.pointerId)) target.releasePointerCapture(event.pointerId)
+}
 
 let resizeObserver: ResizeObserver | null = null
 
@@ -109,20 +164,20 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div :style="styleVariables" class="s-scroll-area">
-    <div ref="viewport" class="s-scroll-area__viewport" @scroll="throttledUpdateScroll">
+  <div :class="bem()" :style="styleVariables">
+    <div ref="viewport" :class="bem('viewport')" tabindex="0" @scroll="throttledUpdateScroll">
       <slot />
     </div>
 
     <slot v-if="thumbSizeY > 0" :offset="thumbOffsetY" :size="thumbSizeY" name="scrollbar-y">
-      <div class="s-scroll-area__scrollbar s-scroll-area__scrollbar--y">
-        <div class="s-scroll-area__thumb s-scroll-area__thumb--y" />
+      <div :class="bem('scrollbar', 'y')">
+        <div :class="bem('thumb', 'y')" aria-hidden="true" @pointerdown="onThumbPointerDown('y', $event)" />
       </div>
     </slot>
 
     <slot v-if="thumbSizeX > 0" :offset="thumbOffsetX" :size="thumbSizeX" name="scrollbar-x">
-      <div class="s-scroll-area__scrollbar s-scroll-area__scrollbar--x">
-        <div class="s-scroll-area__thumb s-scroll-area__thumb--x" />
+      <div :class="bem('scrollbar', 'x')">
+        <div :class="bem('thumb', 'x')" aria-hidden="true" @pointerdown="onThumbPointerDown('x', $event)" />
       </div>
     </slot>
   </div>

@@ -8,7 +8,7 @@ export default defineSheet({
     'secondary-gradient': 'bg-surface',
   },
   semantics: {
-    'bg-tint': ['brand-500/5', 'brand-400/10'],
+    'bg-tint': ['brand-50', 'brand-400/10'],
     'bg-card': ['neutral-50', 'neutral-500/10'],
   },
   utilities: {
@@ -45,23 +45,21 @@ export default defineSheet({
     '&-block__desc': `text-muted`,
 
     '&-desc': `whitespace-pre-wrap`,
-    '&-desc code': `doc-code-text doc-bg-tint px-2 py-0.5 rounded-sm text-foreground`,
+    '&-desc code': `doc-code-text doc-bg-tint px-1.5 py-px rounded-sm text-brand`,
 
     '&-card': `doc-card`,
     '&-card__header, &-card__footer': `border-default p-2 flex justify-between transition-[border-color]`,
     '&-card__footer': `border-t`,
 
-    '&-example': `flex flex-col min-h-60 overflow-hidden`,
+    '&-example': `flex flex-col min-h-100 overflow-hidden`,
     '&-example__actions': `flex gap-1`,
     '&-example__body': `flex flex-1 flex-col bg-background transition-[background-color]`,
     '&-example__canvas': `flex flex-1 items-center justify-center flex-wrap gap-4 px-6 py-6`,
     '&-example__code-view': `flex flex-1`,
 
-    '&-code': `h-full`, //  max-h-125
+    '&-code': `max-h-100 h-auto`,
     '&-code__raw': `py-4 pr-4`,
-    // TODO .s
-    '&-code .s-scroll-area__thumb--x': `px-3`,
-    '&-code .shiki': `flex text-sm`,
+    '&-code .shiki': `flex text-sm outline-none`,
     '&-code .shiki code': `pr-4`,
     '&-code .shiki span': `text-(--shiki-light) dark:text-(--shiki-dark)`,
   },

@@ -1,15 +1,27 @@
 import type { VNode } from 'vue'
+import type { UiKitBaseProps } from 'dotdev/ui-kit'
 
-export interface ScrollAreaProps {
+export interface UIScrollAreaProps extends UiKitBaseProps {
+  /** Минимальный размер ползунка в пикселях */
   minThumbSize?: number
 }
 
-export interface ScrollAreaEmits {
-  (e: 'scroll', payload: { scrollTop: number; scrollLeft: number }): void
+export interface UIScrollAreaEmits {
+  (e: 'scroll', payload: UIScrollAreaScrollPayload): void
 }
 
-export interface ScrollAreaSlots {
-  default(): VNode[]
-  'scrollbar-y'?(props: { size: number; offset: number }): VNode[]
-  'scrollbar-x'?(props: { size: number; offset: number }): VNode[]
+export interface UIScrollAreaSlots {
+  default?(): VNode[]
+  'scrollbar-y'?(props: UIScrollAreaThumbSlotProps): VNode[]
+  'scrollbar-x'?(props: UIScrollAreaThumbSlotProps): VNode[]
+}
+
+export interface UIScrollAreaScrollPayload {
+  scrollTop: number
+  scrollLeft: number
+}
+
+export interface UIScrollAreaThumbSlotProps {
+  size: number
+  offset: number
 }
