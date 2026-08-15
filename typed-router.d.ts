@@ -101,6 +101,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    'Accordion': RouteRecordInfo<
+      'Accordion',
+      '/ui-kit/data/accordion',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     'Avatar': RouteRecordInfo<
       'Avatar',
       '/ui-kit/data/avatar',
@@ -108,9 +115,23 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    'Divider': RouteRecordInfo<
+      'Divider',
+      '/ui-kit/data/divider',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     'Icon': RouteRecordInfo<
       'Icon',
       '/ui-kit/data/icon',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    'Message': RouteRecordInfo<
+      'Message',
+      '/ui-kit/data/message',
       Record<never, never>,
       Record<never, never>,
       | never
@@ -188,6 +209,20 @@ declare module 'vue-router/auto-routes' {
     'Textarea': RouteRecordInfo<
       'Textarea',
       '/ui-kit/form/textarea',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    'Navigation': RouteRecordInfo<
+      'Navigation',
+      '/ui-kit/navigation',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    'Breadcrumbs': RouteRecordInfo<
+      'Breadcrumbs',
+      '/ui-kit/navigation/breadcrumbs',
       Record<never, never>,
       Record<never, never>,
       | never
@@ -285,6 +320,14 @@ declare module 'vue-router/auto-routes' {
       pathParamNames:
         | never
     }
+    'src/packages/docs/ui-kit/data/accordion/index.vue': {
+      routes:
+        | 'Accordion'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
     'src/packages/docs/ui-kit/data/avatar/index.vue': {
       routes:
         | 'Avatar'
@@ -293,9 +336,25 @@ declare module 'vue-router/auto-routes' {
       pathParamNames:
         | never
     }
+    'src/packages/docs/ui-kit/data/divider/index.vue': {
+      routes:
+        | 'Divider'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
     'src/packages/docs/ui-kit/data/icon/index.vue': {
       routes:
         | 'Icon'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/packages/docs/ui-kit/data/message/index.vue': {
+      routes:
+        | 'Message'
       views:
         | never
       pathParamNames:
@@ -384,6 +443,22 @@ declare module 'vue-router/auto-routes' {
     'src/packages/docs/ui-kit/form/textarea/index.vue': {
       routes:
         | 'Textarea'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/packages/docs/ui-kit/navigation/index.vue': {
+      routes:
+        | 'Navigation'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/packages/docs/ui-kit/navigation/breadcrumbs/index.vue': {
+      routes:
+        | 'Breadcrumbs'
       views:
         | never
       pathParamNames:

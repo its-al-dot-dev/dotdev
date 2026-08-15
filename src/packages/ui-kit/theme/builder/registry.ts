@@ -66,4 +66,9 @@ export class TokenRegistry {
   has(bare: string): boolean {
     return this.tokens.has(bare)
   }
+
+  /** Имя листа-владельца bare-токена (для манифеста), либо undefined */
+  owner(bare: string): string | undefined {
+    return this.owners.get(bare)
+  }
 }

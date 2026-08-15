@@ -1,8 +1,11 @@
 import type { Component, InjectionKey } from 'vue'
 import type {
+  UIAccordionProps,
   UIAvatarProps,
+  UIBreadcrumbsProps,
   UIButtonProps,
   UICheckboxProps,
+  UIDividerProps,
   UIGroupAddonProps,
   UIGroupProps,
   UIIconButtonProps,
@@ -13,6 +16,7 @@ import type {
   UIListBoxProps,
   UIMenuItemProps,
   UIMenuProps,
+  UIMessageProps,
   UIRadioProps,
   UISelectButtonProps,
   UISelectProps,
@@ -24,7 +28,9 @@ import type {
 export interface UiKitConfig {
   namespace?: UiKitNamespace
   components?: {
+    accordion?: Partial<UIAccordionProps>
     avatar?: Partial<UIAvatarProps>
+    breadcrumbs?: Partial<UIBreadcrumbsProps>
     button?: Partial<UIButtonProps>
     'icon-button'?: Partial<UIIconButtonProps>
     'select-button'?: Partial<UISelectButtonProps>
@@ -38,6 +44,8 @@ export interface UiKitConfig {
     switch?: Partial<UISwitchProps>
     textarea?: Partial<UITextareaProps>
     tag?: Partial<UITagProps>
+    message?: Partial<UIMessageProps>
+    divider?: Partial<UIDividerProps>
     checkbox?: Partial<UICheckboxProps>
     radio?: Partial<UIRadioProps>
     icon?: Partial<UIIconProps>

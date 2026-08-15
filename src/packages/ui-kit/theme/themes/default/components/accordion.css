@@ -1,0 +1,155 @@
+@theme {
+  --accordion-bg-item-outlined: var(--ui-bg-background);
+  --accordion-bg-item-soft: var(--ui-bg-neutral-soft);
+  --accordion-border-item: var(--ui-border-default);
+  --accordion-text-item: var(--ui-text-foreground);
+  --accordion-text-value: var(--ui-text-foreground);
+  --accordion-text-indicator: var(--ui-text-muted);
+  --accordion-text-indicator-open: var(--ui-text-foreground);
+  --accordion-ring-focus: var(--ui-ring-brand);
+  --accordion-gap: 0.5rem;
+  --accordion-px-item: var(--ui-space-lg);
+  --accordion-py-item: var(--ui-space-md);
+  --accordion-pb-item: var(--ui-space-md);
+  --accordion-gap-item: var(--ui-gap-md);
+  --accordion-text-size-item: var(--ui-label-sm);
+  --accordion-rounded-item: var(--ui-radius-md);
+}
+
+@utility accordion-bg-item-outlined {
+  @apply bg-(--accordion-bg-item-outlined);
+}
+
+@utility accordion-bg-item-soft {
+  @apply bg-(--accordion-bg-item-soft);
+}
+
+@utility accordion-border-item {
+  @apply border-(--accordion-border-item);
+}
+
+@utility accordion-text-item {
+  @apply text-(--accordion-text-item);
+}
+
+@utility accordion-text-value {
+  @apply text-(--accordion-text-value);
+}
+
+@utility accordion-text-indicator {
+  @apply text-(--accordion-text-indicator);
+}
+
+@utility accordion-text-indicator-open {
+  @apply text-(--accordion-text-indicator-open);
+}
+
+@utility accordion-ring-focus {
+  @apply ring-(--accordion-ring-focus);
+}
+
+@utility accordion-gap {
+  @apply gap-(--accordion-gap);
+}
+
+@utility accordion-px-item {
+  @apply px-(--accordion-px-item);
+}
+
+@utility accordion-py-item {
+  @apply py-(--accordion-py-item);
+}
+
+@utility accordion-pb-item {
+  @apply pb-(--accordion-pb-item);
+}
+
+@utility accordion-gap-item {
+  @apply gap-(--accordion-gap-item);
+}
+
+@utility accordion-text-size-item {
+  @apply text-(length:--accordion-text-size-item);
+}
+
+@utility accordion-rounded-item {
+  @apply rounded-(--accordion-rounded-item);
+}
+
+@utility accordion-transition {
+  @apply transition-[background-color,color,border-color,opacity];
+}
+
+@utility accordion-transition-indicator {
+  @apply transition-[transform,rotate,color];
+}
+
+@utility accordion-transition-panel {
+  @apply transition-[height] duration-200;
+}
+
+@layer components {
+.d-accordion {
+  @apply flex w-full flex-col accordion-transition;
+}
+
+.d-accordion--outlined {
+  @apply accordion-gap;
+}
+
+.d-accordion--soft {
+  @apply accordion-gap;
+}
+
+.d-accordion--disabled {
+  @apply disabled;
+}
+
+.d-accordion__item {
+  @apply flex flex-col rounded-[inherit];
+}
+
+.d-accordion--outlined .d-accordion__item {
+  @apply accordion-rounded-item border accordion-border-item accordion-bg-item-outlined;
+}
+
+.d-accordion--soft .d-accordion__item {
+  @apply accordion-rounded-item accordion-bg-item-soft;
+}
+
+.d-accordion--underline .d-accordion__item {
+  @apply border-b accordion-border-item last:border-b-0;
+}
+
+.d-accordion__trigger {
+  @apply  rounded-[inherit] flex w-full items-center accordion-gap-item accordion-px-item accordion-py-item accordion-text-size-item accordion-text-item text-left font-medium outline-none cursor-pointer select-none accordion-transition;
+}
+
+.d-accordion__trigger:focus-visible {
+  @apply ring-2 accordion-ring-focus;
+}
+
+.d-accordion__trigger:disabled {
+  @apply disabled;
+}
+
+.d-accordion__label {
+  @apply truncate;
+}
+
+.d-accordion__indicator {
+  @apply ml-auto accordion-text-indicator accordion-transition-indicator;
+}
+
+.d-accordion__trigger--open .d-accordion__indicator {
+  @apply rotate-180 accordion-text-indicator-open;
+}
+
+.d-accordion__panel {
+  @apply accordion-transition-panel overflow-hidden;
+}
+
+.d-accordion__value {
+  @apply block accordion-px-item accordion-pb-item accordion-text-size-item accordion-text-value;
+}
+}

@@ -5,6 +5,11 @@ defineExample({
   title: 'Combined usage',
   desc: 'Combine multiple addons with different configurations. Use slots for custom content like icons or actions.',
 })
+
+const options = [
+  { label: 'Option A', value: 'a' },
+  { label: 'Option B', value: 'b' },
+]
 </script>
 
 <template>
@@ -33,13 +38,7 @@ defineExample({
 
       <Group>
         <GroupAddon label="Select" />
-        <Select
-          :options="[
-            { label: 'Option A', value: 'a' },
-            { label: 'Option B', value: 'b' },
-          ]"
-          placeholder="Choose"
-        />
+        <Select :options="options" placeholder="Choose" />
       </Group>
     </Group>
   </div>

@@ -27,7 +27,10 @@ function propIsDefined(vnode: ComponentInternalInstance | null, prop: string) {
   return props[prop] !== undefined || props[toKebabCase(prop)] !== undefined
 }
 
-export function useUiKitProps<C extends UiKitComponent, P extends UiKitBaseProps>(component: C, props: P): P {
+export function useUiKitProps<C extends UiKitComponent, P extends UiKitBaseProps>(
+  component: C,
+  props: P,
+): { [key: string]: any } & P {
   const vm = getCurrentInstance()
 
   if (!vm) {

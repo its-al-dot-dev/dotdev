@@ -1,5 +1,6 @@
 <script generic="T, L extends keyof T, V extends keyof T, M extends boolean" lang="ts" setup>
 import {
+  normalizeBooleanProp,
   type UISelectButtonEmits,
   type UISelectButtonProps,
   type UISelectButtonSlots,
@@ -26,7 +27,7 @@ const model = defineModel<M extends true ? T[] : T | undefined>()
 const ui = useUiKitProps('select-button', props)
 
 const { toggle, isSelected } = useArrayModel<T>(model, {
-  multiple: () => ui.multiple === ('' as any) || ui.multiple === true,
+  multiple: () => normalizeBooleanProp(ui.multiple),
   deselectable: () => ui.deselectable,
   valueKey: ui.valueKey,
 })

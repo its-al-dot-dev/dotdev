@@ -11,18 +11,24 @@
 // ТОЛЬКО base-селектором. Это два ортогональных решения, они не смешаны.
 // ============================================================================
 
-import type { ThemeBuilderConfig } from './types.ts'
+import type { ThemeBuilderConfig, TokenManifest } from './types.ts'
 import { TokenRegistry } from './registry.ts'
 import { createResolver } from './resolver.ts'
+import { collectTokenManifest } from './manifest.ts'
+import type { SheetModel } from './sheet.ts'
 
 export class ThemeBuilder {
   private readonly config: ThemeBuilderConfig
   private readonly registry: TokenRegistry
+  /** Листы в порядке registry.collect: components -> app. SheetModel — конкретная
+   *  IR-реализация замороженного интерфейса Sheet, в рантайме это те же объекты. */
+  private readonly sheets: SheetModel[]
 
   constructor(config: ThemeBuilderConfig) {
     this.config = config
     this.registry = new TokenRegistry()
-    this.registry.collect([...Object.values(config.components ?? {}), ...Object.values(config.app ?? {})])
+    this.sheets = [...Object.values(config.components ?? {}), ...Object.values(config.app ?? {})] as SheetModel[]
+    this.registry.collect(this.sheets)
   }
 
   /** Рендерит каждый лист в отдельный CSS-текст: имя листа -> CSS */
@@ -46,6 +52,11 @@ export class ThemeBuilder {
   /** Собирает все листы в единый CSS-текст (порядок: app -> components) */
   build(): string {
     return Object.values(this.renderAll()).filter(Boolean).join('\n\n')
+  }
+
+  /** Манифест токенов всех листов (vars + semantics) для UI: лист -> токены */
+  collectTokens(): TokenManifest {
+    return collectTokenManifest(this.sheets, createResolver(this.registry), this.registry)
   }
 }
 

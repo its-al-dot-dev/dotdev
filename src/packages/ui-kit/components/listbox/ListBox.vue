@@ -3,6 +3,7 @@ import type { UIListBoxEmits, UIListBoxProps, UIListBoxSlots } from './listbox.t
 import {
   Icon,
   normalizeBooleanProp,
+  Scope,
   useArrayModel,
   useGlobalEvent,
   useKeyboardNavigation,
@@ -11,7 +12,6 @@ import {
   useUiKitProps,
 } from 'dotdev/ui-kit'
 import { computed, ref, useId, useTemplateRef } from 'vue'
-import ListBoxItem from './ListBoxItem.vue'
 
 type FocusDirection = 1 | -1 | 0
 
@@ -258,10 +258,23 @@ const columns = computed(() => ui.columns)
     @focusout="onNativeFocusOut"
     @mousedown="onMouseDown"
   >
-    <ListBoxItem v-for="(item, idx) in options" :key="idx" #default="scope" v-bind="getOptionBindings(item, idx)">
-      <Icon v-if="checkmark === 'left'" :class="bem('checkmark', [checkmark])" :name="checkmarkIcon ?? 'check'" />
-      <slot name="default" v-bind="{ option: item, ...scope }">{{ scope.label }}</slot>
-      <Icon v-if="checkmark === 'right'" :class="bem('checkmark', [checkmark])" :name="checkmarkIcon" />
-    </ListBoxItem>
+    <Scope v-for="(item, idx) in options" :key="idx" #default="scope" :scope="getOptionBindings(item, idx)">
+      <li
+        :id="scope.id"
+        :aria-disabled="disabled"
+        :aria-label="scope.label"
+        :aria-posinset="scope.index + 1"
+        :aria-selected="scope.selected"
+        :aria-setsize="scope.size"
+        :class="scope.class"
+        :data-highlighted="scope.highlighted ? '' : undefined"
+        role="option"
+        @mousedown="scope.onMousedown"
+      >
+        <Icon v-if="checkmark === 'left'" :class="bem('checkmark', [checkmark])" :name="checkmarkIcon ?? 'check'" />
+        <slot name="default" v-bind="{ option: item, ...scope }">{{ scope.label }}</slot>
+        <Icon v-if="checkmark === 'right'" :class="bem('checkmark', [checkmark])" :name="checkmarkIcon" />
+      </li>
+    </Scope>
   </ul>
 </template>

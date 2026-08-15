@@ -2,9 +2,14 @@ import { type ThemeBuilderConfig } from 'dotdev/theme'
 import ui from './components/ui.ts'
 import layout from './app/layout.ts'
 import doc from './app/doc.ts'
+import landing from './app/landing.ts'
 import listbox from './components/listbox.ts'
+import breadcrumbs from './components/breadcrumbs.ts'
+import accordion from './components/accordion.ts'
 import button from './components/button.ts'
 import tag from './components/tag.ts'
+import message from './components/message.ts'
+import divider from './components/divider.ts'
 import input from './components/input.ts'
 import textarea from './components/textarea.ts'
 import group from './components/group.ts'
@@ -25,14 +30,19 @@ const index: ThemeBuilderConfig = {
   app: {
     layout,
     doc,
+    landing,
   },
   components: {
     ui,
+    accordion,
+    breadcrumbs,
     button,
     icon,
     iconButton,
     listbox,
     tag,
+    message,
+    divider,
     input,
     textarea,
     avatar,

@@ -6,10 +6,10 @@
 // возвращает defineSheet. $render делегирует чистым рендерерам из render/*.
 // ============================================================================
 
-import type { Resolver, Sheet, SheetConfig } from './types.ts'
-import { semanticLightValue } from './value-analysis.ts'
+import type { Resolver, Sheet, SheetConfig, TokenMeta } from './types.ts'
+import { semanticParts, semanticLightValue } from './value-analysis.ts'
 import { renderSheet } from './render/render-sheet.ts'
-import { varPrefix } from './render/naming.ts'
+import { utilityName, varPrefix } from './render/naming.ts'
 
 export class SheetModel implements Sheet {
   readonly $name: string
@@ -38,5 +38,31 @@ export class SheetModel implements Sheet {
 
   $render(base: string, resolve: Resolver, values: Map<string, string>): string {
     return renderSheet(this.config, base, resolve, values)
+  }
+
+  /** Сырые записи токенов листа (vars + semantics) для манифеста, без резолва */
+  $tokenMeta(): TokenMeta[] {
+    const prefix = varPrefix(this.$name)
+    const utilName = utilityName(this.$name, this.$scope)
+
+    const meta: TokenMeta[] = []
+
+    for (const [key, value] of Object.entries(this.config.vars ?? {})) {
+      const varName = key.startsWith('--') ? key : prefix(key)
+      meta.push({ kind: 'vars', key, varName, ...(value ? { light: value } : {}) })
+    }
+    for (const [key, value] of Object.entries(this.config.semantics ?? {})) {
+      const { light, dark } = semanticParts(value)
+      meta.push({
+        kind: 'semantics',
+        key,
+        varName: prefix(key),
+        utility: utilName(key),
+        ...(light ? { light } : {}),
+        ...(dark ? { dark } : {}),
+      })
+    }
+
+    return meta
   }
 }

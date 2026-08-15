@@ -11,11 +11,16 @@
 
 import type { SemanticValue } from './types.ts'
 
+/** Разбирает все формы SemanticValue на light/dark значения (dark может отсутствовать) */
+export function semanticParts(value: SemanticValue): { light: string; dark: string } {
+  if (typeof value === 'string') return { light: value, dark: '' }
+  if (Array.isArray(value)) return { light: value[0] ?? '', dark: value[1] ?? '' }
+  return { light: value.light ?? '', dark: value.dark ?? '' }
+}
+
 /** Достаёт строковое (light) значение из всех форм SemanticValue */
 export function semanticLightValue(value: SemanticValue): string {
-  if (typeof value === 'string') return value
-  if (Array.isArray(value)) return value[0] ?? ''
-  return value.light ?? ''
+  return semanticParts(value).light
 }
 
 /** Единицы длины CSS для вывода типа */

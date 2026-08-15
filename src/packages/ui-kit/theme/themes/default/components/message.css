@@ -1,206 +1,194 @@
 @theme {
-  --bg-msg-brand-solid: var(--color-brand-500);
-  --bg-msg-brand-solid-hover: var(--color-brand-600);
-  --bg-msg-brand-soft: var(--color-brand-50);
-  --bg-msg-brand-subtle: var(--color-brand-100);
-  --border-msg-brand-solid: var(--color-brand-500);
-  --border-msg-brand-soft: var(--color-brand-200);
-  --fg-msg-brand-solid: var(--color-white);
-  --fg-msg-brand-soft: var(--color-brand-700);
-  --fg-msg-brand-subtle: var(--color-brand-600);
-  --bg-msg-warning-solid: var(--color-warning-500);
-  --bg-msg-warning-solid-hover: var(--color-warning-600);
-  --bg-msg-warning-soft: var(--color-warning-50);
-  --bg-msg-warning-subtle: var(--color-warning-100);
-  --border-msg-warning-solid: var(--color-warning-500);
-  --border-msg-warning-soft: var(--color-warning-200);
-  --fg-msg-warning-solid: var(--color-white);
-  --fg-msg-warning-soft: var(--color-warning-700);
-  --fg-msg-warning-subtle: var(--color-warning-600);
-  --bg-msg-danger-solid: var(--color-danger-500);
-  --bg-msg-danger-solid-hover: var(--color-danger-600);
-  --bg-msg-danger-soft: var(--color-danger-50);
-  --bg-msg-danger-subtle: var(--color-danger-100);
-  --border-msg-danger-solid: var(--color-danger-500);
-  --border-msg-danger-soft: var(--color-danger-200);
-  --fg-msg-danger-solid: var(--color-white);
-  --fg-msg-danger-soft: var(--color-danger-700);
-  --fg-msg-danger-subtle: var(--color-danger-600);
-}
-.dark {
-  --bg-msg-brand-solid: brand-400/50;
-  --bg-msg-brand-solid-hover: var(--color-brand-300);
-  --bg-msg-brand-soft: var(--color-brand-500);
-  --bg-msg-brand-subtle: var(--color-brand-500);
-  --border-msg-brand-soft: var(--color-brand-800);
-  --fg-msg-brand-soft: var(--color-brand-100);
-  --fg-msg-brand-subtle: var(--color-brand-100);
-  --bg-msg-warning-solid: warning-400/50;
-  --bg-msg-warning-solid-hover: var(--color-warning-300);
-  --bg-msg-warning-soft: var(--color-warning-500);
-  --bg-msg-warning-subtle: var(--color-warning-500);
-  --border-msg-warning-soft: var(--color-warning-800);
-  --fg-msg-warning-soft: var(--color-warning-100);
-  --fg-msg-warning-subtle: var(--color-warning-100);
-  --bg-msg-danger-solid: var(--color-danger-400);
-  --bg-msg-danger-solid-hover: var(--color-danger-300);
-  --bg-msg-danger-soft: var(--color-danger-500);
-  --bg-msg-danger-subtle: var(--color-danger-500);
-  --border-msg-danger-soft: var(--color-danger-800);
-  --fg-msg-danger-soft: var(--color-danger-100);
-  --fg-msg-danger-subtle: var(--color-danger-100);
+  --message-bg-primary-soft: var(--ui-bg-brand-soft);
+  --message-text-primary: var(--ui-text-brand);
+  --message-border-primary: var(--ui-border-brand);
+  --message-bg-neutral-soft: var(--ui-bg-neutral-soft);
+  --message-text-neutral: var(--ui-text-neutral);
+  --message-border-neutral: var(--ui-border-neutral);
+  --message-bg-danger-soft: var(--ui-bg-danger-soft);
+  --message-text-danger: var(--ui-text-danger);
+  --message-border-danger: var(--ui-border-danger);
+  --message-bg-warning-soft: var(--ui-bg-warning-soft);
+  --message-text-warning: var(--ui-text-warning);
+  --message-border-warning: var(--ui-border-warning);
+  --message-bg-info-soft: var(--ui-bg-info-soft);
+  --message-text-info: var(--ui-text-info);
+  --message-border-info: var(--ui-border-info);
+  --message-bg-success-soft: var(--ui-bg-success-soft);
+  --message-text-success: var(--ui-text-success);
+  --message-border-success: var(--ui-border-success);
 }
 
-@utility bg-msg-brand-solid {
-   @apply bg-(--bg-msg-brand-solid);
+@utility message-bg-primary-soft {
+  @apply bg-(--message-bg-primary-soft);
 }
 
-@utility bg-msg-brand-solid-hover {
-   @apply hover:bg-(--bg-msg-brand-solid-hover);
+@utility message-text-primary {
+  @apply text-(--message-text-primary);
 }
 
-@utility bg-msg-brand-soft {
-   @apply bg-(--bg-msg-brand-soft);
+@utility message-border-primary {
+  @apply border-(--message-border-primary);
 }
 
-@utility bg-msg-brand-subtle {
-   @apply bg-(--bg-msg-brand-subtle);
+@utility message-bg-neutral-soft {
+  @apply bg-(--message-bg-neutral-soft);
 }
 
-@utility border-msg-brand-solid {
-   @apply border-(--border-msg-brand-solid);
+@utility message-text-neutral {
+  @apply text-(--message-text-neutral);
 }
 
-@utility border-msg-brand-soft {
-   @apply border-(--border-msg-brand-soft);
+@utility message-border-neutral {
+  @apply border-(--message-border-neutral);
 }
 
-@utility text-msg-brand-solid {
-   @apply text-(--fg-msg-brand-solid);
+@utility message-bg-danger-soft {
+  @apply bg-(--message-bg-danger-soft);
 }
 
-@utility text-msg-brand-soft {
-   @apply text-(--fg-msg-brand-soft);
+@utility message-text-danger {
+  @apply text-(--message-text-danger);
 }
 
-@utility text-msg-brand-subtle {
-   @apply text-(--fg-msg-brand-subtle);
+@utility message-border-danger {
+  @apply border-(--message-border-danger);
 }
 
-@utility bg-msg-warning-solid {
-   @apply bg-(--bg-msg-warning-solid);
+@utility message-bg-warning-soft {
+  @apply bg-(--message-bg-warning-soft);
 }
 
-@utility bg-msg-warning-solid-hover {
-   @apply hover:bg-(--bg-msg-warning-solid-hover);
+@utility message-text-warning {
+  @apply text-(--message-text-warning);
 }
 
-@utility bg-msg-warning-soft {
-   @apply bg-(--bg-msg-warning-soft);
+@utility message-border-warning {
+  @apply border-(--message-border-warning);
 }
 
-@utility bg-msg-warning-subtle {
-   @apply bg-(--bg-msg-warning-subtle);
+@utility message-bg-info-soft {
+  @apply bg-(--message-bg-info-soft);
 }
 
-@utility border-msg-warning-solid {
-   @apply border-(--border-msg-warning-solid);
+@utility message-text-info {
+  @apply text-(--message-text-info);
 }
 
-@utility border-msg-warning-soft {
-   @apply border-(--border-msg-warning-soft);
+@utility message-border-info {
+  @apply border-(--message-border-info);
 }
 
-@utility text-msg-warning-solid {
-   @apply text-(--fg-msg-warning-solid);
+@utility message-bg-success-soft {
+  @apply bg-(--message-bg-success-soft);
 }
 
-@utility text-msg-warning-soft {
-   @apply text-(--fg-msg-warning-soft);
+@utility message-text-success {
+  @apply text-(--message-text-success);
 }
 
-@utility text-msg-warning-subtle {
-   @apply text-(--fg-msg-warning-subtle);
+@utility message-border-success {
+  @apply border-(--message-border-success);
 }
 
-@utility bg-msg-danger-solid {
-   @apply bg-(--bg-msg-danger-solid);
-}
-
-@utility bg-msg-danger-solid-hover {
-   @apply hover:bg-(--bg-msg-danger-solid-hover);
-}
-
-@utility bg-msg-danger-soft {
-   @apply bg-(--bg-msg-danger-soft);
-}
-
-@utility bg-msg-danger-subtle {
-   @apply bg-(--bg-msg-danger-subtle);
-}
-
-@utility border-msg-danger-solid {
-   @apply border-(--border-msg-danger-solid);
-}
-
-@utility border-msg-danger-soft {
-   @apply border-(--border-msg-danger-soft);
-}
-
-@utility text-msg-danger-solid {
-   @apply text-(--fg-msg-danger-solid);
-}
-
-@utility text-msg-danger-soft {
-   @apply text-(--fg-msg-danger-soft);
-}
-
-@utility text-msg-danger-subtle {
-   @apply text-(--fg-msg-danger-subtle);
+@utility message-transition {
+  @apply transition-[background-color,color,border-color];
 }
 
 @layer components {
-  .d-message {
-    @apply flex items-start gap-2 border p-3 transition-[background-color,color,border-color];
-  }
+.d-message {
+  @apply flex items-start gap-2.5 p-3 radius-md message-transition;
+}
 
-  .d-message__icon {
-    @apply text-[1.2em];
-  }
+.d-message--border {
+  @apply border;
+}
 
-  .d-message--warning.d-message--solid {
-    @apply bg-msg-warning-solid border-msg-warning-solid text-msg-warning-solid bg-msg-warning-solid-hover;
-  }
+.d-message__icon {
+  @apply shrink-0 text-[1.25em] mt-px;
+}
 
-  .d-message--warning.d-message--soft {
-    @apply bg-msg-warning-soft border-msg-warning-soft text-msg-warning-soft;
-  }
+.d-message__content {
+  @apply flex min-w-0 flex-col gap-0.5;
+}
 
-  .d-message--warning.d-message--subtle {
-    @apply bg-msg-warning-subtle text-msg-warning-subtle;
-  }
+.d-message__title {
+  @apply label-md font-medium leading-snug;
+}
 
-  .d-message--brand.d-message--solid {
-    @apply bg-msg-brand-solid border-msg-brand-solid text-msg-brand-solid bg-msg-brand-solid-hover;
-  }
+.d-message__message {
+  @apply label-sm leading-snug text-muted;
+}
 
-  .d-message--brand.d-message--soft {
-    @apply bg-msg-brand-soft border-msg-brand-soft text-msg-brand-soft;
-  }
+.d-message--primary.d-message--soft {
+  @apply message-bg-primary-soft message-text-primary;
+}
 
-  .d-message--brand.d-message--subtle {
-    @apply bg-msg-brand-subtle text-msg-brand-subtle;
-  }
+.d-message--primary.d-message--plain {
+  @apply message-text-primary;
+}
 
-  .d-message--danger.d-message--solid {
-    @apply bg-msg-danger-solid border-msg-danger-solid text-msg-danger-solid bg-msg-danger-solid-hover;
-  }
+.d-message--primary.d-message--border {
+  @apply message-border-primary;
+}
 
-  .d-message--danger.d-message--soft {
-    @apply bg-msg-danger-soft border-msg-danger-soft text-msg-danger-soft;
-  }
+.d-message--neutral.d-message--soft {
+  @apply message-bg-neutral-soft message-text-neutral;
+}
 
-  .d-message--danger.d-message--subtle {
-    @apply bg-msg-danger-subtle text-msg-danger-subtle;
-  }
+.d-message--neutral.d-message--plain {
+  @apply message-text-neutral;
+}
+
+.d-message--neutral.d-message--border {
+  @apply message-border-neutral;
+}
+
+.d-message--danger.d-message--soft {
+  @apply message-bg-danger-soft message-text-danger;
+}
+
+.d-message--danger.d-message--plain {
+  @apply message-text-danger;
+}
+
+.d-message--danger.d-message--border {
+  @apply message-border-danger;
+}
+
+.d-message--warning.d-message--soft {
+  @apply message-bg-warning-soft message-text-warning;
+}
+
+.d-message--warning.d-message--plain {
+  @apply message-text-warning;
+}
+
+.d-message--warning.d-message--border {
+  @apply message-border-warning;
+}
+
+.d-message--info.d-message--soft {
+  @apply message-bg-info-soft message-text-info;
+}
+
+.d-message--info.d-message--plain {
+  @apply message-text-info;
+}
+
+.d-message--info.d-message--border {
+  @apply message-border-info;
+}
+
+.d-message--success.d-message--soft {
+  @apply message-bg-success-soft message-text-success;
+}
+
+.d-message--success.d-message--plain {
+  @apply message-text-success;
+}
+
+.d-message--success.d-message--border {
+  @apply message-border-success;
+}
 }

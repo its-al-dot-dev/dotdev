@@ -1,3 +1,10 @@
+import type { Ref } from 'vue'
+
 export function normalizeBooleanProp<T>(value: T): boolean {
   return value === '' || Boolean(value)
+}
+
+// need for resolve useUiKitProps in template
+export function toTemplateRef<T>(value: T) {
+  return value as Ref<T>
 }

@@ -1,7 +1,17 @@
 <script lang="ts" setup>
-import { computed, getCurrentInstance, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { Group, GroupAddon, Icon, IconButton, Input, Tag, useColorScheme } from 'dotdev/ui-kit'
+import {
+  Breadcrumbs,
+  Group,
+  GroupAddon,
+  Icon,
+  IconButton,
+  Input,
+  Tag,
+  useColorScheme,
+  useRouterBreadcrumbs,
+} from 'dotdev/ui-kit'
 import Logo from './components/Logo.vue'
 import SidebarMenu from './components/SidebarMenu.vue'
 
@@ -28,6 +38,8 @@ function toggleSidebar() {
   isSidebarOpen.value = !isSidebarOpen.value
 }
 
+const isLanding = computed(() => route.name === 'Dashboard')
+
 watch(
   () => route.fullPath,
   () => {
@@ -35,39 +47,15 @@ watch(
   },
 )
 
-interface Crumb {
-  label: string
-  path?: string
-}
-
-const menu = getCurrentInstance()?.appContext.config.globalProperties?.$studioMenu ?? []
-
-const crumbs = computed(() => {
-  const path = route.path
-  for (const group of menu) {
-    if (group.to === path) {
-      return { icon: group.icon, items: [{ label: group.label ?? '', path: group.to }] }
-    }
-
-    const leaf = group.children.find((child) => child.to === path)
-    if (leaf) {
-      return {
-        icon: group.icon,
-        items: [
-          { label: group.label ?? '', path: group.to },
-          { label: leaf.label ?? '', path: leaf.to },
-        ],
-      }
-    }
-  }
-
-  return { icon: undefined, items: [] as Crumb[] }
+const { items } = useRouterBreadcrumbs({
+  label: (record) => record.children[0]?.name,
+  skip: (record) => !!record.name,
 })
 </script>
 
 <template>
   <div class="layout">
-    <aside v-if="isSidebarOpen" class="layout__sidebar">
+    <aside v-if="isSidebarOpen && !isLanding" class="layout__sidebar">
       <div class="layout__sidebar-header">
         <Logo />
       </div>
@@ -85,20 +73,16 @@ const crumbs = computed(() => {
     <div class="layout__body">
       <header class="layout__header">
         <div class="layout__header-group min-w-0">
-          <IconButton aria-label="Toggle sidebar" icon="hamburger-menu" size="sm" @click="toggleSidebar" />
+          <IconButton
+            v-if="!isLanding"
+            aria-label="Toggle sidebar"
+            icon="hamburger-menu"
+            size="sm"
+            @click="toggleSidebar"
+          />
 
-          <Logo v-if="!isSidebarOpen" class="shrink-0" />
-
-          <nav v-if="crumbs.items.length" aria-label="Breadcrumb" class="app-crumb">
-            <span class="app-crumb__path">
-              <template v-for="(crumb, i) in crumbs.items" :key="crumb.path ?? i">
-                <Icon v-if="i" class="app-crumb__sep" name="chevron-right" />
-                <span :class="i === crumbs.items.length - 1 ? 'app-crumb__segment--current' : 'app-crumb__segment'">
-                  {{ crumb.label }}
-                </span>
-              </template>
-            </span>
-          </nav>
+          <Logo v-if="!isSidebarOpen || isLanding" class="shrink-0" />
+          <Breadcrumbs v-if="items.length && !isLanding" :items="items" class="text-sm" separatorIcon="chevron-right" />
         </div>
 
         <div class="layout__header-group">

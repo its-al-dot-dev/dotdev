@@ -54,6 +54,54 @@ export type Resolver = (value: string) => string
 // Внутренние типы (не заморожены)
 // ============================================================================
 
+/** Тип значения токена (мелкая гранулярность для UI-контролов) */
+export type TokenType =
+  | 'color'
+  | 'spacing'
+  | 'size'
+  | 'gap'
+  | 'radius'
+  | 'font-size'
+  | 'font-family'
+  | 'dimension'
+  | 'raw'
+
+/** Ссылка на другой токен: лист-владелец (sheet) + ключ внутри листа */
+export interface TokenRefLink {
+  sheet: string
+  key: string
+}
+
+/** Одна запись токена листа для манифеста (tokens.json) */
+export interface TokenMeta {
+  /** Откуда токен: vars или semantics */
+  kind: 'vars' | 'semantics'
+  /** Ключ из конфига листа */
+  key: string
+  /** Полное CSS-имя переменной: --{name}-{key} */
+  varName: string
+  /** Авто-утилита (только для semantics: {name}-{key}) */
+  utility?: string
+  /** Тип значения: color/spacing/size/gap/radius/font-size/font-family/dimension/raw */
+  type?: TokenType
+  /** Сырое значение в светлой теме (до резолва) */
+  light?: string
+  /** Сырое значение в тёмной теме (только semantics) */
+  dark?: string
+  /** Ссылки на токены-источники (light/dark) — из них клиент строит цепочку */
+  refs?: {
+    light?: TokenRefLink
+    dark?: TokenRefLink
+  }
+  /** Резолвнутое значение в светлой теме: var(--...), color-mix(...), литерал */
+  resolvedLight?: string
+  /** Резолвнутое значение в тёмной теме */
+  resolvedDark?: string
+}
+
+/** Манифест токенов: имя листа -> записи токенов (vars + semantics) */
+export type TokenManifest = Record<string, TokenMeta[]>
+
 export interface ThemeBuilderConfig {
   /** Неймспейс для base-селекторов локальных (components) листов */
   namespace: string

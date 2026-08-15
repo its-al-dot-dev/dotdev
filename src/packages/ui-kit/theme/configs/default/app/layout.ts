@@ -41,23 +41,19 @@ export default defineSheet({
     '.app-kbd': 'font-sans text-sm text-muted',
 
     '.app-menu': 'flex flex-col gap-0.5',
-    '.app-menu__group': 'flex flex-col gap-1',
-    '.app-menu__group + .app-menu__group': 'mt-3',
-    '.app-menu__item': `relative flex items-center gap-2 h-9 px-2.5 rounded-md text-sm font-medium text-muted cursor-pointer transition-[background-color,color] hover:bg-neutral-soft hover:text-foreground`,
-    '.app-menu__item-icon': 'text-base text-muted transition-[color]',
-    '.app-menu__item-label': 'flex-1 text-left truncate',
-    '.app-menu__item-chevron': 'ml-auto text-xs text-muted transition-transform',
-    '.app-menu__item-chevron.is-open': 'rotate-180 text-foreground',
+    '.app-menu__item-icon': 'text-sm text-muted',
+    '.app-menu__item-label': 'flex-1 min-w-0 truncate',
 
-    '.app-menu__item--group': 'h-7 px-2 text-xs font-semibold uppercase tracking-wider hover:bg-transparent',
-    '.app-menu__item--group .app-menu__item-icon': 'text-sm',
-    '.app-menu__item--group.is-active': 'text-foreground',
+    '.app-menu .d-accordion__item + .d-accordion__item': 'mt-3',
+
+    '.app-menu .d-accordion__trigger': `h-7 px-2 py-0 text-xs font-semibold uppercase tracking-wider text-muted hover:text-foreground`,
+    '.app-menu .d-accordion__trigger--open': 'text-foreground',
+
+    '.app-menu .d-accordion__indicator': 'text-xs',
+
+    '.app-menu .d-accordion__panel': 'mt-1 mb-2 ml-2 pl-1.5 border-l border-default',
 
     '.app-menu .d-menu__item': 'relative pl-4',
-    '.app-menu__item.router-link-exact-active': `bg-neutral-soft text-foreground before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-3/5 before:w-0.5 before:rounded-full before:bg-brand before:content-['']`,
-    '.app-menu__item.router-link-exact-active .app-menu__item-icon': `text-brand`,
-
-    '.app-menu__body': 'mt-1 mb-2 ml-2 pl-1.5 border-l border-default',
-    '.app-menu__body .d-menu__heading': `text-[0.6875rem] font-medium uppercase tracking-wider layout-text-heading pl-1.5 py-0 mt-2.5 mb-1.5`,
+    '.app-menu .d-menu__heading': `text-[0.6875rem] font-medium uppercase tracking-wider layout-text-heading pl-1.5 py-0 mt-2.5 mb-1.5`,
   },
 })
