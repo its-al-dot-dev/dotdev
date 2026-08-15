@@ -51,7 +51,7 @@ export default defineSheet({
 
     '.app-menu .d-accordion__indicator': 'text-xs',
 
-    '.app-menu .d-accordion__panel': 'mt-1 mb-2 ml-2 pl-1.5 border-l border-default',
+    '.app-menu .d-menu': 'mt-1 mb-2 ml-2 pl-1.5 border-l border-default',
 
     '.app-menu .d-menu__item': 'relative pl-4',
     '.app-menu .d-menu__heading': `text-[0.6875rem] font-medium uppercase tracking-wider layout-text-heading pl-1.5 py-0 mt-2.5 mb-1.5`,
