@@ -24,6 +24,7 @@ import icon from './components/icon.ts'
 import menu from './components/menu.ts'
 import select from './components/select.ts'
 import selectListbox from './components/select-listbox.ts'
+import table from './components/table.ts'
 
 const index: ThemeBuilderConfig = {
   namespace: 'd',
@@ -56,6 +57,7 @@ const index: ThemeBuilderConfig = {
     select,
     selectListbox,
     group,
+    table,
   },
 }
 

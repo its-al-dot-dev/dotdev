@@ -22,6 +22,7 @@ import type {
   UISelectButtonProps,
   UISelectProps,
   UISwitchProps,
+  UITableProps,
   UITagProps,
   UITextareaProps,
 } from 'dotdev/ui-kit'
@@ -51,6 +52,7 @@ export interface UiKitConfig {
     radio?: Partial<UIRadioProps>
     icon?: Partial<UIIconProps>
     'scroll-area'?: Partial<UIScrollAreaProps>
+    table?: Partial<UITableProps>
   }
   icons?: Partial<Record<UiKitIcon, Component>>
 }
