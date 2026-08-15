@@ -11,10 +11,9 @@
 // ТОЛЬКО base-селектором. Это два ортогональных решения, они не смешаны.
 // ============================================================================
 
-import type { ThemeBuilderConfig, TokenManifest } from './types.ts'
+import type { ThemeBuilderConfig } from './types.ts'
 import { TokenRegistry } from './registry.ts'
 import { createResolver } from './resolver.ts'
-import { collectTokenManifest } from './manifest.ts'
 import type { SheetModel } from './sheet.ts'
 
 export class ThemeBuilder {
@@ -52,11 +51,6 @@ export class ThemeBuilder {
   /** Собирает все листы в единый CSS-текст (порядок: app -> components) */
   build(): string {
     return Object.values(this.renderAll()).filter(Boolean).join('\n\n')
-  }
-
-  /** Манифест токенов всех листов (vars + semantics) для UI: лист -> токены */
-  collectTokens(): TokenManifest {
-    return collectTokenManifest(this.sheets, createResolver(this.registry), this.registry)
   }
 }
 

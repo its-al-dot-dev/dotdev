@@ -6,7 +6,7 @@ import { parseArgs } from 'node:util'
 
 import { createThemeBuilder } from '../theme-builder.ts'
 import type { ThemeBuilderConfig } from '../types.ts'
-import { writeThemeFiles, writeTokensManifest } from '../persist/index.ts'
+import { writeThemeFiles } from '../persist/index.ts'
 
 const { values } = parseArgs({
   options: {
@@ -86,12 +86,10 @@ async function buildTheme(): Promise<boolean> {
     const builder = createThemeBuilder(config)
     const stylesMap = builder.renderAll()
     const savedDir = await writeThemeFiles(outputDir, config.theme, stylesMap)
-    const tokensFile = await writeTokensManifest(outputDir, config.theme, builder.collectTokens())
     const duration = (performance.now() - startTime).toFixed(2)
 
     console.log(`✅ Theme "${config.theme}" built successfully in ${duration}ms`)
     console.log(`📁 Output: ${path.relative(process.cwd(), savedDir)}`)
-    console.log(`🔑 Tokens: ${path.relative(process.cwd(), tokensFile)}`)
 
     return true
   } catch (error) {
