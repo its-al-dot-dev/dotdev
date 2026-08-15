@@ -136,63 +136,63 @@
 }
 
 @layer components {
-.d-menu {
-  @apply flex flex-col menu-gap menu-text-default;
-}
+  .d-menu {
+    @apply flex flex-col menu-gap menu-text-default;
+  }
 
-.d-menu--sm {
-  @apply menu-size-sm;
-}
+  .d-menu--sm {
+    @apply menu-size-sm;
+  }
 
-.d-menu--md {
-  @apply menu-size-md;
-}
+  .d-menu--md {
+    @apply menu-size-md;
+  }
 
-.d-menu--lg {
-  @apply menu-size-lg;
-}
+  .d-menu--lg {
+    @apply menu-size-lg;
+  }
 
-.d-menu__heading {
-  @apply font-medium menu-py-heading transition-[color] menu-text-heading;
-}
+  .d-menu__heading {
+    @apply font-medium menu-py-heading transition-[color] menu-text-heading;
+  }
 
-.d-menu--sm .d-menu__heading {
-  @apply menu-size-heading-sm;
-}
+  .d-menu--sm .d-menu__heading {
+    @apply menu-size-heading-sm;
+  }
 
-.d-menu--md .d-menu__heading {
-  @apply menu-size-heading-md;
-}
+  .d-menu--md .d-menu__heading {
+    @apply menu-size-heading-md;
+  }
 
-.d-menu--lg .d-menu__heading {
-  @apply menu-size-heading-lg;
-}
+  .d-menu--lg .d-menu__heading {
+    @apply menu-size-heading-lg;
+  }
 
-.d-menu__item {
-  @apply flex w-full items-center outline-none cursor-pointer transition-[background-color,color,opacity] menu-text-item;
-}
+  .d-menu__item {
+    @apply flex w-full items-center outline-none cursor-pointer transition-[background-color,color,opacity] menu-text-item;
+  }
 
-.d-menu__item:disabled {
-  @apply disabled;
-}
+  .d-menu__item:disabled {
+    @apply disabled;
+  }
 
-.d-menu__item:is(:hover, :focus-visible, .d-menu__item--active, .d-menu__item.router-link-exact-active) {
-  @apply menu-text-item-hover menu-bg-item-hover;
-}
+  .d-menu__item:is(:hover, :focus-visible, .d-menu__item--active, .d-menu__item.router-link-exact-active) {
+    @apply menu-text-item-hover menu-bg-item-hover;
+  }
 
-.d-menu--sm .d-menu__item {
-  @apply menu-size-item-sm;
-}
+  .d-menu--sm .d-menu__item {
+    @apply menu-size-item-sm;
+  }
 
-.d-menu--md .d-menu__item {
-  @apply menu-size-item-md;
-}
+  .d-menu--md .d-menu__item {
+    @apply menu-size-item-md;
+  }
 
-.d-menu--lg .d-menu__item {
-  @apply menu-size-item-lg;
-}
+  .d-menu--lg .d-menu__item {
+    @apply menu-size-item-lg;
+  }
 
-.d-menu__item-icon {
-  @apply text-[1.2em];
-}
+  .d-menu__item-icon {
+    @apply text-[1.2em];
+  }
 }

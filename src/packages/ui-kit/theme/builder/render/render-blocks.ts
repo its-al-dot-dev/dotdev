@@ -34,7 +34,7 @@ export function renderRulesBlock(base: string, rules: SheetConfig['rules']): str
   if (!rules || !Object.keys(rules).length) return ''
   const list = Object.entries(rules)
     .filter(([, value]) => value)
-    .map(([key, value]) => `${buildSelector(key, base)} {\n  @apply ${value};\n}`)
+    .map(([key, value]) => indent(`${buildSelector(key, base)} {\n  @apply ${value};\n}`))
   return `@layer components {\n${list.join('\n\n')}\n}`
 }
 
@@ -42,6 +42,14 @@ export function renderStylesBlock(base: string, styles: SheetConfig['styles']): 
   if (!styles || !Object.keys(styles).length) return ''
   const list = Object.entries(styles)
     .filter(([, value]) => value)
-    .map(([key, value]) => `${buildSelector(key, base)} {\n${value};\n}`)
+    .map(([key, value]) => indent(`${buildSelector(key, base)} {\n  ${value};\n}`))
   return `@layer components {\n${list.join('\n\n')}\n}`
+}
+
+/** Отступ текста на 2 пробела для вложенных блоков (@layer components) */
+function indent(text: string): string {
+  return text
+    .split('\n')
+    .map((line) => `  ${line}`)
+    .join('\n')
 }

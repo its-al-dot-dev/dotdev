@@ -1,0 +1,9 @@
+@layer components {
+  .d-icon {
+    @apply size-[1em];
+  }
+
+  .d-icon svg {
+    @apply size-[1em];
+  }
+}

@@ -87,31 +87,31 @@
 }
 
 @layer components {
-.d-select-listbox {
-  @apply flex flex-col select-listbox-gap transition-opacity overflow-y-auto max-h-[200px] select-listbox-text-default;
-}
+  .d-select-listbox {
+    @apply flex flex-col select-listbox-gap transition-opacity overflow-y-auto max-h-[200px] select-listbox-text-default;
+  }
 
-.d-select-listbox--disabled {
-  @apply disabled;
-}
+  .d-select-listbox--disabled {
+    @apply disabled;
+  }
 
-.d-select-listbox__item {
-  @apply flex shrink-0 items-center outline-none select-none cursor-pointer transition-[background-color,color,opacity];
-}
+  .d-select-listbox__item {
+    @apply flex shrink-0 items-center outline-none select-none cursor-pointer transition-[background-color,color,opacity];
+  }
 
-.d-select-listbox__item:is(:hover,.d-select-listbox__item--selected,.d-select-listbox__item--focused) {
-  @apply select-listbox-bg-item-hover;
-}
+  .d-select-listbox__item:is(:hover,.d-select-listbox__item--selected,.d-select-listbox__item--focused) {
+    @apply select-listbox-bg-item-hover;
+  }
 
-.d-select-listbox--sm .d-select-listbox__item {
-  @apply select-listbox-size-item-sm;
-}
+  .d-select-listbox--sm .d-select-listbox__item {
+    @apply select-listbox-size-item-sm;
+  }
 
-.d-select-listbox--md .d-select-listbox__item {
-  @apply select-listbox-size-item-md;
-}
+  .d-select-listbox--md .d-select-listbox__item {
+    @apply select-listbox-size-item-md;
+  }
 
-.d-select-listbox--lg .d-select-listbox__item {
-  @apply select-listbox-size-item-lg;
-}
+  .d-select-listbox--lg .d-select-listbox__item {
+    @apply select-listbox-size-item-lg;
+  }
 }

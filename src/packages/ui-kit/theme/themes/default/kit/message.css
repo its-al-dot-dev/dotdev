@@ -96,99 +96,99 @@
 }
 
 @layer components {
-.d-message {
-  @apply flex items-start gap-2.5 p-3 radius-md message-transition;
-}
+  .d-message {
+    @apply flex items-start gap-2.5 p-3 radius-md message-transition;
+  }
 
-.d-message--border {
-  @apply border;
-}
+  .d-message--border {
+    @apply border;
+  }
 
-.d-message__icon {
-  @apply shrink-0 text-[1.25em] mt-px;
-}
+  .d-message__icon {
+    @apply shrink-0 text-[1.25em] mt-px;
+  }
 
-.d-message__content {
-  @apply flex min-w-0 flex-col gap-0.5;
-}
+  .d-message__content {
+    @apply flex min-w-0 flex-col gap-0.5;
+  }
 
-.d-message__title {
-  @apply label-md font-medium leading-snug;
-}
+  .d-message__title {
+    @apply label-md font-medium leading-snug;
+  }
 
-.d-message__message {
-  @apply label-sm leading-snug text-muted;
-}
+  .d-message__message {
+    @apply label-sm leading-snug text-muted;
+  }
 
-.d-message--primary.d-message--soft {
-  @apply message-bg-primary-soft message-text-primary;
-}
+  .d-message--primary.d-message--soft {
+    @apply message-bg-primary-soft message-text-primary;
+  }
 
-.d-message--primary.d-message--plain {
-  @apply message-text-primary;
-}
+  .d-message--primary.d-message--plain {
+    @apply message-text-primary;
+  }
 
-.d-message--primary.d-message--border {
-  @apply message-border-primary;
-}
+  .d-message--primary.d-message--border {
+    @apply message-border-primary;
+  }
 
-.d-message--neutral.d-message--soft {
-  @apply message-bg-neutral-soft message-text-neutral;
-}
+  .d-message--neutral.d-message--soft {
+    @apply message-bg-neutral-soft message-text-neutral;
+  }
 
-.d-message--neutral.d-message--plain {
-  @apply message-text-neutral;
-}
+  .d-message--neutral.d-message--plain {
+    @apply message-text-neutral;
+  }
 
-.d-message--neutral.d-message--border {
-  @apply message-border-neutral;
-}
+  .d-message--neutral.d-message--border {
+    @apply message-border-neutral;
+  }
 
-.d-message--danger.d-message--soft {
-  @apply message-bg-danger-soft message-text-danger;
-}
+  .d-message--danger.d-message--soft {
+    @apply message-bg-danger-soft message-text-danger;
+  }
 
-.d-message--danger.d-message--plain {
-  @apply message-text-danger;
-}
+  .d-message--danger.d-message--plain {
+    @apply message-text-danger;
+  }
 
-.d-message--danger.d-message--border {
-  @apply message-border-danger;
-}
+  .d-message--danger.d-message--border {
+    @apply message-border-danger;
+  }
 
-.d-message--warning.d-message--soft {
-  @apply message-bg-warning-soft message-text-warning;
-}
+  .d-message--warning.d-message--soft {
+    @apply message-bg-warning-soft message-text-warning;
+  }
 
-.d-message--warning.d-message--plain {
-  @apply message-text-warning;
-}
+  .d-message--warning.d-message--plain {
+    @apply message-text-warning;
+  }
 
-.d-message--warning.d-message--border {
-  @apply message-border-warning;
-}
+  .d-message--warning.d-message--border {
+    @apply message-border-warning;
+  }
 
-.d-message--info.d-message--soft {
-  @apply message-bg-info-soft message-text-info;
-}
+  .d-message--info.d-message--soft {
+    @apply message-bg-info-soft message-text-info;
+  }
 
-.d-message--info.d-message--plain {
-  @apply message-text-info;
-}
+  .d-message--info.d-message--plain {
+    @apply message-text-info;
+  }
 
-.d-message--info.d-message--border {
-  @apply message-border-info;
-}
+  .d-message--info.d-message--border {
+    @apply message-border-info;
+  }
 
-.d-message--success.d-message--soft {
-  @apply message-bg-success-soft message-text-success;
-}
+  .d-message--success.d-message--soft {
+    @apply message-bg-success-soft message-text-success;
+  }
 
-.d-message--success.d-message--plain {
-  @apply message-text-success;
-}
+  .d-message--success.d-message--plain {
+    @apply message-text-success;
+  }
 
-.d-message--success.d-message--border {
-  @apply message-border-success;
-}
+  .d-message--success.d-message--border {
+    @apply message-border-success;
+  }
 }

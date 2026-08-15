@@ -5,7 +5,7 @@ import chokidar, { type FSWatcher } from 'chokidar'
 import { parseArgs } from 'node:util'
 
 import { createThemeBuilder } from '../theme-builder.ts'
-import type { ThemeBuilderConfig } from '../types.ts'
+import type { ThemeConfig } from '../types.ts'
 import { writeThemeFiles } from '../persist/index.ts'
 
 const { values } = parseArgs({
@@ -69,7 +69,7 @@ async function buildTheme(): Promise<boolean> {
     console.log(`\n📦 Building theme from: ${relativePath}...`)
 
     const imported = (await jiti.import(resolvedConfigPath)) as {
-      default?: ThemeBuilderConfig
+      default?: ThemeConfig
     }
 
     // Жесткая проверка на наличие export default
@@ -78,17 +78,14 @@ async function buildTheme(): Promise<boolean> {
     }
 
     const config = imported.default
-
-    if (!config.theme) {
-      throw new Error('Configuration object must have a "theme" property.')
-    }
+    const themeName = config.theme ?? 'default'
 
     const builder = createThemeBuilder(config)
-    const stylesMap = builder.renderAll()
-    const savedDir = await writeThemeFiles(outputDir, config.theme, stylesMap)
+    const groupStyles = builder.renderAll()
+    const savedDir = await writeThemeFiles(outputDir, themeName, groupStyles)
     const duration = (performance.now() - startTime).toFixed(2)
 
-    console.log(`✅ Theme "${config.theme}" built successfully in ${duration}ms`)
+    console.log(`✅ Theme "${themeName}" built successfully in ${duration}ms`)
     console.log(`📁 Output: ${path.relative(process.cwd(), savedDir)}`)
 
     return true

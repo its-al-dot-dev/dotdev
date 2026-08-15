@@ -54,13 +54,18 @@ export type Resolver = (value: string) => string
 // Внутренние типы (не заморожены)
 // ============================================================================
 
-export interface ThemeBuilderConfig {
-  /** Неймспейс для base-селекторов локальных (components) листов */
-  namespace: string
-  /** Имя темы (используется CLI для записи в {output}/{theme}/components) */
-  theme: string
-  /** Глобальные листы приложения: base = .{name} */
-  app?: Record<string, Sheet>
-  /** Компоненты: base = .{namespace}-{name} */
-  components?: Record<string, Sheet>
+/** Группа листов темы: общий namespace-префикс и сами листы */
+export interface ThemeGroup {
+  /** Префикс base-селектора: 'd' → .d-{name}; пусто/отсутствует → .{name} */
+  namespace?: string
+  /** Листы группы в порядке объявления (порядок = порядок каскада) */
+  sheets: Record<string, Sheet>
+}
+
+/** Публичный конфиг темы (вход defineConfig) */
+export interface ThemeConfig {
+  /** Имя темы (для пути вывода). Если нет — CLI использует 'default' */
+  theme?: string
+  /** Группы листов в порядке объявления */
+  groups: Record<string, ThemeGroup>
 }

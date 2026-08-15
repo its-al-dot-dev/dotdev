@@ -89,67 +89,67 @@
 }
 
 @layer components {
-.d-accordion {
-  @apply flex w-full flex-col accordion-transition;
-}
+  .d-accordion {
+    @apply flex w-full flex-col accordion-transition;
+  }
 
-.d-accordion--outlined {
-  @apply accordion-gap;
-}
+  .d-accordion--outlined {
+    @apply accordion-gap;
+  }
 
-.d-accordion--soft {
-  @apply accordion-gap;
-}
+  .d-accordion--soft {
+    @apply accordion-gap;
+  }
 
-.d-accordion--disabled {
-  @apply disabled;
-}
+  .d-accordion--disabled {
+    @apply disabled;
+  }
 
-.d-accordion__item {
-  @apply flex flex-col rounded-[inherit];
-}
+  .d-accordion__item {
+    @apply flex flex-col rounded-[inherit];
+  }
 
-.d-accordion--outlined .d-accordion__item {
-  @apply accordion-rounded-item border accordion-border-item accordion-bg-item-outlined;
-}
+  .d-accordion--outlined .d-accordion__item {
+    @apply accordion-rounded-item border accordion-border-item accordion-bg-item-outlined;
+  }
 
-.d-accordion--soft .d-accordion__item {
-  @apply accordion-rounded-item accordion-bg-item-soft;
-}
+  .d-accordion--soft .d-accordion__item {
+    @apply accordion-rounded-item accordion-bg-item-soft;
+  }
 
-.d-accordion--underline .d-accordion__item {
-  @apply border-b accordion-border-item last:border-b-0;
-}
+  .d-accordion--underline .d-accordion__item {
+    @apply border-b accordion-border-item last:border-b-0;
+  }
 
-.d-accordion__trigger {
-  @apply  rounded-[inherit] flex w-full items-center accordion-gap-item accordion-px-item accordion-py-item accordion-text-size-item accordion-text-item text-left font-medium outline-none cursor-pointer select-none accordion-transition;
-}
+  .d-accordion__trigger {
+    @apply  rounded-[inherit] flex w-full items-center accordion-gap-item accordion-px-item accordion-py-item accordion-text-size-item accordion-text-item text-left font-medium outline-none cursor-pointer select-none accordion-transition;
+  }
 
-.d-accordion__trigger:focus-visible {
-  @apply ring-2 accordion-ring-focus;
-}
+  .d-accordion__trigger:focus-visible {
+    @apply ring-2 accordion-ring-focus;
+  }
 
-.d-accordion__trigger:disabled {
-  @apply disabled;
-}
+  .d-accordion__trigger:disabled {
+    @apply disabled;
+  }
 
-.d-accordion__label {
-  @apply truncate;
-}
+  .d-accordion__label {
+    @apply truncate;
+  }
 
-.d-accordion__indicator {
-  @apply ml-auto accordion-text-indicator accordion-transition-indicator;
-}
+  .d-accordion__indicator {
+    @apply ml-auto accordion-text-indicator accordion-transition-indicator;
+  }
 
-.d-accordion__trigger--open .d-accordion__indicator {
-  @apply rotate-180 accordion-text-indicator-open;
-}
+  .d-accordion__trigger--open .d-accordion__indicator {
+    @apply rotate-180 accordion-text-indicator-open;
+  }
 
-.d-accordion__panel {
-  @apply accordion-transition-panel overflow-hidden;
-}
+  .d-accordion__panel {
+    @apply accordion-transition-panel overflow-hidden;
+  }
 
-.d-accordion__value {
-  @apply block accordion-px-item accordion-pb-item accordion-text-size-item accordion-text-value;
-}
+  .d-accordion__value {
+    @apply block accordion-px-item accordion-pb-item accordion-text-size-item accordion-text-value;
+  }
 }

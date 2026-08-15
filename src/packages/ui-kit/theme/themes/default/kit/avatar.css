@@ -137,71 +137,71 @@
 }
 
 @layer components {
-.d-avatar {
-  @apply avatar-size box-border flex items-center justify-center relative rounded-full avatar-border;
-}
+  .d-avatar {
+    @apply avatar-size box-border flex items-center justify-center relative rounded-full avatar-border;
+  }
 
-.d-avatar--solid {
-  @apply shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)];
-}
+  .d-avatar--solid {
+    @apply shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)];
+  }
 
-.d-avatar--border {
-  @apply border;
-}
+  .d-avatar--border {
+    @apply border;
+  }
 
-.d-avatar--square {
-  @apply avatar-rounded-square;
-}
+  .d-avatar--square {
+    @apply avatar-rounded-square;
+  }
 
-.d-avatar--primary.d-avatar--soft {
-  @apply avatar-bg-primary-soft avatar-text-primary-soft;
-}
+  .d-avatar--primary.d-avatar--soft {
+    @apply avatar-bg-primary-soft avatar-text-primary-soft;
+  }
 
-.d-avatar--primary.d-avatar--solid {
-  @apply avatar-bg-primary-solid avatar-text-primary-solid;
-}
+  .d-avatar--primary.d-avatar--solid {
+    @apply avatar-bg-primary-solid avatar-text-primary-solid;
+  }
 
-.d-avatar--neutral.d-avatar--soft {
-  @apply avatar-bg-neutral-soft avatar-text-neutral-soft;
-}
+  .d-avatar--neutral.d-avatar--soft {
+    @apply avatar-bg-neutral-soft avatar-text-neutral-soft;
+  }
 
-.d-avatar--neutral.d-avatar--solid {
-  @apply avatar-bg-neutral-solid avatar-text-neutral-solid;
-}
+  .d-avatar--neutral.d-avatar--solid {
+    @apply avatar-bg-neutral-solid avatar-text-neutral-solid;
+  }
 
-.d-avatar--danger.d-avatar--soft {
-  @apply avatar-bg-danger-soft avatar-text-danger-soft;
-}
+  .d-avatar--danger.d-avatar--soft {
+    @apply avatar-bg-danger-soft avatar-text-danger-soft;
+  }
 
-.d-avatar--danger.d-avatar--solid {
-  @apply avatar-bg-danger-solid avatar-text-danger-solid;
-}
+  .d-avatar--danger.d-avatar--solid {
+    @apply avatar-bg-danger-solid avatar-text-danger-solid;
+  }
 
-.d-avatar--warning.d-avatar--soft {
-  @apply avatar-bg-warning-soft avatar-text-warning-soft;
-}
+  .d-avatar--warning.d-avatar--soft {
+    @apply avatar-bg-warning-soft avatar-text-warning-soft;
+  }
 
-.d-avatar--warning.d-avatar--solid {
-  @apply avatar-bg-warning-solid avatar-text-warning-solid;
-}
+  .d-avatar--warning.d-avatar--solid {
+    @apply avatar-bg-warning-solid avatar-text-warning-solid;
+  }
 
-.d-avatar--info.d-avatar--soft {
-  @apply avatar-bg-info-soft avatar-text-info-soft;
-}
+  .d-avatar--info.d-avatar--soft {
+    @apply avatar-bg-info-soft avatar-text-info-soft;
+  }
 
-.d-avatar--info.d-avatar--solid {
-  @apply avatar-bg-info-solid avatar-text-info-solid;
-}
+  .d-avatar--info.d-avatar--solid {
+    @apply avatar-bg-info-solid avatar-text-info-solid;
+  }
 
-.d-avatar--success.d-avatar--soft {
-  @apply avatar-bg-success-soft avatar-text-success-soft;
-}
+  .d-avatar--success.d-avatar--soft {
+    @apply avatar-bg-success-soft avatar-text-success-soft;
+  }
 
-.d-avatar--success.d-avatar--solid {
-  @apply avatar-bg-success-solid avatar-text-success-solid;
-}
+  .d-avatar--success.d-avatar--solid {
+    @apply avatar-bg-success-solid avatar-text-success-solid;
+  }
 
-.d-avatar__image {
-  @apply rounded-[inherit];
-}
+  .d-avatar__image {
+    @apply rounded-[inherit];
+  }
 }
