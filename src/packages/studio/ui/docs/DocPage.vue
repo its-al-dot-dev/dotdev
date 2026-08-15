@@ -4,6 +4,8 @@ import { Icon, Tag } from 'dotdev/ui-kit'
 import { useRoute } from 'vue-router'
 import DocExample from './DocExample.vue'
 import DocSidebar from './DocSidebar.vue'
+import DocStyleTokens from './DocStyleTokens.vue'
+import { STYLE_TOKEN_GROUPS } from './style-tokens.ts'
 import type { ExampleMeta } from '../../docs/define-example.ts'
 import { normalizeExamples } from '../../utils/normalize-example.ts'
 
@@ -33,12 +35,13 @@ const exampleItems = computed(() =>
   })),
 )
 
-const sidebarItems = computed(() =>
-  exampleItems.value.map((example) => ({
+const sidebarItems = computed(() => [
+  ...exampleItems.value.map((example) => ({
     id: `example-${example.id}`,
     title: example.title ?? '',
   })),
-)
+  { id: 'style-tokens', title: 'Style tokens' },
+])
 </script>
 
 <template>
@@ -89,6 +92,8 @@ const sidebarItems = computed(() =>
           />
         </section>
       </div>
+
+      <DocStyleTokens :groups="STYLE_TOKEN_GROUPS" />
     </div>
 
     <DocSidebar v-if="exampleItems.length" :items="sidebarItems" />
