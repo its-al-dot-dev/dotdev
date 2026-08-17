@@ -1,3 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import 'tailwindcss';
-@import '../packages/ui-kit/theme/themes/index.css';
+@import './themes/default.css';
+
+@theme {
+  --font-sans:
+    'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+
+  --color-shadow-grey-50: oklch(95.58% 0.007 277.16);
+  --color-shadow-grey-100: oklch(91.19% 0.014 281.55);
+  --color-shadow-grey-200: oklch(82.14% 0.03 279.26);
+  --color-shadow-grey-300: oklch(72.91% 0.045 279.43);
+  --color-shadow-grey-400: oklch(63.44% 0.062 279.07);
+  --color-shadow-grey-500: oklch(53.68% 0.082 277.4);
+  --color-shadow-grey-600: oklch(45.93% 0.067 278.07);
+  --color-shadow-grey-700: oklch(37.8% 0.053 277.88);
+  --color-shadow-grey-800: oklch(29.2% 0.039 277.47);
+  --color-shadow-grey-900: oklch(19.96% 0.02 279.96);
+  --color-shadow-grey-950: oklch(17.08% 0.015 278.37);
+}

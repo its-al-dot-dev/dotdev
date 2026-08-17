@@ -1,7 +1,10 @@
 {
+  "compilerOptions": {
+    "paths": {
+      "dotdev/theme": ["./src/packages/theme"],
+      "dotdev/theme/*": ["./src/packages/theme/*"]
+    }
+  },
   "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
 }

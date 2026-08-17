@@ -12,7 +12,7 @@
     "baseUrl": ".",
     "ignoreDeprecations": "6.0",
     "paths": {
-      "dotdev/theme": ["src/packages/ui-kit/theme"],
+      "dotdev/theme": ["src/packages/theme"],
       "dotdev/ui-kit": ["src/packages/ui-kit"],
       "dotdev/studio": ["src/packages/studio"],
       "dotdev/icons": ["src/packages/icons"],

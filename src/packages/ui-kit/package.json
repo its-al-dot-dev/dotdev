@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "theme:tw-css": "bun ../theme/build/build-tw-css.ts --input ../../ui-kit/theme/index.ts --output ../../app/themes --name default",
+    "theme:css-in-js": "bun ../theme/build/build-css-in-js.ts --input ../../ui-kit/theme/index.ts --output ../../app/themes --name default",
+    "theme:tw-css:watch": "bun --watch ../theme/build/build-tw-css.ts --input ../../ui-kit/theme/index.ts --output ../../app/themes --name default",
+    "theme:css-in-js:watch": "bun --watch ../theme/build/build-css-in-js.ts --input ../../ui-kit/theme/index.ts --output ../../app/themes --name default"
+  }
+}

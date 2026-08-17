@@ -8,9 +8,6 @@ export * from './utils'
 /* Config */
 export * from './config'
 
-/* Themes */
-export * from './theme'
-
 /* Directives */
 export * from './directives'
 

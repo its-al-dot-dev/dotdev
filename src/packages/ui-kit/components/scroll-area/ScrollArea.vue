@@ -78,13 +78,13 @@ const styleVariables = computed(() => {
   const styles: Record<string, string> = {}
 
   if (thumbSizeY.value > 0) {
-    styles['--scroll-area-thumb-y-size'] = `${thumbSizeY.value}px`
-    styles['--scroll-area-thumb-y-offset'] = `${thumbOffsetY.value}px`
+    styles['--d-scroll-area-size-thumb-y'] = `${thumbSizeY.value}px`
+    styles['--d-scroll-area-translate-thumb-y'] = `${thumbOffsetY.value}px`
   }
 
   if (thumbSizeX.value > 0) {
-    styles['--scroll-area-thumb-x-size'] = `${thumbSizeX.value}px`
-    styles['--scroll-area-thumb-x-offset'] = `${thumbOffsetX.value}px`
+    styles['--d-scroll-area-size-thumb-x'] = `${thumbSizeX.value}px`
+    styles['--d-scroll-area-translate-thumb-x'] = `${thumbOffsetX.value}px`
   }
 
   return styles
