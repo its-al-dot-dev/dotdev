@@ -7,8 +7,8 @@
   "scripts": {
     "theme:css": "dotdev-theme css --input ./src/theme/index.ts --output ../../apps/web/src/themes --name default",
     "theme:tokens": "dotdev-theme tokens --input ./src/theme/index.ts --output ../../apps/web/src/themes --name default",
-    "theme:css:watch": "dotdev-theme css --input ./src/theme/index.ts --output ../../apps/web/src/themes --name default",
-    "theme:tokens:watch": "dotdev-theme tokens --input ./src/theme/index.ts --output ../../apps/web/src/themes --name default"
+    "theme:css:watch": "dotdev-theme css --input ./src/theme/index.ts --output ../../apps/web/src/themes --name default --watch --watch-path ./src/theme",
+    "theme:tokens:watch": "dotdev-theme tokens --input ./src/theme/index.ts --output ../../apps/web/src/themes --name default --watch --watch-path ./src/theme"
   },
   "dependencies": {
     "vue": "^3.5.39",

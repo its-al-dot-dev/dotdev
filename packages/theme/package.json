@@ -22,9 +22,11 @@
     "build": "tsup src/cli.ts src/index.ts --dts --format esm"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.2.0",
+    "chokidar": "^4.0.3",
     "citty": "^0.2.2",
-    "postcss": "^8.5.6",
-    "@tailwindcss/postcss": "^4.3.3"
+    "postcss": "^8.5.6"
   },
   "devDependencies": {
     "tsup": "^8.4.0"
