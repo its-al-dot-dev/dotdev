@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
     "paths": {
-      "dotdev/theme": ["./src/packages/theme"],
-      "dotdev/theme/*": ["./src/packages/theme/*"]
+      "@dotdev/theme": ["./packages/theme/src"],
+      "@dotdev/theme/*": ["./packages/theme/src/*"],
+      "@dotdev/ui-kit": ["./packages/ui-kit/src"],
+      "@dotdev/ui-kit/*": ["./packages/ui-kit/src/*"],
+      "@dotdev/studio": ["./packages/studio/src"],
+      "@dotdev/studio/*": ["./packages/studio/src/*"]
     }
   },
   "files": [],
-  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./apps/web" }]
 }

@@ -1,0 +1,10 @@
+{
+  "name": "@dotdev/icons",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "devDependencies": {
+    "vite": "^8.1.1"
+  }
+}
