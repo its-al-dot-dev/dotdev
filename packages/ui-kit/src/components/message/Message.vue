@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import type { UIMessageEmits, UIMessageProps, UIMessageSlots } from './message.types.ts'
-import { Icon, useUiKitBem, useUiKitProps } from '@dotdev/ui-kit'
+import { Icon, useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
+import { template } from '../templates/message.ts'
 
 defineEmits<UIMessageEmits>()
 defineSlots<UIMessageSlots>()
@@ -17,6 +18,7 @@ const props = withDefaults(defineProps<UIMessageProps>(), {
 const ui = useUiKitProps('message', props)
 
 const bem = useUiKitBem(ui)
+useUiKitTheme(ui, template)
 const rootClass = computed(() => {
   const { border, color, variant } = ui
   return bem([color, variant], { border })

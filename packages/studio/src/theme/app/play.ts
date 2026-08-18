@@ -2,7 +2,7 @@ import { Component } from '@dotdev/theme'
 
 export const play = new Component({
   ui: 'play',
-
+  layer: 'studio',
   semantics: {
     'bg-default': 'bg-surface',
     'border-default': 'border-default',
@@ -11,7 +11,6 @@ export const play = new Component({
     'bg-item-hover': ['neutral-200/60', 'neutral-800/60'],
     'text-danger': ['danger-600', 'danger-400'],
   },
-
   rules: {
     '.play': `play-bg-default border play-border-default rounded-2xl flex flex-col`,
     '.play--full': `fixed w-screen h-screen inset-0 z-1000`,

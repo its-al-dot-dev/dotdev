@@ -60,8 +60,8 @@ export class Registry {
     if (scope.kind === 'component') this.componentUisSet.add(scope.ui)
   }
 
-  addRule(scope: Scope, selector: string, classes: string[]) {
-    const entry: RuleEntry = { kind: 'rule', scope, selector, classes }
+  addRule(scope: Scope, layer: string, selector: string, classes: string[]) {
+    const entry: RuleEntry = { kind: 'rule', scope, layer, selector, classes }
     this.rulesList.push(entry)
     if (scope.kind === 'component') this.componentUisSet.add(scope.ui)
   }

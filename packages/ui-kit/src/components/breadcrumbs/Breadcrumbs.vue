@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { Icon, useUiKitBem, useUiKitProps } from '@dotdev/ui-kit'
+import { Icon, useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
 import type { UIBreadcrumbsEmits, UIBreadcrumbsProps, UIBreadcrumbsSlots } from './breadcrumbs.types.ts'
+import { template } from '../templates/breadcrumbs.ts'
 
 defineEmits<UIBreadcrumbsEmits>()
 defineSlots<UIBreadcrumbsSlots>()
@@ -14,6 +15,7 @@ const props = withDefaults(defineProps<UIBreadcrumbsProps>(), {
 
 const ui = useUiKitProps('breadcrumbs', props)
 const bem = useUiKitBem(ui)
+useUiKitTheme(ui, template)
 
 function isCurrent(index: number) {
   return index === ui.items.length - 1

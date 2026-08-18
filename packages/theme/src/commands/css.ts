@@ -4,12 +4,28 @@ import path from 'node:path'
 import chokidar from 'chokidar'
 import { loadTheme } from './utils'
 
-async function buildCSS(input: string, output: string, name: string): Promise<void> {
+async function buildCSS(input: string, output: string, name: string, type?: string): Promise<void> {
   const theme = await loadTheme(input)
   const outDir = path.resolve(output)
 
+  let css: string
+  switch (type) {
+    case 'vars':
+      css = theme.toVarsCSS()
+      break
+    case 'utilities':
+      css = theme.toUtilitiesCSS()
+      break
+    case 'rules':
+      css = theme.toRulesCSS()
+      break
+    default:
+      css = theme.toCSS()
+      break
+  }
+
   await mkdir(outDir, { recursive: true })
-  await writeFile(path.join(outDir, `${name}.css`), theme.toCSS())
+  await writeFile(path.join(outDir, `${name}.css`), css)
 
   const relative = path.relative(process.cwd(), path.join(outDir, `${name}.css`))
   console.log(`css -> ${relative}`)
@@ -45,18 +61,22 @@ export const css = defineCommand({
       type: 'string',
       description: 'Directory or file to watch (default: input file)',
     },
+    type: {
+      type: 'string',
+      description: 'CSS part to generate: vars, utilities, rules (default: all)',
+    },
   },
   async run({ args }) {
     const input = path.resolve(args.input)
     const watchPath = args['watch-path'] ? path.resolve(args['watch-path']) : input
 
-    await buildCSS(input, args.output, args.name)
+    await buildCSS(input, args.output, args.name, args.type)
 
     if (args.watch) {
       console.log(`Watching ${watchPath} for changes...`)
       chokidar.watch(watchPath, { ignoreInitial: true }).on('change', async () => {
         console.log('Change detected, rebuilding...')
-        await buildCSS(input, args.output, args.name)
+        await buildCSS(input, args.output, args.name, args.type)
       })
     }
   },

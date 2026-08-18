@@ -2,7 +2,8 @@
 import type { UIScrollAreaEmits, UIScrollAreaProps, UIScrollAreaSlots } from './scroll-area.types.ts'
 import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue'
 import { calculateThumbOffset, calculateThumbSize } from './utils.ts'
-import { throttleByRaf, useUiKitBem, useUiKitProps } from '@dotdev/ui-kit'
+import { throttleByRaf, useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
+import { template } from '../templates/scroll-area.ts'
 
 defineSlots<UIScrollAreaSlots>()
 const emit = defineEmits<UIScrollAreaEmits>()
@@ -13,6 +14,7 @@ const props = withDefaults(defineProps<UIScrollAreaProps>(), {
 
 const ui = useUiKitProps('scroll-area', props)
 const bem = useUiKitBem(ui)
+useUiKitTheme(ui, template)
 
 const viewportRef = useTemplateRef<HTMLDivElement>('viewport')
 

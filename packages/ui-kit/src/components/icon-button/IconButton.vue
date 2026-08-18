@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import Button from '../button/Button.vue'
 import type { UIIconButtonProps } from './icon-button.types.ts'
-import { useUiKitProps } from '../../config'
+import { Button, useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
 import { computed } from 'vue'
-import { useUiKitBem } from '../../composables'
+import { template } from '../templates/icon-button.ts'
 
 const props = withDefaults(defineProps<UIIconButtonProps>(), {
   ui: 'icon-button',
@@ -14,12 +13,14 @@ const props = withDefaults(defineProps<UIIconButtonProps>(), {
 })
 
 const ui = useUiKitProps('icon-button', props)
+useUiKitTheme(ui, template)
+
+const bem = useUiKitBem(ui)
+
 const bind = computed(() => {
   const { ui: _, ...props } = ui
   return props
 })
-
-const bem = useUiKitBem(ui)
 </script>
 
 <template>

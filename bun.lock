@@ -50,6 +50,7 @@
     "packages/studio": {
       "name": "@dotdev/studio",
       "dependencies": {
+        "@dotdev/theme": "workspace:*",
         "pinia": "^4.0.2",
         "shiki": "^4.3.1",
         "vue": "^3.5.39",

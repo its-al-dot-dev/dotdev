@@ -2,10 +2,11 @@ import { Component } from '@dotdev/theme'
 
 export const layout = new Component({
   ui: 'layout',
+  layer: 'studio',
   semantics: {
     'h-header': '56px',
     'w-sidebar': '240px',
-    'text-heading': ['neutral-400', 'neutral-500'],
+    'text-heading': ['--d-neutral-400', '--d-neutral-500'],
   },
   utilities: {
     root: 'bg-background text-foreground transition-[background-color]',

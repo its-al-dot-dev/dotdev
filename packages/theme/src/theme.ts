@@ -1,5 +1,5 @@
 import { Registry } from './registry'
-import { renderAll, renderFiles, renderTypes, type ThemeFiles } from './render'
+import { renderAll, renderFiles, renderTypes, renderVarsAll, renderUtilitiesAll, renderRulesAll, type ThemeFiles } from './render'
 import type { ComponentConfig, Scope, ThemeConfig, ThemeTokens, TokenValue } from './types'
 import { extractTokens } from './tokens'
 import { componentSelector, isPair, nsPrefix, splitClasses } from './utils'
@@ -29,6 +29,18 @@ export class Theme {
 
   toCSS(): string {
     return renderAll(this.registry)
+  }
+
+  toVarsCSS(): string {
+    return renderVarsAll(this.registry)
+  }
+
+  toUtilitiesCSS(): string {
+    return renderUtilitiesAll(this.registry)
+  }
+
+  toRulesCSS(): string {
+    return renderRulesAll(this.registry)
   }
 
   toFiles(): ThemeFiles {
@@ -71,13 +83,14 @@ export class Theme {
   private registerComponent(config: ComponentConfig, namespace: string | undefined) {
     const scope: Scope = { kind: 'component', ui: config.ui }
     const ns = nsPrefix(namespace)
+    const layer = config.layer ?? 'components'
 
     this.addPrimitives(scope, config.primitives, namespace)
     this.addSemantics(scope, config.semantics, namespace)
     this.addUtilities(scope, config.utilities, config.ui)
 
     for (const [raw, source] of Object.entries(config.rules ?? {})) {
-      this.registry.addRule(scope, componentSelector(raw, ns, config.ui), splitClasses(source))
+      this.registry.addRule(scope, layer, componentSelector(raw, ns, config.ui), splitClasses(source))
     }
   }
 }

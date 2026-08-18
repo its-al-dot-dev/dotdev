@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import type { UIGroupEmits, UIGroupProps, UIGroupSlots } from './group.types.ts'
-import { useUiKitBem, useUiKitProps } from '@dotdev/ui-kit'
+import { useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
 import { computed } from 'vue'
+import { template } from '../templates/group.ts'
 
 defineEmits<UIGroupEmits>()
 defineSlots<UIGroupSlots>()
@@ -13,6 +14,7 @@ const props = withDefaults(defineProps<UIGroupProps>(), {
 const ui = useUiKitProps('group', props)
 
 const bem = useUiKitBem(ui)
+useUiKitTheme(ui, template)
 
 const rootClass = computed(() => bem([ui.axis]))
 </script>

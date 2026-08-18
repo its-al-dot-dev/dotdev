@@ -2,10 +2,11 @@ import { Component } from '@dotdev/theme'
 
 export const doc = new Component({
   ui: 'doc',
+  layer: 'studio',
   semantics: {
-    'bg-tint': ['brand-50', 'brand-400/10'],
-    'bg-card': ['neutral-50', 'neutral-500/10'],
-    'bg-grid-color': 'neutral-500/30',
+    'bg-tint': ['--d-brand-50', '--d-brand-400/10'],
+    'bg-card': ['--d-neutral-50', '--d-neutral-500/10'],
+    'bg-grid-color': '--d-neutral-500/30',
   },
   utilities: {
     card: `doc-bg-card border border-default rounded-2xl transition-[background-color,border-color]`,

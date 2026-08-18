@@ -5,9 +5,18 @@ export function renderRules(registry: Registry, ui?: string): string {
   const rules = registry
     .rules()
     .filter((rule) => ui === undefined || matchesScope(rule.scope, ui))
-    .map((rule) => `${rule.selector} {\n  @apply ${rule.classes.join(' ')};\n}`)
-    .join('\n\n')
 
-  if (!rules) return ''
-  return `@layer components {\n${rules}\n}`
+  if (!rules.length) return ''
+
+  const byLayer = new Map<string, string[]>()
+  for (const rule of rules) {
+    const body = `${rule.selector} {\n  @apply ${rule.classes.join(' ')};\n}`
+    const list = byLayer.get(rule.layer)
+    if (list) list.push(body)
+    else byLayer.set(rule.layer, [body])
+  }
+
+  return [...byLayer.entries()]
+    .map(([layer, items]) => `@layer ${layer} {\n${items.join('\n\n')}\n}`)
+    .join('\n\n')
 }

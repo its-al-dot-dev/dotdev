@@ -2,7 +2,7 @@ import { Component } from '@dotdev/theme'
 
 export const landing = new Component({
   ui: 'landing',
-
+  layer: 'studio',
   rules: {
     '.landing': `mx-auto w-full max-w-6xl px-4 py-16 lg:py-24`,
 

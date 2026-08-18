@@ -667,16 +667,6 @@ var tokens = {
       "text-md": "var(--{ns}-type-md)",
       "text-lg": "var(--{ns}-type-md)",
       "rounded": "var(--{ns}-radius-md)"
-    },
-    "layout": {
-      "h-header": "56px",
-      "w-sidebar": "240px",
-      "text-heading": "var(--{ns}-neutral-400)"
-    },
-    "doc": {
-      "bg-tint": "var(--{ns}-brand-50)",
-      "bg-card": "var(--{ns}-neutral-50)",
-      "bg-grid-color": "color-mix(in oklab, var(--{ns}-neutral-500) 30%, transparent)"
     }
   }
 } as const

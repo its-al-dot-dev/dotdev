@@ -1,3 +1,4 @@
+export { useThemeProvider, useUiKitTheme } from './useThemeProvider.ts'
 export { useTypeahead } from './useTypeahead.ts'
 export { useGlobalEvent } from './useGlobalEvent.ts'
 export { useSelectOptions } from './useSelectOptions.ts'

@@ -1,7 +1,4 @@
 import { Theme } from '@dotdev/theme'
-import { layout } from './app/layout.ts'
-import { landing } from './app/landing.ts'
-import { doc } from './app/doc.ts'
 import { button } from './components/button.ts'
 import { accordion } from './components/accordion.ts'
 import { avatar } from './components/avatar.ts'
@@ -265,10 +262,6 @@ export default new Theme({
     table,
     tag,
     textarea,
-    // app
-    layout,
-    landing,
-    doc,
   },
 })
 

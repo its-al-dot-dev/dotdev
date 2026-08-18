@@ -88,6 +88,6 @@ export function pruneEmptyRules(root: postcss.Container): void {
 
 export async function loadTheme(input: string): Promise<Theme> {
   const resolved = path.resolve(process.cwd(), input);
-  const mod = await import(resolved);
+  const mod = await import(`${resolved}?t=${Date.now()}`);
   return mod.default ?? Object.values(mod)[0];
 }

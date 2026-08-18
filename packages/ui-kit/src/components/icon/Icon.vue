@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import type { UIIconEmits, UIIconProps, UIIconSlots } from './icon.types.ts'
-import { UI_KIT_CONFIG_KEY, useUiKitBem, useUiKitProps } from '@dotdev/ui-kit'
+import { UI_KIT_CONFIG_KEY, useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
 import { inject } from 'vue'
+import { template } from '../templates/icon.ts'
 
 defineEmits<UIIconEmits>()
 defineSlots<UIIconSlots>()
@@ -11,6 +12,7 @@ const props = withDefaults(defineProps<UIIconProps>(), {
 
 const ui = useUiKitProps('icon', props)
 const bem = useUiKitBem(ui)
+useUiKitTheme(ui, template)
 
 const config = inject(UI_KIT_CONFIG_KEY, {})
 const icons = config.icons ?? {}

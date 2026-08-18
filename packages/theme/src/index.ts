@@ -11,8 +11,9 @@ export type {
   TokenValue,
   UtilityEntry,
 } from './types'
-export type { RuntimeTheme, ThemeDefinition } from './runtime'
+export type { ThemeDefinition } from './runtime'
 
 export { Component, Theme } from './theme'
 export { defineTheme, injectCSS, mergeTokens, renderRuntimeVars, toComponentTemplate, validateTokens } from './runtime'
+export { renderVarsAll, renderUtilitiesAll, renderRulesAll } from './render'
 export { componentSelector, isPair, matchesScope, nsPrefix, parts, splitClasses } from './utils'

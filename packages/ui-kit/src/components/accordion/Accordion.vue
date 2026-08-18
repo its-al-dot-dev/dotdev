@@ -9,8 +9,10 @@ import {
   useArrayModel,
   useUiKitBem,
   useUiKitProps,
+  useUiKitTheme,
 } from '@dotdev/ui-kit'
 import Collapse from './Collapse.vue'
+import { template } from '../templates/accordion.ts'
 
 defineEmits<UIAccordionEmits>()
 defineSlots<UIAccordionSlots<T>>()
@@ -26,6 +28,7 @@ const model = defineModel<M extends true ? T[] : T | undefined>()
 
 const ui = useUiKitProps('accordion', props)
 const bem = useUiKitBem(ui)
+useUiKitTheme(ui, template)
 const id = useId()
 
 const { toggle, isSelected } = useArrayModel<T>(model, {

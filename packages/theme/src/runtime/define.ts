@@ -14,17 +14,30 @@ export interface ThemeDefinition<T extends ThemeTokens = ThemeTokens> {
   }
 }
 
-export interface RuntimeTheme {
-  namespace: string
-  tokens: ThemeTokens
-  css: string
-  inject(): void
-}
-
 const OPACITY_RE = /\/(\d{1,3})$/m
+
+function isRawCSSValue(value: string): boolean {
+  const trimmed = value.trim()
+  return (
+    /^#([0-9a-fA-F]{3,8})$/.test(trimmed) ||
+    /^(\d*\.?\d+)(rem|em|px|%|vh|vw|ch|ex)$/.test(trimmed) ||
+    /^(\d*\.?\d+)$/.test(trimmed) ||
+    /^(rgba?|hsla?)\(/.test(trimmed) ||
+    trimmed === 'transparent' ||
+    trimmed === 'currentcolor' ||
+    trimmed === 'inherit' ||
+    trimmed === 'initial' ||
+    trimmed === 'unset'
+  )
+}
 
 function varRef(value: string, ns: string): string {
   const trimmed = value.trim()
+
+  if (isRawCSSValue(trimmed)) return trimmed
+
+  if (trimmed.startsWith('color-mix')) return trimmed
+
   const { base, opacity } = parseOpacity(trimmed)
 
   const varName = base.startsWith('$')
@@ -36,6 +49,7 @@ function varRef(value: string, ns: string): string {
         : `--${ns}-${base}`
 
   const source = varName.startsWith('var(') ? varName : `var(${varName})`
+
   if (opacity == null) return source
   return `color-mix(in oklab, ${source} ${opacity}%, transparent)`
 }
@@ -99,7 +113,8 @@ export function validateTokens(tokens: ThemeTokens): void {
 
 export function renderRuntimeVars(tokens: ThemeTokens, namespace: string, component?: string): string {
   const ns = `${namespace}-`
-  const decl = (varName: string, value: string): string => `  ${varName}: ${varRef(value, namespace)};`
+  const decl = (varName: string, value: string): string =>
+    `  ${varName}: ${varRef(value.replaceAll('{ns}', namespace), namespace)};`
 
   const blocks: string[] = []
 
@@ -143,15 +158,18 @@ export function renderRuntimeVars(tokens: ThemeTokens, namespace: string, compon
   return blocks.join('\n\n')
 }
 
-export function defineTheme<T extends ThemeTokens = ThemeTokens>(def: ThemeDefinition<T>): RuntimeTheme {
+export function defineTheme<T extends ThemeTokens = ThemeTokens>(def: ThemeDefinition<T>) {
   const defaults = def.tokens
   const namespace = def.namespace ?? 'd'
   const tokens = mergeTokens(defaults, def)
   validateTokens(tokens)
+
   return {
     namespace,
     tokens,
     css: renderRuntimeVars(tokens, namespace),
+    injectCSS,
+    renderRuntimeVars,
     inject() {
       injectCSS(this.css, `theme-${this.namespace}`)
     },

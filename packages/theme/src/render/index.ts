@@ -26,6 +26,25 @@ export function renderAll(registry: Registry): string {
   return [files.variables, files.utilities, ...components].filter(Boolean).join('\n\n')
 }
 
+export function renderVarsAll(registry: Registry): string {
+  const files = renderFiles(registry)
+  const componentVars = Object.values(files.components)
+    .map((c) => c.variables)
+    .filter(Boolean)
+  return [files.variables, ...componentVars].filter(Boolean).join('\n\n')
+}
+
+export function renderUtilitiesAll(registry: Registry): string {
+  return renderFiles(registry).utilities
+}
+
+export function renderRulesAll(registry: Registry): string {
+  return Object.values(renderFiles(registry).components)
+    .map((c) => c.rules)
+    .filter(Boolean)
+    .join('\n\n')
+}
+
 export function renderFiles(registry: Registry): ThemeFiles {
   const components: Record<string, ComponentFiles> = {}
   for (const ui of registry.componentUis()) {

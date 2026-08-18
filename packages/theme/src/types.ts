@@ -16,6 +16,7 @@ export interface ThemeConfig {
 
 export interface ComponentConfig {
   ui: string
+  layer?: string
   primitives?: Record<string, string>
   semantics?: Record<string, TokenValue>
   utilities?: Record<string, string>
@@ -62,6 +63,7 @@ export interface UtilityEntry {
 export interface RuleEntry {
   kind: 'rule'
   scope: Scope
+  layer: string
   selector: string
   classes: string[]
 }

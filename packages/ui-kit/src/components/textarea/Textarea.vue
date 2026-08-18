@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import type { UITextareaEmits, UITextareaProps, UITextareaSlots } from './textarea.types.ts'
-import { useUiKitBem, useUiKitProps } from '@dotdev/ui-kit'
+import { useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
+import { template } from '../templates/textarea.ts'
 
 defineSlots<UITextareaSlots>()
 defineEmits<UITextareaEmits>()
@@ -16,6 +17,7 @@ const model = defineModel<string>({ default: '' })
 const ui = useUiKitProps('textarea', props)
 
 const bem = useUiKitBem(ui)
+useUiKitTheme(ui, template)
 const rootClass = computed(() => {
   const { disabled, invalid, size, variant } = ui
   return bem([size, variant], { disabled, invalid })
