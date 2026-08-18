@@ -12,7 +12,7 @@ export default defineConfig({
     host: true,
   },
   plugins: [
-    VueRouter({ routesFolder: ['./src/pages'], exclude: ['**/docs/*', '**/*Play.vue'] }),
+    VueRouter({ routesFolder: ['./src/pages'], exclude: ['**/docs/*'] }),
     vue(),
     tailwindcss(),
     AutoImport({ imports: { '@dotdev/studio': ['defineExample'] } }),
@@ -30,7 +30,6 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@dotdev/theme': fileURLToPath(new URL('../../packages/theme/src', import.meta.url)),
       '@dotdev/ui-kit': fileURLToPath(new URL('../../packages/ui-kit/src', import.meta.url)),
       '@dotdev/studio': fileURLToPath(new URL('../../packages/studio/src', import.meta.url)),
     },
