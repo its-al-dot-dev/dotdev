@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Button } from '@dotdev/ui-kit'
+import { Button, UiKitProvider } from '@dotdev/ui-kit'
 
 defineExample({
   title: 'Basic usage',
@@ -9,5 +9,8 @@ defineExample({
 
 <template>
   <Button label="Submit" />
-  <Button>Get Started</Button>
+
+  <UiKitProvider namespace="landing">
+    <Button icon="chevron-down">Get Started</Button>
+  </UiKitProvider>
 </template>

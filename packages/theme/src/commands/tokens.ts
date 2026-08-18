@@ -9,10 +9,13 @@ import { renderUtilities } from '../render/utilities'
 import { toComponentTemplate } from '../runtime/toTemplate'
 
 const entry = '@import "tailwindcss/utilities" source(none);'
-const reference = ['@reference "tailwindcss";', '@reference "./.build/utilities.css";'].join('\n')
+const reference = ['@reference "tailwindcss";', '@reference "./utilities.css";'].join('\n')
 
 async function buildTokens(name: string, theme: Theme, outDir: string): Promise<void> {
   const runtimeDir = path.join(outDir, name)
+  const buildRoot = path.join(outDir, '.build')
+
+  await rm(buildRoot, { recursive: true, force: true })
   await mkdir(runtimeDir, { recursive: true })
 
   const files = theme.toFiles()
@@ -21,20 +24,17 @@ async function buildTokens(name: string, theme: Theme, outDir: string): Promise<
   const allUtilities = renderUtilities(theme.registry)
 
   for (const [ui, file] of Object.entries(files.components)) {
-    const buildDir = path.join(outDir, 'components', ui, '.build')
+    const buildDir = path.join(buildRoot, ui)
     await mkdir(buildDir, { recursive: true })
     await writeFile(path.join(buildDir, 'utilities.css'), allUtilities)
 
     const rules = await compile(
       [entry, reference, file.rules].join('\n'),
-      path.join(outDir, 'components', ui, 'rules.css'),
+      path.join(buildRoot, ui, 'rules.css'),
     )
 
     const stripped = stripBanner(rules)
-    if (!stripped.trim()) {
-      await rm(buildDir, { recursive: true })
-      continue
-    }
+    if (!stripped.trim()) continue
 
     const ast = postcss.parse(stripped)
 
@@ -92,9 +92,9 @@ async function buildTokens(name: string, theme: Theme, outDir: string): Promise<
         ``,
       ].join('\n'),
     )
-
-    await rm(buildDir, { recursive: true })
   }
+
+  await rm(buildRoot, { recursive: true, force: true })
 
   await writeFile(
     path.join(runtimeDir, 'tokens.ts'),
@@ -156,9 +156,13 @@ export const tokens = defineCommand({
 
     if (args.watch) {
       console.log(`Watching ${watchPath} for changes...`)
+      let building = false
       chokidar.watch(watchPath, { ignoreInitial: true }).on('change', async () => {
+        if (building) return
+        building = true
         console.log('Change detected, rebuilding...')
         await build()
+        building = false
       })
     }
   },

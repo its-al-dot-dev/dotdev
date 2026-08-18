@@ -6,7 +6,7 @@ definePage({
   name: 'Config',
   meta: {
     icon: 'gear',
-    desc: 'Global UI kit configuration. Install app-wide defaults once with <code>createUiKit()</code> and override them for a subtree with <code>UiKitProvider</code> — nested providers merge into the outer config by default.',
+    desc: 'Global UI kit configuration. Install app-wide defaults once with <code>createUiKit()</code> and override the BEM namespace for a subtree with <code>UiKitProvider</code>.',
     examples: import.meta.glob('./docs/examples/*.vue', { eager: true, import: 'default' }),
     sources: import.meta.glob('./docs/examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
     examplesMeta,

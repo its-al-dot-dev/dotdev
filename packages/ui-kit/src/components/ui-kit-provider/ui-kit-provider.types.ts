@@ -1,14 +1,12 @@
 import type { VNode } from 'vue'
-import type { UiKitConfig, UiKitNamespace } from '@dotdev/ui-kit'
+import type { UiKitNamespace } from '@dotdev/ui-kit'
 
-export interface UiKitProviderProps {
-  namespace?: UiKitNamespace
-  config?: UiKitConfig
-  merge?: boolean
+export interface UIKitProviderProps {
+  namespace: UiKitNamespace
 }
 
-export interface UiKitProviderSlots {
+export interface UIKitProviderSlots {
   default?(): VNode[]
 }
 
-export interface UiKitProviderEmits {}
+export interface UIKitProviderEmits {}

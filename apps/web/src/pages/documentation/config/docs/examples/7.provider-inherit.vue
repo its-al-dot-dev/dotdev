@@ -2,13 +2,13 @@
 import { Icon, UiKitProvider } from '@dotdev/ui-kit'
 
 defineExample({
-  title: 'Keeps the outer config',
-  desc: `The provider merges into the outer config, so app-level defaults keep working inside its subtree. Here icons from <code>createUiKit()</code> in <code>main.ts</code> still resolve under the provider.`,
+  title: 'Provider only changes namespace',
+  desc: `The provider only overrides the BEM namespace — all other config from <code>createUiKit()</code> in <code>main.ts</code> (icons, defaults) still applies inside its subtree.`,
 })
 </script>
 
 <template>
-  <UiKitProvider :config="{ components: { button: { size: 'lg' } } }">
+  <UiKitProvider namespace="app">
     <div class="flex items-center gap-4">
       <Icon name="bell" />
       <Icon name="gear" />

@@ -1,21 +1,16 @@
 <script lang="ts" setup>
-import type { UiKitProviderEmits, UiKitProviderProps, UiKitProviderSlots } from './ui-kit-provider.types.ts'
-import { inject, provide } from 'vue'
-import { BASE_CONFIG, mergeUiKitConfig, UI_KIT_CONFIG_KEY, type UiKitConfig } from '@dotdev/ui-kit'
+import type { UIKitProviderEmits, UIKitProviderProps, UIKitProviderSlots } from './ui-kit-provider.types.ts'
+import { provide } from 'vue'
+import { UI_KIT_NAMESPACE_KEY } from '@dotdev/ui-kit'
 
-defineEmits<UiKitProviderEmits>()
-defineSlots<UiKitProviderSlots>()
+defineEmits<UIKitProviderEmits>()
+defineSlots<UIKitProviderSlots>()
 
-const props = withDefaults(defineProps<UiKitProviderProps>(), {
-  merge: true,
-})
+const props = defineProps<UIKitProviderProps>()
 
-const parentConfig = inject(UI_KIT_CONFIG_KEY, BASE_CONFIG)
-const base = !props.merge ? BASE_CONFIG : parentConfig
-const override: UiKitConfig =
-  props.namespace !== undefined ? { ...props.config, namespace: props.namespace } : { ...props.config }
-
-provide(UI_KIT_CONFIG_KEY, mergeUiKitConfig(base, override))
+if (props.namespace) {
+  provide(UI_KIT_NAMESPACE_KEY, props.namespace)
+}
 </script>
 
 <template>

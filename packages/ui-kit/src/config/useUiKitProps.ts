@@ -1,5 +1,6 @@
 import { type ComponentInternalInstance, getCurrentInstance, inject } from 'vue'
-import { UI_KIT_CONFIG_KEY, type UiKitBaseProps, type UiKitConfig } from '@dotdev/ui-kit'
+import { UI_KIT_CONFIG_KEY, UI_KIT_NAMESPACE_KEY, type UiKitConfig } from './config.types.ts'
+import type { UiKitBaseProps } from '@dotdev/ui-kit'
 
 type UiKitComponent = keyof NonNullable<UiKitConfig['components']>
 
@@ -27,17 +28,17 @@ function propIsDefined(vnode: ComponentInternalInstance | null, prop: string) {
   return props[prop] !== undefined || props[toKebabCase(prop)] !== undefined
 }
 
-export function useUiKitProps<C extends UiKitComponent, P extends UiKitBaseProps>(
-  component: C,
-  props: P,
-): { [key: string]: any } & P {
+export function useUiKitProps<C extends UiKitComponent, P extends UiKitBaseProps>(component: C, props: P): P {
   const vm = getCurrentInstance()
 
   if (!vm) {
     throw new Error('useUiKitProps() can only be used inside setup()')
   }
 
-  const config = inject(UI_KIT_CONFIG_KEY, {})
+  const provided = inject(UI_KIT_CONFIG_KEY)
+  const overriddenNs = inject(UI_KIT_NAMESPACE_KEY, null)
+  const ns = overriddenNs ?? props.namespace ?? 'd'
+  const config = provided?.configs.get(ns) ?? {}
   const defaults = config.components?.[component] as Partial<P> | undefined
 
   return new Proxy(props, {
@@ -58,7 +59,7 @@ export function useUiKitProps<C extends UiKitComponent, P extends UiKitBaseProps
       }
 
       if (prop === 'namespace') {
-        return config.namespace ?? 'd'
+        return ns
       }
 
       return value
