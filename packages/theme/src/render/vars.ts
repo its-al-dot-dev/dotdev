@@ -1,6 +1,6 @@
 import type { Registry } from '../registry'
 import { matchesScope } from '../utils'
-import { emitValue, resolveValue } from '../value'
+import { emitValue, resolveValue } from '../token'
 
 export function renderVars(registry: Registry, ui?: string): string {
   const root: string[] = []

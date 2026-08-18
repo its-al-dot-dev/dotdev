@@ -1,6 +1,6 @@
 import { Registry } from './registry'
 import { renderAll, renderFiles, renderTypes, renderVarsAll, renderUtilitiesAll, renderRulesAll, type ThemeFiles } from './render'
-import type { ComponentConfig, Scope, ThemeConfig, ThemeTokens, TokenValue } from './types'
+import type { ComponentConfig, Scope, ThemeConfig, ThemeSource, ThemeTokens, TokenValue } from './types'
 import { extractTokens } from './tokens'
 import { componentSelector, isPair, nsPrefix, splitClasses } from './utils'
 
@@ -12,19 +12,96 @@ export class Component {
   }
 }
 
-export class Theme {
+function getConfig(source: ThemeSource | ThemeConfig): ThemeConfig {
+  return (source as ThemeSource).config ?? source
+}
+
+function mergeComponentConfigs(
+  base?: ComponentConfig,
+  override?: ComponentConfig,
+): ComponentConfig {
+  if (!base) return override!
+  if (!override) return base
+
+  return {
+    ui: override.ui ?? base.ui,
+    layer: override.layer ?? base.layer,
+    primitives: { ...base.primitives, ...override.primitives },
+    semantics: { ...base.semantics, ...override.semantics },
+    utilities: { ...base.utilities, ...override.utilities },
+    rules: { ...base.rules, ...override.rules },
+  }
+}
+
+function mergeComponents(
+  base?: Record<string, { config: ComponentConfig }>,
+  override?: Record<string, { config: ComponentConfig }>,
+): Record<string, { config: ComponentConfig }> | undefined {
+  if (!base && !override) return undefined
+  if (!base) return override
+  if (!override) return base
+
+  const result: Record<string, { config: ComponentConfig }> = { ...base }
+  for (const [ui, { config }] of Object.entries(override)) {
+    const baseConfig = result[ui]?.config
+    result[ui] = {
+      config: baseConfig ? mergeComponentConfigs(baseConfig, config) : config,
+    }
+  }
+  return result
+}
+
+function mergeThemeConfigs(base: ThemeConfig, override: ThemeConfig): ThemeConfig {
+  return {
+    name: override.name ?? base.name,
+    namespace: override.namespace ?? base.namespace,
+    primitives: { ...base.primitives, ...override.primitives },
+    semantics: { ...base.semantics, ...override.semantics },
+    utilities: { ...base.utilities, ...override.utilities },
+    components: mergeComponents(base.components, override.components),
+  }
+}
+
+function resolveExtends(
+  source: ThemeSource | ThemeConfig,
+  seen = new Set<object>(),
+): ThemeConfig {
+  const config = getConfig(source)
+  if (!config.extend) return config
+
+  const extendsList = Array.isArray(config.extend) ? config.extend : [config.extend]
+  const resolved: ThemeConfig[] = []
+
+  for (const ext of extendsList) {
+    const extConfig = getConfig(ext)
+    if (seen.has(extConfig)) {
+      throw new Error('Circular theme extend detected')
+    }
+    seen.add(extConfig)
+    resolved.push(resolveExtends(extConfig, seen))
+  }
+
+  return resolved.reduce((acc, cfg) => mergeThemeConfigs(acc, cfg), config)
+}
+
+export class Theme implements ThemeSource {
+  readonly config: ThemeConfig
   readonly registry: Registry = new Registry()
   readonly name: string
   readonly namespace: string | undefined
 
   constructor(config: ThemeConfig) {
-    this.name = config.name ?? 'Default'
-    this.namespace = config.namespace
+    this.config = config
+    const extended = resolveExtends(config)
+    const merged = mergeThemeConfigs(extended, config)
 
-    this.addPrimitives({ kind: 'theme' }, config.primitives, config.namespace)
-    this.addSemantics({ kind: 'theme' }, config.semantics, config.namespace)
-    this.addUtilities({ kind: 'theme' }, config.utilities)
-    this.addComponents(config.components, config.namespace)
+    this.name = merged.name ?? 'Default'
+    this.namespace = merged.namespace
+
+    this.addPrimitives({ kind: 'theme' }, merged.primitives, merged.namespace)
+    this.addSemantics({ kind: 'theme' }, merged.semantics, merged.namespace)
+    this.addUtilities({ kind: 'theme' }, merged.utilities)
+    this.addComponents(merged.components, merged.namespace)
   }
 
   toCSS(): string {

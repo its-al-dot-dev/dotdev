@@ -83,9 +83,9 @@ CLI команда `dotdev-theme` с двумя подкомандами:
 
 ```bash
 dotdev-theme css --input theme/index.ts --output ./dist --name index
-dotdev-theme css --input theme/index.ts --output ./dist --name index --type vars        # только переменные
-dotdev-theme css --input theme/index.ts --output ./dist --name index --type utilities   # только утилиты
-dotdev-theme css --input theme/index.ts --output ./dist --name index --type rules       # только правила
+dotdev-theme css --input theme/index.ts --output ./dist --name index --part vars        # только переменные
+dotdev-theme css --input theme/index.ts --output ./dist --name index --part utilities   # только утилиты
+dotdev-theme css --input theme/index.ts --output ./dist --name index --part rules       # только правила
 dotdev-theme css --input theme/index.ts --output ./dist --name index --watch            # watch mode
 ```
 
@@ -98,6 +98,9 @@ dotdev-theme css --input theme/index.ts --output ./dist --name index --watch    
 
 ```bash
 dotdev-theme tokens --input theme/index.ts --output ./dist --name default
+dotdev-theme tokens --input theme/index.ts --output ./dist --name default --part templates          # только шаблоны
+dotdev-theme tokens --input theme/index.ts --output ./dist --name default --part templates:button  # шаблоны конкретных компонентов
+dotdev-theme tokens --input theme/index.ts --output ./dist --name default --part tokens            # только токены (включает шаблоны)
 ```
 
 Сложный pipeline:

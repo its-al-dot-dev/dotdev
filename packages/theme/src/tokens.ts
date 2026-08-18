@@ -1,7 +1,7 @@
 import type { Registry } from './registry'
 import type { ThemeTokens, TokenValue } from './types'
 import { isPair } from './utils'
-import { emitValue, resolveValue } from './value'
+import { resolveValueWithNamespace, emitValue } from './token'
 
 export function extractTokens(registry: Registry, namespace?: string): ThemeTokens {
   const primitives: Record<string, string> = {}
@@ -24,7 +24,7 @@ export function extractTokens(registry: Registry, namespace?: string): ThemeToke
 
   const ns = `${namespace}-`
   const sub = (s: string) => s.replaceAll(`--${ns}`, '--{ns}-')
-  const resolvePart = (v: string) => sub(emitValue(resolveValue(v, registry)))
+  const resolvePart = (v: string) => sub(emitValue(resolveValueWithNamespace(v, registry, namespace)))
   const resolve = (v: TokenValue): TokenValue =>
     isPair(v) ? [resolvePart(v[0]), resolvePart(v[1])] : resolvePart(v)
 
@@ -39,3 +39,4 @@ export function extractTokens(registry: Registry, namespace?: string): ThemeToke
 
   return { primitives, semantics, components }
 }
+

@@ -1,34 +1,74 @@
 import { defineCommand } from 'citty'
 import { mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
-import chokidar from 'chokidar'
-import { loadTheme } from './utils'
+import { loadTheme, watchTask } from './utils'
+import type { Part } from '../types'
 
-async function buildCSS(input: string, output: string, name: string, type?: string): Promise<void> {
+export async function buildCSS(input: string, output: string, name: string, part?: Part): Promise<void> {
   const theme = await loadTheme(input)
   const outDir = path.resolve(output)
 
-  let css: string
-  switch (type) {
-    case 'vars':
-      css = theme.toVarsCSS()
-      break
-    case 'utilities':
-      css = theme.toUtilitiesCSS()
-      break
-    case 'rules':
-      css = theme.toRulesCSS()
-      break
-    default:
-      css = theme.toCSS()
-      break
+  if (part?.startsWith('components')) {
+    const selected = parseComponentList(part)
+    const files = theme.toFiles()
+    const components = selected
+      ? Object.fromEntries(Object.entries(files.components).filter(([ui]) => selected.includes(ui)))
+      : files.components
+
+    await mkdir(outDir, { recursive: true })
+
+    for (const [ui, file] of Object.entries(components)) {
+      const css = [file.variables, file.rules].filter(Boolean).join('\n\n')
+      if (!css.trim()) continue
+      await writeFile(path.join(outDir, `${name}.${ui}.css`), css)
+      console.log(`css -> ${path.relative(process.cwd(), path.join(outDir, `${name}.${ui}.css`))}`)
+    }
+    return
   }
 
-  await mkdir(outDir, { recursive: true })
-  await writeFile(path.join(outDir, `${name}.css`), css)
+  const parts = parsePartList(part)
+  const css = buildCSSFromParts(theme, parts)
 
-  const relative = path.relative(process.cwd(), path.join(outDir, `${name}.css`))
-  console.log(`css -> ${relative}`)
+  await mkdir(outDir, { recursive: true })
+  const fileName = parts.length === 1 && parts[0] !== 'all' ? `${name}.${parts[0]}.css` : `${name}.css`
+  await writeFile(path.join(outDir, fileName), css)
+
+  console.log(`css -> ${path.relative(process.cwd(), path.join(outDir, fileName))}`)
+}
+
+function parsePartList(part?: Part): Part[] {
+  if (!part || part === 'all') return ['vars', 'utilities', 'rules']
+  return part.split(',').map((p) => p.trim()) as Part[]
+}
+
+function parseComponentList(part: string): string[] | undefined {
+  const components = part.split(':')[1]
+  if (!components) return undefined
+  return components
+    .split(',')
+    .map((c) => c.trim())
+    .filter(Boolean)
+}
+
+function buildCSSFromParts(
+  theme: { toVarsCSS(): string; toUtilitiesCSS(): string; toRulesCSS(): string },
+  parts: Part[],
+): string {
+  const chunks: string[] = []
+  for (const p of parts) {
+    switch (p) {
+      case 'vars':
+        chunks.push(theme.toVarsCSS())
+        break
+      case 'utilities':
+        chunks.push(theme.toUtilitiesCSS())
+        break
+      case 'rules':
+        chunks.push(theme.toRulesCSS())
+        break
+    }
+  }
+  return chunks.filter(Boolean).join('\n\n')
 }
 
 export const css = defineCommand({
@@ -52,6 +92,10 @@ export const css = defineCommand({
       description: 'Output file name (without extension)',
       default: 'index',
     },
+    part: {
+      type: 'string',
+      description: 'Parts to generate: vars, utilities, rules, components, components:ui1,ui2 (default: all)',
+    },
     watch: {
       type: 'boolean',
       description: 'Watch for changes and rebuild',
@@ -61,23 +105,15 @@ export const css = defineCommand({
       type: 'string',
       description: 'Directory or file to watch (default: input file)',
     },
-    type: {
-      type: 'string',
-      description: 'CSS part to generate: vars, utilities, rules (default: all)',
-    },
   },
   async run({ args }) {
     const input = path.resolve(args.input)
     const watchPath = args['watch-path'] ? path.resolve(args['watch-path']) : input
 
-    await buildCSS(input, args.output, args.name, args.type)
+    await buildCSS(input, args.output, args.name, args.part as Part)
 
     if (args.watch) {
-      console.log(`Watching ${watchPath} for changes...`)
-      chokidar.watch(watchPath, { ignoreInitial: true }).on('change', async () => {
-        console.log('Change detected, rebuilding...')
-        await buildCSS(input, args.output, args.name, args.type)
-      })
+      watchTask(() => buildCSS(input, args.output, args.name, args.part as Part), watchPath)
     }
   },
 })

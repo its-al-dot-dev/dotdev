@@ -27,7 +27,8 @@ export class Registry {
   private readonly semanticsList: SemanticEntry[] = []
   private readonly utilitiesList: UtilityEntry[] = []
   private readonly rulesList: RuleEntry[] = []
-  private readonly byName = new Map<string, PrimitiveEntry | SemanticEntry>()
+  private readonly primitivesByName = new Map<string, PrimitiveEntry>()
+  private readonly semanticsByName = new Map<string, SemanticEntry>()
   private readonly componentUisSet = new Set<string>()
 
   addPrimitive(scope: Scope, name: string, value: string, namespace?: string) {
@@ -44,13 +45,13 @@ export class Registry {
       scope,
     }
     this.primitivesList.push(entry)
-    if (!this.byName.has(name)) this.byName.set(name, entry)
+    this.primitivesByName.set(rawName, entry)
   }
 
   addSemantic(scope: Scope, name: string, light: string, dark?: string, namespace?: string) {
     const entry = semanticEntry(scope, name, light, dark, namespace)
     this.semanticsList.push(entry)
-    if (!this.byName.has(name)) this.byName.set(name, entry)
+    this.semanticsByName.set(name, entry)
     if (scope.kind === 'component') this.componentUisSet.add(scope.ui)
   }
 
@@ -67,7 +68,15 @@ export class Registry {
   }
 
   findByName(name: string): PrimitiveEntry | SemanticEntry | undefined {
-    return this.byName.get(name)
+    return this.primitivesByName.get(name) ?? this.semanticsByName.get(name)
+  }
+
+  findPrimitive(name: string): PrimitiveEntry | undefined {
+    return this.primitivesByName.get(name)
+  }
+
+  findSemantic(name: string): SemanticEntry | undefined {
+    return this.semanticsByName.get(name)
   }
 
   primitives(): PrimitiveEntry[] {

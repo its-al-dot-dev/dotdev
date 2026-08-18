@@ -6,6 +6,8 @@ import { renderVars } from './vars'
 
 export { renderTypes }
 
+const filesCache = new WeakMap<Registry, ThemeFiles>()
+
 export interface ComponentFiles {
   variables: string
   utilities: string
@@ -46,6 +48,9 @@ export function renderRulesAll(registry: Registry): string {
 }
 
 export function renderFiles(registry: Registry): ThemeFiles {
+  const cached = filesCache.get(registry)
+  if (cached) return cached
+
   const components: Record<string, ComponentFiles> = {}
   for (const ui of registry.componentUis()) {
     components[ui] = {
@@ -54,9 +59,13 @@ export function renderFiles(registry: Registry): ThemeFiles {
       rules: renderRules(registry, ui),
     }
   }
-  return {
+
+  const result: ThemeFiles = {
     variables: renderVars(registry),
     utilities: renderUtilities(registry),
     components,
   }
+
+  filesCache.set(registry, result)
+  return result
 }

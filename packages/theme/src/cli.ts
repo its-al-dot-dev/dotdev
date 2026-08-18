@@ -3,6 +3,7 @@
 import { defineCommand, runMain } from 'citty'
 import { css } from './commands/css'
 import { tokens } from './commands/tokens'
+import { build } from './commands/build'
 
 const main = defineCommand({
   meta: {
@@ -13,6 +14,7 @@ const main = defineCommand({
   subCommands: {
     css,
     tokens,
+    build,
   },
 })
 

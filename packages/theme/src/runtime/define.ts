@@ -1,20 +1,15 @@
-import type { ThemeTokens, TokenValue } from '../types'
+import type { PartialThemeTokens, ThemeTokens, TokenValue } from '../types'
 import { parts } from '../utils'
+import { emit, parseToken, resolve } from '../token'
 import { injectCSS } from './inject'
 
 export interface ThemeDefinition<T extends ThemeTokens = ThemeTokens> {
   tokens?: T
   namespace?: string
-  primitives?: { [K in keyof T['primitives']]?: string }
-  semantics?: { [K in keyof T['semantics']]?: TokenValue }
-  components?: {
-    [U in keyof T['components']]?: {
-      [K in keyof T['components'][U]]?: TokenValue
-    }
-  }
+  primitives?: PartialThemeTokens<T>['primitives']
+  semantics?: PartialThemeTokens<T>['semantics']
+  components?: PartialThemeTokens<T>['components']
 }
-
-const OPACITY_RE = /\/(\d{1,3})$/m
 
 function isRawCSSValue(value: string): boolean {
   const trimmed = value.trim()
@@ -38,26 +33,9 @@ function varRef(value: string, ns: string): string {
 
   if (trimmed.startsWith('color-mix')) return trimmed
 
-  const { base, opacity } = parseOpacity(trimmed)
-
-  const varName = base.startsWith('$')
-    ? `--${ns}-${base.slice(1)}`
-    : base.startsWith('--')
-      ? `--${ns}-${base.slice(2)}`
-      : base.startsWith('var(')
-        ? base
-        : `--${ns}-${base}`
-
-  const source = varName.startsWith('var(') ? varName : `var(${varName})`
-
-  if (opacity == null) return source
-  return `color-mix(in oklab, ${source} ${opacity}%, transparent)`
-}
-
-function parseOpacity(input: string): { base: string; opacity?: number } {
-  const match = OPACITY_RE.exec(input)
-  if (!match) return { base: input }
-  return { base: input.slice(0, -match[0].length), opacity: Number(match[1]) }
+  const parsed = parseToken(trimmed)
+  const resolved = resolve(parsed, { namespace: ns })
+  return emit(resolved)
 }
 
 export function mergeTokens<T extends ThemeTokens = ThemeTokens>(

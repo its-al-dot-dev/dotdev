@@ -1,7 +1,7 @@
 import type { Registry } from '../registry'
 import type { SemanticEntry } from '../types'
 import { matchesScope } from '../utils'
-import { resolveCategory } from '../value'
+import { resolveCategory } from '../token'
 
 function applyExpr(entry: SemanticEntry, registry: Registry): string {
   if (entry.twKey === 'text') {
