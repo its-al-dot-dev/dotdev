@@ -1,0 +1,127 @@
+import { Theme } from './theme.ts'
+import type { ComponentsState, ThemeState } from './registry.ts'
+import type { RuleToken, TokenScope } from './types.ts'
+
+export interface CompilerOptions {
+  scope?: 'all' | TokenScope
+  kinds?: ('primitives' | 'utilities' | 'rules')[]
+}
+
+export class Compiler {
+  private state: ThemeState
+
+  constructor(theme: Theme, namespace?: string) {
+    const _theme = namespace ? new Theme(theme.config, namespace) : theme
+    this.state = _theme.registry.getTheme()
+  }
+
+  compile(options: CompilerOptions = {}): string {
+    const scope = options?.scope ?? 'all'
+    const kinds = new Set(options.kinds ?? ['primitives', 'utilities', 'rules'])
+
+    const parts: string[] = []
+
+    if (scope === 'all' || scope.kind === 'theme') {
+      parts.push(...this.compileTheme(kinds))
+    }
+
+    if (scope === 'all') {
+      for (const [_, component] of this.state.components) {
+        parts.push(...this.compileComponent(component, kinds))
+      }
+    } else if (scope.kind === 'component') {
+      const component = this.state.components.get(scope.ui)
+      if (component) parts.push(...this.compileComponent(component, kinds))
+    }
+
+    return parts.filter(Boolean).join('\n\n')
+  }
+
+  private compileComponent(component: ComponentsState, kinds: Set<string>): string[] {
+    const parts: string[] = []
+
+    if (kinds.has('primitives')) {
+      parts.push(this.componentPrimitivesToCSS(component))
+    }
+
+    if (kinds.has('utilities')) {
+      parts.push(this.componentUtilitiesToCSS(component))
+    }
+
+    if (kinds.has('rules')) {
+      parts.push(this.componentRulesToCSS(component))
+    }
+
+    return parts
+  }
+
+  private compileTheme(kinds: Set<string>): string[] {
+    const parts: string[] = []
+
+    if (kinds.has('primitives')) {
+      parts.push(this.themePrimitivesToCSS())
+    }
+
+    if (kinds.has('utilities')) {
+      parts.push(this.themeUtilitiesToCSS())
+    }
+
+    return parts
+  }
+
+  private themePrimitivesToCSS(): string {
+    const declarations = this.state.primitives.map((t) => `  ${t.varName}: ${t.light};`).join('\n')
+    const darkEntries = this.state.primitives.filter((t) => t.dark)
+
+    const blocks: string[] = []
+    if (declarations) blocks.push(`@theme {\n${declarations}\n}`)
+
+    if (darkEntries.length) {
+      const darkDecls = darkEntries.map((t) => `  ${t.varName}: ${t.dark};`).join('\n')
+      blocks.push(`.dark {\n${darkDecls}\n}`)
+    }
+
+    return blocks.join('\n\n')
+  }
+
+  private themeUtilitiesToCSS(): string {
+    return this.state.utilities.map((t) => `.${t.utilityName} {\n  @apply ${t.classes};\n}`).join('\n\n')
+  }
+
+  private componentPrimitivesToCSS(component: ComponentsState): string {
+    const declarations = component.primitives.map((t) => `  ${t.varName}: ${t.light};`).join('\n')
+    const darkEntries = component.primitives.filter((t) => t.dark)
+
+    const blocks: string[] = []
+    if (declarations) blocks.push(`@theme {\n${declarations}\n}`)
+
+    if (darkEntries.length) {
+      const darkDecls = darkEntries.map((t) => `  ${t.varName}: ${t.dark};`).join('\n')
+      blocks.push(`.dark {\n ${darkDecls}\n}`)
+    }
+
+    return blocks.join('\n\n')
+  }
+
+  private componentUtilitiesToCSS(component: ComponentsState): string {
+    return component.utilities.map((t) => `.${t.utilityName} {\n  @apply ${t.classes};\n}`).join('\n\n')
+  }
+
+  private componentRulesToCSS(component: ComponentsState): string {
+    const grouped = new Map<string, RuleToken[]>()
+
+    for (const rule of component.rules) {
+      const existing = grouped.get(rule.layer)
+      if (existing) existing.push(rule)
+      else grouped.set(rule.layer, [rule])
+    }
+
+    const blocks: string[] = []
+    for (const [layer, rules] of grouped) {
+      const entries = rules.map((t) => `  ${t.selector} {\n    @apply ${t.classes};\n  }`).join('\n')
+      blocks.push(`@layer ${layer} {\n${entries}\n}`)
+    }
+
+    return blocks.join('\n\n')
+  }
+}
