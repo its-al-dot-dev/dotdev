@@ -10,19 +10,23 @@ export interface CompileResult {
 export type CompilerScope = { kind: 'all' } | TokenScope | TokenScope[]
 export type CompilerKind = 'primitives' | 'utilities' | 'rules'
 
+type ResolvedScope = { kind: 'all' } | TokenScope
+
 export interface CompilerOptions {
   namespace?: string
   scope?: CompilerScope
   kinds?: CompilerKind[]
 }
 
+const DEFAULT_KINDS: CompilerKind[] = ['primitives', 'utilities', 'rules']
+
 export class Compiler {
-  private state: ThemeState
-  private theme: Theme
+  private readonly theme: Theme
+  private readonly state: ThemeState
 
   constructor(theme: Theme) {
-    this.state = theme.registry.getTheme()
     this.theme = theme
+    this.state = theme.registry.getTheme()
   }
 
   compile(options: CompilerOptions = {}): string {
@@ -31,110 +35,153 @@ export class Compiler {
   }
 
   compileAll(options: CompilerOptions = {}): CompileResult {
-    this.applyNamespace(options.namespace)
+    const state = this.resolveState(options.namespace)
+    const scopes = this.resolveScopes(options.scope)
+    const kinds = this.resolveKinds(options.kinds)
 
-    const { scopes, kinds } = this.resolveOptions(options)
-
-    const needsTheme = scopes.some((s) => s.kind === 'all' || s.kind === 'theme')
-    const needsAllComponents = scopes.some((s) => s.kind === 'all')
-
-    const theme = needsTheme ? this.renderTheme(kinds) : ''
-
-    const components = new Map<string, string>()
-    const componentScopes = scopes.filter((s): s is { kind: 'component'; ui: string } => s.kind === 'component')
-
-    const allComponents = needsAllComponents
-      ? [...this.state.components.entries()]
-      : componentScopes.map((s) => [s.ui, this.state.components.get(s.ui)] as const).filter(([_, c]) => c)
-
-    for (const [name, component] of allComponents) {
-      if (!component) continue
-      const css = this.renderComponent(component, kinds)
-      if (css) components.set(name, css)
-    }
+    const theme = this.needsTheme(scopes) ? this.renderTheme(state, kinds) : ''
+    const components = this.compileComponents(state, scopes, kinds)
 
     return { theme, components }
   }
 
-  private resolveOptions(options: CompilerOptions) {
-    const scope = options?.scope ?? { kind: 'all' }
-    const scopes = Array.isArray(scope) ? scope : [scope]
-    const kinds = new Set(options.kinds ?? ['primitives', 'utilities', 'rules'])
-    return { scopes, kinds }
+  private resolveState(namespace?: string): ThemeState {
+    if (!namespace) return this.state
+    return new Theme(this.theme.config, namespace).registry.getTheme()
   }
 
-  private applyNamespace(namespace?: string) {
-    if (namespace) {
-      this.state = new Theme(this.theme.config, namespace).registry.getTheme()
+  private resolveScopes(scope?: CompilerScope): ResolvedScope[] {
+    if (!scope) return [{ kind: 'all' }]
+    return Array.isArray(scope) ? scope : [scope]
+  }
+
+  private resolveKinds(kinds?: CompilerKind[]): Set<CompilerKind> {
+    return new Set(kinds ?? DEFAULT_KINDS)
+  }
+
+  private compileComponents(state: ThemeState, scopes: ResolvedScope[], kinds: Set<CompilerKind>): Map<string, string> {
+    const result = new Map<string, string>()
+
+    for (const [name, component] of this.resolveComponents(state, scopes)) {
+      const css = this.renderComponent(component, kinds)
+      if (css) result.set(name, css)
     }
+
+    return result
   }
 
-  private renderTheme(kinds: Set<string>): string {
-    const parts: string[] = []
+  private resolveComponents(state: ThemeState, scopes: ResolvedScope[]): Iterable<[string, ComponentsState]> {
+    if (this.needsAllComponents(scopes)) {
+      return state.components
+    }
+
+    const entries: [string, ComponentsState][] = []
+
+    for (const scope of scopes) {
+      if (scope.kind !== 'component') continue
+      const component = state.components.get(scope.ui)
+      if (component) entries.push([scope.ui, component])
+    }
+
+    return entries
+  }
+
+  private needsTheme(scopes: ResolvedScope[]): boolean {
+    return scopes.some((scope) => scope.kind === 'all' || scope.kind === 'theme')
+  }
+
+  private needsAllComponents(scopes: ResolvedScope[]): boolean {
+    return scopes.some((scope) => scope.kind === 'all')
+  }
+
+  private renderTheme(state: ThemeState, kinds: Set<CompilerKind>): string {
+    const blocks: string[] = []
 
     if (kinds.has('primitives')) {
-      parts.push(this.primitivesToCSS(this.state.primitives))
+      blocks.push(this.primitivesToCSS(state.primitives))
     }
 
     if (kinds.has('utilities')) {
-      parts.push(this.utilitiesToCSS(this.state.utilities))
+      blocks.push(this.utilitiesToCSS(state.utilities))
     }
 
-    return parts.filter(Boolean).join('\n\n')
+    return this.join(blocks)
   }
 
-  private renderComponent(component: ComponentsState, kinds: Set<string>): string {
-    const parts: string[] = []
+  private renderComponent(component: ComponentsState, kinds: Set<CompilerKind>): string {
+    const blocks: string[] = []
 
     if (kinds.has('primitives')) {
-      parts.push(this.primitivesToCSS(component.primitives))
+      blocks.push(this.primitivesToCSS(component.primitives))
     }
 
     if (kinds.has('utilities')) {
-      parts.push(this.utilitiesToCSS(component.utilities))
+      blocks.push(this.utilitiesToCSS(component.utilities))
     }
 
     if (kinds.has('rules')) {
-      parts.push(this.rulesToCSS(component.rules))
+      blocks.push(this.rulesToCSS(component.rules))
     }
 
-    return parts.filter(Boolean).join('\n\n')
+    return this.join(blocks)
   }
 
+  /* Template generators */
+
+  private generateThemeTemplate() {
+    return
+  }
+
+  private generateComponentTemplate() {}
+
+  /* CSS generators */
+
   private primitivesToCSS(tokens: PrimitiveToken[]): string {
-    const declarations = tokens.map((t) => `  ${t.varName}: ${t.light};`).join('\n')
-    const darkEntries = tokens.filter((t) => t.dark)
+    if (!tokens.length) return ''
 
     const blocks: string[] = []
-    if (declarations) blocks.push(`@theme {\n${declarations}\n}`)
 
-    if (darkEntries.length) {
-      const darkDecls = darkEntries.map((t) => `  ${t.varName}: ${t.dark};`).join('\n')
-      blocks.push(`.dark {\n${darkDecls}\n}`)
+    const declarations = tokens.map((token) => `  ${token.varName}: ${token.light};`).join('\n')
+    blocks.push(`@theme {\n${declarations}\n}`)
+
+    const darkTokens = tokens.filter((token) => token.dark)
+
+    if (darkTokens.length) {
+      const darkDeclarations = darkTokens.map((token) => `  ${token.varName}: ${token.dark};`).join('\n')
+      blocks.push(`.dark {\n${darkDeclarations}\n}`)
     }
 
-    return blocks.join('\n\n')
+    return this.join(blocks)
   }
 
   private utilitiesToCSS(tokens: UtilityToken[]): string {
-    return tokens.map((t) => `.${t.utilityName} {\n  @apply ${t.classes};\n}`).join('\n\n')
+    return tokens.map((token) => `.${token.utilityName} {\n  @apply ${token.classes};\n}`).join('\n\n')
   }
 
   private rulesToCSS(rules: RuleToken[]): string {
+    if (!rules.length) return ''
+
     const grouped = new Map<string, RuleToken[]>()
 
     for (const rule of rules) {
-      const existing = grouped.get(rule.layer)
-      if (existing) existing.push(rule)
-      else grouped.set(rule.layer, [rule])
+      const list = grouped.get(rule.layer)
+
+      if (list) {
+        list.push(rule)
+      } else {
+        grouped.set(rule.layer, [rule])
+      }
     }
 
-    const blocks: string[] = []
-    for (const [layer, layerRules] of grouped) {
-      const entries = layerRules.map((t) => `  ${t.selector} {\n    @apply ${t.classes};\n  }`).join('\n')
-      blocks.push(`@layer ${layer} {\n${entries}\n}`)
-    }
+    return [...grouped.entries()]
+      .map(([layer, layerRules]) => {
+        const entries = layerRules.map((rule) => `  ${rule.selector} {\n    @apply ${rule.classes};\n  }`).join('\n')
+        return `@layer ${layer} {\n${entries}\n}`
+      })
+      .join('\n\n')
+  }
 
-    return blocks.join('\n\n')
+  private join(blocks: string[]): string {
+    return blocks.filter(Boolean).join('\n\n')
   }
 }
