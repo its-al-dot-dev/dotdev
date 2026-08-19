@@ -206,9 +206,9 @@ export class Registry {
   private buildSelectorName(scope: TokenScope, selector: string) {
     const ns = this.namespacePrefix()
     const cmp = this.componentPrefix(scope)
-    const cls = `.${ns}${cmp}`
+    const cls = `.${ns}${cmp}`.slice(0, -1)
     if (selector === '&') return cls
-    return selector.replaceAll('&-', cls).replaceAll('..', '.')
+    return selector.replaceAll('&', cls).replaceAll('..', '.')
   }
 
   private componentPrefix(scope: TokenScope) {

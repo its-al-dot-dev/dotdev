@@ -1,6 +1,23 @@
-@import "tailwindcss";
-@import './vars.css';
-@import './utilities.css';
+@theme {
+  --s-layout-h-header: 56px;
+  --s-layout-w-sidebar: 240px;
+  --s-layout-text-heading: var(--d-neutral-400);
+}
+
+.dark {
+  --s-layout-text-heading: var(--d-neutral-500);
+}
+
+@theme {
+  --s-doc-bg-tint: var(--d-brand-50);
+  --s-doc-bg-card: var(--d-neutral-50);
+  --s-doc-bg-grid-color: color-mix(in oklab, var(--d-neutral-500) 30%, transparent);
+}
+
+.dark {
+  --s-doc-bg-tint: color-mix(in oklab, var(--d-brand-400) 10%, transparent);
+  --s-doc-bg-card: color-mix(in oklab, var(--d-neutral-500) 10%, transparent);
+}
 
 @utility layout-h-header {
   @apply h-(--s-layout-h-header);
@@ -44,16 +61,6 @@
 
 @utility doc-code-text {
   @apply text-[0.9em];
-}
-
-@theme {
-  --s-layout-h-header: 56px;
-  --s-layout-w-sidebar: 240px;
-  --s-layout-text-heading: var(--d-neutral-400);
-}
-
-.dark {
-  --s-layout-text-heading: var(--d-neutral-500);
 }
 
 @layer studio {
@@ -350,17 +357,6 @@
 .landing__cta-version {
   @apply font-mono text-xs text-muted;
 }
-}
-
-@theme {
-  --s-doc-bg-tint: var(--d-brand-50);
-  --s-doc-bg-card: var(--d-neutral-50);
-  --s-doc-bg-grid-color: color-mix(in oklab, var(--d-neutral-500) 30%, transparent);
-}
-
-.dark {
-  --s-doc-bg-tint: color-mix(in oklab, var(--d-brand-400) 10%, transparent);
-  --s-doc-bg-card: color-mix(in oklab, var(--d-neutral-500) 10%, transparent);
 }
 
 @layer studio {

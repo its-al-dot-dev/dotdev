@@ -4,6 +4,7 @@ import { loadBuildConfig } from './config'
 import { loadTheme, watchTask } from './utils'
 import { buildCSS } from './css'
 import { buildTokens } from './tokens'
+import { Part } from '../types'
 
 export const build = defineCommand({
   meta: {
@@ -35,10 +36,10 @@ export const build = defineCommand({
         const targetOutput = path.resolve(output, target.name)
         switch (target.type) {
           case 'css':
-            await buildCSS(input, targetOutput, target.name, target.parts?.join(','))
+            await buildCSS(input, targetOutput, target.name, target.parts?.join(',') as Part)
             break
           case 'tokens':
-            await buildTokens(target.name, theme, targetOutput, target.parts?.join(','))
+            await buildTokens(target.name, theme, targetOutput, target.parts?.join(',') as Part)
             break
         }
       }

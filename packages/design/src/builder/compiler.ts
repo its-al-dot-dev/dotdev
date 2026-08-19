@@ -3,19 +3,25 @@ import type { ComponentsState, ThemeState } from './registry.ts'
 import type { RuleToken, TokenScope } from './types.ts'
 
 export interface CompilerOptions {
+  namespace?: string
   scope?: 'all' | TokenScope
   kinds?: ('primitives' | 'utilities' | 'rules')[]
 }
 
 export class Compiler {
   private state: ThemeState
+  private theme: Theme
 
-  constructor(theme: Theme, namespace?: string) {
-    const _theme = namespace ? new Theme(theme.config, namespace) : theme
-    this.state = _theme.registry.getTheme()
+  constructor(theme: Theme) {
+    this.state = theme.registry.getTheme()
+    this.theme = theme
   }
 
   compile(options: CompilerOptions = {}): string {
+    if (options.namespace) {
+      this.state = new Theme(this.theme.config, options.namespace).registry.getTheme()
+    }
+
     const scope = options?.scope ?? 'all'
     const kinds = new Set(options.kinds ?? ['primitives', 'utilities', 'rules'])
 
@@ -104,7 +110,7 @@ export class Compiler {
   }
 
   private componentUtilitiesToCSS(component: ComponentsState): string {
-    return component.utilities.map((t) => `.${t.utilityName} {\n  @apply ${t.classes};\n}`).join('\n\n')
+    return component.utilities.map((t) => `@utility ${t.utilityName} {\n  @apply ${t.classes};\n}`).join('\n\n')
   }
 
   private componentRulesToCSS(component: ComponentsState): string {

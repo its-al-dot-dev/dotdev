@@ -24,6 +24,7 @@
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",
     "chokidar": "^4.0.3",
+    "jiti": "^2.7.0",
     "citty": "^0.2.2",
     "postcss": "^8.5.6"
   },

@@ -1,5 +1,5 @@
-import { Theme } from './theme.ts'
-import { Component } from './component.ts'
+import { Theme } from './builder/theme.ts'
+import { Component } from './builder/component.ts'
 
 const sizeKeys = ['h', 'size']
 const spaceKeys = ['px', 'py', 'p', 'pl', 'pr', 'pt', 'pb']

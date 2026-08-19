@@ -1,5 +1,13 @@
 import { Registry } from './registry'
-import { renderAll, renderFiles, renderTypes, renderVarsAll, renderUtilitiesAll, renderRulesAll, type ThemeFiles } from './render'
+import {
+  renderAll,
+  renderFiles,
+  renderRulesAll,
+  renderTypes,
+  renderUtilitiesAll,
+  renderVarsAll,
+  type ThemeFiles,
+} from './render'
 import type { ComponentConfig, Scope, ThemeConfig, ThemeSource, ThemeTokens, TokenValue } from './types'
 import { extractTokens } from './tokens'
 import { componentSelector, isPair, nsPrefix, splitClasses } from './utils'
@@ -16,10 +24,7 @@ function getConfig(source: ThemeSource | ThemeConfig): ThemeConfig {
   return (source as ThemeSource).config ?? source
 }
 
-function mergeComponentConfigs(
-  base?: ComponentConfig,
-  override?: ComponentConfig,
-): ComponentConfig {
+function mergeComponentConfigs(base?: ComponentConfig, override?: ComponentConfig): ComponentConfig {
   if (!base) return override!
   if (!override) return base
 
@@ -62,10 +67,7 @@ function mergeThemeConfigs(base: ThemeConfig, override: ThemeConfig): ThemeConfi
   }
 }
 
-function resolveExtends(
-  source: ThemeSource | ThemeConfig,
-  seen = new Set<object>(),
-): ThemeConfig {
+function resolveExtends(source: ThemeSource | ThemeConfig, seen = new Set<object>()): ThemeConfig {
   const config = getConfig(source)
   if (!config.extend) return config
 

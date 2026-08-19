@@ -1,3 +1,5 @@
+import pc from 'picocolors'
+
 export enum LogLevel {
   DEBUG = 0,
   INFO = 1,
@@ -17,25 +19,25 @@ export class ConsoleLogger implements Logger {
 
   debug(message: string, ...args: unknown[]): void {
     if (this.minLevel <= LogLevel.DEBUG) {
-      console.debug(`[builder:debug] ${message}`, ...args)
+      console.log(pc.dim(`[d]`) + ` ${message}`, ...args)
     }
   }
 
   info(message: string, ...args: unknown[]): void {
     if (this.minLevel <= LogLevel.INFO) {
-      console.info(`[builder:info] ${message}`, ...args)
+      console.log(pc.cyan(`[i]`) + ` ${message}`, ...args)
     }
   }
 
   warn(message: string, ...args: unknown[]): void {
     if (this.minLevel <= LogLevel.WARN) {
-      console.warn(`[builder:warn] ${message}`, ...args)
+      console.warn(pc.yellow('[!]') + ` ${message}`, ...args)
     }
   }
 
   error(message: string, ...args: unknown[]): void {
     if (this.minLevel <= LogLevel.ERROR) {
-      console.error(`[builder:error] ${message}`, ...args)
+      console.error(pc.red('[✗]') + ` ${message}`, ...args)
     }
   }
 }

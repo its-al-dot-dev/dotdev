@@ -91,8 +91,9 @@ export function validateTokens(tokens: ThemeTokens): void {
 
 export function renderRuntimeVars(tokens: ThemeTokens, namespace: string, component?: string): string {
   const ns = `${namespace}-`
-  const decl = (varName: string, value: string): string =>
-    `  ${varName}: ${varRef(value.replaceAll('{ns}', namespace), namespace)};`
+  const decl = (varName: string, value: string): string => {
+    return `  ${varName}: ${varRef(value.replaceAll('{ns}', namespace), namespace)};`
+  }
 
   const blocks: string[] = []
 

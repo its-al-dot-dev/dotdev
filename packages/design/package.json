@@ -1,0 +1,25 @@
+{
+  "name": "@dotdev/design",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "design": "./bin/design"
+  },
+  "scripts": {
+    "design": "bun ./bin/design",
+    "build": "bun ./bin/design build -n d -o ./dist/design.css",
+    "watch": "bun ./bin/design watch -n d -i ./src/runtime/design.config.ts -d ./src/runtime -o ./dist/design.css",
+    "build:button": "bun ./bin/design build -n d -s button -o ./dist/design.css"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "chokidar": "^4.0.3",
+    "citty": "^0.2.2",
+    "jiti": "^2.7.0",
+    "picocolors": "^1.1.1",
+    "postcss": "^8.5.6"
+  },
+  "devDependencies": {
+    "tsup": "^8.4.0"
+  }
+}

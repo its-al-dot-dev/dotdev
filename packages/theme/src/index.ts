@@ -24,17 +24,3 @@ export { renderVarsAll, renderUtilitiesAll, renderRulesAll } from './render'
 export { componentSelector, isPair, matchesScope, nsPrefix, parts, splitClasses } from './utils'
 export { parseToken, parseOpacity, resolveValue, resolveValueWithNamespace, emitValue, resolveCategory } from './token'
 export type { ParsedToken, ResolutionContext } from './token'
-export {
-  compileWithTailwind,
-  createVarResolver,
-  inlineVars,
-  findTopLevelComma,
-  stripBanner,
-  collectLocals,
-  collectPropertyValues,
-  pruneEmptyRules,
-  removeTailwindDecls,
-  isPropertiesLayer,
-  compileComponentRules,
-} from './compile'
-export type { CompileOptions, CompileResult, VarResolver } from './compile'
