@@ -2,9 +2,14 @@ import { Theme } from './theme.ts'
 import type { ComponentsState, ThemeState } from './registry.ts'
 import type { RuleToken, TokenScope } from './types.ts'
 
+export interface CompileResult {
+  theme: string
+  components: Map<string, string>
+}
+
 export interface CompilerOptions {
   namespace?: string
-  scope?: 'all' | TokenScope
+  scope?: 'all' | TokenScope | TokenScope[]
   kinds?: ('primitives' | 'utilities' | 'rules')[]
 }
 
@@ -23,24 +28,58 @@ export class Compiler {
     }
 
     const scope = options?.scope ?? 'all'
+    const scopes = Array.isArray(scope) ? scope : [scope]
     const kinds = new Set(options.kinds ?? ['primitives', 'utilities', 'rules'])
 
     const parts: string[] = []
 
-    if (scope === 'all' || scope.kind === 'theme') {
-      parts.push(...this.compileTheme(kinds))
-    }
-
-    if (scope === 'all') {
-      for (const [_, component] of this.state.components) {
-        parts.push(...this.compileComponent(component, kinds))
+    for (const s of scopes) {
+      if (s === 'all' || s.kind === 'theme') {
+        parts.push(...this.compileTheme(kinds))
       }
-    } else if (scope.kind === 'component') {
-      const component = this.state.components.get(scope.ui)
-      if (component) parts.push(...this.compileComponent(component, kinds))
+
+      if (s === 'all') {
+        for (const [_, component] of this.state.components) {
+          parts.push(...this.compileComponent(component, kinds))
+        }
+      } else if (s.kind === 'component') {
+        const component = this.state.components.get(s.ui)
+        if (component) parts.push(...this.compileComponent(component, kinds))
+      }
     }
 
     return parts.filter(Boolean).join('\n\n')
+  }
+
+  compileAll(options: CompilerOptions = {}): CompileResult {
+    if (options.namespace) {
+      this.state = new Theme(this.theme.config, options.namespace).registry.getTheme()
+    }
+
+    const scope = options?.scope ?? 'all'
+    const scopes = Array.isArray(scope) ? scope : [scope]
+    const kinds = new Set(options.kinds ?? ['primitives', 'utilities', 'rules'])
+
+    const needsTheme = scopes.some((s) => s === 'all' || s.kind === 'theme')
+    const needsAllComponents = scopes.some((s) => s === 'all')
+
+    const theme = needsTheme ? this.compileTheme(kinds).filter(Boolean).join('\n\n') : ''
+
+    const components = new Map<string, string>()
+    const componentScopes = scopes.filter((s): s is { kind: 'component'; ui: string } => {
+      return s !== 'all' && s.kind === 'component'
+    })
+
+    const allComponents = needsAllComponents
+      ? [...this.state.components.entries()]
+      : componentScopes.map((s) => [s.ui, this.state.components.get(s.ui)!] as const).filter(([_, c]) => c)
+
+    for (const [name, component] of allComponents) {
+      const css = this.compileComponent(component, kinds).filter(Boolean).join('\n\n')
+      if (css) components.set(name, css)
+    }
+
+    return { theme, components }
   }
 
   private compileComponent(component: ComponentsState, kinds: Set<string>): string[] {

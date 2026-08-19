@@ -3,7 +3,7 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, relative, resolve } from 'node:path'
 import chokidar from 'chokidar'
 import { loadConfig } from '../load-config.ts'
-import { compile, parseKinds, parseScope } from '../compile.ts'
+import { compile, parseKinds, parseScope, applyExclude } from '../compile.ts'
 import { log } from '../logger.ts'
 
 export default defineCommand({
@@ -21,7 +21,7 @@ export default defineCommand({
     output: {
       type: 'string',
       alias: 'o',
-      description: 'Путь выходного файла',
+      description: 'Путь выходного файла или директории (при --split)',
     },
     namespace: {
       type: 'string',
@@ -33,6 +33,15 @@ export default defineCommand({
       alias: 's',
       description: 'Область: all, theme или имя компонента',
       default: 'all',
+    },
+    exclude: {
+      type: 'string',
+      alias: 'e',
+      description: 'Исключить через запятую: theme, имя компонента',
+    },
+    split: {
+      type: 'boolean',
+      description: 'Разбить вывод по компонентам в отдельные файлы',
     },
     kinds: {
       type: 'string',
@@ -60,26 +69,46 @@ export default defineCommand({
   async run({ args }) {
     const cwd = process.cwd()
     const watchDir = resolve(cwd, args.dir)
-    const scope = parseScope(args.scope)
     const kinds = parseKinds(args.kinds)
 
     async function build() {
       try {
         const config = await loadConfig(args.input)
+        const componentNames = Object.keys(config.components ?? {})
+        const scope = applyExclude(parseScope(args.scope), args.exclude, componentNames)
 
-        const result = compile(config, {
+        const { structured } = compile(config, {
           namespace: args.namespace,
           scope,
           kinds,
         })
 
-        if (args.output) {
-          const outPath = resolve(cwd, args.output)
-          mkdirSync(dirname(outPath), { recursive: true })
-          writeFileSync(outPath, result.css + '\n', 'utf-8')
-          log.success(relative(cwd, outPath))
+        if (args.split) {
+          const outDir = resolve(cwd, args.output ?? './dist')
+          mkdirSync(outDir, { recursive: true })
+
+          if (structured.theme) {
+            const themePath = resolve(outDir, 'theme.css')
+            writeFileSync(themePath, structured.theme + '\n', 'utf-8')
+          }
+
+          for (const [name, css] of structured.components) {
+            const compPath = resolve(outDir, `${name}.css`)
+            writeFileSync(compPath, css + '\n', 'utf-8')
+          }
+
+          log.success(relative(cwd, outDir))
         } else {
-          process.stdout.write(result.css + '\n')
+          const css = [structured.theme, ...structured.components.values()].filter(Boolean).join('\n\n')
+
+          if (args.output) {
+            const outPath = resolve(cwd, args.output)
+            mkdirSync(dirname(outPath), { recursive: true })
+            writeFileSync(outPath, css + '\n', 'utf-8')
+            log.success(relative(cwd, outPath))
+          } else {
+            process.stdout.write(css + '\n')
+          }
         }
       } catch (err: any) {
         log.error(err.message)
