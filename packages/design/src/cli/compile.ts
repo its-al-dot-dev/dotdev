@@ -1,4 +1,4 @@
-import type { CompileResult, CompilerOptions } from '../builder/compiler.ts'
+import type { CompileResult, CompilerOptions, CompilerScope } from '../builder/compiler.ts'
 import { Compiler } from '../builder/compiler.ts'
 import type { ThemeConfig } from '../builder/theme.ts'
 import { Theme } from '../builder/theme.ts'
@@ -19,29 +19,29 @@ export function compile(config: ThemeConfig, options: CompilerOptions = {}): Res
   return { css, structured, theme }
 }
 
-export function parseScope(raw?: string) {
-  if (!raw || raw === 'all') return 'all' as const
-  if (raw === 'theme') return { kind: 'theme' } as const
-  return { kind: 'component', ui: raw } as const
+export function parseScope(raw?: string): CompilerScope {
+  if (!raw || raw === 'all') return { kind: 'all' }
+  if (raw === 'theme') return { kind: 'theme' }
+  return { kind: 'component', ui: raw }
 }
 
-export function applyExclude(
-  scope: 'all' | TokenScope | TokenScope[],
-  exclude?: string,
-  componentNames?: string[],
-): 'all' | TokenScope | TokenScope[] {
+export function applyExclude(scope: CompilerScope, exclude?: string, componentNames?: string[]): CompilerScope {
   if (!exclude) return scope
   const excluded = new Set(exclude.split(',').map((s) => s.trim()))
 
-  if (scope === 'all') {
-    if (excluded.size === 0) return 'all'
+  if (!Array.isArray(scope) && scope.kind === 'all') {
+    if (excluded.size === 0) return { kind: 'all' }
+
     const parts: TokenScope[] = []
+
     if (!excluded.has('theme')) parts.push({ kind: 'theme' })
+
     if (componentNames) {
       for (const name of componentNames) {
         if (!excluded.has(name)) parts.push({ kind: 'component', ui: name })
       }
     }
+
     if (parts.length === 0) return scope
     return parts.length === 1 ? parts[0] : parts
   }

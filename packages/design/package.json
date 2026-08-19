@@ -8,7 +8,7 @@
   "scripts": {
     "design": "bun ./bin/design",
     "build": "bun ./bin/design build -n d -o ./dist/design.css",
-    "build:split": "bun ./bin/design build -n d --split -k utilities,rules -o ./dist",
+    "build:split": "bun ./bin/design build -n d --split -o ./dist",
     "watch": "bun ./bin/design watch -n d -i ./src/runtime/design.config.ts -d ./src/runtime -o ./dist/design.css",
     "watch:split": "bun ./bin/design watch -n d --split -i ./src/runtime/design.config.ts -d ./src/runtime -o ./dist",
     "build:button": "bun ./bin/design build -n d -s button -o ./dist/design.css"

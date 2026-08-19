@@ -1,9 +1,9 @@
 import { defineCommand } from 'citty'
-import { mkdirSync, writeFileSync } from 'node:fs'
-import { dirname, relative, resolve } from 'node:path'
+import { relative, resolve } from 'node:path'
 import chokidar from 'chokidar'
 import { loadConfig } from '../load-config.ts'
-import { compile, parseKinds, parseScope, applyExclude } from '../compile.ts'
+import { applyExclude, compile, parseKinds, parseScope } from '../compile.ts'
+import { writeResult } from '../write.ts'
 import { log } from '../logger.ts'
 
 export default defineCommand({
@@ -83,33 +83,7 @@ export default defineCommand({
           kinds,
         })
 
-        if (args.split) {
-          const outDir = resolve(cwd, args.output ?? './dist')
-          mkdirSync(outDir, { recursive: true })
-
-          if (structured.theme) {
-            const themePath = resolve(outDir, 'theme.css')
-            writeFileSync(themePath, structured.theme + '\n', 'utf-8')
-          }
-
-          for (const [name, css] of structured.components) {
-            const compPath = resolve(outDir, `${name}.css`)
-            writeFileSync(compPath, css + '\n', 'utf-8')
-          }
-
-          log.success(relative(cwd, outDir))
-        } else {
-          const css = [structured.theme, ...structured.components.values()].filter(Boolean).join('\n\n')
-
-          if (args.output) {
-            const outPath = resolve(cwd, args.output)
-            mkdirSync(dirname(outPath), { recursive: true })
-            writeFileSync(outPath, css + '\n', 'utf-8')
-            log.success(relative(cwd, outPath))
-          } else {
-            process.stdout.write(css + '\n')
-          }
-        }
+        writeResult(structured, { split: args.split, output: args.output, cwd })
       } catch (err: any) {
         log.error(err.message)
       }
