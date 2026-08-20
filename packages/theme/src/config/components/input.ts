@@ -17,16 +17,16 @@ export const input = defineComponent({
     'h-sm': 'size-sm',
     'h-md': 'size-md',
     'h-lg': 'size-lg',
-    'text-sm': 'type-sm',
-    'text-md': 'type-md',
-    'text-lg': 'type-md',
+    'type-sm': 'type-sm',
+    'type-md': 'type-md',
+    'type-lg': 'type-md',
 
     rounded: 'radius-md',
   },
   utilities: {
-    'size-sm': 'input-text-sm input-h-sm input-px-sm',
-    'size-md': 'input-text-md input-h-md input-px-md',
-    'size-lg': 'input-text-lg input-h-lg input-px-lg',
+    'size-sm': 'input-type-sm input-h-sm input-px-sm',
+    'size-md': 'input-type-md input-h-md input-px-md',
+    'size-lg': 'input-type-lg input-h-lg input-px-lg',
     transition: 'transition-[background-color,opacity,border,color]',
   },
   rules: {

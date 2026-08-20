@@ -28,7 +28,7 @@ export const checkbox = defineComponent({
   },
 
   rules: {
-    '&': `appearance-none cursor-pointer checkbox-transition`,
+    '&': `appearance-none cursor-pointer checkbox-transition block`,
 
     '&--outlined': `checkbox-bg-outlined border checkbox-border-outlined`,
     '&--soft': `checkbox-bg-soft border border-transparent`,

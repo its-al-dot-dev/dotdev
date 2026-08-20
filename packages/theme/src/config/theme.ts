@@ -201,7 +201,7 @@ export const themeConfig: ThemeConfig = {
     'ring-success': 'success-500/50',
   },
   utilities: {
-    'type-*': 'text-(length:--value([*]))',
+    'type-*': 'text-[length:--value([*])]',
 
     ...flatMapObject(sizeKeys, (key) => ({
       [`${key}-xs`]: `${key}-(--$ns-size-xs)`,

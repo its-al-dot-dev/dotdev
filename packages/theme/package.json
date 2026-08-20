@@ -5,7 +5,8 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
-    "build": "dotdev-design build -i ./src/config/index.ts -o ./src/generated -f config --split"
+    "build": "dotdev-design build -i ./src/config/theme.ts -o ./src/generated -f config --split",
+    "watch": "dotdev-design watch -d ./src/config -i ./src/config/theme.ts -o ./src/generated -f config --split"
   },
   "dependencies": {
     "@dotdev/design": "workspace:*"

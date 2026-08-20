@@ -26,9 +26,9 @@ export const listbox = defineComponent({
     'gap-sm': 'gap-sm',
     'gap-md': 'gap-md',
     'gap-lg': 'gap-lg',
-    'text-sm': 'type-sm',
-    'text-md': 'type-md',
-    'text-lg': 'type-md',
+    'type-sm': 'type-sm',
+    'type-md': 'type-md',
+    'type-lg': 'type-md',
 
     gap: '0.125rem',
     p: '0.25rem',
@@ -38,9 +38,9 @@ export const listbox = defineComponent({
 
   utilities: {
     size: 'listbox-p listbox-rounded',
-    'size-sm': 'listbox-text-sm',
-    'size-md': 'listbox-text-sm',
-    'size-lg': 'listbox-text-lg',
+    'size-sm': 'listbox-type-sm',
+    'size-md': 'listbox-type-sm',
+    'size-lg': 'listbox-type-lg',
     'size-item-sm': 'listbox-px-sm listbox-gap-sm listbox-h-sm',
     'size-item-md': 'listbox-px-md listbox-gap-md listbox-h-md',
     'size-item-lg': 'listbox-px-lg listbox-gap-lg listbox-h-lg',

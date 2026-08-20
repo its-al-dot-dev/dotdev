@@ -14,16 +14,16 @@ export const textarea = defineComponent({
     'px-sm': 'space-sm',
     'px-md': 'space-md',
     'px-lg': 'space-lg',
-    'text-sm': 'type-sm',
-    'text-md': 'type-md',
-    'text-lg': 'type-md',
+    'type-sm': 'type-sm',
+    'type-md': 'type-md',
+    'type-lg': 'type-md',
 
     rounded: 'radius-md',
   },
   utilities: {
-    'size-sm': 'textarea-text-sm textarea-px-sm',
-    'size-md': 'textarea-text-md textarea-px-md',
-    'size-lg': 'textarea-text-lg textarea-px-lg',
+    'size-sm': 'textarea-type-sm textarea-px-sm',
+    'size-md': 'textarea-type-md textarea-px-md',
+    'size-lg': 'textarea-type-lg textarea-px-lg',
     transition: 'transition-[background-color,opacity,border,color]',
   },
   rules: {

@@ -28,9 +28,9 @@ export const menu = defineComponent({
     'rounded-item-md': 'radius-md',
     'rounded-item-lg': 'radius-lg',
 
-    'text-sm': 'type-sm',
-    'text-md': 'type-sm',
-    'text-lg': 'type-md',
+    'type-sm': 'type-sm',
+    'type-md': 'type-sm',
+    'type-lg': 'type-md',
   },
 
   utilities: {
@@ -44,9 +44,9 @@ export const menu = defineComponent({
 
   rules: {
     '&': `flex flex-col menu-gap menu-text-default`,
-    '&--sm': 'menu-text-sm',
-    '&--md': 'menu-text-md',
-    '&--lg': 'menu-text-lg',
+    '&--sm': 'menu-type-sm',
+    '&--md': 'menu-type-md',
+    '&--lg': 'menu-type-lg',
 
     '&__heading': `font-medium menu-py-heading transition-[color] menu-text-heading`,
     '&--sm &__heading': 'menu-size-heading-sm',
