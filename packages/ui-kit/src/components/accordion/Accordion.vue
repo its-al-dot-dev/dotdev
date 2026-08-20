@@ -2,10 +2,10 @@
 import type { UIAccordionEmits, UIAccordionProps, UIAccordionSlots } from './accordion.types'
 import { computed, useId } from 'vue'
 import {
+  asTemplateRef,
   Icon,
   normalizeBooleanProp,
   Scope,
-  toTemplateRef,
   useArrayModel,
   useUiKitBem,
   useUiKitProps,
@@ -59,7 +59,7 @@ function isItemDisabled(item: T) {
   return false
 }
 
-const uit = toTemplateRef(ui)
+const uit = asTemplateRef(ui)
 </script>
 
 <template>

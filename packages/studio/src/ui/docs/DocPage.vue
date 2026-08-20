@@ -77,6 +77,7 @@ const sidebarItems = computed(() => [
 
       <div v-if="exampleItems.length" class="doc-section">
         <h3 class="doc-section__title">Examples</h3>
+
         <section
           v-for="example in exampleItems"
           :id="`example-${example.id}`"

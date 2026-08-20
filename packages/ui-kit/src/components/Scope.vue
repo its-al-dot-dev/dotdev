@@ -1,7 +1,12 @@
 <script generic="T extends Record<string, unknown>" lang="ts" setup>
-const props = defineProps<{ scope: T }>()
+import type { UITagElement } from '@dotdev/ui-kit/types/helpers.ts'
+
+const props = defineProps<{ is?: UITagElement; scope: T }>()
 </script>
 
 <template>
-  <slot v-bind="props.scope" />
+  <component :is="is" v-if="is">
+    <slot v-bind="props.scope" />
+  </component>
+  <slot v-else v-bind="props.scope" />
 </template>

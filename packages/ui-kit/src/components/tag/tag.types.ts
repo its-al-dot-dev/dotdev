@@ -1,5 +1,5 @@
-import type { Component, VNode } from 'vue'
-import type { UiKitBaseProps, UiKitColor, UiKitIcon, UiKitOverride } from '@dotdev/ui-kit'
+import type { VNode } from 'vue'
+import type { UiKitBaseProps, UiKitColor, UiKitIcon, UiKitOverride, UITagElement } from '@dotdev/ui-kit'
 
 export interface UITagProps extends UiKitBaseProps {
   is?: UITagElement
@@ -20,8 +20,6 @@ export interface UITagSlots {
 }
 
 export interface UITagEmits {}
-
-export type UITagElement = keyof HTMLElementTagNameMap | Component
 
 export type UITagColor = UiKitOverride<UiKitColor, 'tagColor'>
 
