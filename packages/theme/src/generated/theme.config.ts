@@ -460,9 +460,9 @@ export default {
       "h-sm": "var(--_NS_-size-sm)",
       "h-md": "var(--_NS_-size-md)",
       "h-lg": "var(--_NS_-size-lg)",
-      "text-sm": "var(--_NS_-type-sm)",
-      "text-md": "var(--_NS_-type-md)",
-      "text-lg": "var(--_NS_-type-md)",
+      "type-sm": "var(--_NS_-type-sm)",
+      "type-md": "var(--_NS_-type-md)",
+      "type-lg": "var(--_NS_-input-type-md)",
       "rounded": "var(--_NS_-radius-md)"
     },
     "listbox": {
@@ -486,9 +486,9 @@ export default {
       "gap-sm": "var(--_NS_-gap-sm)",
       "gap-md": "var(--_NS_-gap-md)",
       "gap-lg": "var(--_NS_-gap-lg)",
-      "text-sm": "var(--_NS_-type-sm)",
-      "text-md": "var(--_NS_-type-md)",
-      "text-lg": "var(--_NS_-type-md)",
+      "type-sm": "var(--_NS_-type-sm)",
+      "type-md": "var(--_NS_-type-md)",
+      "type-lg": "var(--_NS_-listbox-type-md)",
       "gap": "0.125rem",
       "p": "0.25rem",
       "rounded": "var(--_NS_-radius-md)",
@@ -517,9 +517,9 @@ export default {
       "rounded-item-sm": "var(--_NS_-radius-sm)",
       "rounded-item-md": "var(--_NS_-radius-md)",
       "rounded-item-lg": "var(--_NS_-radius-lg)",
-      "text-sm": "var(--_NS_-type-sm)",
-      "text-md": "var(--_NS_-type-sm)",
-      "text-lg": "var(--_NS_-type-md)"
+      "type-sm": "var(--_NS_-type-sm)",
+      "type-md": "var(--_NS_-menu-type-sm)",
+      "type-lg": "var(--_NS_-menu-type-md)"
     },
     "message": {
       "bg-primary-soft": "var(--_NS_-bg-brand-soft)",
@@ -639,10 +639,17 @@ export default {
       "rounded": "9999px"
     },
     "table": {
-      "px-cell": "0.75rem",
-      "py-cell": "0.625rem",
-      "px-head": "0.75rem",
-      "py-head": "0.5rem",
+      "text-default": "var(--_NS_-text-foreground)",
+      "text-muted": "var(--_NS_-text-muted)",
+      "text-caption": "var(--_NS_-table-text-muted)",
+      "border-cell": "var(--_NS_-border-default)",
+      "bg-row-hover": "var(--_NS_-bg-neutral-soft)",
+      "bg-row-selected": "var(--_NS_-bg-brand-soft)",
+      "bg-sticky": "var(--_NS_-bg-background)",
+      "px-cell": "var(--_NS_-space-sm)",
+      "py-cell": "var(--_NS_-space-sm)",
+      "px-head": "var(--_NS_-space-sm)",
+      "py-head": "var(--_NS_-space-sm)",
       "top-sticky": "0px"
     },
     "tag": {
@@ -691,9 +698,9 @@ export default {
       "px-sm": "var(--_NS_-space-sm)",
       "px-md": "var(--_NS_-space-md)",
       "px-lg": "var(--_NS_-space-lg)",
-      "text-sm": "var(--_NS_-type-sm)",
-      "text-md": "var(--_NS_-type-md)",
-      "text-lg": "var(--_NS_-type-md)",
+      "type-sm": "var(--_NS_-type-sm)",
+      "type-md": "var(--_NS_-type-md)",
+      "type-lg": "var(--_NS_-textarea-type-md)",
       "rounded": "var(--_NS_-radius-md)"
     }
   }

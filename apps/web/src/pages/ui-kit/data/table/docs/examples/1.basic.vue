@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { Table, TableCell, TableHead, TableRow } from '@dotdev/ui-kit'
+import { Table, type UITableColumn } from '@dotdev/ui-kit'
 
 defineExample({
   title: 'Basic usage',
-  desc: `Compose a <code>Table</code> from <code>TableRow</code>, <code>TableHead</code>, and <code>TableCell</code> inside native <code>thead</code>/<code>tbody</code>. Header cells render as a muted uppercase label; body cells align left. The <code>caption</code> slot labels the table for both sighted and assistive readers.`,
+  desc: `Pass an array of <code>data</code> objects and a <code>columns</code> array to define the table structure. Each column needs a <code>key</code> that matches a property in the data, and a <code>header</code> label.`,
 })
 
 const members = [
@@ -12,26 +12,16 @@ const members = [
   { name: 'Katherine Johnson', role: 'Analyst', status: 'Active' },
   { name: 'Margaret Hamilton', role: 'Director', status: 'Contractor' },
 ]
+
+type Member = (typeof members)[number]
+
+const columns: UITableColumn<Member>[] = [
+  { key: 'name', header: 'Name' },
+  { key: 'role', header: 'Role' },
+  { key: 'status', header: 'Status' },
+]
 </script>
 
 <template>
-  <Table>
-    <template #caption>Team members</template>
-
-    <thead>
-      <TableRow>
-        <TableHead>Name</TableHead>
-        <TableHead>Role</TableHead>
-        <TableHead>Status</TableHead>
-      </TableRow>
-    </thead>
-
-    <tbody>
-      <TableRow v-for="member in members" :key="member.name">
-        <TableCell>{{ member.name }}</TableCell>
-        <TableCell>{{ member.role }}</TableCell>
-        <TableCell>{{ member.status }}</TableCell>
-      </TableRow>
-    </tbody>
-  </Table>
+  <Table :columns="columns" :data="members" />
 </template>

@@ -320,9 +320,9 @@ export interface ThemeDefinition<T = string | [string, string]> {
       "h-sm"?: T
       "h-md"?: T
       "h-lg"?: T
-      "text-sm"?: T
-      "text-md"?: T
-      "text-lg"?: T
+      "type-sm"?: T
+      "type-md"?: T
+      "type-lg"?: T
       "rounded"?: T
     }
     "listbox"?: {
@@ -346,9 +346,9 @@ export interface ThemeDefinition<T = string | [string, string]> {
       "gap-sm"?: T
       "gap-md"?: T
       "gap-lg"?: T
-      "text-sm"?: T
-      "text-md"?: T
-      "text-lg"?: T
+      "type-sm"?: T
+      "type-md"?: T
+      "type-lg"?: T
       "gap"?: T
       "p"?: T
       "rounded"?: T
@@ -377,9 +377,9 @@ export interface ThemeDefinition<T = string | [string, string]> {
       "rounded-item-sm"?: T
       "rounded-item-md"?: T
       "rounded-item-lg"?: T
-      "text-sm"?: T
-      "text-md"?: T
-      "text-lg"?: T
+      "type-sm"?: T
+      "type-md"?: T
+      "type-lg"?: T
     }
     "message"?: {
       "bg-primary-soft"?: T
@@ -472,6 +472,13 @@ export interface ThemeDefinition<T = string | [string, string]> {
       "rounded"?: T
     }
     "table"?: {
+      "text-default"?: T
+      "text-muted"?: T
+      "text-caption"?: T
+      "border-cell"?: T
+      "bg-row-hover"?: T
+      "bg-row-selected"?: T
+      "bg-sticky"?: T
       "px-cell"?: T
       "py-cell"?: T
       "px-head"?: T
@@ -524,9 +531,9 @@ export interface ThemeDefinition<T = string | [string, string]> {
       "px-sm"?: T
       "px-md"?: T
       "px-lg"?: T
-      "text-sm"?: T
-      "text-md"?: T
-      "text-lg"?: T
+      "type-sm"?: T
+      "type-md"?: T
+      "type-lg"?: T
       "rounded"?: T
     }
   }
