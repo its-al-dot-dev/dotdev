@@ -1,4 +1,4 @@
-import { mkdirSync, rmSync, writeFileSync } from 'node:fs'
+import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, relative, resolve } from 'node:path'
 
 import type { CompileResult } from '../builder/compiler.ts'
@@ -10,6 +10,7 @@ export interface WriteOptions {
   split?: boolean
   output?: string
   cwd?: string
+  scope?: string
 }
 
 export async function writeResult(structured: CompileResult, options: WriteOptions = {}): Promise<void> {
@@ -39,6 +40,17 @@ async function writeTsOutput(structured: CompileResult, options: WriteOptions, c
   const typesPath = resolve(outDir, 'theme.types.ts')
   const indexPath = resolve(outDir, 'index.ts')
 
+  if (options.scope) {
+    for (const [name, component] of structured.components) {
+      if (name !== options.scope) continue
+      const css = await compileWithTailwind([`@reference "${contextPath}";`, component.css].join('\n\n'))
+      const componentPath = resolve(outDir, `${name}.ts`)
+      writeFile(componentPath, `export default ${JSON.stringify(css)}`, cwd)
+    }
+
+    return
+  }
+
   const config = {
     ...structured.theme.config,
     components: Object.fromEntries([...structured.components].map(([name, component]) => [name, component.config])),
@@ -59,14 +71,13 @@ async function writeTsOutput(structured: CompileResult, options: WriteOptions, c
     for (const [name, component] of structured.components) {
       const css = await compileWithTailwind([`@reference "${contextPath}";`, component.css].join('\n\n'))
       const componentPath = resolve(outDir, `${name}.ts`)
-
       writeFile(componentPath, `export default ${JSON.stringify(css)}`, cwd)
       exports.push(`export { default as ${toExportName(name)}Style } from './${name}.ts'`)
     }
 
     writeFile(indexPath, `${exports.join('\n')}\n`, cwd)
   } finally {
-    rmSync(contextPath, { force: true })
+    // rmSync(contextPath, { force: true })
   }
 }
 

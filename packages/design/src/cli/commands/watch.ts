@@ -1,5 +1,5 @@
 import { defineCommand } from 'citty'
-import { relative, resolve } from 'node:path'
+import { basename, relative, resolve } from 'node:path'
 import chokidar from 'chokidar'
 import { loadConfig } from '../load-config.ts'
 import { applyExclude, compile, parseKinds, parseScope } from '../compile.ts'
@@ -77,7 +77,7 @@ export default defineCommand({
     const watchDir = resolve(cwd, args.dir)
     const kinds = parseKinds(args.kinds)
 
-    async function build() {
+    async function build(scp?: string) {
       try {
         const config = await loadConfig(args.input)
         const componentNames = Object.keys(config.components ?? {})
@@ -89,7 +89,13 @@ export default defineCommand({
           kinds,
         })
 
-        await writeResult(structured, { split: args.split, output: args.output, outputType: args.format as 'css' | 'config', cwd })
+        await writeResult(structured, {
+          split: args.split,
+          output: args.output,
+          outputType: args.format as 'css' | 'config',
+          cwd,
+          scope: scp && Object.keys(config.components || {}).some((k) => k == scp) ? scp : undefined,
+        })
       } catch (err: any) {
         log.error(err.message)
       }
@@ -106,7 +112,8 @@ export default defineCommand({
 
     watcher.on('change', (path) => {
       log.change(relative(cwd, path))
-      build()
+      const name = basename(path, '.ts')
+      build(name)
     })
 
     watcher.on('add', (path) => {

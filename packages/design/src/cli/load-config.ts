@@ -3,9 +3,20 @@ import { createJiti } from 'jiti'
 import type { ThemeConfig } from '../builder/theme.ts'
 
 const cwd = process.cwd()
+
+function clearRequireCache(dir: string) {
+  for (const key in require.cache) {
+    if (key.startsWith(dir)) {
+      delete require.cache[key]
+    }
+  }
+}
+
 const jiti = createJiti(cwd, { interopDefault: true, moduleCache: false })
 
 export async function loadConfig(input?: string): Promise<ThemeConfig> {
+  clearRequireCache(cwd)
+
   const fileName = input ?? 'design.config.ts'
   const filePath = resolve(cwd, fileName)
 
