@@ -1,20 +1,21 @@
-import { Component } from '@dotdev/theme'
+import { defineComponent } from '@dotdev/design'
 
-export const doc = new Component({
+export const doc = defineComponent({
   ui: 'doc',
   layer: 'studio',
   semantics: {
-    'bg-tint': ['--d-brand-50', '--d-brand-400/10'],
-    'bg-card': ['--d-neutral-50', '--d-neutral-500/10'],
-    'bg-grid-color': '--d-neutral-500/30',
+    'bg-tint': ['brand-50', 'brand-400/10'],
+    'bg-card': ['neutral-50', 'neutral-500/10'],
+    'bg-grid-color': 'neutral-500/30',
   },
   utilities: {
     card: `doc-bg-card border border-default rounded-2xl transition-[background-color,border-color]`,
-    'bg-grid': 'bg-[radial-gradient(var(--d-doc-bg-grid-color)_1px,transparent_1px)] bg-size-[20px_20px]',
+    'bg-grid': 'bg-[radial-gradient(var(--$ns-doc-bg-grid-color)_1px,transparent_1px)] bg-size-[20px_20px]',
     'code-text': 'text-[0.9em]',
+    'type-sm': 'type-sm',
   },
   rules: {
-    '.doc-page': `py-10 px-4 lg:px-8 flex gap-10 items-start`,
+    '.doc-page': `py-10 px-4 lg:px-8 flex gap-10 items-start doc-type-sm`,
     '.doc-page__body': `w-full min-w-0`,
     '.doc-page__header': `mb-8`,
     '.doc-page__caption': `flex items-center justify-between gap-4 mb-3`,

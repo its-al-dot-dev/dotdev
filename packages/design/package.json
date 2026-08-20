@@ -2,11 +2,13 @@
   "name": "@dotdev/design",
   "private": true,
   "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
   "bin": {
-    "design": "./bin/design"
+    "dotdev-design": "./bin/dotdev-design"
   },
   "scripts": {
-    "design": "bun ./bin/design",
+    "dotdev-design": "bun ./bin/design",
     "build": "bun ./bin/design build -n d -i ./src/runtime/design.config.ts -o ./dist/design.css",
     "build:split": "bun ./bin/design build -n d -i ./src/runtime/design.config.ts --split -o ./dist",
     "watch": "bun ./bin/design watch -n d -i ./src/runtime/design.config.ts -d ./src/runtime -o ./dist/design.css",

@@ -1,5 +1,5 @@
 import type { Component, InjectionKey } from 'vue'
-import type { ThemeDefinition } from '@dotdev/theme'
+import type { DefineThemeConfig, ThemeAPI } from '@dotdev/theme'
 import type {
   UIAccordionProps,
   UIAvatarProps,
@@ -14,7 +14,6 @@ import type {
   UIInputProps,
   UiKitIcon,
   UiKitNamespace,
-  UiKitThemeContext,
   UIListBoxProps,
   UIMenuItemProps,
   UIMenuProps,
@@ -31,7 +30,7 @@ import type {
 
 export interface UiKitConfig {
   namespace?: UiKitNamespace
-  theme?: Omit<ThemeDefinition, 'namespace' | 'tokens'>
+  theme?: Omit<DefineThemeConfig, 'namespace'>
   components?: {
     accordion?: Partial<UIAccordionProps>
     avatar?: Partial<UIAvatarProps>
@@ -60,10 +59,10 @@ export interface UiKitConfig {
   icons?: Partial<Record<UiKitIcon, Component>>
 }
 
-export interface UiKitProvide {
-  configs: Map<string, UiKitConfig>
-  themes: Map<string, UiKitThemeContext>
+export interface UiKitConfigWithTheme {
+  config: UiKitConfig
+  theme: ThemeAPI
 }
 
-export const UI_KIT_CONFIG_KEY: InjectionKey<UiKitProvide> = Symbol('dotdev-ui-config')
+export const UI_KIT_CONFIG_KEY: InjectionKey<Map<string, UiKitConfigWithTheme>> = Symbol('dotdev-ui-config')
 export const UI_KIT_NAMESPACE_KEY: InjectionKey<string> = Symbol('dotdev-ui-namespace')

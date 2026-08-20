@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import type { UIDividerEmits, UIDividerProps, UIDividerSlots } from './divider.types.ts'
 import { useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
-import { template } from '../templates/divider.ts'
+import { dividerStyle } from '@dotdev/theme'
 
 defineEmits<UIDividerEmits>()
 defineSlots<UIDividerSlots>()
@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<UIDividerProps>(), {
 const ui = useUiKitProps('divider', props)
 
 const bem = useUiKitBem(ui)
-useUiKitTheme(ui, template)
+useUiKitTheme(ui, dividerStyle)
 const rootClass = computed(() => {
   const { color, orientation, variant } = ui
   return bem([orientation, variant, color])

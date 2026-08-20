@@ -1,6 +1,6 @@
-import { Component } from '@dotdev/theme'
+import { defineComponent } from '@dotdev/design'
 
-export const landing = new Component({
+export const landing = defineComponent({
   ui: 'landing',
   layer: 'studio',
   rules: {
@@ -18,7 +18,7 @@ export const landing = new Component({
     '.landing__meta-sep': `size-1 rounded-full bg-neutral-400`,
 
     /* Demo window */
-    '.landing__demo': `w-full rounded-2xl border border-default doc-bg-grid overflow-hidden`,
+    '.landing__demo': `w-full rounded-2xl border border-default overflow-hidden`,
     '.landing__demo-bar': `flex items-center justify-between border-b border-default bg-surface px-4 h-10`,
     '.landing__demo-label': `font-mono text-xs uppercase tracking-widest text-muted`,
     '.landing__demo-version': `font-mono text-xs text-muted`,

@@ -32,14 +32,13 @@ export function useUiKitProps<C extends UiKitComponent, P extends UiKitBaseProps
   const vm = getCurrentInstance()
 
   if (!vm) {
-    throw new Error('useUiKitProps() can only be used inside setup()')
+    throw new Error('[dotdev/ui-kit] useUiKitProps() can only be used inside setup()')
   }
 
   const provided = inject(UI_KIT_CONFIG_KEY)
-  const overriddenNs = inject(UI_KIT_NAMESPACE_KEY, null)
-  const ns = overriddenNs ?? props.namespace ?? 'd'
-  const config = provided?.configs.get(ns) ?? {}
-  const defaults = config.components?.[component] as Partial<P> | undefined
+  const namespace = inject(UI_KIT_NAMESPACE_KEY, null) ?? props.namespace ?? 'd'
+  const state = provided?.get(namespace)
+  const defaults = state?.config?.components?.[component] as Partial<P> | undefined
 
   return new Proxy(props, {
     get(target, _prop, receiver) {
@@ -59,7 +58,7 @@ export function useUiKitProps<C extends UiKitComponent, P extends UiKitBaseProps
       }
 
       if (prop === 'namespace') {
-        return ns
+        return namespace
       }
 
       return value

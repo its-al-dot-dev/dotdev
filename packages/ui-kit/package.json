@@ -4,12 +4,6 @@
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
-  "scripts": {
-    "theme:css:vars": "dotdev-theme css --input ./src/theme/index.ts --output ../../apps/web/src/generated/styles --name vars --part vars --watch --watch-path ./src/theme",
-    "theme:css:utilities": "dotdev-theme css --input ./src/theme/index.ts --output ../../apps/web/src/generated/styles --name utilities --part utilities --watch --watch-path ./src/theme",
-    "theme:templates": "dotdev-theme tokens --input ./src/theme/index.ts --output ./src/components --name templates --part templates --watch --watch-path ./src/theme",
-    "theme:tokens": "dotdev-theme tokens --input ./src/theme/index.ts --output ./src/components --name templates --part tokens --watch --watch-path ./src/theme"
-  },
   "dependencies": {
     "vue": "^3.5.39",
     "vue-router": "^5.2.0",

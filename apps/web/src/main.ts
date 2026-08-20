@@ -14,6 +14,7 @@ const landing = defineUiKitConfig({
   icons,
   theme: {
     primitives: {},
+    semantics: {},
   },
 })
 

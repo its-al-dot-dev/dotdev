@@ -3,7 +3,7 @@ import type { UIAvatarEmits, UIAvatarProps, UIAvatarSlots } from './avatar.types
 import { useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
 import { computed } from 'vue'
 import { Icon } from '../icon'
-import { template } from '../templates/avatar.ts'
+import { avatarStyle } from '@dotdev/theme'
 
 defineEmits<UIAvatarEmits>()
 defineSlots<UIAvatarSlots>()
@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<UIAvatarProps>(), {
 
 const ui = useUiKitProps('avatar', props)
 const bem = useUiKitBem(ui)
-useUiKitTheme(ui, template)
+useUiKitTheme(ui, avatarStyle)
 const rootClass = computed(() => {
   const { border, color, square, variant } = ui
   return bem([color, variant], { border, square })

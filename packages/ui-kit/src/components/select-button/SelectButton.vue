@@ -2,7 +2,7 @@
 import { normalizeBooleanProp, useArrayModel, useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
 import { computed } from 'vue'
 import type { UISelectButtonEmits, UISelectButtonProps, UISelectButtonSlots } from './select-button.types.ts'
-import { template } from '../templates/select-button.ts'
+import { selectButtonStyle } from '@dotdev/theme'
 
 defineEmits<UISelectButtonEmits>()
 defineSlots<UISelectButtonSlots<T>>()
@@ -27,7 +27,7 @@ const { toggle, isSelected } = useArrayModel<T>(model, {
 })
 
 const bem = useUiKitBem(ui)
-useUiKitTheme(ui, template)
+useUiKitTheme(ui, selectButtonStyle)
 
 const rootClass = computed(() => {
   const { size, disabled, square, variant } = ui

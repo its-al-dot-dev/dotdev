@@ -84,3 +84,9 @@ declare module 'vue' {
     $studioMenu: StudioMenuItem[]
   }
 }
+
+declare module '@dotdev/ui-kit' {
+  interface UIMenuItem {
+    to?: string
+  }
+}

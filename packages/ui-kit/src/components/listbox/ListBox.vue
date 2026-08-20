@@ -13,7 +13,7 @@ import {
   useUiKitTheme,
 } from '@dotdev/ui-kit'
 import { computed, ref, useId, useTemplateRef } from 'vue'
-import { template } from '../templates/listbox.ts'
+import { listboxStyle } from '@dotdev/theme'
 
 type FocusDirection = 1 | -1 | 0
 
@@ -39,7 +39,7 @@ const id = useId()
 const ui = useUiKitProps('listbox', props)
 
 const bem = useUiKitBem(ui)
-useUiKitTheme(ui, template)
+useUiKitTheme(ui, listboxStyle)
 const { toggle, isSelected, findSelectedIndex } = useArrayModel<T>(model, {
   multiple: () => normalizeBooleanProp(ui.multiple),
   deselectable: () => ui.deselectable,

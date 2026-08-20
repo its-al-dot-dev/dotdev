@@ -1,6 +1,6 @@
 export type TokenScope = { kind: 'theme' } | { kind: 'component'; ui: string }
 
-export type TokenValue = string | readonly [string, string]
+export type TokenValue<T = string> = T | [T, T]
 
 export type TokenExpression = { kind: 'css'; value: string } | { kind: 'reference'; name: string; alpha?: number }
 

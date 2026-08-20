@@ -15,6 +15,8 @@ export interface Logger {
 }
 
 export class ConsoleLogger implements Logger {
+  readonly ps = pc
+
   constructor(private readonly minLevel: LogLevel = LogLevel.WARN) {}
 
   debug(message: string, ...args: unknown[]): void {

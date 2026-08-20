@@ -1,9 +1,12 @@
-import type { ThemeConfig } from './theme.ts'
+import { NAMESPACE, type ThemeConfig } from './theme.ts'
+import type { ComponentConfig, TokenValue } from './types.ts'
 
-export { Component } from './component.ts'
-export { Theme, NAMESPACE } from './theme.ts'
-export { Compiler, type CompilerOptions, type CompilerScope, type CompilerKind, type CompileResult } from './compiler.ts'
-
-export function defineConfig(config: ThemeConfig) {
+export function defineTheme(config: ThemeConfig): ThemeConfig {
   return config
 }
+
+export function defineComponent(config: ComponentConfig): { config: ComponentConfig } {
+  return { config }
+}
+
+export { NAMESPACE, type ThemeConfig, type TokenValue }

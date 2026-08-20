@@ -31,7 +31,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@dotdev/ui-kit': fileURLToPath(new URL('../../packages/ui-kit/src', import.meta.url)),
-      '@dotdev/studio': fileURLToPath(new URL('../../packages/studio/src', import.meta.url)),
       '@dotdev/theme': fileURLToPath(new URL('../../packages/theme/src', import.meta.url)),
     },
   },

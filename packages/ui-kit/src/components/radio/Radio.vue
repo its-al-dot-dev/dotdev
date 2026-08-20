@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import type { UIRadioEmits, UIRadioProps, UIRadioSlots } from './radio.types.ts'
 import { useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
-import { template } from '../templates/radio.ts'
+import { radioStyle } from '@dotdev/theme'
 
 defineSlots<UIRadioSlots>()
 defineEmits<UIRadioEmits>()
@@ -16,7 +16,7 @@ const model = defineModel<boolean>({ default: false })
 const ui = useUiKitProps('radio', props)
 
 const bem = useUiKitBem(ui)
-useUiKitTheme(ui, template)
+useUiKitTheme(ui, radioStyle)
 const rootClass = computed(() => {
   const { disabled, invalid, size, variant } = ui
   return bem([size, variant], { disabled, invalid })

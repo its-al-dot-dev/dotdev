@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import type { UITagEmits, UITagProps, UITagSlots } from './tag.types.ts'
 import { Icon, useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
-import { template } from '../templates/tag.ts'
+import { tagStyle } from '@dotdev/theme'
 
 defineEmits<UITagEmits>()
 defineSlots<UITagSlots>()
@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<UITagProps>(), {
 const ui = useUiKitProps('tag', props)
 
 const bem = useUiKitBem(ui)
-useUiKitTheme(ui, template)
+useUiKitTheme(ui, tagStyle)
 const rootClass = computed(() => {
   const { border, rounded, color, variant } = ui
   return bem([color, variant], { border, rounded })

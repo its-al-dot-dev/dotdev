@@ -2,7 +2,7 @@
 import type { UIIconButtonProps } from './icon-button.types.ts'
 import { Button, useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
 import { computed } from 'vue'
-import { template } from '../templates/icon-button.ts'
+import { iconButtonStyle } from '@dotdev/theme'
 
 const props = withDefaults(defineProps<UIIconButtonProps>(), {
   ui: 'icon-button',
@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<UIIconButtonProps>(), {
 })
 
 const ui = useUiKitProps('icon-button', props)
-useUiKitTheme(ui, template)
+useUiKitTheme(ui, iconButtonStyle)
 
 const bem = useUiKitBem(ui)
 

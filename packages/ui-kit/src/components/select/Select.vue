@@ -2,7 +2,7 @@
 import { Floating, Icon, ListBox, useSelectOptions, useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
 import type { UISelectEmits, UISelectProps, UISelectSlots } from './select.types.ts'
 import { computed, nextTick, ref, useId, useTemplateRef } from 'vue'
-import { template } from '../templates/select.ts'
+import { selectStyle } from '@dotdev/theme'
 
 defineEmits<UISelectEmits>()
 defineSlots<UISelectSlots>()
@@ -17,7 +17,7 @@ const model = defineModel<M extends true ? T[] : T | undefined>()
 const ui = useUiKitProps<'select', UISelectProps<T, L, V, M>>('select', props)
 const { getOptionLabel } = useSelectOptions<T>(ui.labelKey, ui.valueKey)
 const bem = useUiKitBem(ui)
-useUiKitTheme(ui, template)
+useUiKitTheme(ui, selectStyle)
 
 const floatingRef = useTemplateRef('floating')
 const comboboxRef = useTemplateRef('combobox')

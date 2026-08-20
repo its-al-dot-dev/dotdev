@@ -1,6 +1,6 @@
-import { Component } from '@dotdev/theme'
+import { defineComponent } from '@dotdev/design'
 
-export const layout = new Component({
+export const layout = defineComponent({
   ui: 'layout',
   layer: 'studio',
   semantics: {

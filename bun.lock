@@ -37,7 +37,7 @@
     "packages/design": {
       "name": "@dotdev/design",
       "bin": {
-        "design": "./bin/design",
+        "dotdev-design": "./bin/dotdev-design",
       },
       "dependencies": {
         "@tailwindcss/postcss": "^4.3.3",
@@ -53,11 +53,16 @@
     },
     "packages/icons": {
       "name": "@dotdev/icons",
+      "devDependencies": {
+        "vite": "^8.1.1",
+      },
     },
     "packages/studio": {
       "name": "@dotdev/studio",
       "dependencies": {
+        "@dotdev/design": "workspace:*",
         "@dotdev/theme": "workspace:*",
+        "@dotdev/ui-kit": "workspace:*",
         "pinia": "^4.0.2",
         "shiki": "^4.3.1",
         "vue": "^3.5.39",
@@ -71,18 +76,8 @@
     },
     "packages/theme": {
       "name": "@dotdev/theme",
-      "bin": {
-        "dotdev-theme": "./dist/cli.js",
-      },
       "dependencies": {
-        "@tailwindcss/postcss": "^4.3.3",
-        "chokidar": "^4.0.3",
-        "citty": "^0.2.2",
-        "jiti": "^2.7.0",
-        "postcss": "^8.5.6",
-      },
-      "devDependencies": {
-        "tsup": "^8.4.0",
+        "@dotdev/design": "workspace:*",
       },
     },
     "packages/ui-kit": {

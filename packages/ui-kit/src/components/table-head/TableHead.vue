@@ -2,7 +2,7 @@
 import type { UITableHeadEmits, UITableHeadProps, UITableHeadSlots } from './table-head.types.ts'
 import { computed } from 'vue'
 import { useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
-import { template } from '../templates/table.ts'
+import { tableStyle } from '@dotdev/theme'
 
 defineEmits<UITableHeadEmits>()
 defineSlots<UITableHeadSlots>()
@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<UITableHeadProps>(), {
 const ui = useUiKitProps('table', props)
 
 const bem = useUiKitBem(ui)
-useUiKitTheme(ui, template)
+useUiKitTheme(ui, tableStyle)
 const rootClass = computed(() => bem('head', [ui.align]))
 </script>
 

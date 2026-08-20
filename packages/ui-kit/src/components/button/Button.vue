@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { Icon, useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
 import type { UIButtonEmits, UIButtonProps, UIButtonSlots } from './button.types.ts'
-import { template } from '../templates/button.ts'
+import { buttonStyle } from '@dotdev/theme'
 
 defineSlots<UIButtonSlots>()
 const emits = defineEmits<UIButtonEmits>()
@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<UIButtonProps>(), {
 })
 
 const ui = useUiKitProps('button', props)
-useUiKitTheme(ui, template)
+useUiKitTheme(ui, buttonStyle)
 
 const bem = useUiKitBem(ui)
 

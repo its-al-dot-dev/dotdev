@@ -9,20 +9,30 @@ export function useUiKitTheme(props: UiKitBaseProps, template: string) {
   const overriddenNs = inject(UI_KIT_NAMESPACE_KEY, null)
   const namespace = overriddenNs ?? props.namespace
   const ui = props.ui
-  if (!namespace || !ui) return
 
-  const { themes, configs } = inject(UI_KIT_CONFIG_KEY, {
-    themes: new Map(),
-    configs: new Map(),
-  })
-
-  const ctx = themes.get(namespace)
-
-  if (!ctx) {
-    console.warn(`[dotdev/ui-kit] No theme registered for namespace "${namespace}"`)
-    return
+  if (!namespace || !ui) {
+    throw new Error(`[dotdev/ui-kit] Both namespace and ui are required`)
   }
 
-  ctx.injectStyles(namespace, ui, template)
-  return { themes, configs }
+  const provided = inject(UI_KIT_CONFIG_KEY)
+
+  const state = provided?.get(namespace)
+
+  if (!state) {
+    console.warn(`[dotdev/ui-kit] config not found for namespace "${namespace}"`)
+  }
+
+  if (state) {
+    const styles = (state.theme.config?.components as any)?.[ui]
+
+    if (styles) {
+      const cmpVars = state.theme.toCSS(styles, ui)
+      state.theme.injectCSS(cmpVars, `${namespace}-${ui}-vars`)
+    }
+
+    const css = state.theme.templateToCSS(template, namespace)
+    state.theme.injectCSS(css, `${namespace}-${ui}`)
+  }
+
+  return state
 }

@@ -1,6 +1,6 @@
-import { Component } from '@dotdev/theme'
+import { defineComponent } from '@dotdev/design'
 
-export const play = new Component({
+export const play = defineComponent({
   ui: 'play',
   layer: 'studio',
   semantics: {
