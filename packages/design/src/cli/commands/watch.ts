@@ -48,6 +48,12 @@ export default defineCommand({
       alias: 'k',
       description: 'Типы токенов через запятую: primitives, utilities, rules',
     },
+    format: {
+      type: 'string',
+      alias: 'f',
+      description: 'Формат вывода: css или config',
+      default: 'css',
+    },
     dir: {
       type: 'string',
       alias: 'd',
@@ -83,7 +89,7 @@ export default defineCommand({
           kinds,
         })
 
-        writeResult(structured, { split: args.split, output: args.output, cwd })
+        await writeResult(structured, { split: args.split, output: args.output, outputType: args.format as 'css' | 'config', cwd })
       } catch (err: any) {
         log.error(err.message)
       }

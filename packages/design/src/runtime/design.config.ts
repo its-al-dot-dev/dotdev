@@ -120,7 +120,7 @@ export default defineConfig({
   },
 
   semantics: {
-    text: '12px',
+    'text-size': '12px',
     'bg-background': ['white', 'neutral-950'],
     'bg-surface': ['white', 'neutral-950'],
     'text-foreground': ['neutral-900', 'neutral-100'],
@@ -409,7 +409,7 @@ export default defineConfig({
           '&--warning:focus-visible': 'button-ring-warning',
 
           '&--info.&--solid': 'button-bg-info-solid hover:button-bg-info-solid-hover button-text-info-solid',
-          '&--info.&--soft': 'button-bg-info-soft hover:button:bg-info-soft-hover',
+          '&--info.&--soft': 'button-bg-info-soft hover:button-bg-info-soft-hover',
           '&--info:is(&--outlined)': 'button-border-info-outlined',
           '&--info:is(&--outlined, &--ghost)': 'hover:button-bg-info-soft',
           '&--info:is(&--outlined, &--ghost, &--soft, &--text)': 'button-text-info-outlined',

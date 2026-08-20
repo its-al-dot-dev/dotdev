@@ -1,16 +1,25 @@
 import { Theme } from './theme.ts'
 import type { ComponentsState, ThemeState } from './registry.ts'
-import type { PrimitiveToken, RuleToken, TokenScope, UtilityToken } from './types.ts'
+import type { PrimitiveToken, RuleToken, TokenScope, TokenValue, UtilityToken } from './types.ts'
 
 export interface CompileResult {
-  theme: string
-  components: Map<string, string>
+  theme: CompileThemeResult
+  components: CompileComponentsResult
 }
 
 export type CompilerScope = { kind: 'all' } | TokenScope | TokenScope[]
 export type CompilerKind = 'primitives' | 'utilities' | 'rules'
 
 type ResolvedScope = { kind: 'all' } | TokenScope
+
+export type CompileComponentsResult = Map<string, { css: string; config: Record<string, TokenValue> }>
+export type CompileThemeResult = {
+  css: string
+  config: {
+    primitives: Record<string, TokenValue>
+    semantics: Record<string, TokenValue>
+  }
+}
 
 export interface CompilerOptions {
   namespace?: string
@@ -29,20 +38,16 @@ export class Compiler {
     this.state = theme.registry.getTheme()
   }
 
-  compile(options: CompilerOptions = {}): string {
-    const { theme, components } = this.compileAll(options)
-    return [theme, ...components.values()].filter(Boolean).join('\n\n')
-  }
-
-  compileAll(options: CompilerOptions = {}): CompileResult {
+  compile(options: CompilerOptions = {}): CompileResult {
     const state = this.resolveState(options.namespace)
     const scopes = this.resolveScopes(options.scope)
     const kinds = this.resolveKinds(options.kinds)
 
-    const theme = this.needsTheme(scopes) ? this.renderTheme(state, kinds) : ''
+    const css = this.needsTheme(scopes) ? this.renderThemeCss(state, kinds) : ''
+    const config = this.buildThemeConfig(state)
     const components = this.compileComponents(state, scopes, kinds)
 
-    return { theme, components }
+    return { theme: { css, config }, components }
   }
 
   private resolveState(namespace?: string): ThemeState {
@@ -59,12 +64,17 @@ export class Compiler {
     return new Set(kinds ?? DEFAULT_KINDS)
   }
 
-  private compileComponents(state: ThemeState, scopes: ResolvedScope[], kinds: Set<CompilerKind>): Map<string, string> {
-    const result = new Map<string, string>()
+  private compileComponents(
+    state: ThemeState,
+    scopes: ResolvedScope[],
+    kinds: Set<CompilerKind>,
+  ): CompileComponentsResult {
+    const result = new Map()
 
     for (const [name, component] of this.resolveComponents(state, scopes)) {
-      const css = this.renderComponent(component, kinds)
-      if (css) result.set(name, css)
+      const css = this.renderComponentCss(component, kinds)
+      const config = this.buildComponentConfig(component)
+      if (css) result.set(name, { css, config })
     }
 
     return result
@@ -94,7 +104,23 @@ export class Compiler {
     return scopes.some((scope) => scope.kind === 'all')
   }
 
-  private renderTheme(state: ThemeState, kinds: Set<CompilerKind>): string {
+  private buildThemeConfig(state: ThemeState) {
+    const excludedKeys = new Set<string>()
+
+    const semantics = this.buildTokenValue(state.semantics, (token) => {
+      excludedKeys.add(token.name)
+      return token.value
+    })
+
+    const primitives = this.buildTokenValue(state.primitives, (token) => {
+      if (excludedKeys.has(token.name)) return
+      return token.dark ? [token.light, token.dark] : token.light
+    })
+
+    return { primitives, semantics }
+  }
+
+  private renderThemeCss(state: ThemeState, kinds: Set<CompilerKind>): string {
     const blocks: string[] = []
 
     if (kinds.has('primitives')) {
@@ -108,7 +134,13 @@ export class Compiler {
     return this.join(blocks)
   }
 
-  private renderComponent(component: ComponentsState, kinds: Set<CompilerKind>): string {
+  private buildComponentConfig(component: ComponentsState) {
+    return this.buildTokenValue(component.primitives, (token) => {
+      return token.dark ? [token.light, token.dark] : token.light
+    })
+  }
+
+  private renderComponentCss(component: ComponentsState, kinds: Set<CompilerKind>): string {
     const blocks: string[] = []
 
     if (kinds.has('primitives')) {
@@ -125,14 +157,6 @@ export class Compiler {
 
     return this.join(blocks)
   }
-
-  /* Template generators */
-
-  private generateThemeTemplate() {
-    return
-  }
-
-  private generateComponentTemplate() {}
 
   /* CSS generators */
 
@@ -155,7 +179,7 @@ export class Compiler {
   }
 
   private utilitiesToCSS(tokens: UtilityToken[]): string {
-    return tokens.map((token) => `.${token.utilityName} {\n  @apply ${token.classes};\n}`).join('\n\n')
+    return tokens.map((token) => `@utility ${token.utilityName} {\n  @apply ${token.classes};\n}`).join('\n\n')
   }
 
   private rulesToCSS(rules: RuleToken[]): string {
@@ -179,6 +203,17 @@ export class Compiler {
         return `@layer ${layer} {\n${entries}\n}`
       })
       .join('\n\n')
+  }
+
+  private buildTokenValue<T extends { name: string }>(items: T[], resolve: (item: T) => TokenValue | undefined) {
+    return items.reduce(
+      (acc, item) => {
+        const value = resolve(item)
+        if (value) acc[item.name] = value
+        return acc
+      },
+      {} as Record<string, TokenValue>,
+    )
   }
 
   private join(blocks: string[]): string {

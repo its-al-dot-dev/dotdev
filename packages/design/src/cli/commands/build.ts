@@ -45,6 +45,12 @@ export default defineCommand({
       alias: 'k',
       description: 'Типы токенов через запятую: primitives, utilities, rules',
     },
+    format: {
+      type: 'string',
+      alias: 'f',
+      description: 'Формат вывода: css или config',
+      default: 'css',
+    },
   },
   async run({ args }) {
     const config = await loadConfig(args.input)
@@ -58,6 +64,6 @@ export default defineCommand({
       kinds,
     })
 
-    writeResult(structured, { split: args.split, output: args.output })
+    await writeResult(structured, { split: args.split, output: args.output, outputType: args.format as 'css' | 'config' })
   },
 })

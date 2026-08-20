@@ -5,18 +5,16 @@ import { Theme } from '../builder/theme.ts'
 import type { TokenScope } from '../builder/types.ts'
 
 export interface Result {
-  css: string
   structured: CompileResult
   theme: Theme
 }
 
 export function compile(config: ThemeConfig, options: CompilerOptions = {}): Result {
-  const theme = new Theme(config)
+  const theme = new Theme(config, options.namespace)
   const compiler = new Compiler(theme)
-  const structured = compiler.compileAll({ namespace: options.namespace, scope: options.scope, kinds: options.kinds })
-  const css = [structured.theme, ...structured.components.values()].filter(Boolean).join('\n\n')
+  const structured = compiler.compile({ scope: options.scope, kinds: options.kinds })
 
-  return { css, structured, theme }
+  return { structured, theme }
 }
 
 export function parseScope(raw?: string): CompilerScope {

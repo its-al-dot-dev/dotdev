@@ -12,17 +12,19 @@ import type {
 
 export interface ThemeState {
   primitives: PrimitiveToken[]
+  semantics: SemanticToken[]
   utilities: UtilityToken[]
   components: Map<string, ComponentsState>
 }
 
 export interface ComponentsState {
   primitives: PrimitiveToken[]
+  semantics: SemanticToken[]
   utilities: UtilityToken[]
   rules: RuleToken[]
 }
 
-type StateValue = PrimitiveToken | UtilityToken | RuleToken
+type StateValue = PrimitiveToken | UtilityToken | RuleToken | SemanticToken
 
 export class Registry {
   private readonly namespace?: string
@@ -33,6 +35,7 @@ export class Registry {
 
   private theme: ThemeState = {
     primitives: [],
+    semantics: [],
     utilities: [],
     components: new Map<string, ComponentsState>(),
   }
@@ -80,9 +83,7 @@ export class Registry {
       value,
     }
 
-    if (this.registerIfNotExists(this._semantics, resolvedName, `semantic "${name}" (as "${resolvedName}")`, entry)) {
-      this.resolveSemantic(entry)
-    }
+    this.resolveSemantic(entry)
   }
 
   addUtility(scope: TokenScope, name: string, classes: string) {
@@ -128,24 +129,26 @@ export class Registry {
   private addToState(scope: TokenScope, token: StateValue) {
     if (scope.kind === 'theme') {
       if (token.kind === 'primitive') this.theme.primitives.push(token)
+      if (token.kind === 'semantic') this.theme.semantics.push(token)
       if (token.kind === 'utility') this.theme.utilities.push(token)
     }
 
     if (scope.kind === 'component') {
       if (!this.theme.components.has(scope.ui)) {
-        this.theme.components.set(scope.ui, { primitives: [], utilities: [], rules: [] })
+        this.theme.components.set(scope.ui, { primitives: [], semantics: [], utilities: [], rules: [] })
       }
 
       const component = this.theme.components.get(scope.ui)
 
       if (token.kind === 'primitive') component?.primitives.push(token)
+      if (token.kind === 'semantic') component?.semantics.push(token)
       if (token.kind === 'utility') component?.utilities.push(token)
       if (token.kind === 'rule') component?.rules.push(token)
     }
   }
 
   private resolveSemantic(entry: SemanticToken) {
-    const { scope, name, varName, utilityPrefix, value } = entry
+    const { scope, name, varName, utilityPrefix, utilityName, value } = entry
     const [light, dark] = splitLightDark(value)
 
     const lightExpression = parseTokenValue(light)
@@ -159,8 +162,11 @@ export class Registry {
       return
     }
 
-    this.registerSemanticPrimitive(scope, name, lightValue, darkValue)
-    this.registerSemanticUtility(scope, name, utilityPrefix, varName)
+    if (this.registerIfNotExists(this._semantics, utilityName, `semantic "${name}" (as "${utilityName}")`, entry)) {
+      this.addToState(scope, { ...entry, value: darkValue ? [lightValue, darkValue] : lightValue })
+      this.registerSemanticPrimitive(scope, name, lightValue, darkValue)
+      this.registerSemanticUtility(scope, name, utilityPrefix, varName)
+    }
   }
 
   private registerSemanticPrimitive(scope: TokenScope, name: string, lightValue: string, darkValue?: string) {

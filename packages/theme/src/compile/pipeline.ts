@@ -42,6 +42,8 @@ export async function compileComponentRules(
       fromPath,
     )
 
+
+
     const stripped = stripBanner(compiled)
     if (!stripped.trim()) return { template: '', hasContent: false }
 
