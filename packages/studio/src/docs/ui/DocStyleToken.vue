@@ -27,7 +27,7 @@ const measureStyle = computed(() => {
 
 <template>
   <div class="doc-token">
-    <div aria-hidden="true" class="doc-token__well">
+    <div aria-hidden="true" class="doc-token__well doc-bg-grid">
       <span v-if="token.type === 'background'" :style="token.style" class="doc-token__bg" />
 
       <span

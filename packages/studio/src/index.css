@@ -927,7 +927,7 @@
   --s-doc-bg-tint: var(--s-brand-50);
   --s-doc-bg-card: var(--s-neutral-50);
   --s-doc-bg-grid-color: color-mix(in oklab, var(--s-neutral-500) 30%, transparent);
-  --s-doc-bg-token-preview: color-mix(in oklab, var(--s-neutral-500) 25%, transparent);
+  --s-doc-bg-token-preview: var(--s-bg-background);
   --s-doc-bg-token-padding: var(--s-success-300);
   --s-doc-bg-shape: var(--s-neutral-200);
 }
@@ -1163,6 +1163,6 @@
     @apply aspect-2/1;
   }
   .doc-token__measure--width {
-    @apply h-1/2;
+    @apply aspect-2/1;
   }
 }

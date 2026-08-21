@@ -51,7 +51,10 @@ export function buildStyleTokenGroups(scope: string, tokens: ComponentTokens | u
 
   const buckets = new Map<string, StyleToken[]>()
 
-  for (const [name, value] of Object.entries(tokens)) {
+  for (let [name, value] of Object.entries(tokens)) {
+    // TODO handle array values
+    if (Array.isArray(value)) value = value[0]
+
     const key = resolveTokenKey(name)
     const meta = TOKEN_KEYS[key]
     if (!meta) continue

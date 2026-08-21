@@ -7,7 +7,7 @@ export const doc = defineComponent({
     'bg-tint': ['brand-50', 'brand-400/10'],
     'bg-card': ['neutral-50', 'neutral-500/10'],
     'bg-grid-color': 'neutral-500/30',
-    'bg-token-preview': 'neutral-500/25',
+    'bg-token-preview': 'bg-background',
     'bg-token-padding': ['success-300', 'success-600'],
     'bg-shape': ['neutral-200', 'neutral-700'],
   },
@@ -88,6 +88,6 @@ export const doc = defineComponent({
     '.doc-token__radius': `size-sm doc-bg-shape`,
     '.doc-token__measure': `rounded-sm doc-bg-shape shrink-0`,
     '.doc-token__measure--height': `aspect-2/1`,
-    '.doc-token__measure--width': `h-1/2`,
+    '.doc-token__measure--width': `aspect-2/1`,
   },
 })
