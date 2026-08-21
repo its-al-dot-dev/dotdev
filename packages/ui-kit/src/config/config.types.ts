@@ -26,6 +26,8 @@ import type {
   UITableProps,
   UITagProps,
   UITextareaProps,
+  UISkeletonProps,
+  UIProgressProps,
 } from '@dotdev/ui-kit'
 
 export interface UiKitConfig {
@@ -55,6 +57,8 @@ export interface UiKitConfig {
     icon?: Partial<UIIconProps>
     'scroll-area'?: Partial<UIScrollAreaProps>
     table?: Partial<UITableProps>
+    skeleton?: Partial<UISkeletonProps>
+    progress?: Partial<UIProgressProps>
   }
   icons?: Partial<Record<UiKitIcon, Component>>
 }

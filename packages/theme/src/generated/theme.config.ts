@@ -702,6 +702,20 @@ export default {
       "type-md": "var(--_NS_-type-md)",
       "type-lg": "var(--_NS_-textarea-type-md)",
       "rounded": "var(--_NS_-radius-md)"
+    },
+    "skeleton": {
+      "bg": [
+        "var(--_NS_-neutral-200)",
+        "var(--_NS_-neutral-700)"
+      ]
+    },
+    "progress": {
+      "bg-primary": "var(--_NS_-bg-brand)",
+      "bg-neutral": "var(--_NS_-bg-neutral)",
+      "bg-danger": "var(--_NS_-bg-danger)",
+      "bg-warning": "var(--_NS_-bg-warning)",
+      "bg-info": "var(--_NS_-bg-info)",
+      "bg-success": "var(--_NS_-bg-success)"
     }
   }
 }

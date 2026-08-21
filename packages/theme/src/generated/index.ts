@@ -21,4 +21,6 @@ export { default as switchStyle } from './switch.ts'
 export { default as tableStyle } from './table.ts'
 export { default as tagStyle } from './tag.ts'
 export { default as textareaStyle } from './textarea.ts'
+export { default as skeletonStyle } from './skeleton.ts'
+export { default as progressStyle } from './progress.ts'
 

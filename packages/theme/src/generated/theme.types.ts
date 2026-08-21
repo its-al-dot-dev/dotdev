@@ -536,5 +536,16 @@ export interface ThemeDefinition<T = string | [string, string]> {
       "type-lg"?: T
       "rounded"?: T
     }
+    "skeleton"?: {
+      "bg"?: T
+    }
+    "progress"?: {
+      "bg-primary"?: T
+      "bg-neutral"?: T
+      "bg-danger"?: T
+      "bg-warning"?: T
+      "bg-info"?: T
+      "bg-success"?: T
+    }
   }
 }

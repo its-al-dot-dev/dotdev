@@ -20,6 +20,8 @@ import { switchComponent } from './components/switch.ts'
 import { table } from './components/table.ts'
 import { tag } from './components/tag.ts'
 import { textarea } from './components/textarea.ts'
+import { skeleton } from './components/skeleton.ts'
+import { progress } from './components/progress.ts'
 
 const sizeKeys = ['h', 'size']
 const spaceKeys = ['px', 'py', 'p', 'pl', 'pr', 'pt', 'pb']
@@ -267,6 +269,8 @@ export default defineTheme({
     table,
     tag,
     textarea,
+    skeleton,
+    progress,
   },
 })
 
