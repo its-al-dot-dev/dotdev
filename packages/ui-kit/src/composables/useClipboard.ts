@@ -1,10 +1,10 @@
-import { type MaybeRef, onScopeDispose, ref, toValue } from 'vue'
+import { type MaybeRefOrGetter, onScopeDispose, ref, toValue } from 'vue'
 
 interface UseClipboardOptions {
   copiedDuration?: number
 }
 
-export function useClipboard(source?: MaybeRef<string | null | undefined>, options: UseClipboardOptions = {}) {
+export function useClipboard(source?: MaybeRefOrGetter<string | null | undefined>, options: UseClipboardOptions = {}) {
   const { copiedDuration = 2000 } = options
 
   const pending = ref(false)

@@ -1,9 +1,8 @@
 <script generic="T extends UITableData" lang="ts" setup>
 import type { UITableData, UITableEmits, UITableProps, UITableSlots } from './table.types.ts'
 import { computed } from 'vue'
-import { asTemplateRef, useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
+import { asTemplateRef, Scope, useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
 import { tableStyle } from '@dotdev/theme'
-import { Scope } from '@dotdev/ui-kit/components'
 
 defineEmits<UITableEmits>()
 defineSlots<UITableSlots<T>>()

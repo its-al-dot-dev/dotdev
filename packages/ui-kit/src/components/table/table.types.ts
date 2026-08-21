@@ -52,7 +52,7 @@ interface UiKitTableBorders {
   all: true
   outline: true
 }
-export type UITableBorder = UiKitOverride<UiKitTableBorders, 'tableBorder'>
+export type UITableBorder = UiKitOverride<keyof UiKitTableBorders, 'tableBorder'>
 
 export type UITableData = Record<string, unknown>
 export type UITableAlign = 'left' | 'center' | 'right'

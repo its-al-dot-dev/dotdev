@@ -1,11 +1,7 @@
 export interface UiKitRegister {}
 
-type OpenKeys<T> = keyof T | (string & {})
-export type UiKitOverride<T, K extends string> = K extends keyof UiKitRegister
-  ? UiKitRegister[K]
-  : T extends object
-    ? OpenKeys<T>
-    : T
+// type OpenKeys<T> = keyof T | (string & {})
+export type UiKitOverride<T, K extends string> = K extends keyof UiKitRegister ? UiKitRegister[K] : T
 
 export interface UiKitBaseProps {
   namespace?: UiKitNamespace

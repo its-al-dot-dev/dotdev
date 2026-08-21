@@ -1,5 +1,5 @@
 <script generic="T extends Record<string, unknown>" lang="ts" setup>
-import type { UITagElement } from '@dotdev/ui-kit/types/helpers.ts'
+import type { UITagElement } from '@dotdev/ui-kit'
 
 const props = defineProps<{ is?: UITagElement; scope: T }>()
 </script>

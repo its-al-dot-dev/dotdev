@@ -1,4 +1,4 @@
-<script generic="P = unknown" lang="ts" setup>
+<script lang="ts" setup>
 import type { Component } from 'vue'
 import { computed, toValue } from 'vue'
 import { Icon, useUiKitBem } from '@dotdev/ui-kit'

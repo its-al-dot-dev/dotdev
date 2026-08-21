@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import { toValue } from 'vue'
-import type { NormalizedMenuItem, UIMenuEmits, UIMenuProps } from './menu.types.ts'
+import type { NormalizedMenuItem, UIMenuEmits, UIMenuProps, UIMenuSlots } from './menu.types.ts'
 import MenuItem from './MenuItem.vue'
 import { useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
 import { menuStyle } from '@dotdev/theme'
 
+defineSlots<UIMenuSlots>()
 const emit = defineEmits<UIMenuEmits>()
 const props = withDefaults(defineProps<UIMenuProps>(), {
   ui: 'menu',
