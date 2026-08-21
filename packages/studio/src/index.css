@@ -927,11 +927,16 @@
   --s-doc-bg-tint: var(--s-brand-50);
   --s-doc-bg-card: var(--s-neutral-50);
   --s-doc-bg-grid-color: color-mix(in oklab, var(--s-neutral-500) 30%, transparent);
+  --s-doc-bg-token-preview: color-mix(in oklab, var(--s-neutral-500) 25%, transparent);
+  --s-doc-bg-token-padding: var(--s-success-300);
+  --s-doc-bg-shape: var(--s-neutral-200);
 }
 
 .dark {
   --s-doc-bg-tint: color-mix(in oklab, var(--s-brand-400) 10%, transparent);
   --s-doc-bg-card: color-mix(in oklab, var(--s-neutral-500) 10%, transparent);
+  --s-doc-bg-token-padding: var(--s-success-600);
+  --s-doc-bg-shape: var(--s-neutral-700);
 }
 
 @utility doc-bg-tint {
@@ -944,6 +949,18 @@
 
 @utility doc-bg-grid-color {
   @apply bg-(--s-doc-bg-grid-color);
+}
+
+@utility doc-bg-token-preview {
+  @apply bg-(--s-doc-bg-token-preview);
+}
+
+@utility doc-bg-token-padding {
+  @apply bg-(--s-doc-bg-token-padding);
+}
+
+@utility doc-bg-shape {
+  @apply bg-(--s-doc-bg-shape);
 }
 
 @utility doc-card {
@@ -987,10 +1004,13 @@
     @apply mt-4 text-muted max-w-prose;
   }
   .doc-page__divider {
-    @apply mt-10 mb-10 border-default;
+    @apply mt-10 mb-10;
   }
   .doc-page__example {
     @apply scroll-mt-24;
+  }
+  .doc-bg-grid {
+    @apply doc-bg-grid;
   }
   .doc-section {
     @apply flex flex-col gap-5 scroll-mt-24;
@@ -1077,16 +1097,13 @@
     @apply flex flex-col gap-6 scroll-mt-24 mt-12;
   }
   .doc-tokens__header {
-    @apply flex items-start gap-4;
+    @apply flex items-center gap-4;
   }
   .doc-tokens__icon {
     @apply size-7.5 flex items-center justify-center border border-brand-soft bg-brand-soft text-brand text-base rounded-lg shrink-0;
   }
   .doc-tokens__title {
     @apply font-semibold text-lg tracking-tight;
-  }
-  .doc-tokens__desc {
-    @apply text-sm text-muted mt-1;
   }
   .doc-tokens__group {
     @apply flex flex-col gap-3 not-last:pb-6 not-last:border-b border-default;
@@ -1095,39 +1112,57 @@
     @apply font-mono text-xs uppercase tracking-wider text-muted;
   }
   .doc-tokens__grid {
-    @apply grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4;
+    @apply grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3;
   }
   .doc-token {
     @apply flex flex-col border border-default rounded-lg overflow-hidden;
   }
   .doc-token__well {
-    @apply h-16 flex items-center justify-center doc-bg-tint;
-  }
-  .doc-token__well--end {
-    @apply items-end pb-2;
+    @apply h-16 flex items-center justify-center doc-bg-token-preview;
   }
   .doc-token__meta {
-    @apply flex flex-col gap-0.5 border-t border-default p-2;
+    @apply flex flex-col gap-1 border-t border-default p-2;
   }
   .doc-token__name {
-    @apply font-mono text-[11px] text-muted truncate;
-  }
-  .doc-token__value {
     @apply font-mono text-xs text-foreground truncate;
   }
-  .doc-token__swatch {
-    @apply size-9 rounded-md ring-1 ring-inset ring-black/10 dark:ring-white/10;
+  .doc-token__value {
+    @apply font-mono text-xs text-muted truncate;
+  }
+  .doc-token__bg {
+    @apply size-sm rounded-md;
+  }
+  .doc-token__text {
+    @apply font-semibold leading-none;
+  }
+  .doc-token__border {
+    @apply size-sm rounded-md border-2;
+  }
+  .doc-token__ring {
+    @apply size-sm rounded-md doc-bg-shape outline-2 outline-offset-2;
+  }
+  .doc-token__space {
+    @apply flex items-center;
   }
   .doc-token__shape {
-    @apply inline-block size-2.5 rounded-sm bg-neutral;
+    @apply size-sm rounded-sm doc-bg-shape;
   }
-  .doc-token__shape--rect {
-    @apply h-8 w-12 bg-neutral;
+  .doc-token__padding {
+    @apply w-full h-full flex doc-bg-token-padding;
   }
-  .doc-token__bar {
-    @apply w-3 rounded-sm bg-neutral;
+  .doc-token__content {
+    @apply w-full h-full doc-bg-shape;
   }
-  .doc-token__label {
-    @apply font-semibold leading-none;
+  .doc-token__radius {
+    @apply size-sm doc-bg-shape;
+  }
+  .doc-token__measure {
+    @apply rounded-sm doc-bg-shape shrink-0;
+  }
+  .doc-token__measure--height {
+    @apply aspect-2/1;
+  }
+  .doc-token__measure--width {
+    @apply h-1/2;
   }
 }

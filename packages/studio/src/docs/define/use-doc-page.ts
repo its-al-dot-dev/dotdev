@@ -10,9 +10,7 @@ export function useDocPage() {
   }
 
   return {
-    title: doc.title,
-    description: doc.description,
-    icon: doc.icon,
+    ...doc,
     group: route.path.split('/').find(Boolean),
     examples: normalizeExamples(doc.examples, doc.sources),
   }

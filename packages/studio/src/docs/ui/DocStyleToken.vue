@@ -1,28 +1,64 @@
 <script lang="ts" setup>
+import { computed } from 'vue'
 import type { StyleToken } from './style-tokens.ts'
 
-defineProps<{ token: StyleToken }>()
+const props = defineProps<{ token: StyleToken }>()
+
+const PADDING_SIDES: Record<string, string> = {
+  padding: 'padding',
+  'padding-inline': 'padding-inline',
+  'padding-block': 'padding-block',
+  'padding-top': 'padding-top',
+  'padding-bottom': 'padding-bottom',
+  'padding-inline-start': 'padding-inline-start',
+  'padding-inline-end': 'padding-inline-end',
+}
+
+const isPadding = computed(() => props.token.type in PADDING_SIDES)
+const isMeasure = computed(() => ['height', 'width', 'size'].includes(props.token.type))
+
+const paddingStyle = computed(() => ({ [PADDING_SIDES[props.token.type]]: props.token.value }))
+
+const measureStyle = computed(() => {
+  const { type, value, style } = props.token
+  return type === 'size' ? { width: value, height: value } : style
+})
 </script>
 
 <template>
   <div class="doc-token">
-    <div class="doc-token__well" :class="{ 'doc-token__well--end': token.type === 'size' }" aria-hidden="true">
+    <div aria-hidden="true" class="doc-token__well">
+      <span v-if="token.type === 'background'" :style="token.style" class="doc-token__bg" />
+
       <span
-        v-if="token.type === 'color'"
-        class="doc-token__swatch"
-        :style="{ backgroundColor: token.value }"
-      />
-      <template v-else-if="token.type === 'space'">
+        v-else-if="token.type === 'color' || token.type === 'font-size'"
+        :style="token.style"
+        class="doc-token__text"
+      >
+        Ag
+      </span>
+
+      <span v-else-if="token.type === 'border-color'" :style="token.style" class="doc-token__border" />
+
+      <span v-else-if="token.type === 'outline-color'" :style="token.style" class="doc-token__ring" />
+
+      <span v-else-if="token.type === 'gap'" :style="{ gap: token.value }" class="doc-token__space">
         <span class="doc-token__shape" />
-        <span class="doc-token__shape" :style="{ marginLeft: token.value }" />
-      </template>
+        <span class="doc-token__shape" />
+      </span>
+
+      <span v-else-if="isPadding" :style="paddingStyle" class="doc-token__padding">
+        <span class="doc-token__content" />
+      </span>
+
+      <span v-else-if="token.type === 'border-radius'" :style="token.style" class="doc-token__radius" />
+
       <span
-        v-else-if="token.type === 'radius'"
-        class="doc-token__shape doc-token__shape--rect"
-        :style="{ borderRadius: token.value }"
+        v-else-if="isMeasure"
+        :class="`doc-token__measure--${token.type}`"
+        :style="measureStyle"
+        class="doc-token__measure"
       />
-      <span v-else-if="token.type === 'size'" class="doc-token__bar" :style="{ height: token.value }" />
-      <span v-else class="doc-token__label" :style="{ fontSize: token.value }">Ag</span>
     </div>
 
     <div class="doc-token__meta">

@@ -1,9 +1,10 @@
-export type StyleTokenType = 'color' | 'space' | 'radius' | 'size' | 'label'
+import { NAMESPACE } from '@dotdev/design'
 
 export interface StyleToken {
   name: string
-  type: StyleTokenType
+  type: string
   value: string
+  style: string
 }
 
 export interface StyleTokenGroup {
@@ -12,63 +13,84 @@ export interface StyleTokenGroup {
   tokens: StyleToken[]
 }
 
-export const STYLE_TOKEN_GROUPS: StyleTokenGroup[] = [
-  {
-    id: 'color',
-    label: 'Color',
-    tokens: [
-      { name: '--ui-brand-500', type: 'color', value: '#6366f1' },
-      { name: '--ui-brand-600', type: 'color', value: '#4f46e5' },
-      { name: '--ui-neutral-400', type: 'color', value: 'oklch(63.44% 0.062 279.07)' },
-      { name: '--ui-neutral-800', type: 'color', value: 'oklch(29.20% 0.039 277.47)' },
-      { name: '--ui-danger-600', type: 'color', value: '#dc2626' },
-      { name: '--ui-warning-500', type: 'color', value: '#f59e0b' },
-      { name: '--ui-info-700', type: 'color', value: '#0369a1' },
-      { name: '--ui-success-700', type: 'color', value: '#047857' },
-    ],
-  },
-  {
-    id: 'spacing',
-    label: 'Spacing',
-    tokens: [
-      { name: '--ui-space-xs', type: 'space', value: '0.5rem' },
-      { name: '--ui-space-sm', type: 'space', value: '0.625rem' },
-      { name: '--ui-space-md', type: 'space', value: '0.75rem' },
-      { name: '--ui-space-lg', type: 'space', value: '1rem' },
-      { name: '--ui-space-xl', type: 'space', value: '1.25rem' },
-    ],
-  },
-  {
-    id: 'radius',
-    label: 'Radius',
-    tokens: [
-      { name: '--ui-radius-xs', type: 'radius', value: '0.125rem' },
-      { name: '--ui-radius-sm', type: 'radius', value: '0.375rem' },
-      { name: '--ui-radius-md', type: 'radius', value: '0.5rem' },
-      { name: '--ui-radius-lg', type: 'radius', value: '0.75rem' },
-      { name: '--ui-radius-xl', type: 'radius', value: '1rem' },
-    ],
-  },
-  {
-    id: 'sizes',
-    label: 'Sizes',
-    tokens: [
-      { name: '--ui-size-xs', type: 'size', value: '2rem' },
-      { name: '--ui-size-sm', type: 'size', value: '2.25rem' },
-      { name: '--ui-size-md', type: 'size', value: '2.5rem' },
-      { name: '--ui-size-lg', type: 'size', value: '2.75rem' },
-      { name: '--ui-size-xl', type: 'size', value: '3rem' },
-    ],
-  },
-  {
-    id: 'typography',
-    label: 'Typography',
-    tokens: [
-      { name: '--ui-label-xs', type: 'label', value: '0.75rem' },
-      { name: '--ui-label-sm', type: 'label', value: '0.875rem' },
-      { name: '--ui-label-md', type: 'label', value: '1rem' },
-      { name: '--ui-label-lg', type: 'label', value: '1.125rem' },
-      { name: '--ui-label-xl', type: 'label', value: '1.25rem' },
-    ],
-  },
-]
+export type ComponentTokens = Record<string, string>
+
+const DEFAULT_NAMESPACE = 'd'
+
+interface TokenKeyMeta {
+  label: string
+  style: string
+}
+
+const TOKEN_KEYS: Record<string, TokenKeyMeta> = {
+  type: { label: 'Font size', style: 'font-size' },
+  text: { label: 'Text colors', style: 'color' },
+  bg: { label: 'Background colors', style: 'background' },
+  border: { label: 'Border colors', style: 'border-color' },
+  ring: { label: 'Ring colors', style: 'outline-color' },
+  rounded: { label: 'Radius', style: 'border-radius' },
+  p: { label: 'Padding', style: 'padding' },
+  px: { label: 'Padding inline', style: 'padding-inline' },
+  py: { label: 'Padding block', style: 'padding-block' },
+  pt: { label: 'Padding top', style: 'padding-top' },
+  pb: { label: 'Padding bottom', style: 'padding-bottom' },
+  ps: { label: 'Padding start', style: 'padding-inline-start' },
+  pe: { label: 'Padding end', style: 'padding-inline-end' },
+  gap: { label: 'Gap', style: 'gap' },
+  h: { label: 'Height', style: 'height' },
+  w: { label: 'Width', style: 'width' },
+  size: { label: 'Size', style: 'size' },
+}
+
+const TOKEN_KEY_ALIASES: Record<string, string> = {
+  'text-size': 'type',
+}
+
+export function buildStyleTokenGroups(scope: string, tokens: ComponentTokens | undefined): StyleTokenGroup[] {
+  if (!tokens) return []
+
+  const buckets = new Map<string, StyleToken[]>()
+
+  for (const [name, value] of Object.entries(tokens)) {
+    const key = resolveTokenKey(name)
+    const meta = TOKEN_KEYS[key]
+    if (!meta) continue
+
+    const bucket = buckets.get(key) ?? []
+
+    bucket.push(parseToken(`${scope}-${name}`, value, meta))
+    buckets.set(key, bucket)
+  }
+
+  return Object.keys(TOKEN_KEYS)
+    .filter((key) => buckets.has(key))
+    .map((key) => ({ id: key, label: TOKEN_KEYS[key].label, tokens: buckets.get(key)! }))
+}
+
+function resolveTokenKey(name: string): string {
+  const pair = name.split('-').slice(0, 2).join('-')
+  return TOKEN_KEY_ALIASES[pair] ?? name.split('-')[0]
+}
+
+function parseToken(name: string, value: string, meta: TokenKeyMeta): StyleToken {
+  const reference = value.replaceAll(NAMESPACE, DEFAULT_NAMESPACE)
+
+  return {
+    name,
+    type: meta.style,
+    value: resolveValue(reference),
+    style: `${meta.style}: ${reference}`,
+  }
+}
+
+function resolveValue(reference: string): string {
+  const name = getCssVarName(reference)
+  if (!name.startsWith('--') || typeof document === 'undefined') return reference
+
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+}
+
+function getCssVarName(value: string): string {
+  const match = value.match(/^var\((--[^,\s)]+)/)
+  return match?.[1] ?? value
+}

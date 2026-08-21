@@ -1,24 +1,26 @@
 <script lang="ts" setup>
+import { computed } from 'vue'
 import { Icon } from '@dotdev/ui-kit'
+import { theme } from '@dotdev/theme'
 import DocStyleToken from './DocStyleToken.vue'
-import { STYLE_TOKEN_GROUPS } from './style-tokens.ts'
+import { buildStyleTokenGroups, type ComponentTokens } from './style-tokens.ts'
 
-const groups = STYLE_TOKEN_GROUPS
+interface Props {
+  styleScope: string
+}
+
+const props = defineProps<Props>()
+
+const components = theme.components as unknown as Record<string, ComponentTokens>
+
+const groups = computed(() => buildStyleTokenGroups(props.styleScope, components?.[props.styleScope]))
 </script>
 
 <template>
-  <section id="style-tokens" aria-labelledby="style-tokens-title" class="doc-tokens">
+  <section v-if="groups.length" id="style-tokens" aria-labelledby="style-tokens-title" class="doc-tokens">
     <header class="doc-tokens__header">
-      <span aria-hidden="true" class="doc-tokens__icon">
-        <Icon name="tokens" />
-      </span>
-
-      <div>
-        <h2 id="style-tokens-title" class="doc-tokens__title">Style tokens</h2>
-        <p class="doc-tokens__desc">
-          The CSS variables every component composes from — color, spacing, radii, control sizes, and the type scale.
-        </p>
-      </div>
+      <Icon class="doc-tokens__icon" name="tokens" />
+      <h2 id="style-tokens-title" class="doc-tokens__title">Style tokens</h2>
     </header>
 
     <div v-for="group in groups" :key="group.id" class="doc-tokens__group">

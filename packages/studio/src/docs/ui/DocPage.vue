@@ -37,22 +37,17 @@ const doc = useDocPage()
 
       <slot />
 
-      <Divider class="doc-page__divider" />
+      <Divider class="doc-page__divider" variant="dashed" />
 
       <div v-if="doc.examples.length" class="doc-section">
         <h3 class="doc-section__title">Examples</h3>
 
-        <section
-          v-for="example in doc.examples"
-          :id="`example-${example.id}`"
-          :key="example.id"
-          class="doc-page__example"
-        >
+        <section v-for="example in doc.examples" :id="example.id" :key="example.id" class="doc-page__example">
           <DocExample :example="example" />
         </section>
       </div>
 
-      <DocStyleTokens />
+      <DocStyleTokens v-if="doc.styleScope" :style-scope="doc.styleScope" />
     </div>
 
     <DocSidebar v-if="doc.examples.length" :examples="doc.examples" />
