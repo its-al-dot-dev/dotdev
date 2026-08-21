@@ -2,36 +2,28 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 import VueRouter from 'vue-router/vite'
-import { fileURLToPath } from 'url'
 import AutoImport from 'unplugin-auto-import/vite'
 import svgLoader from 'vite-svg-loader'
 import { uiKitIcons } from '@dotdev/icons'
+import { extendRoute } from '@dotdev/studio/vite'
+
+const svgoConfig = {
+  plugins: [{ name: 'preset-default' as const, params: { overrides: { removeViewBox: false as const } } }],
+}
 
 export default defineConfig({
   server: {
     host: true,
   },
+  optimizeDeps: {
+    exclude: ['@dotdev/studio'],
+  },
   plugins: [
-    VueRouter({ routesFolder: ['./src/pages'], exclude: ['**/docs/*'] }),
+    VueRouter({ routesFolder: ['./src/pages'], exclude: ['**/examples/**'], extendRoute }),
     vue(),
     tailwindcss(),
     AutoImport({ imports: { '@dotdev/studio': ['defineExample'] } }),
-    svgLoader({
-      svgoConfig: {
-        plugins: [
-          {
-            name: 'preset-default',
-            params: { overrides: { removeViewBox: false } },
-          },
-        ],
-      },
-    }),
+    svgLoader({ svgoConfig }),
     uiKitIcons({ outDir: './src/generated/icons' }),
   ],
-  resolve: {
-    alias: {
-      '@dotdev/ui-kit': fileURLToPath(new URL('../../packages/ui-kit/src', import.meta.url)),
-      '@dotdev/theme': fileURLToPath(new URL('../../packages/theme/src', import.meta.url)),
-    },
-  },
 })

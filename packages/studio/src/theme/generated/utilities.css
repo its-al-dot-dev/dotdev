@@ -1,0 +1,467 @@
+@utility bg-background {
+  @apply bg-(--d-bg-background);
+}
+
+@utility bg-surface {
+  @apply bg-(--d-bg-surface);
+}
+
+@utility text-foreground {
+  @apply text-(--d-text-foreground);
+}
+
+@utility text-muted {
+  @apply text-(--d-text-muted);
+}
+
+@utility border-default {
+  @apply border-(--d-border-default);
+}
+
+@utility text-placeholder {
+  @apply text-(--d-text-placeholder);
+}
+
+@utility bg-brand {
+  @apply bg-(--d-bg-brand);
+}
+
+@utility bg-brand-hover {
+  @apply bg-(--d-bg-brand-hover);
+}
+
+@utility text-brand {
+  @apply text-(--d-text-brand);
+}
+
+@utility text-on-brand {
+  @apply text-(--d-text-on-brand);
+}
+
+@utility bg-brand-soft {
+  @apply bg-(--d-bg-brand-soft);
+}
+
+@utility bg-brand-soft-hover {
+  @apply bg-(--d-bg-brand-soft-hover);
+}
+
+@utility border-brand {
+  @apply border-(--d-border-brand);
+}
+
+@utility border-brand-soft {
+  @apply border-(--d-border-brand-soft);
+}
+
+@utility ring-brand {
+  @apply ring-(--d-ring-brand);
+}
+
+@utility bg-neutral {
+  @apply bg-(--d-bg-neutral);
+}
+
+@utility bg-neutral-hover {
+  @apply bg-(--d-bg-neutral-hover);
+}
+
+@utility text-neutral {
+  @apply text-(--d-text-neutral);
+}
+
+@utility text-on-neutral {
+  @apply text-(--d-text-on-neutral);
+}
+
+@utility bg-neutral-soft {
+  @apply bg-(--d-bg-neutral-soft);
+}
+
+@utility bg-neutral-soft-hover {
+  @apply bg-(--d-bg-neutral-soft-hover);
+}
+
+@utility border-neutral {
+  @apply border-(--d-border-neutral);
+}
+
+@utility ring-neutral {
+  @apply ring-(--d-ring-neutral);
+}
+
+@utility bg-danger {
+  @apply bg-(--d-bg-danger);
+}
+
+@utility bg-danger-hover {
+  @apply bg-(--d-bg-danger-hover);
+}
+
+@utility text-danger {
+  @apply text-(--d-text-danger);
+}
+
+@utility text-on-danger {
+  @apply text-(--d-text-on-danger);
+}
+
+@utility bg-danger-soft {
+  @apply bg-(--d-bg-danger-soft);
+}
+
+@utility bg-danger-soft-hover {
+  @apply bg-(--d-bg-danger-soft-hover);
+}
+
+@utility border-danger {
+  @apply border-(--d-border-danger);
+}
+
+@utility ring-danger {
+  @apply ring-(--d-ring-danger);
+}
+
+@utility bg-warning {
+  @apply bg-(--d-bg-warning);
+}
+
+@utility bg-warning-hover {
+  @apply bg-(--d-bg-warning-hover);
+}
+
+@utility text-warning {
+  @apply text-(--d-text-warning);
+}
+
+@utility text-on-warning {
+  @apply text-(--d-text-on-warning);
+}
+
+@utility bg-warning-soft {
+  @apply bg-(--d-bg-warning-soft);
+}
+
+@utility bg-warning-soft-hover {
+  @apply bg-(--d-bg-warning-soft-hover);
+}
+
+@utility border-warning {
+  @apply border-(--d-border-warning);
+}
+
+@utility ring-warning {
+  @apply ring-(--d-ring-warning);
+}
+
+@utility bg-info {
+  @apply bg-(--d-bg-info);
+}
+
+@utility bg-info-hover {
+  @apply bg-(--d-bg-info-hover);
+}
+
+@utility text-info {
+  @apply text-(--d-text-info);
+}
+
+@utility text-on-info {
+  @apply text-(--d-text-on-info);
+}
+
+@utility bg-info-soft {
+  @apply bg-(--d-bg-info-soft);
+}
+
+@utility bg-info-soft-hover {
+  @apply bg-(--d-bg-info-soft-hover);
+}
+
+@utility border-info {
+  @apply border-(--d-border-info);
+}
+
+@utility ring-info {
+  @apply ring-(--d-ring-info);
+}
+
+@utility bg-success {
+  @apply bg-(--d-bg-success);
+}
+
+@utility bg-success-hover {
+  @apply bg-(--d-bg-success-hover);
+}
+
+@utility text-success {
+  @apply text-(--d-text-success);
+}
+
+@utility text-on-success {
+  @apply text-(--d-text-on-success);
+}
+
+@utility bg-success-soft {
+  @apply bg-(--d-bg-success-soft);
+}
+
+@utility bg-success-soft-hover {
+  @apply bg-(--d-bg-success-soft-hover);
+}
+
+@utility border-success {
+  @apply border-(--d-border-success);
+}
+
+@utility ring-success {
+  @apply ring-(--d-ring-success);
+}
+
+@utility type-* {
+  @apply text-[length:--value([*])];
+}
+
+@utility h-xs {
+  @apply h-(--d-size-xs);
+}
+
+@utility h-sm {
+  @apply h-(--d-size-sm);
+}
+
+@utility h-md {
+  @apply h-(--d-size-md);
+}
+
+@utility h-lg {
+  @apply h-(--d-size-lg);
+}
+
+@utility h-xl {
+  @apply h-(--d-size-xl);
+}
+
+@utility size-xs {
+  @apply size-(--d-size-xs);
+}
+
+@utility size-sm {
+  @apply size-(--d-size-sm);
+}
+
+@utility size-md {
+  @apply size-(--d-size-md);
+}
+
+@utility size-lg {
+  @apply size-(--d-size-lg);
+}
+
+@utility size-xl {
+  @apply size-(--d-size-xl);
+}
+
+@utility px-xs {
+  @apply px-(--d-space-xs);
+}
+
+@utility px-sm {
+  @apply px-(--d-space-sm);
+}
+
+@utility px-md {
+  @apply px-(--d-space-md);
+}
+
+@utility px-lg {
+  @apply px-(--d-space-lg);
+}
+
+@utility px-xl {
+  @apply px-(--d-space-xl);
+}
+
+@utility py-xs {
+  @apply py-(--d-space-xs);
+}
+
+@utility py-sm {
+  @apply py-(--d-space-sm);
+}
+
+@utility py-md {
+  @apply py-(--d-space-md);
+}
+
+@utility py-lg {
+  @apply py-(--d-space-lg);
+}
+
+@utility py-xl {
+  @apply py-(--d-space-xl);
+}
+
+@utility p-xs {
+  @apply p-(--d-space-xs);
+}
+
+@utility p-sm {
+  @apply p-(--d-space-sm);
+}
+
+@utility p-md {
+  @apply p-(--d-space-md);
+}
+
+@utility p-lg {
+  @apply p-(--d-space-lg);
+}
+
+@utility p-xl {
+  @apply p-(--d-space-xl);
+}
+
+@utility pl-xs {
+  @apply pl-(--d-space-xs);
+}
+
+@utility pl-sm {
+  @apply pl-(--d-space-sm);
+}
+
+@utility pl-md {
+  @apply pl-(--d-space-md);
+}
+
+@utility pl-lg {
+  @apply pl-(--d-space-lg);
+}
+
+@utility pl-xl {
+  @apply pl-(--d-space-xl);
+}
+
+@utility pr-xs {
+  @apply pr-(--d-space-xs);
+}
+
+@utility pr-sm {
+  @apply pr-(--d-space-sm);
+}
+
+@utility pr-md {
+  @apply pr-(--d-space-md);
+}
+
+@utility pr-lg {
+  @apply pr-(--d-space-lg);
+}
+
+@utility pr-xl {
+  @apply pr-(--d-space-xl);
+}
+
+@utility pt-xs {
+  @apply pt-(--d-space-xs);
+}
+
+@utility pt-sm {
+  @apply pt-(--d-space-sm);
+}
+
+@utility pt-md {
+  @apply pt-(--d-space-md);
+}
+
+@utility pt-lg {
+  @apply pt-(--d-space-lg);
+}
+
+@utility pt-xl {
+  @apply pt-(--d-space-xl);
+}
+
+@utility pb-xs {
+  @apply pb-(--d-space-xs);
+}
+
+@utility pb-sm {
+  @apply pb-(--d-space-sm);
+}
+
+@utility pb-md {
+  @apply pb-(--d-space-md);
+}
+
+@utility pb-lg {
+  @apply pb-(--d-space-lg);
+}
+
+@utility pb-xl {
+  @apply pb-(--d-space-xl);
+}
+
+@utility gap-xs {
+  @apply gap-(--d-gap-xs);
+}
+
+@utility gap-sm {
+  @apply gap-(--d-gap-sm);
+}
+
+@utility gap-md {
+  @apply gap-(--d-gap-md);
+}
+
+@utility gap-lg {
+  @apply gap-(--d-gap-lg);
+}
+
+@utility gap-xl {
+  @apply gap-(--d-gap-xl);
+}
+
+@utility type-xs {
+  @apply text-(length:--d-type-xs);
+}
+
+@utility type-sm {
+  @apply text-(length:--d-type-sm);
+}
+
+@utility type-md {
+  @apply text-(length:--d-type-md);
+}
+
+@utility type-lg {
+  @apply text-(length:--d-type-lg);
+}
+
+@utility type-xl {
+  @apply text-(length:--d-type-xl);
+}
+
+@utility radius-xs {
+  @apply rounded-(--d-radius-xs);
+}
+
+@utility radius-sm {
+  @apply rounded-(--d-radius-sm);
+}
+
+@utility radius-md {
+  @apply rounded-(--d-radius-md);
+}
+
+@utility radius-lg {
+  @apply rounded-(--d-radius-lg);
+}
+
+@utility radius-xl {
+  @apply rounded-(--d-radius-xl);
+}
+
+@utility disabled {
+  @apply pointer-events-none opacity-60;
+}

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { PlayComponentMeta } from '../../../plugin/component-meta.types.ts'
+import type { PlayComponentMeta } from '../../plugin/component-meta.types.ts'
 import PlayControlLayout from './PlayControlLayout.vue'
 import PlayEventItem from './PlayEventItem.vue'
 

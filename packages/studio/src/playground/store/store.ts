@@ -2,8 +2,8 @@ import type { Component } from 'vue'
 import { computed, ref, shallowRef, watch } from 'vue'
 import { defineStore } from 'pinia'
 import type { PlaygroundManifest } from '../builder/builder.types.ts'
-import { createActionLogger } from './action-logger'
-import { createBindings } from './bindings'
+import { createActionLogger } from './action-logger.ts'
+import { createBindings } from './bindings.ts'
 
 export function usePlaygroundStore<C extends Component>(manifest: PlaygroundManifest<C>) {
   const storeId = `playground:${manifest.base.name || manifest.component.name || 'default'}`
@@ -17,7 +17,7 @@ export function usePlaygroundStore<C extends Component>(manifest: PlaygroundMani
       currentManifest.value.variants.map((v) => ({
         label: v.name,
         value: v.config.key || v.name.toLowerCase(),
-      }))
+      })),
     )
 
     const activeVariant = ref(variantOptions.value[0])

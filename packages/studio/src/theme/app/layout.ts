@@ -30,8 +30,8 @@ export const layout = defineComponent({
     '.app-version': 'font-mono text-xs text-muted',
 
     '.app-logo': 'flex items-center gap-2',
-    '.app-logo__icon': 'block size-7 text-brand',
-    '.app-logo__title': 'font-bold text-xl tracking-tight',
+    '.app-logo__icon': 'block size-5.5 text-brand',
+    '.app-logo__title': 'font-bold text-lg tracking-tight',
     '.app-logo__title span': 'text-brand',
 
     '.app-crumb': 'flex items-center gap-2 min-w-0',

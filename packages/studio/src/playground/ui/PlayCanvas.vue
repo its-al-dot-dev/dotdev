@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { PComponent } from '../../types'
+import type { PComponent } from '../types'
 
 interface CanvasProps {
   component: PComponent

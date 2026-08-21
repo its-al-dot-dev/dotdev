@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { PlayComponentMeta } from '../../../plugin/component-meta.types.ts'
+import type { PlayComponentMeta } from '../../plugin/component-meta.types.ts'
 import PlayPropItem from './PlayPropItem.vue'
 import { IconButton } from '@dotdev/ui-kit'
 import { computed } from 'vue'

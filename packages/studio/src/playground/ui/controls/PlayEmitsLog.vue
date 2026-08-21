@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Icon, IconButton, Input, Tag } from '@dotdev/ui-kit'
 import { computed, ref } from 'vue'
-import type { ActionLogEntry, ActionLogger } from '../../../store/action-logger.ts'
+import type { ActionLogEntry, ActionLogger } from '../../store/action-logger.ts'
 import PlayControlLayout from './PlayControlLayout.vue'
 
 interface Props {

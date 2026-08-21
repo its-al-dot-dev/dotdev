@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Icon, type UiKitIcon, ScrollArea } from '@dotdev/ui-kit'
+import { Icon, ScrollArea, type UiKitIcon } from '@dotdev/ui-kit'
 
 interface Props {
   icon?: UiKitIcon

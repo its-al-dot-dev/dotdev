@@ -420,6 +420,10 @@
   @apply ring-(--s-ring-success);
 }
 
+@utility type-* {
+  @apply text-[length:--value([*])];
+}
+
 @utility h-xs {
   @apply h-(--s-size-xs);
 }
@@ -707,12 +711,10 @@
   .layout__header-group {
     @apply flex items-center gap-2;
   }
-  .layout__header,
-  .layout__sidebar {
+  .layout__header, .layout__sidebar {
     @apply layout-panel;
   }
-  .layout__header,
-  .layout__sidebar-header {
+  .layout__header, .layout__sidebar-header {
     @apply layout-h-header;
   }
   .layout__sidebar {
@@ -734,10 +736,10 @@
     @apply flex items-center gap-2;
   }
   .app-logo__icon {
-    @apply block size-7 text-brand;
+    @apply block size-5.5 text-brand;
   }
   .app-logo__title {
-    @apply font-bold text-xl tracking-tight;
+    @apply font-bold text-lg tracking-tight;
   }
   .app-logo__title span {
     @apply text-brand;
@@ -956,13 +958,9 @@
   @apply text-[0.9em];
 }
 
-@utility doc-type-sm {
-  @apply type-sm;
-}
-
 @layer studio {
   .doc-page {
-    @apply py-10 px-4 lg:px-8 flex gap-10 items-start doc-type-sm;
+    @apply py-10 px-4 lg:px-8 flex gap-10 items-start;
   }
   .doc-page__body {
     @apply w-full min-w-0;
@@ -1036,8 +1034,7 @@
   .doc-card {
     @apply doc-card;
   }
-  .doc-card__header,
-  .doc-card__footer {
+  .doc-card__header, .doc-card__footer {
     @apply border-default p-2 flex justify-between transition-[border-color];
   }
   .doc-card__footer {
@@ -1056,7 +1053,10 @@
     @apply flex flex-1 items-center justify-center flex-wrap gap-4 px-6 py-6;
   }
   .doc-example__code-view {
-    @apply flex flex-1;
+    @apply relative flex flex-1;
+  }
+  .doc-example__code-toggle {
+    @apply absolute top-1 right-1 z-10;
   }
   .doc-code {
     @apply max-h-100 h-auto;

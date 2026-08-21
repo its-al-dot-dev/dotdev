@@ -9,7 +9,24 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const { htmlCode } = useCodeHighlight(() => props.code, { lang: props.lang ?? 'vue' })
+const LANG_BY_EXTENSION: Record<string, string> = {
+  vue: 'vue',
+  ts: 'typescript',
+  tsx: 'typescript',
+  mts: 'typescript',
+  js: 'javascript',
+  jsx: 'javascript',
+  mjs: 'javascript',
+  css: 'css',
+  scss: 'scss',
+  json: 'json',
+  html: 'html',
+  md: 'markdown',
+  sh: 'bash',
+  bash: 'bash',
+}
+
+const { htmlCode } = useCodeHighlight(() => props.code, { lang: LANG_BY_EXTENSION[props.lang ?? 'vue'] })
 </script>
 
 <template>
@@ -32,7 +49,7 @@ const { htmlCode } = useCodeHighlight(() => props.code, { lang: props.lang ?? 'v
     padding-right: 1rem;
     display: inline-block;
     text-align: right;
-    color: var(--ui-text-muted);
+    opacity: 0.5;
   }
 }
 </style>

@@ -1,7 +1,3 @@
-export { definePlay } from './builder/define-playground.ts'
-
-export * from './ui'
-export * from './docs'
-
+export * from './playground/ui'
+export { defineDocPage } from './docs/define'
 export { studio } from './utils/install.ts'
-export { routesToMenu } from './utils/routes-to-menu.ts'

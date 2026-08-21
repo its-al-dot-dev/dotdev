@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { PlayPropMeta } from '../../../plugin/component-meta.types.ts'
+import type { PlayPropMeta } from '../../plugin/component-meta.types.ts'
 import { Input, Select, SelectButton, Switch, Tag } from '@dotdev/ui-kit'
 import { computed } from 'vue'
 import PlayItemLayout from './PlayItemLayout.vue'

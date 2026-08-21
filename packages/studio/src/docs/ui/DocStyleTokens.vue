@@ -1,23 +1,22 @@
 <script lang="ts" setup>
 import { Icon } from '@dotdev/ui-kit'
 import DocStyleToken from './DocStyleToken.vue'
-import type { StyleTokenGroup } from './style-tokens.ts'
+import { STYLE_TOKEN_GROUPS } from './style-tokens.ts'
 
-defineProps<{ groups: StyleTokenGroup[] }>()
+const groups = STYLE_TOKEN_GROUPS
 </script>
 
 <template>
-  <section class="doc-tokens" id="style-tokens" aria-labelledby="style-tokens-title">
+  <section id="style-tokens" aria-labelledby="style-tokens-title" class="doc-tokens">
     <header class="doc-tokens__header">
-      <span class="doc-tokens__icon" aria-hidden="true">
+      <span aria-hidden="true" class="doc-tokens__icon">
         <Icon name="tokens" />
       </span>
 
       <div>
         <h2 id="style-tokens-title" class="doc-tokens__title">Style tokens</h2>
         <p class="doc-tokens__desc">
-          The CSS variables every component composes from — color, spacing, radii, control sizes, and the type
-          scale.
+          The CSS variables every component composes from — color, spacing, radii, control sizes, and the type scale.
         </p>
       </div>
     </header>

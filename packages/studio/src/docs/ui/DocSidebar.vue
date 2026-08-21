@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { onMounted, onUnmounted, ref } from 'vue'
+import type { DocExampleResult } from '../define'
 
 interface Props {
-  items: { id: string; title: string }[]
+  examples: DocExampleResult[]
 }
 
 const props = defineProps<Props>()
@@ -11,7 +12,7 @@ const activeId = ref('')
 let observer: IntersectionObserver | null = null
 
 onMounted(() => {
-  const ids = props.items.map((item) => item.id)
+  const ids = props.examples.map((item) => item.id)
 
   observer = new IntersectionObserver(
     (entries) => {
@@ -34,12 +35,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <aside class="doc-sidebar" aria-label="On this page">
+  <aside aria-label="On this page" class="doc-sidebar">
     <p class="doc-sidebar__title">On this page</p>
 
     <nav class="doc-sidebar__nav">
       <a
-        v-for="item in items"
+        v-for="item in examples"
         :key="item.id"
         :class="{ 'doc-sidebar__link--active': activeId === item.id }"
         :href="`#${item.id}`"

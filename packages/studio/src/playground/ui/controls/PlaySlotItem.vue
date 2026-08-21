@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { PlaySlotMeta } from '../../../plugin/component-meta.types.ts'
+import type { PlaySlotMeta } from '../../plugin/component-meta.types.ts'
 import { Tag } from '@dotdev/ui-kit'
 import PlayItemLayout from './PlayItemLayout.vue'
 

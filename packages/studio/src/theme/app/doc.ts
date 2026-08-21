@@ -12,10 +12,9 @@ export const doc = defineComponent({
     card: `doc-bg-card border border-default rounded-2xl transition-[background-color,border-color]`,
     'bg-grid': 'bg-[radial-gradient(var(--$ns-doc-bg-grid-color)_1px,transparent_1px)] bg-size-[20px_20px]',
     'code-text': 'text-[0.9em]',
-    'type-sm': 'type-sm',
   },
   rules: {
-    '.doc-page': `py-10 px-4 lg:px-8 flex gap-10 items-start doc-type-sm`,
+    '.doc-page': `py-10 px-4 lg:px-8 flex gap-10 items-start`,
     '.doc-page__body': `w-full min-w-0`,
     '.doc-page__header': `mb-8`,
     '.doc-page__caption': `flex items-center justify-between gap-4 mb-3`,
@@ -52,7 +51,8 @@ export const doc = defineComponent({
     '.doc-example__actions': `flex gap-1`,
     '.doc-example__body': `flex flex-1 flex-col bg-background transition-[background-color]`,
     '.doc-example__canvas': `flex flex-1 items-center justify-center flex-wrap gap-4 px-6 py-6`,
-    '.doc-example__code-view': `flex flex-1`,
+    '.doc-example__code-view': `relative flex flex-1`,
+    '.doc-example__code-toggle': `absolute top-1 right-1 z-10`,
 
     '.doc-code': `max-h-100 h-auto`,
     '.doc-code__raw': `py-4 pr-4`,

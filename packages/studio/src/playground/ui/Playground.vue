@@ -1,15 +1,15 @@
 <script generic="C extends PComponent" lang="ts" setup>
 import { IconButton, SelectButton } from '@dotdev/ui-kit'
 import { computed, ref } from 'vue'
-import type { PlaygroundManifest } from '../../builder/builder.types.ts'
-import type { PComponent } from '../../types'
-import { usePlaygroundStore } from '../../store/store.ts'
+import type { PlaygroundManifest } from '../builder/builder.types.ts'
+import type { PComponent } from '../types'
+import { usePlaygroundStore } from '../store/store.ts'
 import PlayCanvas from './PlayCanvas.vue'
 import PlayProps from './controls/PlayProps.vue'
 import PlayEmitsLog from './controls/PlayEmitsLog.vue'
 import PlaySlots from './controls/PlaySlots.vue'
 import PlayEvents from './controls/PlayEvents.vue'
-import DocCard from '../docs/DocCard.vue'
+import DocCard from '../../docs/ui/DocCard.vue'
 
 interface PlaygroundProps {
   manifest: PlaygroundManifest<C>
