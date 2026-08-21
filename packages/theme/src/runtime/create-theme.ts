@@ -152,13 +152,14 @@ function isTokenReference(value: string): boolean {
 
 function resolveTokenReference(value: string, namespace: string, registry: CSSVariableRegistry): string {
   const key = value.slice(1)
-  const variableName = `--${namespace}-${key}`
+  const [variable, alpha] = key.split('/')
+  const variableName = `--${namespace}-${variable}`
 
   if (!registry.has(variableName)) {
     console.warn(`[dotdev/ui-kit] Unresolved variable reference: ${value}`)
   }
 
-  return `var(${variableName})`
+  return alpha ? `color-mix(in oklch, var(${variableName}) ${alpha}%, transparent)` : `var(${variableName})`
 }
 
 function normalizeNamespace(value: string, namespace: string): string {
