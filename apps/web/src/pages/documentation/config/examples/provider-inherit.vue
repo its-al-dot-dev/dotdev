@@ -3,7 +3,7 @@ import { Icon, UiKitProvider } from '@dotdev/ui-kit'
 </script>
 
 <template>
-  <UiKitProvider namespace="app">
+  <UiKitProvider namespace="landing">
     <div class="flex items-center gap-4">
       <Icon name="bell" />
       <Icon name="gear" />
