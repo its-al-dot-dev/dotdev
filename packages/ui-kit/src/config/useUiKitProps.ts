@@ -37,6 +37,7 @@ export function useUiKitProps<C extends UiKitComponent, P extends UiKitBaseProps
 
   const provided = inject(UI_KIT_CONFIG_KEY)
   const namespace = inject(UI_KIT_NAMESPACE_KEY, null) ?? props.namespace ?? 'd'
+
   const state = provided?.get(namespace)
   const defaults = state?.config?.components?.[component] as Partial<P> | undefined
 
@@ -49,16 +50,16 @@ export function useUiKitProps<C extends UiKitComponent, P extends UiKitBaseProps
         return [defaults?.[prop], value].filter(Boolean)
       }
 
+      if (prop === 'namespace') {
+        return namespace
+      }
+
       if (propIsDefined(vm, prop)) return value
 
       const configValue = defaults?.[prop]
 
       if (configValue !== undefined) {
         return configValue
-      }
-
-      if (prop === 'namespace') {
-        return namespace
       }
 
       return value
