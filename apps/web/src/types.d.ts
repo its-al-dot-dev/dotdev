@@ -11,3 +11,9 @@ declare module 'vue-router' {
     sources?: Record<string, string>
   }
 }
+
+declare module '@dotdev/ui-kit' {
+  interface UiKitRegister {
+    namespace: 'd' | 'landing'
+  }
+}

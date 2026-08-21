@@ -69,8 +69,8 @@ export const uiKit = createUiKit({
   {
     title: 'Add a second design system',
     desc: 'Create another namespace for a new section and adopt it step by step, without touching the old look.',
-    code: `export const appKit = createUiKit({
-  namespace: 'app',
+    code: `export const landingKit = createUiKit({
+  namespace: 'landing',
 })`,
   },
 ]
@@ -91,8 +91,8 @@ export const uiKit = createUiKit({
         </h1>
 
         <p class="landing__subtitle">
-          A clean, deeply themeable UI kit. BEM + Tailwind with no CSS-in-JS, namespaced themes that coexist
-          in one project, and every component documented with live examples.
+          A clean, deeply themeable UI kit. BEM + Tailwind with no CSS-in-JS, namespaced themes that coexist in one
+          project, and every component documented with live examples.
         </p>
 
         <div class="landing__actions">

@@ -24,7 +24,7 @@ onMounted(async () => {
     </p>
 
     <div ref="customRoot">
-      <UiKitProvider namespace="app">
+      <UiKitProvider namespace="landing">
         <Icon name="bell" />
       </UiKitProvider>
     </div>

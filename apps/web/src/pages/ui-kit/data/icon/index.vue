@@ -29,7 +29,7 @@ defineDocPage({
     },
     {
       title: 'Namespace',
-      description: `The rendered element uses the BEM namespace (default <code>d</code>). Override with <code>UiKitProvider namespace="app"</code>.`,
+      description: `The rendered element uses the BEM namespace (default <code>d</code>). Override with <code>UiKitProvider namespace="landing"</code>.`,
       preview: namespace,
     },
   ],
