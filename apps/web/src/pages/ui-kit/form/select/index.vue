@@ -1,13 +1,12 @@
 <script lang="ts" setup>
-import { DocPage } from '@dotdev/studio'
+import { defineDocPage, DocPage } from '@dotdev/studio'
 
-definePage({
-  name: 'Select',
-  meta: {
-    icon: 'component-1',
-    examples: import.meta.glob('./docs/examples/*.vue', { eager: true, import: 'default' }),
-    sources: import.meta.glob('./docs/examples/*.vue', { query: '?raw', eager: true, import: 'default' }),
-  },
+defineDocPage({
+  title: 'Select',
+  icon: 'component-1',
+  description: '',
+  sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
+  examples: [],
 })
 </script>
 

@@ -1,0 +1,23 @@
+<script lang="ts" setup>
+import { Group, GroupAddon, Input } from '@dotdev/ui-kit'
+</script>
+
+<template>
+  <div class="flex flex-col gap-4">
+    <Group class="-space-x-px">
+      <GroupAddon label="Prefix" />
+      <Input placeholder="With prefix addon" />
+    </Group>
+
+    <Group class="-space-x-px">
+      <Input placeholder="With suffix addon" />
+      <GroupAddon label="Suffix" />
+    </Group>
+
+    <Group class="-space-x-px">
+      <GroupAddon label="Both" />
+      <Input placeholder="Both sides" />
+      <GroupAddon label="End" />
+    </Group>
+  </div>
+</template>

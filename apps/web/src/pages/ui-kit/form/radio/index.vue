@@ -1,14 +1,49 @@
 <script lang="ts" setup>
-import { DocPage } from '@dotdev/studio'
+import { defineDocPage, DocPage } from '@dotdev/studio'
+import base from './examples/base.vue'
+import disabled from './examples/disabled.vue'
+import group from './examples/group.vue'
+import invalid from './examples/invalid.vue'
+import sizes from './examples/sizes.vue'
+import variants from './examples/variants.vue'
 
-definePage({
-  name: 'Radio',
-  meta: {
-    icon: 'component-1',
-    desc: 'A radio button driven by a controlled <code>v-model</code>. Supports different sizes and variants as well as disabled and invalid states, with an accessible native input underneath.',
-    examples: import.meta.glob('./docs/examples/*.vue', { eager: true, import: 'default' }),
-    sources: import.meta.glob('./docs/examples/*.vue', { query: '?raw', eager: true, import: 'default' }),
-  },
+defineDocPage({
+  title: 'Radio',
+  icon: 'component-1',
+  description: `A radio button driven by a controlled <code>v-model</code>. Supports different sizes and variants as well as disabled and invalid states, with an accessible native input underneath.`,
+  sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
+  examples: [
+    {
+      title: 'Basic usage',
+      description: `Use <code>v-model</code> to control the checked state. The component renders a single native radio, so wrap it in a <code>label</code> to attach a clickable label and use a shared <code>name</code> to group radios.`,
+      preview: base,
+    },
+    {
+      title: 'Variants',
+      description: `Use the <code>variant</code> prop to control the visual style. Available variants are <code>outlined</code> and <code>soft</code>.`,
+      preview: variants,
+    },
+    {
+      title: 'Sizes',
+      description: `Use the <code>size</code> prop to adjust the radio dimensions. Available sizes are <code>sm</code>, <code>md</code>, and <code>lg</code>.`,
+      preview: sizes,
+    },
+    {
+      title: 'Disabled state',
+      description: `Use the <code>disabled</code> prop to prevent user interaction and display the radio in a disabled state.`,
+      preview: disabled,
+    },
+    {
+      title: 'Invalid state',
+      description: `Use the <code>invalid</code> prop to visually indicate a validation error state. This works with all radio variants.`,
+      preview: invalid,
+    },
+    {
+      title: 'Selecting one of several',
+      description: `Radios are meant for mutually exclusive choices. Derive each <code>v-model</code> from a single selected value and use a shared <code>name</code> so only one option can be checked at a time.`,
+      preview: group,
+    },
+  ],
 })
 </script>
 

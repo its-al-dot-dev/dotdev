@@ -1,0 +1,9 @@
+<script lang="ts" setup>
+import { Avatar } from '@dotdev/ui-kit'
+</script>
+
+<template>
+  <Avatar src="https://i.pravatar.cc/100?img=5" alt="User avatar" />
+  <Avatar label="AL" />
+  <Avatar icon="person" />
+</template>
