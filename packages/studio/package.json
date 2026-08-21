@@ -13,7 +13,7 @@
     "build:utility": "dotdev-design build -n d -i ./src/theme/index.ts -o ./src/theme/generated/utilities.css -s theme -k utilities",
     "build:vars": "dotdev-design build -n d -i ./src/theme/index.ts -o ./src/theme/generated/vars.css -s theme -k primitives",
     "build:studio": "dotdev-design build -n s -i ./src/theme/index.ts -o ./src/index.css",
-    "watch": "dotdev-design watch -n s -i ./src/theme/index.ts -o ./src/index.css"
+    "watch": "dotdev-design watch -d ./src/theme -n s -i ./src/theme/index.ts -o ./src/index.css"
   },
   "dependencies": {
     "vue": "^3.5.39",
