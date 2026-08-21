@@ -13,7 +13,7 @@
     "build:utility": "dotdev-design build -n d -i ./src/theme/index.ts -o ./src/theme/generated/utilities.css -s theme -k utilities",
     "build:vars": "dotdev-design build -n d -i ./src/theme/index.ts -o ./src/theme/generated/vars.css -s theme -k primitives",
     "build:studio": "dotdev-design build -n s -i ./src/theme/index.ts -o ./src/index.css",
-    "build": "bun run build:utility && bun run build:vars && bun run build:studio"
+    "watch": "dotdev-design watch -n s -i ./src/theme/index.ts -o ./src/index.css"
   },
   "dependencies": {
     "vue": "^3.5.39",
@@ -23,7 +23,8 @@
     "vue-component-type-helpers": "^3.3.8",
     "@dotdev/ui-kit": "workspace:*",
     "@dotdev/design": "workspace:*",
-    "@dotdev/theme": "workspace:*"
+    "@dotdev/theme": "workspace:*",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "vite": "^8.1.1",

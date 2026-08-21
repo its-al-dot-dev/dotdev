@@ -177,7 +177,7 @@ class CSSVariableRegistry {
   }
 }
 
-function injectCSS(css: string, id: string, update = true): void {
+function injectCSS(css: string, id: string, update = false): void {
   const existing = document.getElementById(id)
 
   if (existing) {
