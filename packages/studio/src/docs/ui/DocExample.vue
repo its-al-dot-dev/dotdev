@@ -96,7 +96,7 @@ const previewIcon = computed(() => {
             <span class="font-mono">{{ label }}</span>
           </SelectButton>
 
-          <DocCode :code="activeCode.code" :lang="activeCode.ext" />
+          <DocCode :key="activeCode.file" :code="activeCode.code" :lang="activeCode.ext" />
         </div>
       </div>
     </DocCard>
