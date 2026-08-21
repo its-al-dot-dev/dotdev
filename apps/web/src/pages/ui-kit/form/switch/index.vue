@@ -8,6 +8,7 @@ import variants from './examples/variants.vue'
 defineDocPage({
   title: 'Switch',
   icon: 'component-1',
+  styleScope: 'switch',
   description: `A toggle switch component driven by a controlled <code>v-model</code>. Supports <code>outlined</code> and <code>soft</code> variants as well as disabled and invalid states for accessible forms.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

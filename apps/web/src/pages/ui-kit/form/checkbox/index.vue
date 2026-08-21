@@ -9,6 +9,7 @@ import variants from './examples/variants.vue'
 defineDocPage({
   title: 'Checkbox',
   icon: 'component-1',
+  styleScope: 'checkbox',
   description: `A toggleable checkbox driven by a controlled <code>v-model</code>. Supports different sizes and variants as well as disabled and invalid states, with an accessible native input underneath.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

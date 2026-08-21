@@ -9,6 +9,7 @@ import variants from './examples/variants.vue'
 defineDocPage({
   title: 'Textarea',
   icon: 'component-1',
+  styleScope: 'textarea',
   description: `A multi-line text input component driven by a controlled <code>v-model</code>. Supports different sizes, variants, validation states, and native attributes such as <code>placeholder</code> and <code>rows</code>.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

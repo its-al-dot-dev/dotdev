@@ -10,6 +10,7 @@ import slots from './examples/slots.vue'
 defineDocPage({
   title: 'Breadcrumbs',
   icon: 'component-1',
+  styleScope: 'breadcrumbs',
   description: `A navigation trail that shows the current page location. Renders each item as a link or a plain segment, with a text or icon <code>separator</code>, per-item icons and scoped slots. Scales with the parent font size.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

@@ -11,6 +11,7 @@ import variants from './examples/variants.vue'
 defineDocPage({
   title: 'Avatar',
   icon: 'component-1',
+  styleScope: 'avatar',
   description: `A circular or square avatar that renders an image, a text label, or an icon. Supports six semantic colors, soft and solid variants, multiple sizes, an optional border, and custom content via the default slot.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

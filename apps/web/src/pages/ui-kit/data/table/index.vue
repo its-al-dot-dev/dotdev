@@ -14,6 +14,7 @@ import stickyHeader from './examples/sticky-header.vue'
 defineDocPage({
   title: 'Table',
   icon: 'table',
+  styleScope: 'table',
   description: `A data table built from row, header, and cell primitives. Renders native <code>&lt;table&gt;</code> semantics with hairline separators, a row hover state, selected rows, and an optional sticky header for scrollable regions.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

@@ -14,6 +14,7 @@ import variants from './examples/variants.vue'
 defineDocPage({
   title: 'Tag',
   icon: 'component-1',
+  styleScope: 'tag',
   description: `A compact label for categorizing and marking content. Supports six semantic colors, soft and solid variants, a rounded style, optional prefix and suffix icons, and custom content via slots.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

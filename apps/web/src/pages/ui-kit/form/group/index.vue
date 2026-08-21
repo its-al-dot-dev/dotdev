@@ -10,6 +10,7 @@ import combined from './examples/combined.vue'
 defineDocPage({
   title: 'Group',
   icon: 'component-1',
+  styleScope: 'group',
   description: `A flexible container for grouping related form controls. Supports horizontal (x) and vertical (y) layouts with optional attached addons for prefixes, suffixes, or actions.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

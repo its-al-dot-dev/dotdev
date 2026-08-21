@@ -7,6 +7,7 @@ import variants from './examples/variants.vue'
 defineDocPage({
   title: 'Accordion',
   icon: 'stack',
+  styleScope: 'accordion',
   description: `A vertically stacked list of interactive headers that reveal or hide associated content panels. Supports single or multiple open panels, four visual variants, and scoped slots for custom headers and content.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

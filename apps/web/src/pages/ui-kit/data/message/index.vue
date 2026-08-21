@@ -9,6 +9,7 @@ import variants from './examples/variants.vue'
 defineDocPage({
   title: 'Message',
   icon: 'info-circled',
+  styleScope: 'message',
   description: `A lightweight banner that combines an icon, a title, and a body message. Comes in soft and plain variants across six colors, with an optional border.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

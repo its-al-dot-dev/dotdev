@@ -10,6 +10,7 @@ import variants from './examples/variants.vue'
 defineDocPage({
   title: 'Input',
   icon: 'component-1',
+  styleScope: 'input',
   description: `A flexible text input component with support for different sizes, variants, validation states, and controlled values via <code>v-model</code>. Designed for building accessible forms with consistent styling and customization options.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

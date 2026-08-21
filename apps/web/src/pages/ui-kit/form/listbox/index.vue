@@ -15,6 +15,7 @@ import variants from './examples/variants.vue'
 defineDocPage({
   title: 'ListBox',
   icon: 'component-1',
+  styleScope: 'listbox',
   description: `An accessible list of selectable options rendered as a native listbox. Supports single and multiple selection, custom value/label keys, deselection, and per-option disabling via a controlled <code>v-model</code>.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

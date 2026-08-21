@@ -12,6 +12,7 @@ import variants from './examples/variants.vue'
 defineDocPage({
   title: 'IconButton',
   icon: 'component-1',
+  styleScope: 'icon-button',
   description: `A square button for a single <code>icon</code> action. Wraps <code>Button</code> with a fixed square layout, supporting all sizes, colors, and variants, plus loading, disabled, and link modes.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

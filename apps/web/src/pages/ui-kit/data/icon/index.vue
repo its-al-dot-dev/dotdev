@@ -8,6 +8,7 @@ import sizes from './examples/sizes.vue'
 defineDocPage({
   title: 'Icon',
   icon: 'component-1',
+  styleScope: 'icon',
   description: `A flexible icon component that renders SVG icons from the global icon registry (provided via <code>createUiKit</code>). Supports custom components via <code>is</code> prop and any SVG component via <code>name</code>.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

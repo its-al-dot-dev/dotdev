@@ -8,6 +8,7 @@ import variants from './examples/variants.vue'
 defineDocPage({
   title: 'Divider',
   icon: 'border-dashed',
+  styleScope: 'divider',
   description: `A separator that splits content horizontally or vertically. Renders as a single line or with a centered label, in solid, dashed, or dotted styles across six colors.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

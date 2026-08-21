@@ -13,6 +13,7 @@ import variants from './examples/variants.vue'
 defineDocPage({
   title: 'SelectButton',
   icon: 'component-1',
+  styleScope: 'select-button',
   description: `A segmented set of mutually exclusive toggle buttons driven by a controlled <code>v-model</code>. Supports single and multiple selection, object options via custom value/label keys, deselection, and per-option disabling.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [

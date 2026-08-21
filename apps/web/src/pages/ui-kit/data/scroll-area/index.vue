@@ -8,6 +8,7 @@ import vertical from './examples/vertical.vue'
 defineDocPage({
   title: 'ScrollArea',
   icon: 'frame',
+  styleScope: 'scroll-area',
   description: `A scrollable region with a custom scrollbar that appears on hover. Renders native scrolling with a custom thumb on the vertical or horizontal axis, supports thumb dragging, and exposes scoped slots for fully custom scrollbars.`,
   sources: import.meta.glob('./examples/*.{vue,ts}', { query: '?raw', eager: true, import: 'default' }),
   examples: [
