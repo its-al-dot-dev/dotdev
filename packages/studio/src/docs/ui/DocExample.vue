@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import { IconButton, SelectButton, useClipboard, useColorScheme } from '@dotdev/ui-kit'
+import { IconButton, SelectButton, useClipboard } from '@dotdev/ui-kit'
 import DocBlock from './DocBlock.vue'
 import DocCard from './DocCard.vue'
 import DocCode from './DocCode.vue'
@@ -24,56 +24,39 @@ const files = computed(() => codes.value.map((code) => code.file))
 const showFiles = computed(() => activeTab.value === 'Code' && files.value.length > 1)
 
 const { copy, copied } = useClipboard(() => activeCode.value?.code)
-const { scheme } = useColorScheme()
 
-const isInvertedPreview = ref(false)
-const isGridVisible = ref(true)
-
-const previewScheme = computed(() => {
-  if (!isInvertedPreview.value) return null
-  return scheme.value === 'dark' ? 'light' : 'dark'
-})
-
-const previewIcon = computed(() => {
-  if (!previewScheme.value) return scheme.value === 'dark' ? 'sun' : 'moon'
-  return previewScheme.value === 'dark' ? 'moon' : 'sun'
-})
+const isGridVisible = ref(false)
 </script>
 
 <template>
   <DocBlock :desc="example.description" :title="example.title">
+    <div class="doc-example__header">
+      <div class="doc-example__nav">
+        <SelectButton
+          v-if="tabs.length > 1"
+          v-model="activeTab"
+          #default="{ label }"
+          :options="tabs"
+          variant="outlined"
+        >
+          <span class="font-mono">{{ label }}</span>
+        </SelectButton>
+      </div>
+
+      <div class="doc-example__actions">
+        <IconButton
+          :aria-label="isGridVisible ? 'Hide canvas grid' : 'Show canvas grid'"
+          :aria-pressed="isGridVisible"
+          :class="isGridVisible ? 'text-brand' : 'text-muted'"
+          icon="grid"
+          @click="isGridVisible = !isGridVisible"
+        />
+        <IconButton :icon="copied ? 'check' : 'copy'" aria-label="Copy source" @click="copy()" />
+      </div>
+    </div>
+
     <DocCard class="doc-example">
-      <template #header>
-        <div class="doc-example__nav">
-          <SelectButton
-            v-if="tabs.length > 1"
-            v-model="activeTab"
-            #default="{ label }"
-            :options="tabs"
-            variant="outlined"
-          >
-            <span class="font-mono">{{ label }}</span>
-          </SelectButton>
-        </div>
-
-        <div class="doc-example__actions">
-          <IconButton
-            :aria-label="isGridVisible ? 'Hide canvas grid' : 'Show canvas grid'"
-            :aria-pressed="isGridVisible"
-            :class="isGridVisible ? 'text-brand' : 'text-muted'"
-            icon="grid"
-            @click="isGridVisible = !isGridVisible"
-          />
-          <IconButton
-            :aria-label="previewScheme ? 'Revert preview scheme' : 'Preview in opposite scheme'"
-            :icon="previewIcon"
-            @click="isInvertedPreview = !isInvertedPreview"
-          />
-          <IconButton :icon="copied ? 'check' : 'copy'" aria-label="Copy source" @click="copy()" />
-        </div>
-      </template>
-
-      <div :class="previewScheme" class="doc-example__body">
+      <div class="doc-example__body">
         <div
           v-if="example.preview"
           v-show="activeTab === 'Example'"

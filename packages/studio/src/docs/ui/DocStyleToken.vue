@@ -45,6 +45,7 @@ const measureStyle = computed(() => {
       <span v-else-if="token.type === 'gap'" :style="{ gap: token.value }" class="doc-token__space">
         <span class="doc-token__shape" />
         <span class="doc-token__shape" />
+        <span class="doc-token__shape" />
       </span>
 
       <span v-else-if="isPadding" :style="paddingStyle" class="doc-token__padding">
