@@ -4,10 +4,12 @@ import { Icon, useUiKitBem, useUiKitProps, useUiKitTheme } from '@dotdev/ui-kit'
 import type { UIButtonEmits, UIButtonProps, UIButtonSlots } from './button.types.ts'
 import { buttonStyle } from '@dotdev/theme'
 
+const UI_NAME = 'button'
+
 defineSlots<UIButtonSlots>()
 const emits = defineEmits<UIButtonEmits>()
 const props = withDefaults(defineProps<UIButtonProps>(), {
-  ui: 'button',
+  ui: UI_NAME,
   size: 'md',
   color: 'primary',
   variant: 'solid',
@@ -15,7 +17,7 @@ const props = withDefaults(defineProps<UIButtonProps>(), {
   type: 'button',
 })
 
-const ui = useUiKitProps('button', props)
+const ui = useUiKitProps(UI_NAME, props)
 useUiKitTheme(ui, buttonStyle)
 
 const bem = useUiKitBem(ui)
